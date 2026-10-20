@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>재난관리연구방법론 서브노트 | Chapter 2. 소셜 네트워크 구조</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- MathJax Configuration & Script -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Mermaid JS for diagrams -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typeof mermaid !== 'undefined') {
+        try {
+          mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+        } catch(e) {
+          console.warn('Mermaid initialization deferred:', e);
+        }
+      }
+    });
+  </script>
+
+  <style>
+    :root {
+      --bg-primary: #0f172a;
+      --bg-secondary: #1e293b;
+      --bg-card: #1e293b;
+      --bg-card-hover: #334155;
+      --accent-primary: #3b82f6;
+      --accent-secondary: #8b5cf6;
+      --accent-emerald: #10b981;
+      --accent-amber: #f59e0b;
+      --accent-rose: #f43f5e;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --border-color: #334155;
+      --glass-bg: rgba(30, 41, 59, 0.85);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+      --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+      --radius: 12px;
+      --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    [data-theme="light"] {
+      --bg-primary: #f8fafc;
+      --bg-secondary: #ffffff;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f1f5f9;
+      --accent-primary: #2563eb;
+      --accent-secondary: #7c3aed;
+      --accent-emerald: #059669;
+      --accent-amber: #d97706;
+      --accent-rose: #e11d48;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --text-dim: #94a3b8;
+      --border-color: #e2e8f0;
+      --glass-bg: rgba(255, 255, 255, 0.9);
+      --glass-border: rgba(0, 0, 0, 0.08);
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Noto Sans KR', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.7;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header & Navigation */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--glass-border);
+      padding: 1rem 1.5rem;
+    }
+
+    .header-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .logo-badge {
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      color: white;
+      font-weight: 800;
+      font-size: 0.85rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    .logo-title {
+      font-family: 'Outfit', 'Noto Sans KR', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .search-box {
+      position: relative;
+      width: 280px;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 0.5rem 0.75rem 0.5rem 2.25rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      color: var(--text-main);
+      font-size: 0.875rem;
+      outline: none;
+      transition: var(--transition);
+    }
+
+    .search-box input:focus {
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    }
+
+    .search-box i {
+      position: absolute;
+      left: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      width: 16px;
+      height: 16px;
+    }
+
+    .theme-toggle-btn {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 0.5rem;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      width: 38px;
+      height: 38px;
+    }
+
+    .theme-toggle-btn:hover {
+      background: var(--bg-card-hover);
+      color: var(--accent-primary);
+    }
+
+    /* Sub-nav Tab Bar */
+    .nav-tabs-wrapper {
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border-color);
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    .nav-tabs {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      padding: 0 1.5rem;
+      gap: 0.5rem;
+    }
+
+    .nav-tab {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.1rem;
+      background: transparent;
+      border: none;
+      border-bottom: 3px solid transparent;
+      color: var(--text-muted);
+      font-weight: 500;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    .nav-tab:hover {
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .nav-tab.active {
+      color: var(--accent-primary);
+      border-bottom-color: var(--accent-primary);
+      font-weight: 700;
+    }
+
+    .nav-tab i {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* Main Container & Layout */
+    .main-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      flex: 1;
+      width: 100%;
+    }
+
+    /* Hero Banner */
+    .hero-banner {
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.12), rgba(139, 92, 246, 0.12));
+      border: 1px solid rgba(59, 130, 246, 0.25);
+      border-radius: var(--radius);
+      padding: 1.75rem 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .hero-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--text-main);
+    }
+
+    .hero-desc {
+      color: var(--text-muted);
+      font-size: 0.975rem;
+      max-width: 1000px;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .stat-chip {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 0.4rem 0.9rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-main);
+    }
+
+    .stat-chip i {
+      width: 16px;
+      height: 16px;
+      color: var(--accent-primary);
+    }
+
+    /* Section Content Styles */
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(59, 130, 246, 0.4);
+    }
+
+    .card-full {
+      grid-column: 1 / -1;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .card-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: var(--text-main);
+    }
+
+    .badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.25rem 0.6rem;
+      border-radius: 12px;
+      text-transform: uppercase;
+    }
+
+    .badge-blue { background: rgba(59, 130, 246, 0.15); color: var(--accent-primary); }
+    .badge-purple { background: rgba(139, 92, 246, 0.15); color: var(--accent-secondary); }
+    .badge-emerald { background: rgba(16, 185, 129, 0.15); color: var(--accent-emerald); }
+    .badge-amber { background: rgba(245, 158, 11, 0.15); color: var(--accent-amber); }
+    .badge-rose { background: rgba(244, 63, 94, 0.15); color: var(--accent-rose); }
+
+    .card-body {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      flex: 1;
+    }
+
+    .card-body p {
+      margin-bottom: 0.85rem;
+    }
+
+    .card-body p strong {
+      color: var(--text-main);
+    }
+
+    .bullet-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0 1rem 0;
+    }
+
+    .bullet-list li {
+      position: relative;
+      padding-left: 1.35rem;
+      margin-bottom: 0.6rem;
+      line-height: 1.6;
+    }
+
+    .bullet-list li::before {
+      content: '•';
+      position: absolute;
+      left: 0.4rem;
+      color: var(--accent-primary);
+      font-weight: bold;
+    }
+
+    .callout {
+      border-left: 4px solid var(--accent-primary);
+      background: var(--bg-secondary);
+      padding: 1rem 1.25rem;
+      border-radius: 0 var(--radius) var(--radius) 0;
+      margin: 1rem 0;
+    }
+
+    .callout-title {
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.35rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .callout-warning { border-left-color: var(--accent-rose); background: rgba(244, 63, 94, 0.08); }
+    .callout-warning .callout-title { color: var(--accent-rose); }
+
+    .callout-tip { border-left-color: var(--accent-emerald); background: rgba(16, 185, 129, 0.08); }
+    .callout-tip .callout-title { color: var(--accent-emerald); }
+
+    .callout-amber { border-left-color: var(--accent-amber); background: rgba(245, 158, 11, 0.08); }
+    .callout-amber .callout-title { color: var(--accent-amber); }
+
+    .math-block {
+      background: var(--bg-secondary);
+      border: 1px dashed var(--border-color);
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+      margin: 1rem 0;
+      font-size: 1.1rem;
+    }
+
+    .accordion-item {
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      margin-bottom: 0.75rem;
+      overflow: hidden;
+      background: var(--bg-card);
+    }
+
+    .accordion-header {
+      padding: 1rem 1.25rem;
+      background: var(--bg-card);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: 600;
+      color: var(--text-main);
+      user-select: none;
+    }
+
+    .accordion-header:hover {
+      background: var(--bg-card-hover);
+    }
+
+    .accordion-content {
+      padding: 0 1.25rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      color: var(--text-muted);
+    }
+
+    .accordion-item.active .accordion-content {
+      padding: 1rem 1.25rem;
+      max-height: 2000px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .custom-table-wrapper {
+      overflow-x: auto;
+      margin: 1rem 0;
+      border-radius: var(--radius);
+      border: 1px solid var(--border-color);
+    }
+
+    table.custom-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+
+    table.custom-table th {
+      background: var(--bg-secondary);
+      color: var(--text-main);
+      font-weight: 700;
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    table.custom-table td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-muted);
+    }
+
+    .flashcard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .flashcard {
+      perspective: 1000px;
+      height: 220px;
+      cursor: pointer;
+    }
+
+    .flashcard-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-style: preserve-3d;
+    }
+
+    .flashcard.flipped .flashcard-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flashcard-front, .flashcard-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      border-radius: var(--radius);
+      border: 1px solid var(--border-color);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .flashcard-front {
+      background: var(--bg-card);
+      color: var(--text-main);
+    }
+
+    .flashcard-back {
+      background: linear-gradient(135deg, var(--bg-secondary), var(--bg-card));
+      color: var(--text-main);
+      transform: rotateY(180deg);
+      border-color: var(--accent-primary);
+      text-align: left;
+      font-size: 0.9rem;
+    }
+
+    .quiz-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .quiz-question {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 1rem;
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .quiz-option {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .quiz-option:hover {
+      border-color: var(--accent-primary);
+      color: var(--text-main);
+    }
+
+    .quiz-option.selected.correct {
+      border-color: var(--accent-emerald);
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--accent-emerald);
+      font-weight: 600;
+    }
+
+    .quiz-option.selected.incorrect {
+      border-color: var(--accent-rose);
+      background: rgba(244, 63, 94, 0.15);
+      color: var(--accent-rose);
+    }
+
+    .quiz-explanation {
+      margin-top: 1rem;
+      padding: 0.85rem 1rem;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      display: none;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+    }
+
+    footer {
+      border-top: 1px solid var(--border-color);
+      padding: 1.5rem 0;
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      margin-top: auto;
+      background: var(--bg-secondary);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <div class="logo-area">
+        <span class="logo-badge">SUB-NOTE</span>
+        <span class="logo-title">재난관리연구방법론 Chapter 2</span>
+      </div>
+
+      <div class="header-controls">
+        <div class="search-box">
+          <i data-lucide="search"></i>
+          <input type="text" id="searchInput" placeholder="서브노트 검색 (Cernea, Wallace, 학자/개념)...">
+        </div>
+        <button class="theme-toggle-btn" id="themeToggle" title="테마 변경">
+          <i data-lucide="sun" id="themeIcon"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Nav Tabs -->
+  <div class="nav-tabs-wrapper">
+    <div class="nav-tabs">
+      <button class="nav-tab active" data-tab="tab-overview">
+        <i data-lucide="layout-dashboard"></i> 1. 개요 & 맵
+      </button>
+      <button class="nav-tab" data-tab="tab-density">
+        <i data-lucide="network"></i> 2. 밀도 & 코뮤니타스
+      </button>
+      <button class="nav-tab" data-tab="tab-diversity">
+        <i data-lucide="git-fork"></i> 3. 구조적 다양성 & 하위집단
+      </button>
+      <button class="nav-tab" data-tab="tab-surface">
+        <i data-lucide="layers"></i> 4. 표면 vs 심층 구조
+      </button>
+      <button class="nav-tab" data-tab="tab-phases">
+        <i data-lucide="clock"></i> 5. 재난 단계별 개인
+      </button>
+      <button class="nav-tab" data-tab="tab-beyond">
+        <i data-lucide="shield-alert"></i> 6. 종합 비판 & 시사점
+      </button>
+      <button class="nav-tab" data-tab="tab-glossary">
+        <i data-lucide="book-open"></i> 7. 학자 & 용어
+      </button>
+      <button class="nav-tab" data-tab="tab-quiz">
+        <i data-lucide="help-circle"></i> 8. 플래시카드 & 퀴즈
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <main class="main-container">
+
+    <!-- Hero Banner -->
+    <div class="hero-banner">
+      <h1 class="hero-title">
+        <i data-lucide="share-2"></i> 챕터 2. 사회적 네트워크 구조 (Social Network Structure)
+      </h1>
+      <p class="hero-desc">
+        원문(pp. 17–21) 완벽 반영 서브노트입니다. 밀도(17p), 구조적 다양성(18p), 표면/심층 구조(19p), 재난 단계별 개인(20p) 순서 및 체르네아(Cernea)의 사회적 단절, 월리스(Wallace)의 8단계·3대 영역·재난 증후군 모형 등 핵심 학술 논점을 세밀히 반영했습니다.
+      </p>
+      <div class="hero-stats">
+        <span class="stat-chip"><i data-lucide="file-text"></i> 원문 17~21쪽 Complete Sync</span>
+        <span class="stat-chip"><i data-lucide="user-check"></i> Cernea & Wallace 모형 보완</span>
+        <span class="stat-chip"><i data-lucide="alert-triangle"></i> 밀도의 역설 & 하위집단 파편화</span>
+      </div>
+    </div>
+
+    <!-- TAB 1: OVERVIEW -->
+    <div id="tab-overview" class="tab-content active">
+      <div class="section-grid">
+
+        <div class="card card-full">
+          <div class="card-header">
+            <h2 class="card-title"><i data-lucide="compass"></i> 챕터 2 로드맵 & 원문 목차 구조</h2>
+            <span class="badge badge-blue">Textbook Alignment</span>
+          </div>
+          <div class="card-body">
+            <p><strong>원문 목차 1:1 대응 구조:</strong></p>
+            <div class="custom-table-wrapper">
+              <table class="custom-table">
+                <thead>
+                  <tr>
+                    <th>원문 목차 (페이지)</th>
+                    <th>주요 다루는 학술 이론 및 실증 분석</th>
+                    <th>핵심 학자 및 개념</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>1. 네트워크 밀도 (17p)</strong></td>
+                    <td>밀도 산출 수식, 포코트족 의도적 구축, Hurlbert 지원 분리, Cernea 사회적 단절, 밀도의 역설, Politics of Deservingness</td>
+                    <td>Hurlbert, Michael Cernea, Faas</td>
+                  </tr>
+                  <tr>
+                    <td><strong>2. 구조적 다양성 (18p)</strong></td>
+                    <td>가교(Bridging), 중개자(Brokers), 4가지 네트워크 유형론, 응집 하위 집단(Subgroups)의 역설, ABC 어린이집 참사 4개 파벌 분열</td>
+                    <td>Jones & Murphy</td>
+                  </tr>
+                  <tr>
+                    <td><strong>3. 표면 구조와 심층 구조 (19p)</strong></td>
+                    <td>구조주의(소쉬르, 촘스키, 레비-스트로스), 무맥락 이름 생성기 vs 맥락 특화 질문, 표면의 일관성 vs 심층의 비일관성, 문법적 결정론 한계</td>
+                    <td>Hoffman, Saussure, Lévi-Strauss</td>
+                  </tr>
+                  <tr>
+                    <td><strong>4. 재난 단계별 개인 (20p)</strong></td>
+                    <td>Wallace 8단계 시간 체계·3대 공간 영역·재난 증후군, Hoffman 3단계 주기, Weil 사회적 매몰성의 역설, Casagrande Vital Phase</td>
+                    <td>Anthony Wallace, Hoffman, Weil, Casagrande</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TAB 2: DENSITY -->
+    <div id="tab-density" class="tab-content">
+      <div class="section-grid">
+
+        <div class="card card-full">
+          <div class="card-header">
+            <h2 class="card-title"><i data-lucide="calculator"></i> 1. 밀도(Density)의 정의 및 수식</h2>
+            <span class="badge badge-blue">17 Page</span>
+          </div>
+          <div class="card-body">
+            <p><strong>개념:</strong> 네트워크 내 알터(Alters) 사이에 실제로 존재하는 연결 수를 이론 가능한 최대 연결 수로 나눈 비율.</p>
+            <div class="math-block">
+              $$\text{Density} = \frac{2L}{N(N - 1)}$$
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">
+                ($N$: 지명된 알터 수, $L$: 실제 존재하는 연결선 수)
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title"><i data-lucide="user-x"></i> 2. 체르네아(Cernea)의 사회적 단절 (Social Disarticulation)</h3>
+            <span class="badge badge-purple">Cernea (18p)</span>
+          </div>
+          <div class="card-body">
+            <p><strong>마이클 체르네아(Michael Cernea):</strong> 강제 이주 및 재정착 과정에서 발생하는 <strong>사회적 단절(Social Disarticulation)</strong>의 위험성을 강조함.</p>
+            <div class="callout callout-amber">
+              <div class="callout-title">📌 단절을 막기 위한 비공식 유대 노력</div>
+              <p>이주민들은 기존 상호부조 네트워크 해체와 정체성 위기를 피하기 위해 고밀도 비공식 연대를 유지하려 노력하지만, 내부 자원이 고갈되면 밀도의 역설로 직결됨.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title"><i data-lucide="git-commit"></i> 3. 지원 성격의 분리 (Hurlbert et al., 2001)</h3>
+            <span class="badge badge-emerald">Hurlbert</span>
+          </div>
+          <div class="card-body">
+            <ul class="bullet-list">
+              <li><strong>고밀도·소규모망:</strong> 비공식 사회 지원(감정 위로, 돌봄) 우세.</li>
+              <li><strong>저밀도·대규모망:</strong> 공식 제도 지원(구호기관, 정부) 더 활용.</li>
+            </ul>
+            <div class="callout callout-warning">
+              <div class="callout-title">⚠️ 외부 단절 문제</div>
+              <p>고밀도 망에 매몰될수록 정작 공공 구호기관에 대한 접근성은 가장 낮아짐.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card card-full">
+          <div class="card-header">
+            <h3 class="card-title"><i data-lucide="zap"></i> 4. 밀도의 역설 (Paradox of Density)과 3가지 원인</h3>
+            <span class="badge badge-rose">Critical Paradox</span>
+          </div>
+          <div class="card-body">
+            <p>멕시코 이주지 등 고밀도 유대를 가진 집단이 <strong>가장 최악의 웰빙(정신건강 악화)</strong>을 보인 현상:</p>
+            <ol style="margin-left: 1.25rem; line-height: 1.7;">
+              <li><strong>만성 자원 결핍:</strong> 피해자 전원이 가난하여 주고받을 자원이 없음.</li>
+              <li><strong>과도한 부양 의무:</strong> 끈끈한 망 내부의 지속적 지원 요구로 중압감 유발.</li>
+              <li><strong>관계적 피로감 (Burnout):</strong> 서로의 비극을 매일 보며 감정적 번아웃 누적.</li>
+            </ol>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TAB 3: STRUCTURAL DIVERSITY -->
+    <div id="tab-diversity" class="tab-content">
+      <div class="section-grid">
+
+        <div class="card card-full">
+          <div class="card-header">
+            <h2 class="card-title"><i data-lucide="git-fork"></i> 1. 가교(Bridging)와 중개자(Brokers)</h2>
+            <span class="badge badge-blue">18 Page</span>
+          </div>
+          <div class="card-body">
+            <p>서로 연결되지 않은 집단을 이어주는 <strong>가교 행위자(Bridging Actors)</strong>는 비중복적 자원과 정보를 유입시키는 통로 역할을 함.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title"><i data-lucide="alert-triangle"></i> 2. 응집 하위 집단(Subgroups)의 역설</h3>
+            <span class="badge badge-rose">Subgroup Paradox</span>
+          </div>
+          <div class="card-body">
+            <p>하위 집단(파벌) 존재가 자원 교환을 늘리지 않으며, <strong>재정착 여성의 전반적 정신건강을 최악</strong>으로 만들고 <strong>남성의 우울 점수를 최고치</strong>로 높임.</p>
+          </div>
+        </div>
+
+        <div class="card card-full">
+          <div class="card-header">
+            <h3 class="card-title"><i data-lucide="users-round"></i> 3. 대표 실증 사례: 멕시코 ABC 어린이집 참사 유가족 파벌 분열 (Jones & Murphy, 2015)</h3>
+            <span class="badge badge-purple">Jones & Murphy (18~19p)</span>
+          </div>
+          <div class="card-body">
+            <p>2009년 ABC 어린이집 화재 참사 유가족 네트워크가 2년에 걸쳐 파편화된 핵심 사례:</p>
+            <p>1년 차(사망 부모 vs 부상 부모) ➔ 2년 차(정치·사법 투쟁파 vs 온건 비정치파 분화)로 <strong>총 4개의 하위 파벌로 분열</strong>되었습니다.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TAB 4: SURFACE VS DEEP STRUCTURE -->
+    <div id="tab-surface" class="tab-content">
+      <div class="section-grid">
+
+        <div class="card card-full">
+          <div class="card-header">
+            <h2 class="card-title"><i data-lucide="layers"></i> 1. 구조주의 이론 기원과 2가지 측정 도구</h2>
+            <span class="badge badge-blue">19 Page</span>
+          </div>
+          <div class="card-body">
+            <div class="custom-table-wrapper">
+              <table class="custom-table">
+                <thead>
+                  <tr>
+                    <th>구분</th>
+                    <th>심층 구조 (Deep Structure)</th>
+                    <th>표면 구조 (Surface Structure)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>개념</strong></td>
+                    <td>보이지 않는 무의식적 기틀 및 문법(Grammar)</td>
+                    <td>재난 시 의식적으로 동원하는 행동 패턴</td>
+                  </tr>
+                  <tr>
+                    <td><strong>측정 도구</strong></td>
+                    <td><strong>무맥락 이름 생성기</strong><br>(Context-free Name Generator)</td>
+                    <td><strong>맥락 특화 질문</strong><br>(Context-specific Questions)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>실증 연구 결과</strong></td>
+                    <td>460개 표본 분석 결과 비일관적이며 변동 심함</td>
+                    <td>연구 전반에 걸쳐 높은 일관성 및 재현성 보임</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TAB 5: PHASES OF DISASTER -->
+    <div id="tab-phases" class="tab-content">
+      <div class="section-grid">
+
+        <div class="card card-full">
+          <div class="card-header">
+            <h2 class="card-title"><i data-lucide="user-check"></i> 1. 앤서니 월리스(Anthony Wallace, 1956)의 통합 모형</h2>
+            <span class="badge badge-purple">Wallace (20~21p)</span>
+          </div>
+          <div class="card-body">
+            <div class="callout callout-tip">
+              <div class="callout-title">⏱️ 8단계 시간 체계 (8-Stage Temporal Sequence)</div>
+              <p style="font-size: 0.9rem;">
+                1. 재난 전(Steady State) ➔ 2. 경보(Warning) ➔ 3. 위협(Threat) ➔ 4. 영향(Impact) ➔ 5. 피해 조사/격리(Isolation) ➔ 6. 구조(Rescue) ➔ 7. 구제(Remedy) ➔ 8. 복구(Recovery)
+              </p>
+            </div>
+
+            <div class="callout callout-tip">
+              <div class="callout-title">🗺️ 3대 휴리스틱 공간 체계 (Spatial Dimensions)</div>
+              <ul class="bullet-list" style="margin-bottom: 0;">
+                <li><strong>충격 지역 (Impact Area):</strong> 파괴가 직접 일어난 핵심 피해 구역.</li>
+                <li><strong>인접 / 필터 지역 (Filter Area):</strong> 구호 물자 및 정보를 선별·전달하는 매개 구역.</li>
+                <li><strong>조직화된 지원 지역 (Organized Help Area):</strong> 외부 전문 구호기관 및 자원이 출동하는 배후 구역.</li>
+              </ul>
+            </div>
+
+            <div class="callout callout-amber">
+              <div class="callout-title">🧠 재난 증후군 (Disaster Syndrome)</div>
+              <p>충격 직후 피해자들이 경험하는 멍함, 방향 감각 상실, 수동성 등 초기 심리 상태 체계.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title"><i data-lucide="repeat"></i> 2. 호프만(Hoffman)의 3단계 주기</h3>
+            <span class="badge badge-blue">Hoffman</span>
+          </div>
+          <div class="card-body">
+            <p>1단계: 개인 ➔ 집단 지원 (이타주의 파도)<br>2단계: 집단 지원 ➔ 파벌 경쟁 (Oliver-Smith의 균열 재점화)<br>3단계: 종결 (Closure, 일상 복귀)</p>
+          </div>
+        </div>
+
+        <div class="card card-full">
+          <div class="card-header">
+            <h3 class="card-title"><i data-lucide="clock-5"></i> 3. Casagrande의 '사회적 시간' & Vital Phase</h3>
+            <span class="badge badge-emerald">Casagrande (21p)</span>
+          </div>
+          <div class="card-body">
+            <p>미시시피강 홍수 연구: <strong>생사 결정 단계(Vital Phase)에서는 친족(Kin 유대)이 지원을 100% 독점</strong>하며, 비치명적 장기 복구 단계에서 공식 제도 지원이 지배적임.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TAB 6: BEYOND SOCIAL CAPITAL -->
+    <div id="tab-beyond" class="tab-content">
+      <div class="section-grid">
+
+        <div class="card card-full">
+          <div class="card-header">
+            <h2 class="card-title"><i data-lucide="shield-alert"></i> 종합 비판: 사회적 자본과 코뮤니타스를 넘어</h2>
+            <span class="badge badge-rose">Beyond Communitas</span>
+          </div>
+          <div class="card-body">
+            <ul class="bullet-list">
+              <li><strong>체르네아의 사회적 단절 극복 시도의 이면:</strong> 단절을 피하려 고밀도망을 유지하지만 자원 결핍 시 밀도의 역설로 정신건강 악화.</li>
+              <li><strong>문화적 위계 고착화 (Reifying Inequalities):</strong> 코뮤니타스 강조가 인종, 계급, 성별 위계를 답습함.</li>
+              <li><strong>수혜 자격의 정치 (Politics of Deservingness):</strong> 에콰도르 '밍가' 참여 강제로 생계형 임금 노동 취약가구 배제 (Faas, 2015a).</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TAB 7: GLOSSARY & SCHOLARS -->
+    <div id="tab-glossary" class="tab-content">
+      <div class="section-grid">
+
+        <div class="card card-full">
+          <div class="card-header">
+            <h2 class="card-title"><i data-lucide="award"></i> 주요 학자 및 연구 기여 정리표</h2>
+            <span class="badge badge-purple">Scholars Sync</span>
+          </div>
+          <div class="card-body">
+            <div class="custom-table-wrapper">
+              <table class="custom-table">
+                <thead>
+                  <tr>
+                    <th>학자 / 연구진</th>
+                    <th>원문 등장 위치</th>
+                    <th>핵심 기여 및 학술적 개념</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Michael Cernea (1997)</strong></td>
+                    <td>18p</td>
+                    <td>재정착 시 발생하는 <strong>'사회적 단절(Social Disarticulation)'</strong> 위험 지적</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Anthony Wallace (1956)</strong></td>
+                    <td>20~21p</td>
+                    <td><strong>8단계 시간 체계, 3대 휴리스틱 공간 영역(충격/필터/도움), 재난 증후군</strong> 정립</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Hurlbert et al. (2001)</strong></td>
+                    <td>17p</td>
+                    <td>고밀도망(비공식 지원) vs 저밀도망(공식 제도 지원) 지원 성격 분리</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Jones & Murphy (2015)</strong></td>
+                    <td>18~19p</td>
+                    <td>하위 집단(Subgroups) 파편화 및 멕시코 ABC 어린이집 참사 4개 파벌 분열 규명</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Casagrande et al. (2015)</strong></td>
+                    <td>21p</td>
+                    <td>사회적 시간 및 <strong>생사 결정 단계 (Vital Phase) 친족 독점</strong> 입증</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Weil et al. (2012)</strong></td>
+                    <td>21p</td>
+                    <td>사회적 매몰성의 역설 (초기 스트레스 가중 vs 장기 회복 속도 촉진)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Faas (2015a)</strong></td>
+                    <td>17~18p</td>
+                    <td><strong>수혜 자격의 정치 (Politics of Deservingness)</strong> 및 에콰도르 밍가 사례</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TAB 8: FLASHCARDS & QUIZ -->
+    <div id="tab-quiz" class="tab-content">
+      
+      <h2 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-main); display: flex; align-items: center; gap: 0.5rem;">
+        <i data-lucide="layers" style="color: var(--accent-primary);"></i> 🎴 보완된 핵심 개념 플래시 카드
+      </h2>
+
+      <div class="flashcard-grid">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">
+              <h3>Cernea의 '사회적 단절'이란?</h3>
+              <span class="flashcard-hint"><i data-lucide="rotate-cw"></i> 클릭하여 정답 확인</span>
+            </div>
+            <div class="flashcard-back">
+              <p>재정착 과정에서 기존 사회적 자본, 상호부조 네트워크, 공동체 유대가 해체되는 현상 (Social Disarticulation).</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">
+              <h3>Wallace의 3대 휴리스틱 공간 영역은?</h3>
+              <span class="flashcard-hint"><i data-lucide="rotate-cw"></i> 클릭하여 정답 확인</span>
+            </div>
+            <div class="flashcard-back">
+              <p>1. 충격 지역 (Impact Area)<br>2. 인접 / 필터 지역 (Filter Area)<br>3. 조직화된 지원 지역 (Organized Help Area)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr style="border: none; border-top: 1px solid var(--border-color); margin: 3rem 0;">
+
+      <h2 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-main); display: flex; align-items: center; gap: 0.5rem;">
+        <i data-lucide="check-square" style="color: var(--accent-emerald);"></i> 📝 자가 진단 퀴즈
+      </h2>
+
+      <div class="quiz-container">
+
+        <div class="quiz-card" id="q1">
+          <div class="quiz-question">Q1. 앤서니 월리스(Anthony Wallace, 1956)가 제시한 재난의 공간 체계 중 구호 물자 및 정보를 선별하고 전달하는 매개 구역은?</div>
+          <div class="quiz-options">
+            <div class="quiz-option" onclick="selectQuizOption(this, 1, false)">① 충격 지역 (Impact Area)</div>
+            <div class="quiz-option" onclick="selectQuizOption(this, 1, true)">② 인접 / 필터 지역 (Filter Area)</div>
+            <div class="quiz-option" onclick="selectQuizOption(this, 1, false)">③ 조직화된 지원 지역 (Organized Help Area)</div>
+          </div>
+          <div class="quiz-explanation">해설: Wallace의 공간 모형에서 Filter Area는 직접 피해 지역 주변에서 물자와 정보 흐름을 매개 및 필터링하는 구역입니다.</div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>재난관리연구방법론 Chapter 2 서브노트</p>
+  </footer>
+
+  <!-- JavaScript with Safety Protections -->
+  <script>
+    window.addEventListener('DOMContentLoaded', function() {
+      // 1. Initialize Icons Safely
+      if (typeof lucide !== 'undefined') {
+        try {
+          lucide.createIcons();
+        } catch(e) {
+          console.warn('Lucide icons error:', e);
+        }
+      }
+
+      // 2. Theme Toggle
+      const themeToggleBtn = document.getElementById('themeToggle');
+      const themeIcon = document.getElementById('themeIcon');
+      
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      updateThemeIcon(savedTheme);
+
+      if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', function() {
+          const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+          const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+          document.documentElement.setAttribute('data-theme', newTheme);
+          localStorage.setItem('theme', newTheme);
+          updateThemeIcon(newTheme);
+        });
+      }
+
+      function updateThemeIcon(theme) {
+        if (!themeIcon) return;
+        if (theme === 'light') {
+          themeIcon.setAttribute('data-lucide', 'moon');
+        } else {
+          themeIcon.setAttribute('data-lucide', 'sun');
+        }
+        if (typeof lucide !== 'undefined') {
+          try { lucide.createIcons(); } catch(e){}
+        }
+      }
+
+      // 3. Tab Navigation
+      const tabs = document.querySelectorAll('.nav-tab');
+      const tabContents = document.querySelectorAll('.tab-content');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+          const targetId = tab.getAttribute('data-tab');
+          
+          tabs.forEach(t => t.classList.remove('active'));
+          tabContents.forEach(c => c.classList.remove('active'));
+
+          tab.classList.add('active');
+          const targetEl = document.getElementById(targetId);
+          if (targetEl) {
+            targetEl.classList.add('active');
+          }
+          
+          if (window.MathJax && typeof MathJax.typesetPromise === 'function') {
+            MathJax.typesetPromise();
+          }
+        });
+      });
+
+      // 4. Accordion Toggle
+      document.querySelectorAll('.accordion-header').forEach(header => {
+        header.addEventListener('click', function() {
+          const item = header.parentElement;
+          if (item) {
+            item.classList.toggle('active');
+          }
+        });
+      });
+
+      // 5. Search Logic
+      const searchInput = document.getElementById('searchInput');
+      if (searchInput) {
+        searchInput.addEventListener('input', function(e) {
+          const query = e.target.value.toLowerCase().trim();
+          
+          document.querySelectorAll('.card, .accordion-item, .quiz-card').forEach(el => {
+            if (!query) {
+              el.style.display = '';
+            } else {
+              const text = el.textContent.toLowerCase();
+              el.style.display = text.includes(query) ? '' : 'none';
+            }
+          });
+        });
+      }
+    });
+
+    // Global Quiz Option Handler
+    function selectQuizOption(element, qNum, isCorrect) {
+      const parent = element.parentElement;
+      if (!parent) return;
+      
+      const options = parent.querySelectorAll('.quiz-option');
+      const card = document.getElementById('q' + qNum);
+      const exp = card ? card.querySelector('.quiz-explanation') : null;
+
+      options.forEach(opt => {
+        opt.classList.remove('selected', 'correct', 'incorrect');
+      });
+
+      element.classList.add('selected');
+      if (isCorrect) {
+        element.classList.add('correct');
+      } else {
+        element.classList.add('incorrect');
+      }
+
+      if (exp) {
+        exp.style.display = 'block';
+      }
+    }
+  </script>
+</body>
+</html>

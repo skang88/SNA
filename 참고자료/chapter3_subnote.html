@@ -1,0 +1,3158 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>재난관리연구방법론 | Chapter 3. 재난 관리에서의 조직간 네트워크</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&family=Outfit:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- MathJax Configuration & Script -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Mermaid JS for diagrams -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typeof mermaid !== 'undefined') {
+        try {
+          mermaid.initialize({ 
+            startOnLoad: true, 
+            theme: 'dark',
+            securityLevel: 'loose',
+            fontFamily: 'Noto Sans KR, Inter, sans-serif'
+          });
+        } catch(e) {
+          console.warn('Mermaid initialization deferred:', e);
+        }
+      }
+    });
+  </script>
+
+  <style>
+    :root {
+      --bg-primary: #0b1120;
+      --bg-secondary: #131c31;
+      --bg-sidebar: #0f172a;
+      --bg-card: #1e293b;
+      --bg-card-hover: #26354d;
+      --accent-primary: #38bdf8;
+      --accent-secondary: #818cf8;
+      --accent-emerald: #34d399;
+      --accent-amber: #fbbf24;
+      --accent-rose: #fb7185;
+      --accent-purple: #c084fc;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --border-color: #334155;
+      --sidebar-border: #1e293b;
+      --sidebar-width: 320px;
+      --glass-bg: rgba(19, 28, 49, 0.85);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.35);
+      --shadow-lg: 0 12px 30px -6px rgba(0, 0, 0, 0.5);
+      --radius: 12px;
+      --radius-sm: 8px;
+      --radius-lg: 16px;
+      --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    [data-theme="light"] {
+      --bg-primary: #f8fafc;
+      --bg-secondary: #ffffff;
+      --bg-sidebar: #ffffff;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f1f5f9;
+      --accent-primary: #0284c7;
+      --accent-secondary: #6366f1;
+      --accent-emerald: #059669;
+      --accent-amber: #d97706;
+      --accent-rose: #e11d48;
+      --accent-purple: #9333ea;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --text-dim: #94a3b8;
+      --border-color: #e2e8f0;
+      --sidebar-border: #e2e8f0;
+      --glass-bg: rgba(255, 255, 255, 0.9);
+      --glass-border: rgba(0, 0, 0, 0.08);
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 12px 30px -6px rgba(0, 0, 0, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Noto Sans KR', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.8;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      min-height: 100vh;
+    }
+
+    /* Top Reading Progress Bar */
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary), var(--accent-purple));
+      width: 0%;
+      z-index: 1000;
+      transition: width 0.1s ease-out;
+    }
+
+    /* App Layout: Left Sidebar + Main Content */
+    .app-layout {
+      display: flex;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* ==========================================================================
+       LEFT SIDEBAR (TOC & NAVIGATION)
+       ========================================================================== */
+    .sidebar {
+      width: var(--sidebar-width);
+      flex-shrink: 0;
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      background: var(--bg-sidebar);
+      border-right: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      z-index: 100;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .sidebar-header {
+      padding: 1.5rem 1.25rem 1rem 1.25rem;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .sidebar-brand {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand-badge {
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 0.75rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    .theme-toggle-btn {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 0.45rem;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      width: 34px;
+      height: 34px;
+    }
+
+    .theme-toggle-btn:hover {
+      background: var(--bg-card-hover);
+      color: var(--accent-primary);
+      transform: rotate(15deg);
+    }
+
+    .sidebar-title {
+      font-family: 'Outfit', 'Noto Sans KR', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.35;
+    }
+
+    .sidebar-subtitle {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* Sidebar Search */
+    .sidebar-search {
+      position: relative;
+      margin-top: 0.25rem;
+    }
+
+    .sidebar-search input {
+      width: 100%;
+      padding: 0.5rem 0.75rem 0.5rem 2.2rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      color: var(--text-main);
+      font-size: 0.825rem;
+      outline: none;
+      transition: var(--transition);
+    }
+
+    .sidebar-search input:focus {
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+    }
+
+    .sidebar-search i {
+      position: absolute;
+      left: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      width: 15px;
+      height: 15px;
+    }
+
+    /* TOC Nav Container */
+    .sidebar-nav-container {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1rem 0.75rem;
+      scrollbar-width: thin;
+    }
+
+    .sidebar-nav-container::-webkit-scrollbar {
+      width: 5px;
+    }
+    .sidebar-nav-container::-webkit-scrollbar-thumb {
+      background: var(--border-color);
+      border-radius: 4px;
+    }
+
+    .toc-label {
+      font-size: 0.725rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--text-dim);
+      padding: 0 0.5rem 0.6rem 0.5rem;
+    }
+
+    .toc-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .toc-item a {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.65rem 0.75rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      border-radius: 8px;
+      transition: var(--transition);
+      line-height: 1.4;
+      position: relative;
+    }
+
+    .toc-item a:hover {
+      color: var(--text-main);
+      background: var(--bg-secondary);
+    }
+
+    .toc-item.active a {
+      color: var(--accent-primary);
+      background: rgba(56, 189, 248, 0.1);
+      font-weight: 700;
+    }
+
+    .toc-item.active a::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 20%;
+      height: 60%;
+      width: 3px;
+      background: var(--accent-primary);
+      border-radius: 0 4px 4px 0;
+    }
+
+    .toc-num {
+      font-size: 0.75rem;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--accent-primary);
+      font-weight: 700;
+      flex-shrink: 0;
+      width: 22px;
+    }
+
+    .sidebar-footer {
+      padding: 0.85rem 1.25rem;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      background: var(--bg-sidebar);
+    }
+
+    .sidebar-footer-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.775rem;
+      transition: var(--transition);
+    }
+
+    .sidebar-footer-btn:hover {
+      color: var(--accent-primary);
+    }
+
+    /* Mobile Drawer Toggle */
+    .mobile-menu-btn {
+      display: none;
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background: var(--accent-primary);
+      color: #ffffff;
+      border: none;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      box-shadow: 0 4px 20px rgba(56, 189, 248, 0.4);
+      cursor: pointer;
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .mobile-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 95;
+    }
+
+    /* ==========================================================================
+       MAIN CONTENT (LONG CONTINUOUS SCROLL)
+       ========================================================================== */
+    .main-wrapper {
+      flex: 1;
+      padding: 2.5rem 3.5rem 5rem 3.5rem;
+      max-width: 1120px;
+      width: calc(100% - var(--sidebar-width));
+      margin: 0 auto;
+    }
+
+    /* Hero Banner */
+    .hero-banner {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.12), rgba(129, 140, 248, 0.12), rgba(192, 132, 252, 0.08));
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: var(--radius-lg);
+      padding: 2.25rem 2.5rem;
+      margin-bottom: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-banner::after {
+      content: '';
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 260px;
+      height: 260px;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-title {
+      font-size: 1.85rem;
+      font-weight: 800;
+      margin-bottom: 0.75rem;
+      color: var(--text-main);
+      font-family: 'Outfit', 'Noto Sans KR', sans-serif;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-desc {
+      color: var(--text-muted);
+      font-size: 0.975rem;
+      line-height: 1.8;
+      max-width: 950px;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1.35rem;
+      flex-wrap: wrap;
+    }
+
+    .stat-chip {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 0.4rem 0.85rem;
+      border-radius: 20px;
+      font-size: 0.825rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      color: var(--text-main);
+      font-weight: 500;
+    }
+
+    .stat-chip i {
+      width: 15px;
+      height: 15px;
+      color: var(--accent-primary);
+    }
+
+    /* Content Section */
+    .content-section {
+      margin-bottom: 4rem;
+      scroll-margin-top: 2rem;
+      position: relative;
+    }
+
+    .section-header-box {
+      margin-bottom: 1.75rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .section-badge-row {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .sec-badge {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+      color: var(--accent-primary);
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+    }
+
+    .page-badge {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+
+    .section-title {
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: 'Outfit', 'Noto Sans KR', sans-serif;
+    }
+
+    .section-title i {
+      color: var(--accent-primary);
+      width: 26px;
+      height: 26px;
+      flex-shrink: 0;
+    }
+
+    .sub-section-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin: 2rem 0 1rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .sub-section-title i {
+      color: var(--accent-secondary);
+      width: 18px;
+      height: 18px;
+    }
+
+    /* Cards & Grids */
+    .section-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.25rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.6rem;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      box-shadow: var(--shadow-md);
+      border-color: rgba(56, 189, 248, 0.4);
+      background: var(--bg-card-hover);
+    }
+
+    .card-full {
+      grid-column: 1 / -1;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border-color);
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-main);
+    }
+
+    .card-title i {
+      color: var(--accent-primary);
+      width: 19px;
+      height: 19px;
+    }
+
+    .badge {
+      font-size: 0.725rem;
+      font-weight: 700;
+      padding: 0.25rem 0.55rem;
+      border-radius: 6px;
+      letter-spacing: 0.3px;
+    }
+
+    .badge-blue { background: rgba(56, 189, 248, 0.15); color: var(--accent-primary); border: 1px solid rgba(56, 189, 248, 0.3); }
+    .badge-purple { background: rgba(129, 140, 248, 0.15); color: var(--accent-secondary); border: 1px solid rgba(129, 140, 248, 0.3); }
+    .badge-emerald { background: rgba(52, 211, 153, 0.15); color: var(--accent-emerald); border: 1px solid rgba(52, 211, 153, 0.3); }
+    .badge-amber { background: rgba(251, 191, 36, 0.15); color: var(--accent-amber); border: 1px solid rgba(251, 191, 36, 0.3); }
+    .badge-rose { background: rgba(251, 113, 133, 0.15); color: var(--accent-rose); border: 1px solid rgba(251, 113, 133, 0.3); }
+
+    .card-body {
+      font-size: 0.925rem;
+      color: var(--text-muted);
+      flex: 1;
+    }
+
+    .card-body p {
+      margin-bottom: 0.85rem;
+      line-height: 1.75;
+    }
+
+    .card-body strong {
+      color: var(--text-main);
+    }
+
+    .bullet-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0 1rem 0;
+    }
+
+    .bullet-list li {
+      position: relative;
+      padding-left: 1.35rem;
+      margin-bottom: 0.65rem;
+      line-height: 1.7;
+      font-size: 0.92rem;
+    }
+
+    .bullet-list li::before {
+      content: '▸';
+      position: absolute;
+      left: 0.3rem;
+      color: var(--accent-primary);
+      font-weight: bold;
+    }
+
+    /* Callouts */
+    .callout {
+      border-left: 4px solid var(--accent-primary);
+      background: var(--bg-secondary);
+      padding: 1.1rem 1.35rem;
+      border-radius: 0 var(--radius) var(--radius) 0;
+      margin: 1.25rem 0;
+    }
+
+    .callout-title {
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.45rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    .callout-warning { border-left-color: var(--accent-rose); background: rgba(251, 113, 133, 0.08); }
+    .callout-warning .callout-title { color: var(--accent-rose); }
+
+    .callout-tip { border-left-color: var(--accent-emerald); background: rgba(52, 211, 153, 0.08); }
+    .callout-tip .callout-title { color: var(--accent-emerald); }
+
+    .callout-amber { border-left-color: var(--accent-amber); background: rgba(251, 191, 36, 0.08); }
+    .callout-amber .callout-title { color: var(--accent-amber); }
+
+    .callout-purple { border-left-color: var(--accent-purple); background: rgba(192, 132, 252, 0.08); }
+    .callout-purple .callout-title { color: var(--accent-purple); }
+
+    /* Tables */
+    .custom-table-wrapper {
+      overflow-x: auto;
+      margin: 1.25rem 0;
+      border-radius: var(--radius);
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+    }
+
+    table.custom-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+
+    table.custom-table th {
+      background: var(--bg-secondary);
+      color: var(--text-main);
+      font-weight: 700;
+      padding: 0.9rem 1.1rem;
+      border-bottom: 1px solid var(--border-color);
+      white-space: nowrap;
+    }
+
+    table.custom-table td {
+      padding: 0.85rem 1.1rem;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-muted);
+      vertical-align: top;
+      line-height: 1.65;
+    }
+
+    table.custom-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    table.custom-table tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    /* Accordion */
+    .accordion-item {
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      margin-bottom: 0.85rem;
+      overflow: hidden;
+      background: var(--bg-card);
+      transition: var(--transition);
+    }
+
+    .accordion-item:hover {
+      border-color: rgba(56, 189, 248, 0.35);
+    }
+
+    .accordion-header {
+      padding: 1.1rem 1.25rem;
+      background: var(--bg-card);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: 600;
+      color: var(--text-main);
+      user-select: none;
+    }
+
+    .accordion-header:hover {
+      background: var(--bg-card-hover);
+    }
+
+    .accordion-header i.chevron {
+      transition: transform 0.25s ease;
+      width: 18px;
+      height: 18px;
+      color: var(--text-muted);
+    }
+
+    .accordion-content {
+      padding: 0 1.25rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .accordion-item.active .accordion-content {
+      padding: 1.1rem 1.25rem 1.4rem 1.25rem;
+      max-height: 2500px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .accordion-item.active .accordion-header i.chevron {
+      transform: rotate(180deg);
+      color: var(--accent-primary);
+    }
+
+    /* Image Display & Lightbox */
+    .image-card {
+      margin: 1.75rem 0;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--bg-secondary);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .image-container {
+      padding: 1.25rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.2);
+      cursor: zoom-in;
+    }
+
+    .image-container img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+      transition: transform 0.25s ease;
+    }
+
+    .image-container:hover img {
+      transform: scale(1.015);
+    }
+
+    .image-caption {
+      padding: 0.85rem 1.25rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      background: var(--bg-card);
+      flex-wrap: wrap;
+    }
+
+    .caption-title {
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .zoom-hint {
+      font-size: 0.75rem;
+      color: var(--accent-primary);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    /* Lightbox Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 2000;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      cursor: zoom-out;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+      animation: fadeIn 0.2s ease-out;
+    }
+
+    .modal-content {
+      max-width: 92vw;
+      max-height: 90vh;
+      position: relative;
+      cursor: default;
+    }
+
+    .modal-content img {
+      max-width: 100%;
+      max-height: 85vh;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .modal-caption {
+      color: #ffffff;
+      text-align: center;
+      margin-top: 0.75rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      color: #ffffff;
+      background: transparent;
+      border: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+
+    /* Meta-Matrix Interactive Table */
+    .meta-matrix-grid {
+      display: grid;
+      grid-template-columns: 140px repeat(5, 1fr);
+      gap: 6px;
+      margin: 1.5rem 0;
+      font-size: 0.85rem;
+    }
+
+    .meta-cell-header {
+      background: var(--bg-secondary);
+      color: var(--accent-primary);
+      font-weight: 700;
+      padding: 0.75rem 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+    }
+
+    .meta-cell-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 0.75rem 0.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition);
+      min-height: 70px;
+    }
+
+    .meta-cell-item:hover, .meta-cell-item.active {
+      border-color: var(--accent-primary);
+      background: rgba(56, 189, 248, 0.12);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(56, 189, 248, 0.2);
+    }
+
+    .meta-cell-title {
+      font-weight: 700;
+      color: var(--text-main);
+      font-size: 0.825rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .meta-cell-sub {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    .meta-detail-box {
+      margin-top: 1rem;
+      padding: 1.25rem 1.5rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      display: none;
+    }
+
+    .meta-detail-box.active {
+      display: block;
+      animation: fadeIn 0.25s ease-out;
+    }
+
+    /* Flashcards */
+    .flashcard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .flashcard {
+      perspective: 1000px;
+      height: 240px;
+      cursor: pointer;
+    }
+
+    .flashcard-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-style: preserve-3d;
+    }
+
+    .flashcard.flipped .flashcard-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flashcard-front, .flashcard-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      border-radius: var(--radius);
+      border: 1px solid var(--border-color);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .flashcard-front {
+      background: var(--bg-card);
+      color: var(--text-main);
+    }
+
+    .flashcard-front i {
+      margin-bottom: 0.75rem;
+      color: var(--accent-primary);
+    }
+
+    .flashcard-front h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    .flashcard-front p {
+      font-size: 0.825rem;
+      color: var(--text-muted);
+    }
+
+    .flashcard-back {
+      background: linear-gradient(135deg, var(--bg-secondary), var(--bg-card));
+      color: var(--text-main);
+      transform: rotateY(180deg);
+      border-color: var(--accent-primary);
+      text-align: left;
+      font-size: 0.85rem;
+      overflow-y: auto;
+      justify-content: flex-start;
+      line-height: 1.6;
+    }
+
+    .flashcard-back h4 {
+      font-size: 0.925rem;
+      font-weight: 700;
+      color: var(--accent-primary);
+      margin-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.35rem;
+      width: 100%;
+    }
+
+    /* Quiz Cards */
+    .quiz-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .quiz-num {
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: var(--accent-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.4rem;
+    }
+
+    .quiz-question {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .quiz-option {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      padding: 0.85rem 1.15rem;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      transition: var(--transition);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+    }
+
+    .quiz-option:hover {
+      border-color: var(--accent-primary);
+      color: var(--text-main);
+      background: var(--bg-card-hover);
+    }
+
+    .quiz-option.selected.correct {
+      border-color: var(--accent-emerald);
+      background: rgba(52, 211, 153, 0.15);
+      color: var(--accent-emerald);
+      font-weight: 600;
+    }
+
+    .quiz-option.selected.incorrect {
+      border-color: var(--accent-rose);
+      background: rgba(251, 113, 133, 0.15);
+      color: var(--accent-rose);
+    }
+
+    .quiz-explanation {
+      margin-top: 1rem;
+      padding: 1rem 1.25rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.875rem;
+      display: none;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      line-height: 1.65;
+    }
+
+    .mermaid-wrapper {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      overflow-x: auto;
+      text-align: center;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .sidebar {
+        position: fixed;
+        left: -320px;
+        box-shadow: var(--shadow-lg);
+      }
+      .sidebar.open {
+        transform: translateX(320px);
+      }
+      .mobile-menu-btn {
+        display: flex;
+      }
+      .mobile-overlay.active {
+        display: block;
+      }
+      .main-wrapper {
+        width: 100%;
+        padding: 2rem 1.5rem 5rem 1.5rem;
+      }
+      .meta-matrix-grid {
+        grid-template-columns: 110px repeat(5, minmax(90px, 1fr));
+        overflow-x: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Reading Progress Bar -->
+  <div id="progress-bar"></div>
+
+  <!-- Mobile Overlay & Floating Menu Button -->
+  <div id="mobileOverlay" class="mobile-overlay" onclick="toggleSidebar()"></div>
+  <button class="mobile-menu-btn" onclick="toggleSidebar()" title="목차 열기/닫기">
+    <i data-lucide="menu"></i>
+  </button>
+
+  <div class="app-layout">
+
+    <!-- ==========================================================================
+         LEFT SIDEBAR (TABLE OF CONTENTS)
+         ========================================================================== -->
+    <aside id="appSidebar" class="sidebar">
+      
+      <div class="sidebar-header">
+        <div class="sidebar-brand">
+          <span class="brand-badge">SUB-NOTE</span>
+          <button class="theme-toggle-btn" id="themeToggle" title="테마 변경">
+            <i data-lucide="sun" id="themeIcon"></i>
+          </button>
+        </div>
+        <div>
+          <h1 class="sidebar-title">제3장 조직간 네트워크</h1>
+          <p class="sidebar-subtitle">재난관리연구방법론 pp. 25~39</p>
+        </div>
+        <div class="sidebar-search">
+          <i data-lucide="search"></i>
+          <input type="text" id="searchInput" placeholder="목차 및 본문 검색 (Moynihan, UASI...)" autocomplete="off">
+        </div>
+      </div>
+
+      <div class="sidebar-nav-container">
+        <div class="toc-label">Table of Contents (목차)</div>
+        <ul class="toc-list" id="tocList">
+          <li class="toc-item active" data-target="sec-intro">
+            <a href="#sec-intro"><span class="toc-num">01</span><span>서론</span></a>
+          </li>
+          <li class="toc-item" data-target="sec-interorg">
+            <a href="#sec-interorg"><span class="toc-num">02</span><span>조직 간 네트워크</span></a>
+          </li>
+          <li class="toc-item" data-target="sec-disaster-mgmt">
+            <a href="#sec-disaster-mgmt"><span class="toc-num">03</span><span>재난관리에서의 조직간 네트워크</span></a>
+          </li>
+          <li class="toc-item" data-target="sec-multilayer">
+            <a href="#sec-multilayer"><span class="toc-num">04</span><span>네트워크의 네트워크 (다층 구조)</span></a>
+          </li>
+          <li class="toc-item" data-target="sec-effectiveness">
+            <a href="#sec-effectiveness"><span class="toc-num">05</span><span>효과적인 재난 네트워크</span></a>
+          </li>
+          <li class="toc-item" data-target="sec-communication">
+            <a href="#sec-communication"><span class="toc-num">06</span><span>의사소통 (Communication)</span></a>
+          </li>
+          <li class="toc-item" data-target="sec-trust">
+            <a href="#sec-trust"><span class="toc-num">07</span><span>신뢰와 사회적 자본</span></a>
+          </li>
+          <li class="toc-item" data-target="sec-learning">
+            <a href="#sec-learning"><span class="toc-num">08</span><span>재난 네트워크에서의 학습과 적응</span></a>
+          </li>
+          <li class="toc-item" data-target="sec-hindering">
+            <a href="#sec-hindering"><span class="toc-num">09</span><span>협업 저해 요인들</span></a>
+          </li>
+          <li class="toc-item" data-target="sec-sna">
+            <a href="#sec-sna"><span class="toc-num">10</span><span>사회네트워크 분석(SNA)의 적용</span></a>
+          </li>
+          <li class="toc-item" data-target="sec-conclusions">
+            <a href="#sec-conclusions"><span class="toc-num">11</span><span>결론 (Conclusions)</span></a>
+          </li>
+          <li class="toc-item" data-target="sec-quiz-cards">
+            <a href="#sec-quiz-cards"><span class="toc-num">12</span><span>[부록] 플래시카드 & 자가진단 퀴즈</span></a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-footer">
+        <span>Chapter 3 Subnote</span>
+        <button class="sidebar-footer-btn" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+          <i data-lucide="arrow-up"></i> 맨 위로
+        </button>
+      </div>
+
+    </aside>
+
+    <!-- ==========================================================================
+         MAIN CONTENT: VERTICAL LONG-SCROLL IN EXACT MARKDOWN SEQUENCE
+         ========================================================================== -->
+    <div class="main-wrapper">
+
+      <!-- Hero Banner -->
+      <div class="hero-banner">
+        <h1 class="hero-title">
+          <i data-lucide="share-2"></i> 제3장 재난 관리에서의 조직간 네트워크
+        </h1>
+        <p class="hero-desc">
+          원문(pp. 25–39)의 전 내용을 마크다운 구성 순서 그대로 세로 스크롤 방식으로 체계화한 심층 서브노트입니다. 좌측 목차를 통해 11개 핵심 섹션으로 즉시 이동할 수 있으며, 모든 학술 이론, 실증 연구, 다이어그램, 5×5 메타-매트릭스를 누락 없이 수록하였습니다.
+        </p>
+        <div class="hero-stats">
+          <span class="stat-chip"><i data-lucide="book-open"></i> 원문 25~39쪽 완벽 반영</span>
+          <span class="stat-chip"><i data-lucide="list-ordered"></i> 마크다운 원문 배치 순서 동기화</span>
+          <span class="stat-chip"><i data-lucide="grid"></i> Table 3.1 5×5 Meta-Matrix</span>
+          <span class="stat-chip"><i data-lucide="image"></i> 고해상도 그림 6종 전면 수록</span>
+        </div>
+      </div>
+
+      <!-- ==========================================================================
+           1. 서론 (pp. 25~26)
+           ========================================================================== -->
+      <section id="sec-intro" class="content-section">
+        <div class="section-header-box">
+          <div class="section-badge-row">
+            <span class="sec-badge">SECTION 01</span>
+            <span class="page-badge">원문 25~26페이지</span>
+          </div>
+          <h2 class="section-title"><i data-lucide="compass"></i> 서론 (Introduction)</h2>
+        </div>
+
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+          제3장 원문의 <strong>Introduction(서론)</strong> 섹션(25~26페이지)에 해당하는 주요 내용은 다음과 같이 정리할 수 있습니다:
+        </p>
+
+        <div class="section-grid">
+
+          <!-- 1. 재난의 복잡성과 조직 간 네트워크의 필연성 -->
+          <div class="card card-full">
+            <div class="card-header">
+              <h3 class="card-title"><i data-lucide="alert-triangle"></i> 1. 재난의 복잡성과 조직 간 네트워크의 필연성</h3>
+              <span class="badge badge-amber">Norm of Disaster Mgmt</span>
+            </div>
+            <div class="card-body">
+              <ul class="bullet-list">
+                <li><strong>재난의 본질과 대중의 기대:</strong> 재난은 복잡하고 다루기 까다로운(challenging) 상황이며, 사람들은 대체로 정부가 신속하고 효과적으로 문제를 해결해 줄 것이라 기대합니다.</li>
+                <li><strong>일상적 응급상황과의 본질적 차이:</strong> 파괴적인 대형 재난(catastrophic disasters)을 관리하는 것은 일상적인 응급 상황을 처리하는 것과는 근본적으로 다릅니다. 극단적 사건(extreme events)은 특정 지역에서 비교적 드물게 발생하지만, 발생 시 사회 전체에 막대한 혼란을 초래합니다.</li>
+                <li><strong>재난관리의 표준으로서의 네트워크:</strong> 대형 재난을 성공적으로 관리하려면 수평적·협력적인 관계망 속에 있는 다수의 이해관계자(multiple stakeholders)만이 제공할 수 있는 광범위한 기술(skills)과 자원이 요구됩니다. 따라서 <strong>조직 간 네트워크는 재난 대응에서 예외가 아닌 하나의 '표준(norm)'</strong>입니다.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 2. 행정 서비스 전달 체계의 전환과 네트워크의 중요성 -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title"><i data-lucide="refresh-cw"></i> 2. 행정 서비스 전달 체계의 전환</h3>
+              <span class="badge badge-blue">Governance Shift</span>
+            </div>
+            <div class="card-body">
+              <ul class="bullet-list">
+                <li><strong>공공 부문 전반의 추세:</strong> 조직 간 네트워크의 혜택을 받는 정부 영역은 재난관리뿐만이 아니며, 보건의료(health care)부터 사회복지 서비스에 이르기까지 광범위한 서비스가 분야 간(cross-sector) 네트워크와 파트너십을 통해 제공되고 있습니다.</li>
+                <li><strong>관료제에서 파트너십으로의 이행:</strong> 공공 서비스 전달 체계가 전통적인 계층제 관료제(직접 정부, direct government)에서 분야 간 파트너십으로 전환된 점은 재난관리 내 네트워크의 입지에 결정적인 영향을 미쳤습니다.</li>
+                <li><strong>네트워크 동학의 이해:</strong> 재난 전(before), 재난 중(during), 재난 후(after)에 네트워크가 어떻게 설계(designed)·형성(developed)되고 작동(function)하며 진화(evolve)하는지를 이해하면 네트워크 활용 시 더욱 우수한 재난관리 성과를 달성할 수 있습니다.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 3. 자연발생적 네트워크 형성과 부문 간 협력의 필요성 -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title"><i data-lucide="heart-handshake"></i> 3. 자연발생적 네트워크와 협력</h3>
+              <span class="badge badge-emerald">McGuire & Silvia (2010)</span>
+            </div>
+            <div class="card-body">
+              <ul class="bullet-list">
+                <li><strong>협력 욕구와 자연발생적 네트워크:</strong> 재난은 이타적 행동(altruistic behavior)과 협력의 필요성이 두드러지는 환경을 조성하므로, 극심한 스트레스 상황을 처리하는 과정에서 네트워크가 자연발생적으로 형성되기도 합니다(효과성 여부는 별개의 문제).</li>
+                <li><strong>정부 역량의 한계와 민간·비영리 부문 협력:</strong> 재난관리는 모든 정부 계층(연방, 주, 지방)의 노력을 필요로 하지만, 대형 재난을 해결하기에 정부 자체의 역량과 자원은 대체로 부족하므로 민간 및 비영리 조직과의 협력이 필수적입니다.</li>
+                <li><strong>네트워크 연구의 최적 맥락:</strong> 다수준(multilevel), 다부문(multisector), 협력적(collaborative) 성격을 띠는 재난관리는 <strong>네트워크를 연구하기에 가장 이상적인 맥락을 제공</strong>합니다 (McGuire & Silvia, 2010).</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 4. 제3장의 목적 및 구성 체계 -->
+          <div class="card card-full">
+            <div class="card-header">
+              <h3 class="card-title"><i data-lucide="list-checks"></i> 4. 제3장의 목적 및 구성 체계</h3>
+              <span class="badge badge-purple">Purpose & Outline</span>
+            </div>
+            <div class="card-body">
+              <p>
+                <strong>연구 목적:</strong> 본 장은 재난 대응 및 복구 단계에서 나타나는 조직 간 네트워크에 대한 이론적 개관(theoretical overview)을 제공하고, 다층적 네트워크와 다양한 부문 간 기관들이 참여하는 중층적(layered) 기능으로서의 재난관리를 개괄합니다.
+              </p>
+              <div class="custom-table-wrapper" style="margin-top: 0.75rem;">
+                <table class="custom-table">
+                  <thead>
+                    <tr>
+                      <th style="width: 15%;">구성 순서</th>
+                      <th>핵심 다룸 주제</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>제1부</strong></td>
+                      <td>재난관리 분야를 포함한 조직 간 네트워크에 대한 <strong>간략한 역사적 관점</strong> 제시</td>
+                    </tr>
+                    <tr>
+                      <td><strong>제2부</strong></td>
+                      <td>조직 간 네트워크의 <strong>다양한 유형</strong>과 협력적 응급관리 맥락에서의 활용 설명</td>
+                    </tr>
+                    <tr>
+                      <td><strong>제3부</strong></td>
+                      <td>재난 시 기관 간 효과적인 협력을 촉진하는 요인(facilitating factors)과 저해하는 요인(hindering factors)을 탐색하는 기본 틀(framework) 개발 및 제시</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ==========================================================================
+           2. INTERORGANIZATIONAL NETWORKS (p. 26)
+           ========================================================================== -->
+      <section id="sec-interorg" class="content-section">
+        <div class="section-header-box">
+          <div class="section-badge-row">
+            <span class="sec-badge">SECTION 02</span>
+            <span class="page-badge">원문 26페이지</span>
+          </div>
+          <h2 class="section-title"><i data-lucide="boxes"></i> INTERORGANIZATIONAL NETWORKS (조직 간 네트워크)</h2>
+        </div>
+
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+          제공해주신 본문(<strong>CHAPTER 3: INTERORGANIZATIONAL NETWORKS</strong> 섹션, 26페이지)의 주요 내용을 원문에 충실하게 핵심별로 요약·정리한 내용은 다음과 같습니다:
+        </p>
+
+        <div class="section-grid">
+
+          <!-- 1. 정책 집행에서 네트워크의 부상과 역사적 배경 -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title"><i data-lucide="history"></i> 1. 정책 집행에서 네트워크의 부상과 역사적 배경</h3>
+            </div>
+            <div class="card-body">
+              <ul class="bullet-list">
+                <li><strong>정책 집행에서의 중요성 증대:</strong> 정책 집행(policy implementation) 과정에서 네트워크의 중요성이 점차 커지고 있습니다.</li>
+                <li><strong>개념적 새로움과 실질적 존재:</strong> 네트워크라는 '용어'의 사용은 비교적 최근의 일이지만, 미국 정부 체계 내에서 네트워크 현상 자체가 완전히 새로운 것은 아닙니다.</li>
+                <li>예를 들어, 정부 간 관계(intergovernmental relationships)나 정부의 서로 다른 부처·분과(branches) 간의 관계도 하나의 네트워크 형태로 볼 수 있습니다.</li>
+                <li><strong>오늘날의 네트워크(부문 간 관계):</strong> 오늘날 미국 정부 체계에서 네트워크는 주로 <strong>'부문 간 관계(intersector relations)'</strong>를 지칭합니다.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 2. 관료제 축소와 비국가 행위자의 역할 확대 -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title"><i data-lucide="user-x"></i> 2. 관료제 축소와 비국가 행위자 역할 확대</h3>
+            </div>
+            <div class="card-body">
+              <ul class="bullet-list">
+                <li><strong>전통적 관료제의 후퇴와 보완:</strong> 정책 집행 및 공공 서비스 전달 체계에서 전통적인 관료제가 축소되고 뒤로 물러남에 따라, 비국가 행위자(nonstate actors)들이 네트워크 구조 안에서 작동하며 관료제를 보완하고, 어떤 경우에는 대체하기까지 합니다.</li>
+                <li><strong>이러한 변화를 보여주는 주요 지표(Indicators):</strong>
+                  <ul style="margin-left: 1rem; margin-top: 0.35rem;">
+                    <li>민영화 (privatization)</li>
+                    <li>서비스의 외주화/민간위탁 (contracting out services)</li>
+                    <li>비영리 부문의 성장 (growth of nonprofit sector)</li>
+                    <li>복잡한 문제 해결을 위한 파트너십 구축 (creation of partnerships for solving complex problems)</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 3. 조직 간 네트워크의 분류 기준 -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title"><i data-lucide="git-fork"></i> 3. 조직 간 네트워크의 분류 기준</h3>
+              <span class="badge badge-blue">Kapucu, Hu, & Khosa (2014)</span>
+            </div>
+            <div class="card-body">
+              <p>조직 간 네트워크 문헌(Kapucu, Hu, & Khosa, 2014)에 따르면, 네트워크는 다음 세 가지 기준에 따라 다양한 유형으로 분류됩니다:</p>
+              <ol style="margin-left: 1.35rem; margin-top: 0.5rem; line-height: 1.8;">
+                <li><strong>기능 방식</strong> (how they function)</li>
+                <li><strong>달성하고자 하는 목표의 성격</strong> (what kind of goals they try to accomplish)</li>
+                <li><strong>조직화 방식</strong> (how they organize)</li>
+              </ol>
+            </div>
+          </div>
+
+          <!-- 4. 자발적 형성 vs. 의무적 형성 -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title"><i data-lucide="file-check"></i> 4. 네트워크의 형성 방식: 자발적 vs 의무적</h3>
+            </div>
+            <div class="card-body">
+              <ul class="bullet-list">
+                <li><strong>자발적 형성 (Voluntary):</strong> 어떠한 강압이나 특정 인센티브 없이 조직들이 자발적으로 파트너십에 참여하는 형태입니다.</li>
+                <li><strong>상위 정부에 의한 의무적 형성 (Mandated):</strong> 상위 정부 기관의 요건에 의해 강제적으로 형성되는 형태입니다.</li>
+                <li><strong>대표적 사례 (미국 FEMA):</strong> 미국 연방재난관리청(FEMA)은 지방 응급관리 기관들이 특정 연방 지원금을 받기 위해 국가대응체계(National Response Framework)와 국가재난복구체계(National Disaster Recovery Framework)를 자체 계획에 반영하도록 요구합니다.</li>
+                <li>이러한 공식 체계(Frameworks)들은 응급관리 기관들이 <strong>분야 간 파트너십(cross-sector partnerships)과 협력</strong>을 구축하도록 의무화하고 있습니다.</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ==========================================================================
+           3. INTERORGANIZATIONAL NETWORKS IN DISASTER MANAGEMENT (pp. 26~27)
+           ========================================================================== -->
+      <section id="sec-disaster-mgmt" class="content-section">
+        <div class="section-header-box">
+          <div class="section-badge-row">
+            <span class="sec-badge">SECTION 03</span>
+            <span class="page-badge">원문 26~27페이지</span>
+          </div>
+          <h2 class="section-title"><i data-lucide="shield-alert"></i> INTERORGANIZATIONAL NETWORKS IN DISASTER MANAGEMENT</h2>
+        </div>
+
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+          제시된 본문(<strong>INTERORGANIZATIONAL NETWORKS IN DISASTER MANAGEMENT</strong>, 26~27페이지)의 주요 내용을 핵심 주제별로 빠짐없이 정리한 내용은 다음과 같습니다:
+        </p>
+
+        <div class="section-grid">
+
+          <!-- 1. 총체적 공동체 접근법과 재난 복원력 -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title"><i data-lucide="users"></i> 1. ‘총체적 공동체’ 접근법과 재난 복원력</h3>
+            </div>
+            <div class="card-body">
+              <ul class="bullet-list">
+                <li><strong>총체적 공동체 접근법의 도입:</strong> 최근 미국의 비상관리 체계는 ‘총체적 공동체(whole community)’ 접근법을 기반으로 개발되어 운영되고 있습니다.</li>
+                <li><strong>단일 주체의 한계:</strong> 재난은 매우 복잡한 문제이므로 단일 기관이나 단독 행위자가 독자적으로 해결하거나 관리할 수 없으며, 정부 기관뿐만 아니라 비정부기구(NGO) 및 일반 시민의 참여가 필수적입니다.</li>
+                <li><strong>공동체 재난 복원력(Community Disaster Resilience):</strong> 재난은 통상적인 공무원 집단의 한정된 자원만으로 처리할 수 없다는 동일한 맥락에서 출발합니다.</li>
+                <li><strong>협력과 도약(Bouncing Forward):</strong> 지역사회가 함께 협력하여 사회적·물리적 취약성을 낮추고, 자원을 공유하며, 비공식 네트워크를 활용함으로써 재난의 영향을 최소화하고 재난 이후 더 나은 상태로 도약(bouncing forward)해야 합니다.</li>
+                <li><strong>취약성의 지속적 증가 요인:</strong> 공동체가 진화함에 따라 이민자 유입, 취약계층(노인, 장애인, 미성년자)의 증가, 그리고 기후변화와 같은 위험 요소의 변화로 인해 지역사회의 위험 수준과 위험 유형이 계속해서 증가합니다.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 2. 재난 복원력의 개념적 정의와 구성요소 -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title"><i data-lucide="award"></i> 2. 재난 복원력의 정의와 구성요소</h3>
+              <span class="badge badge-emerald">Norris et al. (2008)</span>
+            </div>
+            <div class="card-body">
+              <ul class="bullet-list">
+                <li><strong>복원력의 정의:</strong> 노리스와 동료들(Fran Norris et al., 2008)은 복원력을 개인 및 조직 자원을 포함한 지역사회 자원을 일련의 <strong>‘적응 역량(adaptive capacities)’</strong>과 연결하는 과정으로 정의합니다.</li>
+                <li><strong>주요 구성요소:</strong> 지역사회 자원과 적응 역량에는 사회적 자본(social capital), 조직 네트워크, 인적 자본, 경제 개발 동학, 지역사회 역량이 포함됩니다.</li>
+                <li><strong>네트워크의 구축 주체:</strong> 응급관리 목적의 지역사회 내 조직 간 네트워크는 주로 비상관리기관, 보안관실, 보건부 등 응급관리 조직들에 의해 구축되고 유지됩니다.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 3. 비상관리 단계별 네트워크의 특성과 기능적 차이 -->
+          <div class="card card-full">
+            <div class="card-header">
+              <h3 class="card-title"><i data-lucide="layers"></i> 3. 비상관리 단계별 네트워크의 특성과 기능적 차이</h3>
+            </div>
+            <div class="card-body">
+              <ul class="bullet-list">
+                <li><strong>전 단계에서의 작동 요구:</strong> 네트워크는 비상관리의 전 단계(대비 preparedness, 완화/예방 mitigation, 대응 response, 복구 recovery)에서 작동해야 하지만, 각 단계마다 상이한 목표를 달성하기 위해 서로 다른 조직들의 협력이 요구됩니다.</li>
+                <li><strong>대응(Response) 네트워크의 특성:</strong>
+                  <ul style="margin-left: 1rem; margin-top: 0.35rem;">
+                    <li>비교적 짧은 기간 동안 즉각적이고 동시적인 상호작용에 의존합니다.</li>
+                    <li>의사결정 지원 시스템과 네트워크 연결망을 통한 지속적이고 신속한 정보 흐름이 핵심입니다.</li>
+                  </ul>
+                </li>
+                <li><strong>완화(Mitigation) 네트워크의 특성:</strong>
+                  <ul style="margin-left: 1rem; margin-top: 0.35rem;">
+                    <li>홍수 보험, 건축 규정 적용, 고위험 지역 주민 이주 등 법률과 규정을 집행하기 위해 수십 년에 이르는 장기적인 조직 간 협력을 요구합니다.</li>
+                  </ul>
+                </li>
+                <li><strong>플로리다주 카운티 완화 전략 사례 (Local Mitigation Strategies, LMS):</strong>
+                  <ul style="margin-left: 1rem; margin-top: 0.35rem;">
+                    <li>자연재해 및 인위적 재난의 영향을 최소화하기 위해 지역 완화 전략(Local Mitigation Strategies)을 수립·운영합니다.</li>
+                    <li>이는 지역 경제 개발 계획, 종합 비상관리 계획, 업무연속성 계획(COOP)과 연계되어 수립됩니다.</li>
+                    <li>주요 활동으로 대주민 공공 교육 및 홍보, 연방 보조금을 통한 핵심 시설물 보강, 엄격한 건축 규정 시행 등이 포함되며, 필요한 경우(특히 경제 개발 분야) 민간 부문 파트너도 참여합니다.</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 4. 신뢰 구축의 시간성과 임시 참여자의 한계 -->
+          <div class="card card-full">
+            <div class="card-header">
+              <h3 class="card-title"><i data-lucide="clock"></i> 4. 신뢰 구축의 시간성과 임시 참여자(Ad hoc Participants)의 한계</h3>
+            </div>
+            <div class="card-body">
+              <ul class="bullet-list">
+                <li><strong>신뢰와 조화의 축적 필요성:</strong> 대응, 복구, 완화 등 모든 형태의 조직 간 네트워크는 참여자 간의 신뢰(trust), 상호운용성(interoperability), 조화(harmony)를 형성하기 위해 상당한 시간과 노력을 필요로 합니다.</li>
+                <li><strong>단기 대응 네트워크의 역설:</strong> 비록 실제 재난 현장에서 단 몇 시간만 가동되는 대응 네트워크라 할지라도, 성공적인 작동을 위해서는 참여자들 간에 사전에 축적된 오랜 파트너십의 역사가 뒷받침되어야 합니다.</li>
+                <li><strong>임시 참여자의 역할과 위험성:</strong> 임시 참여자(ad hoc participants)와 자발적 조력자(helpful bystanders)는 정보 제공, 새로운 연결 구축, 구호 활동 지원 등 재난관리에 일정한 기여를 합니다.</li>
+                <li><strong>조정과 책임성 부재의 결과:</strong> 그러나 이러한 임시 참여자들에게 체계적인 조정(coordination)과 책임성(accountability)이 결여될 경우 쉽게 현장의 혼란을 초래하며, 공식 네트워크 행위자들의 성공적인 대응 활동을 저해할 수 있습니다.</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ==========================================================================
+           4. NETWORKS OF NETWORKS: MULTILAYERED DISASTER NETWORKS (pp. 27~29)
+           ========================================================================== -->
+      <section id="sec-multilayer" class="content-section">
+        <div class="section-header-box">
+          <div class="section-badge-row">
+            <span class="sec-badge">SECTION 04</span>
+            <span class="page-badge">원문 27~29페이지</span>
+          </div>
+          <h2 class="section-title"><i data-lucide="network"></i> NETWORKS OF NETWORKS: MULTILAYERED DISASTER NETWORKS</h2>
+        </div>
+
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+          제공해주신 본문(<strong>NETWORKS OF NETWORKS: MULTILAYERED DISASTER NETWORKS</strong>, 27~29페이지)의 주요 내용을 핵심 주제 및 정부 수준(수직적·수평적 차원)별로 빠짐없이 정리한 내용은 다음과 같습니다:
+        </p>
+
+        <div class="section-grid">
+
+          <!-- 1. ‘네트워크의 네트워크’ 개념 및 기본 구조 -->
+          <div class="card card-full">
+            <div class="card-header">
+              <h3 class="card-title"><i data-lucide="share2"></i> 1. ‘네트워크의 네트워크(Networks of Networks)’ 개념 및 기본 구조</h3>
+              <span class="badge badge-blue">Waugh (2003)</span>
+            </div>
+            <div class="card-body">
+              <ul class="bullet-list">
+                <li><strong>하위 네트워크들의 총합:</strong> 선진국의 재난관리 체계는 수많은 기관에 의존하며, 국가 전체 네트워크는 다양한 하위 네트워크(subnetworks)들의 결합으로 구성됩니다.</li>
+                <li><strong>포함 주체:</strong>
+                  <ul style="margin-left: 1rem; margin-top: 0.35rem;">
+                    <li>연방 수준의 국가 기관(FEMA 등)</li>
+                    <li>주 및 지방/지역 수준의 비상관리 기관</li>
+                    <li>1차 현장 대응 기관(소방서, 경찰서, 수색구조대 등)</li>
+                    <li>비영리 및 민간 단체(적십자사, 시민단체, 종교단체 등) (Waugh, 2003)</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 2. 국가 수준(National Level)의 네트워크 -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title"><i data-lucide="flag"></i> 2. 국가 수준(National Level)의 네트워크</h3>
+              <span class="badge badge-amber">Jordan (2010)</span>
+            </div>
+            <div class="card-body">
+              <ul class="bullet-list">
+                <li><strong>범정부·비정부 협력 지침:</strong> 미국에서는 국가대응체계(NRF)와 국가사건관리체계(NIMS)가 다양한 정부 계층과 비정부 주체들이 협력하도록 안내하는 기준 역할을 수행합니다.</li>
+                <li><strong>국가 자금 지원을 통한 협력 촉진 (UASI):</strong> 미 국토안보부(DHS)의 도시지역 안보 이니셔티브(UASI: Urban Area Security Initiative)는 지역 협의회와 실무그룹 네트워크를 구축하여 지역사회의 대응 역량과 대비 계획을 발전시키도록 보조금을 지원합니다.</li>
+                <li><strong>자금(Funding) 중심의 협력 동기:</strong> Alexandra Jordan(2010)의 연구에 따르면, UASI는 도시와 주변 지역(교외 및 농촌) 기관들을 협력으로 이끄는 역할을 하지만, 주된 동기는 자금 확보에 있습니다.</li>
+                <li><strong>권력 불균형(Power Imbalances):</strong> 대도시권은 많은 인구와 자산을 보호하기 위해 더 큰 몫의 자금을 요구하고, 소규모 지역은 재난 시 대도시의 자원에 의존합니다. 따라서 이러한 협력은 "공통의 지역적 필요에서 출발한 것이 아니라 도시, 농촌, 교외 공동체 간의 <strong>권력 불균형에서 비롯된 것</strong>"으로 분석됩니다.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 3. 주/도 수준(State Level)의 수평적 파트너십: EMAC -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title"><i data-lucide="map-pin"></i> 3. 주/도 수준(State Level)의 수평적 파트너십: EMAC</h3>
+              <span class="badge badge-purple">Kapucu, Augustin, & Garayev (2009)</span>
+            </div>
+            <div class="card-body">
+              <ul class="bullet-list">
+                <li><strong>비상관리상호지원협정(EMAC: Emergency Management Assistance Compact):</strong> 재난 시 주(State) 간에 자원, 장비, 정보, 인력을 원활하게 공유하도록 돕는 미국의 전국 단위 ‘주 간 상호 원조 협정’입니다.</li>
+                <li><strong>효과성(허리케인 카트리나 & 리타 연구):</strong> Kapucu, Augustin, & Garayev(2009)는 EMAC과 같은 주 간의 수평적 파트너십과 네트워크가 행정적 감독(oversight)을 제공하고, 재난 대응 시 신속한 문제 해결을 위한 <strong>자원 및 기술</strong>을 동원하는 데 필수적임을 규명했습니다.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 4. 지방 및 카운티 수준의 네트워크와 3가지 구조 -->
+          <div class="card card-full">
+            <div class="card-header">
+              <h3 class="card-title"><i data-lucide="building"></i> 4. 지방 및 카운티 수준(Local & County Levels)의 네트워크와 3가지 구조</h3>
+              <span class="badge badge-emerald">Kapucu & Garayev (2014)</span>
+            </div>
+            <div class="card-body">
+              <ul class="bullet-list">
+                <li><strong>지역 네트워크의 자원 동원력:</strong> 최초 대응자, 비상운영센터(EOC), 지역 비영리단체 등으로 구성되며, 전통적인 명령통제(command-and-control) 방식에서는 소외되기 쉬운 핵심 민간 기업과 지역사회 조직의 자원에 접근할 수 있게 해줍니다.</li>
+                <li><strong>지방 재난대응 네트워크의 3가지 유형 (Kapucu & Garayev, 2014):</strong>
+                  <ol style="margin-left: 1.25rem; margin-top: 0.35rem;">
+                    <li><strong>수평적/탈중앙형 (Horizontal / Decentralized):</strong> 긴급지원기능(ESF: Emergency Support Function) 시스템에 기반한 구조.</li>
+                    <li><strong>수직적/계층형 (Vertical / Hierarchical):</strong> 미국의 대표적 현장 대응 전략인 사고현장지휘체계(ICS: Incident Command System)에 기반한 구조.</li>
+                    <li><strong>혼합형 (Hybrid):</strong> ESF와 ICS 체계가 결합된 형태.</li>
+                  </ol>
+                </li>
+                <li><strong>플로리다주 오렌지 카운티(Orange County) 사례:</strong> 종합 비상관리 계획에 ESF 체계를 적용하여, 재난 시 특정 지원 기능을 수행할 1차(주관) 기관과 2차(지원) 기관을 지정·운영합니다. (본문의 Figure 3.1은 사각형으로 표시된 기능군을 중심으로 원형의 참여 기관들이 클러스터를 이루는 친화 네트워크를 시각화함).</li>
+              </ul>
+
+              <!-- Figure 3.1 Image -->
+              <div class="image-card">
+                <div class="image-container" onclick="openLightbox('image.png', 'Figure 3.1: 플로리다주 오렌지 카운티의 비상지원 기능 네트워크')">
+                  <img src="image.png" alt="플로리다주 오렌지 카운티의 비상지원 기능 네트워크">
+                </div>
+                <div class="image-caption">
+                  <span class="caption-title"><i data-lucide="image"></i> 플로리다주 오렌지 카운티의 비상지원 기능 네트워크 (Figure 3.1)</span>
+                  <span class="zoom-hint"><i data-lucide="maximize-2"></i> 클릭하여 확대</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5. 재난 대응 네트워크의 특수 동학과 한계 -->
+          <div class="card card-full">
+            <div class="card-header">
+              <h3 class="card-title"><i data-lucide="zap"></i> 5. 재난 대응 네트워크의 특수 동학과 한계 (29페이지)</h3>
+              <span class="badge badge-rose">Nowell & Steelman (2014)</span>
+            </div>
+            <div class="card-body">
+              <ul class="bullet-list">
+                <li><strong>자연발생적 성격 (Emergent Nature):</strong> 재난 대응 네트워크는 사전에 계획된 것보다 현장에서 새롭게 형성·발현(emergent)되는 경향이 강합니다. 비록 이전 관계와 완전히 무관할 수는 없으나, 재난 현장의 실무자들은 사전에 마련된 제도적 배치를 그대로 따르기 어려운 경우가 많습니다 (Nowell & Steelman, 2014).</li>
+                <li><strong>계층제의 한계와 적응성:</strong> 재난의 혼란스럽고 불확실한 특성 때문에 하향식(top-down) 명령 체계나 표준운영절차(SOP)는 일정 한계까지만 작동하며, 환경 변화에 유연하고 적응적(flexible and adaptable)이어야 합니다.</li>
+                <li><strong>상황 적합성:</strong> 일반 공공 서비스 전달에서 효과적인 특정 구조(예: 중앙집권적 구조)라 하더라도 모든 재난 상황에서 긍정적인 성과를 보장하는 것은 아니므로, 네트워크 효과성을 평가할 때는 재난의 특수한 동학을 반드시 고려해야 합니다 (Raab et al., 2015).</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ==========================================================================
+           5. EFFECTIVE INTERORGANIZATIONAL DISASTER NETWORKS (pp. 29~31)
+           ========================================================================== -->
+      <section id="sec-effectiveness" class="content-section">
+        <div class="section-header-box">
+          <div class="section-badge-row">
+            <span class="sec-badge">SECTION 05</span>
+            <span class="page-badge">원문 29~31페이지</span>
+          </div>
+          <h2 class="section-title"><i data-lucide="target"></i> EFFECTIVE INTERORGANIZATIONAL DISASTER NETWORKS</h2>
+        </div>
+
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+          제공해주신 본문(<strong>EFFECTIVE INTERORGANIZATIONAL DISASTER NETWORKS</strong>, 29~31페이지)의 주요 내용을 핵심 이론, 선행 연구 및 실증 분석별로 빠짐없이 정리한 내용은 다음과 같습니다:
+        </p>
+
+        <div class="section-grid">
+
+          <!-- 1. 네트워크 효과성의 정의와 평가의 한계 -->
+          <div class="card card-full">
+            <div class="card-header">
+              <h3 class="card-title"><i data-lucide="check-circle"></i> 1. 네트워크 효과성(Network Effectiveness)의 정의와 평가의 한계</h3>
+              <span class="badge badge-blue">Provan & Kenis (2008)</span>
+            </div>
+            <div class="card-body">
+              <ul class="bullet-list">
+                <li><strong>네트워크 효과성의 정의:</strong> 프로반과 케니스(Provan & Kenis, 2008)에 따르면, 네트워크 효과성은 "개별 조직 참여자들이 독립적으로 행동해서는 통상적으로 달성할 수 없는, 긍정적인 네트워크 수준의 성과를 달성하는 것"으로 정의됩니다.</li>
+                <li><strong>전통적 관료제와의 차이점 및 평가의 어려움:</strong>
+                  <ul style="margin-left: 1rem; margin-top: 0.35rem;">
+                    <li>전통적 관료제는 명확하고 비교적 경직된 구조를 지닌 반면, 네트워크는 <strong>복잡하고 모호하며 유동적인(fluid) 구조</strong>를 갖습니다.</li>
+                    <li>따라서 단일 기관을 위한 전통적인 성과 관리 도구로는 네트워크의 효과성과 성과를 측정할 수 없습니다.</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 2. 투리니 등의 메타분석 -->
+          <div class="card card-full">
+            <div class="card-header">
+              <h3 class="card-title"><i data-lucide="layers-3"></i> 2. 투리니 등(Turrini et al., 2010)의 메타분석: 효과성의 3수준과 3대 결정요인</h3>
+              <span class="badge badge-purple">93편 논문 검토</span>
+            </div>
+            <div class="card-body">
+              <p>Keith Provan과 Brinton Milward(1995)의 연구 이후 출간된 93편의 관련 논문을 검토하여 네트워크 효과성의 수준과 결정요인을 도출했습니다.</p>
+              
+              <h4 class="sub-section-title"><i data-lucide="check"></i> 가. 네트워크 효과성 평가의 3개 수준 (Levels)</h4>
+              <ol style="margin-left: 1.35rem; line-height: 1.8;">
+                <li><strong>수혜자/클라이언트 수준 (Client-level):</strong> 최종 결과에 대해 수혜자가 만족하는지 여부</li>
+                <li><strong>지역사회 수준 (Community-level):</strong> 지역사회가 네트워크의 운영으로부터 실질적인 혜택을 얻고 있는지 여부</li>
+                <li><strong>네트워크 수준 (Network-level):</strong> 명시된 목표의 달성 역량, 네트워크의 지속 가능성 및 실행 가능성(viability), 혁신과 변화 역량</li>
+              </ol>
+
+              <h4 class="sub-section-title" style="margin-top: 1.5rem;"><i data-lucide="settings"></i> 나. 네트워크 효과성의 3대 포괄적 결정요인 (Determinants)</h4>
+              <ul class="bullet-list">
+                <li><strong>1. 구조적 특성 (Structural characteristics):</strong>
+                  <ul style="margin-left: 1rem; margin-top: 0.35rem;">
+                    <li>외부 통제(이해관계자/유권자에 대한 의존성)</li>
+                    <li>통합 메커니즘(공통 통신 시스템 구축, 서비스 전달 시너지 창출)</li>
+                    <li>네트워크 규모 및 구성</li>
+                    <li>공식화 및 책임성(공식 규칙·기능 마련, 자금 지원자 등 외부 이해관계자에 대한 책임성)</li>
+                    <li>내부 안정성(참여 인력의 안정성)</li>
+                  </ul>
+                </li>
+                <li><strong>2. 기능적 특성 (Functioning characteristics):</strong>
+                  <ul style="margin-left: 1rem; margin-top: 0.35rem;">
+                    <li>네트워크 내부의 ‘관리 기술(management craft)’</li>
+                    <li>전통적인 관리 작업, 일반적 네트워킹, 불안정성 완화(buffering) 및 안정성 육성, 네트워크 프로세스 조율·지휘(steering)</li>
+                  </ul>
+                </li>
+                <li><strong>3. 맥락적 특성 (Contextual characteristics):</strong>
+                  <ul style="margin-left: 1rem; margin-top: 0.35rem;">
+                    <li>네트워크가 작동하는 환경</li>
+                    <li>환경의 안정성(Stability)이 핵심 요인이며, 환경적 안정성은 네트워크 효과성을 특정 지점까지는 향상시키지만 그 임계점을 넘어서면 오히려 저해할 수 있음.</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 3. 재난 대응 네트워크의 특수 동학과 도전 과제 -->
+          <div class="card card-full">
+            <div class="card-header">
+              <h3 class="card-title"><i data-lucide="help-circle"></i> 3. 재난 대응 네트워크의 특수 동학과 도전 과제</h3>
+            </div>
+            <div class="card-body">
+              <ul class="bullet-list">
+                <li><strong>자연발생적 성격 (Emergent Nature):</strong> 재난 대응 네트워크는 계획된 구조보다 현장에서 자연발생적으로 형성되는 경향이 훨씬 강합니다. 기존 관계와 완전히 단절되지는 않더라도, 현장 대응자들은 사전에 마련된 제도적 배치를 따르기 어려운 경우가 많습니다 (Nowell & Steelman, 2014).</li>
+                <li><strong>계층적 구조의 한계와 유연성:</strong> 재난의 혼란스럽고 불확실한 특성 때문에 하향식(top-down) 메커니즘과 표준운영절차(SOP)는 일정 수준까지만 유효하며, 참여자들의 유연성과 환경 적응성이 필수적입니다.</li>
+                <li><strong>상황 적합성:</strong> 일반 행정 서비스 전달(예: 중앙집권적 구조)에서 효과적인 네트워크 구조라 하더라도 모든 재난 상황에서 긍정적인 성과를 내는 것은 아닙니다 (Raab et al., 2015).</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 4. 재난 네트워크 효과성에 관한 주요 실증 연구들 -->
+          <div class="card card-full">
+            <div class="card-header">
+              <h3 class="card-title"><i data-lucide="flask-conical"></i> 4. 재난 네트워크 효과성에 관한 주요 실증 연구들</h3>
+            </div>
+            <div class="card-body">
+              
+              <!-- ① Nowell & Steelman 2014 -->
+              <div class="callout callout-tip">
+                <div class="callout-title">① 브란다 노웰과 토디 스틸먼 (Nowell & Steelman, 2014) — 산불 대응 통신망</div>
+                <ul class="bullet-list" style="margin-bottom: 0;">
+                  <li><strong>연구 초점:</strong> 산불 대응 통신 네트워크를 형성하는 요인으로서 제도적 매몰성(institutional embeddedness)과 관계적 매몰성(relational embeddedness)의 영향을 분석.</li>
+                  <li><strong>핵심 결과:</strong> 참여자 간의 친숙도(familiarity)를 뜻하는 <strong>관계적 매몰성</strong>(재난 전 사회적 유대, 공통 이해관계 소속, 공유된 기능적 역할)이 산불 통신망 형성을 유의미하게 예측했습니다. 제도적 매몰성은 네트워크 밀도와 참여자 간 빈번한 의사소통에 기여하는 것으로 부분 확인되었습니다.</li>
+                </ul>
+              </div>
+
+              <!-- ② Choi & Brower 2006 -->
+              <div class="callout callout-purple">
+                <div class="callout-title">② 최상옥과 랄프 브라워 (Choi & Brower, 2006) — 인지적 정확성(Cognitive Accuracy) 4유형</div>
+                <ul class="bullet-list" style="margin-bottom: 0;">
+                  <li><strong>연구 배경:</strong> 중심적인 주도 기관(leading central organization)이 존재할 때 네트워크 효과성이 높아진다는 Provan & Milward(1995) 모형을 기반으로 연구를 수행했습니다.</li>
+                  <li><strong>비교 분석 3차원:</strong> 플로리다 델타 카운티 비상대응계획의 긴급지원기능(ESF)을 대상으로 ① 계획서상 주관 기관, ② 참여자들이 인지한 가장 영향력 있는 기관, ③ 실제 네트워크 위치(최고 중심성 기관)를 상호 비교했습니다.</li>
+                  <li><strong>인지적 정확성의 4가지 유형:</strong>
+                    <ul style="margin-left: 1rem; margin-top: 0.35rem;">
+                      <li><strong>유형 I (가장 일관됨, Type I):</strong> 계획, 참여자 인지, 실제 네트워크 중심 기관이 <strong>3자 모두 완벽히 일치</strong>.</li>
+                      <li><strong>유형 II 및 III (부분적 일관성, Types II & III):</strong> 계획과 인지, 또는 인지와 실제 네트워크 등 <strong>두 가지 수준에서만 주도 기관이 일치</strong>.</li>
+                      <li><strong>유형 IV (비일관형, Type IV):</strong> 세 가지 차원 모두에서 주도 기관이 <strong>불일치</strong>.</li>
+                    </ul>
+                  </li>
+                  <li><strong>의의:</strong> 비상관리자들이 실제 현장에서 작동하는 네트워크의 운영 현실을 얼마나 명확히 파악하고 있는지를 진단하는 유용한 도구입니다.</li>
+                </ul>
+              </div>
+
+              <!-- ③ Faas et al. 2016 -->
+              <div class="callout callout-amber">
+                <div class="callout-title">③ A.J. 파스와 동료들 (Faas et al., 2016) — 유사성 가설 vs 비유사성 가설</div>
+                <ul class="bullet-list" style="margin-bottom: 0;">
+                  <li><strong>산불 대응망 내 가교 행위자(Bridging Actors) 식별 연구:</strong>
+                    <ul style="margin-left: 1rem; margin-top: 0.35rem;">
+                      <li><strong>유사성 가설 (Similarity / Homophily thesis):</strong> 사람들은 자신과 유사한 주체(예: 지방 소방대와 연방 토지관리국 등)를 가교자로 선택할 것으로 봄.</li>
+                      <li><strong>비유사성 가설 (Dissimilarity thesis):</strong> 가교 행위자는 친숙함이 아니라 운영상의 우선순위(operational priorities)에 따라 형성된다고 봄.</li>
+                    </ul>
+                  </li>
+                  <li><strong>핵심 결론:</strong> 유사성과 친숙함은 사람들이 비상 상황에서 '어떻게 조직될 것인가'라는 사전 기대는 예측하지만, 실제 현장 네트워크 구조는 다르게 형성됩니다. 즉, <strong>"실제 실행(practice)에서는 비유사성 가설이 유사성 가설보다 더 큰 설득력을 갖는다"</strong>는 점을 입증했습니다.</li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ==========================================================================
+           6. COMMUNICATION (pp. 31~34)
+           ========================================================================== -->
+      <section id="sec-communication" class="content-section">
+        <div class="section-header-box">
+          <div class="section-badge-row">
+            <span class="sec-badge">SECTION 06</span>
+            <span class="page-badge">원문 31~34페이지</span>
+          </div>
+          <h2 class="section-title"><i data-lucide="radio"></i> COMMUNICATION (의사소통)</h2>
+        </div>
+
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+          제3장의 <strong>COMMUNICATION(의사소통)</strong> 섹션(31~34페이지)의 주요 내용을 원문에 충실하게 정리한 내용은 다음과 같습니다:
+        </p>
+
+        <div class="section-grid">
+
+          <!-- 1. 불확실한 환경에서의 의사소통과 상호운용성 -->
+          <div class="card card-full">
+            <div class="card-header">
+              <h3 class="card-title"><i data-lucide="radio-tower"></i> 1. 불확실한 환경에서의 의사소통과 상호운용성(Interoperability)</h3>
+              <span class="badge badge-rose">Kapucu (2006a)</span>
+            </div>
+            <div class="card-body">
+              <ul class="bullet-list">
+                <li><strong>네트워크 의사소통의 중요성과 연구 공백:</strong> 불확실한 환경에서 네트워크 내부의 의사소통은 재난 및 위기관리의 핵심 요소입니다. 협력의 장애 요인을 규명하고 성과 향상을 위한 모범 사례들이 연구되어 왔으나, 대응 및 복구 맥락의 끊임없는 변화로 인해 관련 문헌에는 여전히 연구 공백이 존재합니다.</li>
+                <li><strong>불확실성과 의사결정:</strong> 재난 대응과 같은 불확실한 환경에서의 조직 간 의사소통과 의사결정은 네트워크의 연결성과 상호운용성(interoperability)에 크게 좌우됩니다 (Kapucu, 2006a).</li>
+                <li><strong>경계 확장자(Boundary Spanners)의 역할:</strong> 경계 확장자는 서로 다른 부문 간을 연결하는 다리 역할을 수행함으로써 네트워크 내에서 고유한 정보 공유 메커니즘을 제공하며, 이는 대응 및 복구 활동에 필수적입니다.</li>
+                <li><strong>상호운용성 결여의 대표 사례 (9/11 테러):</strong>
+                  <ul style="margin-left: 1rem; margin-top: 0.35rem;">
+                    <li>9/11 여객기 납치 테러는 대응 조직들이 내부 및 외부 특정 조직 간의 의사소통 전략을 사전에 계획해야 함을 일깨워 준 사건이었습니다.</li>
+                    <li>재난 대응에서는 '공유된 언어와 시스템'을 의미하는 상호운용 가능한 통신 체계가 핵심적입니다. 당시 뉴욕 소방국(FDNY)은 뉴욕 경찰국(NYPD)의 무전 시스템과 호환되지 않는 아날로그 무전기를 계속 사용하여 두 기관 간 효과적인 소통에 실패했습니다 (Kapucu, 2006a).</li>
+                  </ul>
+                </li>
+                <li><strong>사전 대비 활동의 효과:</strong> 훈련(training), 연습(exercises), 계획(planning)과 같은 재난 대비 활동을 통해 타 기관과 협업해 본 경험은 실제 재난 발생 시 원활한 협력을 촉진합니다 (Jordan, 2010).</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 2. 공식·비공식 네트워크와 재난 대응 협력의 형성 -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title"><i data-lucide="git-merge"></i> 2. 공식·비공식 네트워크와 재난 대응 협력의 형성</h3>
+              <span class="badge badge-blue">Kapucu & Hu (2014)</span>
+            </div>
+            <div class="card-body">
+              <ul class="bullet-list">
+                <li><strong>연구 배경 및 변수 설정:</strong> 플로리다주 오렌지 카운티를 대상으로 우정 네트워크(비공식) 및 재난 대비 네트워크(공식)를 예측 변수로, 재난 대응 네트워크를 종속 변수로 설정하여 관계를 분석했습니다. (Figure 3.2A–C에 관련 네트워크 시각화 제시).</li>
+                <li><strong>대응 네트워크에 대한 예측력:</strong>
+                  <ul style="margin-left: 1rem; margin-top: 0.35rem;">
+                    <li>재난 대비 네트워크와 우정(friendship) 유대 모두 실제 재난 대응 네트워크 형성을 통계적으로 예측하는 요인으로 나타났습니다.</li>
+                    <li>그러나 <strong>재난 대비 단계에서의 협력 경험이 우정 유대보다 재난 대응 시의 협력을 훨씬 더 강력하게 예측</strong>했습니다.</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 3. 정보통신기술(ICT) 활용도와 네트워크 중심성의 관계 -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title"><i data-lucide="laptop"></i> 3. 정보통신기술(ICT) 활용도와 네트워크 중심성의 관계</h3>
+              <span class="badge badge-emerald">ICT Paradox</span>
+            </div>
+            <div class="card-body">
+              <ul class="bullet-list">
+                <li><strong>대비(Preparedness) 네트워크에서의 양상:</strong> 대비 네트워크에서 중심적 위치(central positions)를 차지하는 조직일수록 정보통신기술(ICT)의 활용도가 높았습니다. 반면, 우정 네트워크에서의 위치와 ICT 활용 수준 간에는 아무런 유의미한 관계가 확인되지 않았습니다.</li>
+                <li><strong>대응(Response) 네트워크에서의 차이점:</strong> 대비 네트워크와 달리, 재난 대응 네트워크에서는 영향력 있고 중심적인 조직이라고 해서 ICT 활용도가 반드시 높은 것은 아니었습니다. 또한 네트워크 내에서 중개 역할(intermediating role)을 수행하는 조직 역시 다른 조직에 비해 ICT 활용도가 더 높게 나타나지 않았습니다.</li>
+                <li><strong>실무적 시사점:</strong> 비상관리 네트워크의 주도적·영향력 있는 조직들은 자신들의 ICT 활용 수준을 조직의 고유한 사명 및 목표와 일치시켜야 합니다. 첨단 ICT가 급속히 발전하고 있음에도 불구하고, 이메일, 전화 통화, 대면 상호작용(face-to-face interactions)과 같은 <strong>전통적인 의사소통 수단은 여전히 매우 실효성 있게 기능</strong>하고 있습니다.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Image 3.2A, 3.2B, 3.2C -->
+          <div class="card card-full">
+            <div class="card-header">
+              <h3 class="card-title"><i data-lucide="images"></i> 오렌지 카운티 3대 네트워크 시각화 (Figure 3.2A–C)</h3>
+            </div>
+            <div class="card-body">
+              <div class="section-grid" style="margin-top: 0;">
+                
+                <div class="image-card" style="margin: 0;">
+                  <div class="image-container" onclick="openLightbox('image-1.png', '오렌지 카운티 우정 네트워크 (Figure 3.2A)')">
+                    <img src="image-1.png" alt="오렌지 카운티 우정 네트워크">
+                  </div>
+                  <div class="image-caption">
+                    <span class="caption-title">Figure 3.2A: 오렌지 카운티 우정 네트워크</span>
+                    <span class="zoom-hint"><i data-lucide="maximize-2"></i></span>
+                  </div>
+                </div>
+
+                <div class="image-card" style="margin: 0;">
+                  <div class="image-container" onclick="openLightbox('image-2.png', '오렌지 카운티 재난 대비 네트워크 (Figure 3.2B)')">
+                    <img src="image-2.png" alt="오렌지 카운티 재난 대비 네트워크">
+                  </div>
+                  <div class="image-caption">
+                    <span class="caption-title">Figure 3.2B: 오렌지 카운티 재난 대비 네트워크</span>
+                    <span class="zoom-hint"><i data-lucide="maximize-2"></i></span>
+                  </div>
+                </div>
+
+                <div class="image-card" style="margin: 0;">
+                  <div class="image-container" onclick="openLightbox('image-3.png', '오렌지 카운티 재난 대응 네트워크 (Figure 3.2C)')">
+                    <img src="image-3.png" alt="오렌지 카운티 재난 대응 네트워크">
+                  </div>
+                  <div class="image-caption">
+                    <span class="caption-title">Figure 3.2C: 오렌지 카운티 재난 대응 네트워크</span>
+                    <span class="zoom-hint"><i data-lucide="maximize-2"></i></span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ==========================================================================
+           7. TRUST AND SOCIAL CAPITAL (pp. 34~35)
+           ========================================================================== -->
+      <section id="sec-trust" class="content-section">
+        <div class="section-header-box">
+          <div class="section-badge-row">
+            <span class="sec-badge">SECTION 07</span>
+            <span class="page-badge">원문 34~35페이지</span>
+          </div>
+          <h2 class="section-title"><i data-lucide="heart"></i> TRUST AND SOCIAL CAPITAL (신뢰와 사회적 자본)</h2>
+        </div>
+
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+          제시된 본문(<strong>TRUST AND SOCIAL CAPITAL</strong>, 34~35페이지)의 주요 내용을 핵심 주제 및 주요 연구별로 충실하게 정리한 내용은 다음과 같습니다:
+        </p>
+
+        <div class="section-grid">
+
+          <!-- 1. 공식적 유대와 정부 간 협력 촉진 요인 -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title"><i data-lucide="file-text"></i> 1. 공식적 유대(Formal Ties)와 협력 촉진 요인</h3>
+              <span class="badge badge-blue">McGuire & Silvia (2010)</span>
+            </div>
+            <div class="card-body">
+              <ul class="bullet-list">
+                <li><strong>공식적 유대의 형성 방식:</strong> 정부 기관 간의 수직적(상·하위 정부) 관계, 동일 정부 계층 또는 타 관할권과의 수평적 업무협약(MOU 체결), 그리고 공공-민간 부문 간 파트너십을 통해 수립됩니다.</li>
+                <li><strong>공식 네트워크의 기능:</strong> 파트너 간의 자원, 정보, 그리고 인적 자본(human capital)을 공유하는 실질적 기능을 수행합니다.</li>
+                <li><strong>정부 간 협력에 영향을 미치는 요인 (McGuire & Silvia, 2010):</strong>
+                  <ul style="margin-left: 1rem; margin-top: 0.35rem;">
+                    <li>문제의 심각성 정도 (problem severity)</li>
+                    <li>과거 재난 경험 (past experiences with disasters)</li>
+                    <li>공공기관 및 관리자의 역량·역량 수준 (다기능 분야 훈련, 주 자격증, 관리적·기술적 능력)</li>
+                    <li>명확한 프로그램과 사명이 정립된 기관 구조 (agency structure)</li>
+                  </ul>
+                </li>
+                <li><strong>신뢰와 협력 역량:</strong> 효과적인 재난 대응을 촉진하는 데는 <strong>신뢰(trust), 존중(respect), 정기적인 상호작용</strong>이 필수적이며, 재정적·기술적·인적 자원으로 뒷받침되는 협력 역량(capacity to collaborate) 또한 매우 중요합니다.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 2. 비공식적 유대와 리더의 사회적 자본 -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title"><i data-lucide="user-check"></i> 2. 비공식적 유대(Informal Ties)와 리더의 사회적 자본</h3>
+            </div>
+            <div class="card-body">
+              <ul class="bullet-list">
+                <li><strong>비공식 유대의 가변성과 역할:</strong> 비공식 유대는 공식 유대보다 범위의 변동성이 큽니다. 재난 위험, 지역사회 역량, 미시·중범위·거시(micro, meso, macro) 수준에서 가용한 사회적 자본에 따라 유형, 역할, 규모, 참여자, 역량이 크게 달라지며 때로는 공식 유대와 융합됩니다.</li>
+                <li><strong>리더의 개인적 사회적 자본:</strong> 지역사회 및 조직 리더들의 개인적 사회적 자본은 조직들이 <strong>신뢰를 신속하게 구축하고 원활하게 협력하도록 지원</strong>하여 공식 유대를 보완합니다.</li>
+                <li><strong>강한 유대 형성 요인:</strong> 행정 관리자 간의 관계 분석에서 경계 확장자(boundary spanners)와 <strong>신뢰</strong>가 강한 유대를 촉진하는 핵심 요소로 확인됩니다.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 3. 동질혼과 연결 공유의 영향 -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title"><i data-lucide="share2"></i> 3. 동질혼(Homophily)과 연결 공유(Transitivity)</h3>
+              <span class="badge badge-purple">Siciliano & Wukich (2015)</span>
+            </div>
+            <div class="card-body">
+              <p>허리케인 카트리나 데이터를 활용하여 동질혼(동일 관할권 및 부문 조직 간 유대 집중)과 삼항 이행성(transitivity, 공통 친구를 통한 연결 공유)이 재난 대응 네트워크에 미친 영향을 분석했습니다.</p>
+              <ul class="bullet-list" style="margin-top: 0.5rem;">
+                <li><strong>부문 간·지역 간 동질혼 경향:</strong> 비영리단체는 영리 기업이나 정부 기관보다 <strong>다른 비영리단체와 협력할 가능성</strong>이 더 높았으며, 특히 정부 자원에 제때 효과적으로 접근하지 못했을 때 이러한 경향이 두드러졌습니다. 공공기관 역시 유사하여 <strong>지방 기관은 다른 지방 기관과 협력할 가능성</strong>이 더 높았습니다.</li>
+                <li><strong>신뢰 기반의 네트워크 유지:</strong> 조직들은 '공통의 친구'를 가진 상대와 유대를 형성하는 경향(transitivity)이 있었습니다. 이는 허리케인 카트리나와 같은 극심한 불확실성 상황에서 조직들이 <strong>신뢰감을 느끼는 네트워크 내에 머무르려 함</strong>을 의미합니다.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 4. 공공-비영리 임시 협력과 성과 결정 요인 -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title"><i data-lucide="scale"></i> 4. 공공-비영리 임시 협력과 성과 결정 요인</h3>
+              <span class="badge badge-emerald">Nolte & Boenigk (2013)</span>
+            </div>
+            <div class="card-body">
+              <p>대응 및 복구 단계에서 공공기관과 비영리단체 간에 형성되는 임시(ad hoc) 연결 속에서 사회적 자본이 미치는 영향을 연구했습니다.</p>
+              <ul class="bullet-list" style="margin-top: 0.5rem;">
+                <li><strong>임시 협력의 양면성:</strong> 이미 반응적이고 급변하는 환경에서 지역사회를 지원해야 하는 조직에 외부 지원 서비스가 유입되는 것은 조정(coordination) 부담을 가중시켜 상황에 부정적 영향을 미칠 수도 있습니다.</li>
+                <li><strong>긍정적 영향 확인:</strong> <strong>과업 조정(task coordination)</strong>, <strong>상호성 정도(degree of mutuality)</strong>, 그리고 사전에 형성된 긍정적 협력 경험(preconceived positive collaborative experiences)은 재난 대응 성과에 통계적으로 유의미한 긍정적 영향을 미쳤습니다.</li>
+                <li><strong>예상 밖의 결과:</strong> 연구자들의 초기 가설과 달리, <strong>의사소통(communication)</strong> 및 공통 관계(common relations)는 성과에 대해 통계적으로 유의미한 효과를 나타내지 않았습니다.</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ==========================================================================
+           8. LEARNING AND ADAPTATION IN DISASTER NETWORKS (pp. 35~36)
+           ========================================================================== -->
+      <section id="sec-learning" class="content-section">
+        <div class="section-header-box">
+          <div class="section-badge-row">
+            <span class="sec-badge">SECTION 08</span>
+            <span class="page-badge">원문 35~36페이지</span>
+          </div>
+          <h2 class="section-title"><i data-lucide="book-open-check"></i> LEARNING AND ADAPTATION IN DISASTER NETWORKS</h2>
+        </div>
+
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+          제시해주신 본문(<strong>LEARNING AND ADAPTATION IN DISASTER NETWORKS</strong>, 35~36페이지)의 주요 내용을 핵심 이론, 구체적 사례(모이니한 연구), 그리고 학습 도구별로 빠짐없이 정리한 내용은 다음과 같습니다:
+        </p>
+
+        <div class="section-grid">
+
+          <!-- 1. 위기 학습의 개념과 저해 요인 -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title"><i data-lucide="help-circle"></i> 1. 위기 학습(Crisis Learning)의 개념과 저해 요인</h3>
+            </div>
+            <div class="card-body">
+              <ul class="bullet-list">
+                <li><strong>위기 학습의 정의:</strong> 재난 네트워크가 위기 대응을 더 효과적으로 만들기 위해 <strong>새로운 실천(practices)과 행동(behaviors)을 인지하고 실행(recognition and implementation)하는 과정</strong>을 의미하며, 일부 학자들은 이를 재난 대응 효과성을 판단하는 중요한 척도로 사용합니다.</li>
+                <li><strong>효과적인 위기 학습의 주요 장벽(Barriers):</strong>
+                  <ul style="margin-left: 1rem; margin-top: 0.35rem;">
+                    <li>위기의 높은 결과 중대성 (high consequentiality of crises)</li>
+                    <li>정부 간 학습의 필요성 (need for intergovernmental learning)</li>
+                    <li>이전 관련 경험의 부재 (lack of prior relevant experience)</li>
+                    <li>제한된 정보 환경 (limited information)</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 2. 네트워크 학습의 가능성 실증 사례: 외래 뉴캐슬병 -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title"><i data-lucide="feather"></i> 2. 캘리포니아 외래 뉴캐슬병(END) 실증</h3>
+              <span class="badge badge-emerald">Moynihan (2008)</span>
+            </div>
+            <div class="card-body">
+              <ul class="bullet-list">
+                <li><strong>사건의 특징과 규모:</strong> 가금류 및 조류 사이에 전염성이 극도로 높아 백신을 맞지 않은 무리 전체를 몰살시키며 백신을 맞은 조류조차 취약한 질병이었습니다. 이를 억제하기 위해 여러 주 및 연방 기관에서 파견된 7,000명 이상의 인력(네트워크 최고 정점 시 동시 근무 인력은 2,500명)이 약 1년간 네트워크 형태로 협력하여 932곳의 감염 현장을 찾아냈습니다.</li>
+                <li><strong>단기 재난과의 본질적 차이 (학습 촉진 환경):</strong> 토네이도, 지진, 허리케인 등은 순식간에 발생하여 대응할 시간을 거의 주지 않으며, 화학물질 누출처럼 대응 시간이 주어지더라도 혼란스럽고 불확실한 상태에서 운영됩니다. 반면 뉴캐슬병 사태는 약 1년 동안 지속(2002년 10월~2003년 9월)되었기 때문에, 참여자와 조직들이 상황을 숙고하고 의미를 파악(sense-making)하며 변화하는 조건에 <strong>적응(adapt)할 수 있는 충분한 시간을 제공</strong>했습니다.</li>
+                <li><strong>신뢰 구축과 불확실성 감소:</strong> 긴 대응 기간 덕분에 네트워크 참여자들은 시간이 지남에 따라 상호 관계와 신뢰를 구축할 수 있었으며, 상호의존성(interdependencies)을 인정하고 신뢰를 쌓음으로써 환경적·제도적 불확실성을 낮추고 네트워크 내 학습을 크게 증진할 수 있었습니다.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 3. 위기 네트워크 학습을 위한 6대 도구 -->
+          <div class="card card-full">
+            <div class="card-header">
+              <h3 class="card-title"><i data-lucide="wrench"></i> 3. 위기 네트워크 학습을 위한 6대 도구 (Moynihan, 2008)</h3>
+            </div>
+            <div class="card-body">
+              <p>모이니한은 단기 재난(예: 토네이도)과 장기 재난(예: 뉴캐슬병) 모두에 적용 가능한 <strong>6가지 위기 네트워크 학습 도구</strong>를 제시했습니다:</p>
+              <div class="custom-table-wrapper" style="margin-top: 0.75rem;">
+                <table class="custom-table">
+                  <thead>
+                    <tr>
+                      <th style="width: 25%;">학습 도구</th>
+                      <th>핵심 정의 및 작동 내용</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>1. 가상 경험<br/>(Virtual experience)</strong></td>
+                      <td>사전 계획 수립, 시뮬레이션, 롤플레잉(역할 연기), 교육훈련 등을 통해 사전에 간접 경험을 축적하는 것.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>2. 네트워크 내 타 조직으로부터의 학습</strong></td>
+                      <td>파트너 기관의 지식과 노하우를 공유받아 학습하는 것.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>3. 정보 시스템을 통한 학습<br/>(Learning from info systems)</strong></td>
+                      <td>상황 인식(situational awareness)을 위해 신뢰할 수 있고 상호운용 가능한 통신·정보 시스템을 활용하는 것.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>4. 학습 포럼<br/>(Learning forums)</strong></td>
+                      <td>지식과 현장 경험을 공유하고 성찰할 수 있는 열린 토론 플랫폼을 운영하는 것.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>5. SOP로부터 기억 창출<br/>(Memory from SOPs)</strong></td>
+                      <td>현장의 학습 내용을 제도화하고 정형화하기 위해 일상적 업무 루틴을 개발하는 것.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>6. 과거로부터의 학습<br/>(Learning from the past)</strong></td>
+                      <td>이전 재난과 과거 사건의 교훈을 체계적으로 복기하고 반영하는 것.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="callout callout-amber" style="margin-top: 1.25rem;">
+                <div class="callout-title"><i data-lucide="info"></i> 4. 네트워크 효과성 논의의 범위와 전환</div>
+                이 섹션에서 다룬 재난 대응 네트워크의 효과성 결정요인은 앞서 언급된 Turrini et al.(2010) 및 Raab et al.(2015)의 결과와 유사하지만, 수혜자(client)나 지역사회(community) 수준은 제외하고 <strong>순수한 '네트워크 수준(network-level)'의 효과성만을 다룹니다</strong>. 이어서 다음 섹션에서는 네트워크 효과성을 저해하는 구체적 요인들(factors that hinder network effectiveness)을 다루게 됩니다.
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ==========================================================================
+           9. FACTORS HINDERING COLLABORATION (pp. 36~37)
+           ========================================================================== -->
+      <section id="sec-hindering" class="content-section">
+        <div class="section-header-box">
+          <div class="section-badge-row">
+            <span class="sec-badge">SECTION 09</span>
+            <span class="page-badge">원문 36~37페이지</span>
+          </div>
+          <h2 class="section-title"><i data-lucide="shield-x"></i> FACTORS HINDERING COLLABORATION IN FORMING DISASTER NETWORKS OF ORGANIZATIONS</h2>
+        </div>
+
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+          제시해주신 본문(<strong>FACTORS HINDERING COLLABORATION IN FORMING DISASTER NETWORKS OF ORGANIZATIONS</strong>, 36~37페이지)의 주요 내용을 원문에 충실하게 핵심 요인별로 빠짐없이 정리한 내용은 다음과 같습니다:
+        </p>
+
+        <div class="section-grid">
+
+          <!-- 1. 효과적인 협업을 저해하는 일반적 요인들 -->
+          <div class="card card-full">
+            <div class="card-header">
+              <h3 class="card-title"><i data-lucide="alert-circle"></i> 1. 효과적인 협업을 저해하는 일반적 요인들</h3>
+              <span class="badge badge-rose">Jordan (2010) & Waugh (2003)</span>
+            </div>
+            <div class="card-body">
+              <ul class="bullet-list">
+                <li><strong>협업 저해 요인 목록 (Jordan, 2010):</strong>
+                  <ul style="margin-left: 1rem; margin-top: 0.35rem;">
+                    <li>공식적인 기관 사명(formal missions)의 상충</li>
+                    <li>문화적 갈등(cultural conflicts)</li>
+                    <li>역할 모호성(role ambiguity)</li>
+                    <li>조직 간 불일치 및 상이한 응급관리 전략</li>
+                    <li>부문 간 경계를 넘는 의사소통 지침/계획의 부재</li>
+                  </ul>
+                </li>
+                <li><strong>공통 집단 정체성 형성의 난제:</strong> 다양한 사명, 조직 문화, 운영 기능을 가진 이질적인 조직들을 한자리에 모을 때, 공통의 집단 정체성(common group identity)과 의사결정에 대한 공유된 이해(shared understanding of decision-making)를 구축하는 것이 가장 큰 도전 과제입니다.
+                  <br/><em>예시 (문화적 격차):</em> 국가안보 및 법 집행 기관은 '비밀주의적 행동'과 '중앙집권적 의사결정'으로 특징지어지는 반면, 비영리단체는 자원봉사자의 참여를 유도하고 '탈중앙화된 의사결정'을 활용하는 '개방형 시스템'으로 작동합니다 (Waugh, 2003).
+                </li>
+                <li><strong>동일 목적 조직 간의 협력 실패 (9/11 테러 사례):</strong> 유사한 목표와 기능을 가진 조직들 사이에서도 협력이 실패할 수 있습니다. 9/11 테러 당시 미국 정보기관들은 공격 전후로 상호 간 정보를 공유하지 않아 큰 비판을 받았습니다. 이에 대한 대책으로 효과적인 정보 수집 및 배포를 위해 지방, 주, 연방 수준의 통합정보센터(Fusion Centers)가 신설되었습니다 (DHS, 2015).</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 2. 협력 비용과 소규모·농촌 조직의 한계 -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title"><i data-lucide="dollar-sign"></i> 2. 협력 비용과 소규모·농촌 조직의 한계</h3>
+            </div>
+            <div class="card-body">
+              <ul class="bullet-list">
+                <li><strong>협력 구축·유지 비용의 부담:</strong> 협력에 소요되는 비용은 조직들의 파트너십 구축 의지를 저하시킵니다.</li>
+                <li><strong>소규모 조직의 자원 결핍:</strong> 소규모 조직은 협력적 유대를 형성하고 지속할 직원(인력), 전문성, 자원이 부족합니다.</li>
+                <li><strong>농촌(Rural) 지역의 현실적 소외:</strong> 자원이 매우 희소하고, 응급관리를 전담 전문가가 아닌 비전문가(경찰, 보건의료 인력 등)가 겸임하는 경우가 많아 파트너십 구축은 정책 우선순위의 최하단에 놓이기 쉽습니다. 이러한 조직들은 공식 파트너십에 자원을 투입할 여력이 없기 때문에, 대형 비상사태가 발생하면 대도시 관할구역의 상대 기관과의 비공식적 유대(informal ties)에 의존하는 경향을 보입니다.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 3. 관할권 간 권력 불균형의 복합적 영향 -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title"><i data-lucide="scale"></i> 3. 관할권 간 권력 불균형(Power Imbalances)</h3>
+            </div>
+            <div class="card-body">
+              <ul class="bullet-list">
+                <li><strong>유대 형성에 영향을 주는 요인들:</strong> 조직 역량, 관할구역 규모, 가용 자원, 인구 동학 등은 협력적 유대의 발전에 복합적인 영향을 미칩니다.</li>
+                <li><strong>권력 격차에 따른 협력 회피:</strong> 관할권 간의 불평등한 권력 관계는 특정 관할권으로 하여금 의사결정에 비전통적 기관을 포함시키기를 꺼리게 만들거나, 기존 권력 구조의 변경을 거부하게 만듭니다.</li>
+                <li><strong>권력 격차의 역설적 협력 촉진:</strong> 반대로, "중심 도시(core city)와 주변 관할권(인근 교외 및 농촌 지역) 사이의 불평등한 권력에 대한 인식"이 오히려 협력을 촉진하는 계기로 작용하기도 합니다 (Jordan, 2010).</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 4. 조직 문화, 친숙도 부족 및 부처 통합의 부작용 -->
+          <div class="card card-full">
+            <div class="card-header">
+              <h3 class="card-title"><i data-lucide="merge"></i> 4. 조직 문화, 친숙도 부족 및 부처 통합의 부작용</h3>
+            </div>
+            <div class="card-body">
+              <ul class="bullet-list">
+                <li><strong>문화적 장벽과 친숙도(Familiarity) 결여:</strong> 조직 간의 친숙함 부족과 문화적 이질성은 협력과 네트워킹을 심각하게 방해합니다.</li>
+                <li><strong>국토안보부(DHS) 신설 사례 (9/11 이후):</strong> 9/11 이후 22개 서로 다른 연방 기관이 신설 국토안보부(DHS) 산하로 급격히 통합되었습니다. 안보/치안 출신 집단(무기를 소지한 인력)과 비상관리·재정 등 비안보 출신 집단(무기를 소지하지 않은 인력)이 강제로 함께 일해야 했습니다. 서로 다른 조직 문화 간의 장벽은 긴장을 조성하고 협력 및 네트워킹을 크게 훼손했습니다.</li>
+                <li><strong>지방 수준(Local Level)에서의 사일로 현상:</strong> 지방 정부 수준에서도 문화적 차이, 조직의 일상적 관행(routines), 심지어 각 조직이 사용하는 고유한 전문용어(jargon) 등이 조직 간 장벽(silos)을 깨고 협력하는 것을 어렵게 만듭니다.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 5. 촉진·저해 요인 개념도 (Figure 3.3) -->
+          <div class="card card-full">
+            <div class="card-header">
+              <h3 class="card-title"><i data-lucide="image"></i> 5. 촉진·저해 요인 개념도 (Figure 3.3 요약 도입)</h3>
+            </div>
+            <div class="card-body">
+              <p>
+                본문의 Figure 3.3(개념 지도)은 재난관리 문헌 전반에서 확인된 효과적인 조직 간 협업을 '촉진하는 요인(facilitating factors)'과 '저해하는 요인(hindering factors)'을 종합하여 도식화하고 있음을 안내합니다.
+              </p>
+              
+              <div class="image-card">
+                <div class="image-container" onclick="openLightbox('image-4.png', '재난관리에서 효과적인 조직 간 네트워크에 영향을 미치는 요인 (Figure 3.3)')">
+                  <img src="image-4.png" alt="재난관리에서 효과적인 조직 간 네트워크에 영향을 미치는 요인">
+                </div>
+                <div class="image-caption">
+                  <span class="caption-title"><i data-lucide="image"></i> 재난관리에서 효과적인 조직 간 네트워크에 영향을 미치는 요인 (Figure 3.3)</span>
+                  <span class="zoom-hint"><i data-lucide="maximize-2"></i> 클릭하여 확대</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ==========================================================================
+           10. APPLICATIONS OF SOCIAL NETWORK ANALYSIS (pp. 37~38)
+           ========================================================================== -->
+      <section id="sec-sna" class="content-section">
+        <div class="section-header-box">
+          <div class="section-badge-row">
+            <span class="sec-badge">SECTION 10</span>
+            <span class="page-badge">원문 37~38페이지</span>
+          </div>
+          <h2 class="section-title"><i data-lucide="grid"></i> APPLICATIONS OF SOCIAL NETWORK ANALYSIS</h2>
+        </div>
+
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+          제공해주신 본문(<strong>APPLICATIONS OF SOCIAL NETWORK ANALYSIS</strong>, 37~38페이지)의 주요 내용을 핵심 이론, 메타-매트릭스 체계, 연구 방법론적 활용별로 빠짐없이 정리한 내용은 다음과 같습니다:
+        </p>
+
+        <div class="section-grid">
+
+          <!-- 1. 재난 연구에서 SNA의 유용성 (5대 핵심 특징) -->
+          <div class="card card-full">
+            <div class="card-header">
+              <h3 class="card-title"><i data-lucide="check-square"></i> 1. 재난 연구에서 사회네트워크 분석(SNA)의 유용성 (5대 핵심 특징)</h3>
+              <span class="badge badge-emerald">Kapucu et al. (2014)</span>
+            </div>
+            <div class="card-body">
+              <p>사회네트워크 분석(SNA)은 행위자(노드)의 개별 속성(attributes)뿐만 아니라 행위자 간의 관계(relations)에 초점을 맞춥니다. Kapucu et al.(2014)은 재난 대응에 참여하는 지역사회의 변이를 포착하는 데 네트워크 접근법이 유용한 5가지 이유를 제시했습니다:</p>
+              <ol style="margin-left: 1.35rem; margin-top: 0.75rem; line-height: 1.8;">
+                <li><strong>관계 중심성:</strong> 프로세스에 참여하는 개별 실체의 특성뿐 아니라 행위자들 사이의 <strong>상호 관계</strong>에 집중합니다.</li>
+                <li><strong>전통적 경계의 초월(가교 및 경계 확장):</strong> 지리, 관할권, 소속 기관, 부문(sector), 전문성, 이념 등의 전통적 경계를 넘어 개인, 집단, 기관, 조직을 연결하는 도구로 기능합니다.</li>
+                <li><strong>가변적·적응적 시스템 (Volatile Systems):</strong> 네트워크는 끊임없이 변화하는 상황에 맞춰 구조와 구성원이 스스로 적응하고 조정해 나가는 유동적 시스템으로 개념화됩니다.</li>
+                <li><strong>사전 절차보다 '효과성' 우선 (유연성과 혁신):</strong> 사전 정의된 정형화된 프로세스보다 실질적인 효과성이 지배해야 합니다. 따라서 최소한의 유연성, 즉흥성(improvisation), 혁신성을 갖추어야 하며, 권위는 위계적 지위가 아닌 행위자의 <strong>인정받은 지식, 기술, 경험</strong>으로부터 발생합니다.</li>
+                <li><strong>상호성·호혜성·평등주의:</strong> 상호성(reciprocity), 호혜성(mutuality), 평등주의(egalitarianism)가 핵심 요소로 작용하여, 행위자들의 공평하고 책임감 있는 참여와 기여를 가능하게 합니다.</li>
+              </ol>
+              <div class="callout callout-tip" style="margin-top: 1rem;">
+                <strong>복합 환경에서의 네트워크 발현:</strong> 행위자, 지식, 자원, 과업, 조직 등 네트워크를 형성하는 요소들의 상호작용 방식에 따라 복잡한 환경에서 다양한 형태의 하위 네트워크가 나타납니다.
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. 허리케인 카트리나와 재난 SNA 연구의 확산 -->
+          <div class="card card-full">
+            <div class="card-header">
+              <h3 class="card-title"><i data-lucide="wind"></i> 2. 허리케인 카트리나(2005)와 재난 SNA 연구의 확산</h3>
+            </div>
+            <div class="card-body">
+              <ul class="bullet-list">
+                <li><strong>연구 급증 배경:</strong> 2005년 허리케인 카트리나의 막대한 피해와 이에 대한 정부 대응의 총체적 실패는 재난 상황에서의 사회 네트워크를 다루는 학술 연구의 폭발적 증가를 촉발했습니다.</li>
+                <li><strong>주요 연구 영역:</strong>
+                  <ul style="margin-left: 1rem; margin-top: 0.35rem;">
+                    <li>복구 결정 과정에서 나타난 피난민들의 행동 패턴</li>
+                    <li>이재민 및 지역 주민의 필요(needs)와 지원 체계</li>
+                    <li>카트리나 당시의 긴급 재난 대응 네트워크 분석 (Comfort & Haase, 2006; Hurlbert et al., 2005; Kapucu, 2006b; Robinson et al., 2006; Varda et al., 2009)</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 3. 조직 간 네트워크 메타-매트릭스 (Table 3.1) -->
+          <div class="card card-full">
+            <div class="card-header">
+              <h3 class="card-title"><i data-lucide="table"></i> 3. 조직 간 네트워크 메타-매트릭스 (Table 3.1 분석틀)</h3>
+              <span class="badge badge-blue">Table 3.1 Meta-Matrix</span>
+            </div>
+            <div class="card-body">
+              <p>재난 환경에서 행위자(Agents), 지식(Knowledge), 자원(Resources), 과업(Tasks), 기능(Functions)의 결합을 통해 도출 가능한 네트워크 유형을 5×5 격자로 체계화한 분석틀입니다 (셀을 클릭하여 상세 분석 질문을 확인하세요):</p>
+
+              <!-- Interactive 5x5 Grid -->
+              <div class="meta-matrix-grid">
+                <div class="meta-cell-header">엔티티</div>
+                <div class="meta-cell-header">Agents (행위자)</div>
+                <div class="meta-cell-header">Knowledge (지식)</div>
+                <div class="meta-cell-header">Resources (자원)</div>
+                <div class="meta-cell-header">Tasks (과업)</div>
+                <div class="meta-cell-header">Functions (기능)</div>
+
+                <!-- Row 1: Agents -->
+                <div class="meta-cell-header">Agents (행위자)</div>
+                <div class="meta-cell-item active" onclick="showMetaDetail('comm')">
+                  <span class="meta-cell-title">의사소통망</span>
+                  <span class="meta-cell-sub">Communication</span>
+                </div>
+                <div class="meta-cell-item" onclick="showMetaDetail('know')">
+                  <span class="meta-cell-title">지식망</span>
+                  <span class="meta-cell-sub">Knowledge</span>
+                </div>
+                <div class="meta-cell-item" onclick="showMetaDetail('capa')">
+                  <span class="meta-cell-title">역량망</span>
+                  <span class="meta-cell-sub">Capabilities</span>
+                </div>
+                <div class="meta-cell-item" onclick="showMetaDetail('assi')">
+                  <span class="meta-cell-title">배정망</span>
+                  <span class="meta-cell-sub">Assignment</span>
+                </div>
+                <div class="meta-cell-item" onclick="showMetaDetail('affi')">
+                  <span class="meta-cell-title">소속/기능망</span>
+                  <span class="meta-cell-sub">Affiliation</span>
+                </div>
+
+                <!-- Row 2: Knowledge -->
+                <div class="meta-cell-header">Knowledge (지식)</div>
+                <div class="meta-cell-item" style="opacity: 0.3; cursor: default;"><span class="meta-cell-sub">-</span></div>
+                <div class="meta-cell-item" onclick="showMetaDetail('info')">
+                  <span class="meta-cell-title">정보망</span>
+                  <span class="meta-cell-sub">Information</span>
+                </div>
+                <div class="meta-cell-item" onclick="showMetaDetail('skill')">
+                  <span class="meta-cell-title">기술망</span>
+                  <span class="meta-cell-sub">Skills</span>
+                </div>
+                <div class="meta-cell-item" onclick="showMetaDetail('need')">
+                  <span class="meta-cell-title">필요망</span>
+                  <span class="meta-cell-sub">Needs</span>
+                </div>
+                <div class="meta-cell-item" onclick="showMetaDetail('comp')">
+                  <span class="meta-cell-title">전문역량망</span>
+                  <span class="meta-cell-sub">Competency</span>
+                </div>
+
+                <!-- Row 3: Resources -->
+                <div class="meta-cell-header">Resources (자원)</div>
+                <div class="meta-cell-item" style="opacity: 0.3; cursor: default;"><span class="meta-cell-sub">-</span></div>
+                <div class="meta-cell-item" style="opacity: 0.3; cursor: default;"><span class="meta-cell-sub">-</span></div>
+                <div class="meta-cell-item" onclick="showMetaDetail('subs')">
+                  <span class="meta-cell-title">대체망</span>
+                  <span class="meta-cell-sub">Substitution</span>
+                </div>
+                <div class="meta-cell-item" onclick="showMetaDetail('res-dep')">
+                  <span class="meta-cell-title">자원의존망</span>
+                  <span class="meta-cell-sub">Resource Dep.</span>
+                </div>
+                <div class="meta-cell-item" onclick="showMetaDetail('comm-cap')">
+                  <span class="meta-cell-title">지역사회자본망</span>
+                  <span class="meta-cell-sub">Community Cap.</span>
+                </div>
+
+                <!-- Row 4: Tasks -->
+                <div class="meta-cell-header">Tasks (과업)</div>
+                <div class="meta-cell-item" style="opacity: 0.3; cursor: default;"><span class="meta-cell-sub">-</span></div>
+                <div class="meta-cell-item" style="opacity: 0.3; cursor: default;"><span class="meta-cell-sub">-</span></div>
+                <div class="meta-cell-item" style="opacity: 0.3; cursor: default;"><span class="meta-cell-sub">-</span></div>
+                <div class="meta-cell-item" onclick="showMetaDetail('prec')">
+                  <span class="meta-cell-title">선행망</span>
+                  <span class="meta-cell-sub">Precedence</span>
+                </div>
+                <div class="meta-cell-item" onclick="showMetaDetail('sect')">
+                  <span class="meta-cell-title">부문책임망</span>
+                  <span class="meta-cell-sub">Sector Resp.</span>
+                </div>
+
+                <!-- Row 5: Functions -->
+                <div class="meta-cell-header">Functions (기능)</div>
+                <div class="meta-cell-item" style="opacity: 0.3; cursor: default;"><span class="meta-cell-sub">-</span></div>
+                <div class="meta-cell-item" style="opacity: 0.3; cursor: default;"><span class="meta-cell-sub">-</span></div>
+                <div class="meta-cell-item" style="opacity: 0.3; cursor: default;"><span class="meta-cell-sub">-</span></div>
+                <div class="meta-cell-item" style="opacity: 0.3; cursor: default;"><span class="meta-cell-sub">-</span></div>
+                <div class="meta-cell-item" onclick="showMetaDetail('inter-org')">
+                  <span class="meta-cell-title">조직간네트워크</span>
+                  <span class="meta-cell-sub">Interorganizational</span>
+                </div>
+              </div>
+
+              <!-- Detail Box -->
+              <div id="metaDetailBox" class="meta-detail-box active">
+                <h4 id="metaDetailTitle" style="color: var(--accent-primary); font-size: 1.05rem; margin-bottom: 0.4rem;">
+                  의사소통망 (Communication Network) : Agents × Agents
+                </h4>
+                <p id="metaDetailDesc" style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.7;">
+                  <strong>핵심 질문:</strong> 누가 누구를 알고 소통하는가? (Who knows and talks to whom?)<br/>
+                  <strong>재난관리 적용:</strong> 비상운영센터(EOC) 내 기관 대표자 간 무전, 전화, 대면 브리핑을 통한 실시간 정보 교환 연결망.
+                </p>
+              </div>
+
+              <div class="custom-table-wrapper" style="margin-top: 1.5rem;">
+                <table class="custom-table">
+                  <thead>
+                    <tr>
+                      <th style="width: 22%;">연계 범주</th>
+                      <th style="width: 28%;">네트워크 명칭</th>
+                      <th>핵심 분석 질문 (Who/What relations)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td rowspan="5"><strong>행위자(Agents)<br/>연계 네트워크</strong></td>
+                      <td><strong>의사소통망</strong> (Communication)</td>
+                      <td>누가 누구를 알고 소통하는가 (Agents × Agents)</td>
+                    </tr>
+                    <tr>
+                      <td><strong>지식망</strong> (Knowledge)</td>
+                      <td>누가 어떤 지식을 알고 있는가 (Agents × Knowledge)</td>
+                    </tr>
+                    <tr>
+                      <td><strong>역량망</strong> (Capabilities)</td>
+                      <td>누가 어떤 자원을 보유하고 있는가 (Agents × Resources)</td>
+                    </tr>
+                    <tr>
+                      <td><strong>배정망</strong> (Assignment)</td>
+                      <td>누가 어떤 과업을 수행하는가 (Agents × Tasks)</td>
+                    </tr>
+                    <tr>
+                      <td><strong>소속/기능망</strong> (Affiliation)</td>
+                      <td>누가 어떤 기능에 책임을 지는가 (Agents × Functions)</td>
+                    </tr>
+                    <tr>
+                      <td rowspan="4"><strong>지식(Knowledge)<br/>연계 네트워크</strong></td>
+                      <td><strong>정보망</strong> (Information)</td>
+                      <td>무엇이 공유 내용을 알려주는가 (Knowledge × Knowledge)</td>
+                    </tr>
+                    <tr>
+                      <td><strong>기술망</strong> (Skills)</td>
+                      <td>어떤 자원을 사용하는 데 어떤 지식이 요구되는가 (Knowledge × Resources)</td>
+                    </tr>
+                    <tr>
+                      <td><strong>필요망</strong> (Needs)</td>
+                      <td>어떤 과업을 수행하는 데 어떤 지식이 필요한가 (Knowledge × Tasks)</td>
+                    </tr>
+                    <tr>
+                      <td><strong>전문역량망</strong> (Competency)</td>
+                      <td>어떤 기능을 수행하는 데 어떤 지식이 필요한가 (Knowledge × Functions)</td>
+                    </tr>
+                    <tr>
+                      <td rowspan="3"><strong>자원(Resources)<br/>연계 네트워크</strong></td>
+                      <td><strong>대체망</strong> (Substitution)</td>
+                      <td>어떤 자원이 서로 대체되거나 공유될 수 있는가 (Resources × Resources)</td>
+                    </tr>
+                    <tr>
+                      <td><strong>자원의존망</strong> (Resource Dependence)</td>
+                      <td>과업 수행에 어떤 자원이 필요한가 (Resources × Tasks)</td>
+                    </tr>
+                    <tr>
+                      <td><strong>지역사회자본망</strong> (Community Capital)</td>
+                      <td>특정 기능을 위해 어떤 자원이 요구되는가 (Resources × Functions)</td>
+                    </tr>
+                    <tr>
+                      <td rowspan="3"><strong>과업(Tasks) &<br/>기능(Functions) 연계</strong></td>
+                      <td><strong>선행망</strong> (Precedence)</td>
+                      <td>어떤 과업이 다른 과업보다 먼저 완료되어야 하는가 (Tasks × Tasks)</td>
+                    </tr>
+                    <tr>
+                      <td><strong>부문책임망</strong> (Sector Responsibility)</td>
+                      <td>어떤 과업이 어디에 할당되는가 (Tasks × Functions)</td>
+                    </tr>
+                    <tr>
+                      <td><strong>조직 간 네트워크</strong> (Interorganizational)</td>
+                      <td>어떤 기능을 수행하기 위해 누가 협력하는가 (Functions × Functions)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. 메타-매트릭스의 데이터 수집 및 연구 방법론적 활용 -->
+          <div class="card card-full">
+            <div class="card-header">
+              <h3 class="card-title"><i data-lucide="database"></i> 4. 메타-매트릭스의 데이터 수집 및 연구 방법론적 활용</h3>
+            </div>
+            <div class="card-body">
+              <ul class="bullet-list">
+                <li><strong>아카이브 데이터 내용분석(Content Analysis) 도구:</strong> Table 3.1의 메타-매트릭스는 정책 문서(policy documents), 사후 평가 보고서(After Action Reports, AAR) 등 기존 기록 문서(archival data)를 코딩하여 네트워크 데이터를 구축하는 유용한 원천틀로 활용됩니다. 다수의 조직 간 네트워크 실증 연구에서 데이터 수집 도구로 활용되었습니다 (Comfort & Kapucu, 2006; Kapucu, 2006a; Kapucu et al., 2009).</li>
+                <li><strong>다양한 하위 네트워크 및 재난 단계별 적용:</strong> 조직 자체의 네트워크뿐 아니라 의사소통, 지식 공유와 같은 기능·과업 기반 하위 네트워크를 추출하는 데 유용합니다. 재난 대응(response) 및 복구(recovery) 등 재난관리의 서로 다른 단계별 데이터를 체계적으로 수집·비교하는 데 광범위하게 활용할 수 있습니다.</li>
+              </ul>
+
+              <!-- Figure 3.5 Image -->
+              <div class="image-card">
+                <div class="image-container" onclick="openLightbox('image-5.png', '비상 상황시 의사소통 네트워크 (Figure)')">
+                  <img src="image-5.png" alt="비상 상황시 의사소통 네트워크">
+                </div>
+                <div class="image-caption">
+                  <span class="caption-title"><i data-lucide="image"></i> 비상 상황시 의사소통 네트워크</span>
+                  <span class="zoom-hint"><i data-lucide="maximize-2"></i> 클릭하여 확대</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ==========================================================================
+           11. CONCLUSIONS (pp. 38~39)
+           ========================================================================== -->
+      <section id="sec-conclusions" class="content-section">
+        <div class="section-header-box">
+          <div class="section-badge-row">
+            <span class="sec-badge">SECTION 11</span>
+            <span class="page-badge">원문 38~39페이지</span>
+          </div>
+          <h2 class="section-title"><i data-lucide="flag-triangle-right"></i> CONCLUSIONS (결론)</h2>
+        </div>
+
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+          제3장의 <strong>CONCLUSIONS(결론)</strong> 섹션(38~39페이지)의 주요 내용을 원문에 충실하게 핵심 주제별로 빠짐없이 정리한 내용은 다음과 같습니다:
+        </p>
+
+        <div class="section-grid">
+
+          <!-- 1. 역사적 맥락과 ‘협력적 공공관리’ 및 ‘총체적 공동체’ 접근법 -->
+          <div class="card card-full">
+            <div class="card-header">
+              <h3 class="card-title"><i data-lucide="users-2"></i> 1. 역사적 맥락과 ‘협력적 공공관리’ 및 ‘총체적 공동체’ 접근법</h3>
+              <span class="badge badge-blue">Bruneau et al. (2003); Norris et al. (2008)</span>
+            </div>
+            <div class="card-body">
+              <ul class="bullet-list">
+                <li><strong>역사적 전환:</strong> 재난관리는 본질적으로 협력적 노력임에도 불구하고, 과거 냉전(Cold War) 시대의 특수성으로 인해 한동안 계층제적(hierarchical) 구조가 지배적이었습니다. 그러나 오늘날 조직 간 네트워크의 활용은 재난관리뿐 아니라 정부 행정 전반에서 필수적인 요소가 되었습니다.</li>
+                <li><strong>협력적 공공관리(Collaborative Public Management) 틀:</strong> Kapucu와 동료들은 협력적 공공관리 프레임워크 내에서 재난관리 네트워크를 다루며, 비상관리의 전 단계(대비, 완화, 대응, 복구)를 달성하기 위한 협력적 파트너십 구축에 주목했습니다.</li>
+                <li><strong>총체적 공동체(Whole-community)와 복원력:</strong> 이 접근법은 재난 대응을 위한 단순한 공식적 조직 간 파트너십을 넘어섭니다. 지역사회의 물리적·사회적 취약성을 줄이고 '재난 복원력 있는 공동체'를 구축하는 데 기여하는 개인적·사회적 요인들을 포괄합니다.</li>
+                <li>이러한 핵심 요인에는 문헌에서 자주 인용되는 <strong>사회적 자본(social capital)</strong>, <strong>경제적 다양성(economic diversity)</strong>, 그리고 지역사회가 보유한 적응 역량(adaptive capacities)이 포함됩니다. (적응 역량의 구체적 속성: <strong>자원 풍부성 resourcefulness, 신속성 rapidity, 견고성 robustness, 자원 중복성 redundancy</strong>) (Bruneau et al., 2003; Norris et al., 2008).</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 2. 재난 대응의 맥락 의존성 -->
+          <div class="card card-full">
+            <div class="card-header">
+              <h3 class="card-title"><i data-lucide="globe"></i> 2. 재난 대응의 맥락 의존성: “뿌리는 같으나 열매는 다르다”</h3>
+              <span class="badge badge-purple">Khosa (2013); Aldrich (2012)</span>
+            </div>
+            <div class="card-body">
+              <ul class="bullet-list">
+                <li><strong>맥락 의존성(Context-contingent):</strong> 재난 대응 및 복구에는 수많은 실무적 요령(tips and tricks)이 존재하지만, 모든 실천은 상황의 구체적 맥락과 가장 적합한 틀·모델·관행을 채택·적용하는 이해관계자의 역량에 따라 크게 달라집니다.</li>
+                <li><strong>재난 관리의 보편성(유사점):</strong> 자연재해를 비롯한 재난의 발생 양상은 전 세계적으로 유사합니다. 재난은 행정 관할 구역에 얽매이지 않고 발생하며 단일 정부 단위를 쉽게 압도하기 때문에, <strong>가장 위계적인 정부 체계(예: 파키스탄)에서조차 재난 대응은 자연발생적(emergent), 협력적(collaborative), 수평적(horizontal)으로 전개</strong>됩니다 (Khosa, 2013).</li>
+                <li><strong>재난 관리의 특수성(차이점):</strong> 반면, 사람들이 재난을 관리하는 방식에는 큰 차이가 존재합니다. 공동체의 사회적·물리적 취약성, 대비 문화(culture of preparedness), 사회적 자본 수준(Aldrich, 2012), 가용 자원의 풍부성(resource munificence) 등이 재난 관리 방식에 결정적 영향을 미칩니다.</li>
+                <li><strong>핵심 요약:</strong> 뉴올리언스든, 파키스탄이든, 중국이든 각 지역사회의 재난 경험은 <strong>발생 원인(뿌리)은 유사할지라도, 그 결과와 관리 양상(열매)은 극적으로 다르게 나타납니다</strong>.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 3. 복잡성과 위기 학습의 필연성 -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title"><i data-lucide="book-open"></i> 3. 복잡성과 위기 학습(Learning)의 필연성</h3>
+            </div>
+            <div class="card-body">
+              <ul class="bullet-list">
+                <li><strong>변화와 위기의 불가피성:</strong> 변화가 불가피하듯 재난과 위기도 피할 수 없으며, 이에 따라 재난 및 위기 대응이라는 고도로 복잡하고 다층적인 영역 역시 회피할 수 없습니다.</li>
+                <li><strong>학습의 핵심 역할:</strong> 공동체의 대응 역량을 강화하고 피해 지역에 미치는 부정적 영향을 줄이기 위해 <strong>네트워크 차원의 '학습(Learning)'은 필수적인 핵심 요소</strong>가 됩니다.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 4. 네트워크 효과성의 촉진 요인과 저해 요인 종합 -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title"><i data-lucide="scale"></i> 4. 네트워크 효과성 촉진 vs 저해 요인 종합</h3>
+            </div>
+            <div class="card-body">
+              <p>네트워크를 구축하고 유지하는 것은 바람직한 목표이지만 실현하기 쉽지 않으며, 조직의 참여를 유도하거나 저해하는 다양한 변수가 상존합니다.</p>
+              
+              <div class="callout callout-tip" style="margin-top: 0.5rem;">
+                <strong>네트워크 효과성 지표 (촉진 요인):</strong><br/>
+                네트워크 구조(network structure), 조직 역량(organizational capacities), 신뢰(trust), 정보통신기술(ICT) 활용 및 상호운용성(interoperability), 사전 형성된 기존 관계(preexisting relationships), 공식 협약(MOU 체결 등), 경계 확장 행위자(boundary-spanning actors), 네트워크 내 학습(learning in networks).
+              </div>
+
+              <div class="callout callout-warning">
+                <strong>네트워크 효과성 저해 요인:</strong><br/>
+                기관 및 관할권 간의 권력 격차(power differentials), 사명 및 문화적 갈등(mission and cultural conflicts), 역할 모호성(role ambiguity), 공식 의사소통 계획의 부재(lack of communication plans), 협력을 돕는 촉진 요인의 결여.
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ==========================================================================
+           12. [부록] 인터랙티브 플래시카드 & 자가진단 퀴즈
+           ========================================================================== -->
+      <section id="sec-quiz-cards" class="content-section">
+        <div class="section-header-box">
+          <div class="section-badge-row">
+            <span class="sec-badge">APPENDIX</span>
+            <span class="page-badge">자가점검 & 복습</span>
+          </div>
+          <h2 class="section-title"><i data-lucide="help-circle"></i> 플래시카드 & 실전 자가진단 퀴즈</h2>
+        </div>
+
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+          제3장의 주요 학술 개념을 복습할 수 있는 인터랙티브 3D 플래시카드와 10문항의 자가진단 퀴즈입니다:
+        </p>
+
+        <!-- 3D Flashcards -->
+        <h3 class="sub-section-title"><i data-lucide="flip-horizontal"></i> 핵심 개념 3D 플래시카드 (클릭 시 회전)</h3>
+        <div class="flashcard-grid">
+
+          <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="flashcard-inner">
+              <div class="flashcard-front">
+                <i data-lucide="users"></i>
+                <h3>총체적 공동체 접근법</h3>
+                <p>Whole Community Approach</p>
+                <span class="badge badge-blue" style="margin-top: 0.8rem;">클릭하여 뒤집기</span>
+              </div>
+              <div class="flashcard-back">
+                <h4>총체적 공동체 (FEMA)</h4>
+                <p>재난관리는 공무원만의 영역이 아니며 비정부기구(NGO), 민간 기업, 일반 시민의 공동 참여가 필수적이라는 패러다임. 단순 원상 복구를 넘어 더 나은 상태로 <strong>도약(Bouncing Forward)</strong>하는 복원력을 지향함.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="flashcard-inner">
+              <div class="flashcard-front">
+                <i data-lucide="target"></i>
+                <h3>네트워크 효과성</h3>
+                <p>Provan & Kenis (2008)</p>
+                <span class="badge badge-purple" style="margin-top: 0.8rem;">클릭하여 뒤집기</span>
+              </div>
+              <div class="flashcard-back">
+                <h4>네트워크 효과성의 정의</h4>
+                <p>개별 참여 조직들이 독립적으로 행동해서는 결코 달성할 수 없는 <strong>긍정적인 네트워크 수준(network-level)의 공동 성과</strong>를 달성하는 역량. 단일 기관 성과관리 도구로는 측정이 불가능함.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="flashcard-inner">
+              <div class="flashcard-front">
+                <i data-lucide="map"></i>
+                <h3>EMAC 협정</h3>
+                <p>Emergency Management Assistance Compact</p>
+                <span class="badge badge-emerald" style="margin-top: 0.8rem;">클릭하여 뒤집기</span>
+              </div>
+              <div class="flashcard-back">
+                <h4>주 간 상호원조협정 (EMAC)</h4>
+                <p>미국 50개 주 전체가 참여하는 전국 단위 수평적 파트너십. 재난 시 주 간에 장비, 인력, 정보를 법적 책임·비용 보전 하에 초고속으로 파견함 (카트리나 연구에서 자원 동원의 핵심 성공 요인으로 입증).</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="flashcard-inner">
+              <div class="flashcard-front">
+                <i data-lucide="git-compare"></i>
+                <h3>비유사성 가설</h3>
+                <p>Faas et al. (2016)</p>
+                <span class="badge badge-amber" style="margin-top: 0.8rem;">클릭하여 뒤집기</span>
+              </div>
+              <div class="flashcard-back">
+                <h4>비유사성 가설 (Dissimilarity Thesis)</h4>
+                <p>재난 현장에서 가교 행위자는 인간적 친숙함(유사성)이 아니라, 현장 작전에 필요한 <strong>'운영상 우선순위(Operational Priorities)'</strong>에 따라 결정된다는 이론. 실제 실행에서는 유사성 가설보다 압도적인 설명력을 가짐.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- 10 Quiz Questions -->
+        <h3 class="sub-section-title" style="margin-top: 3rem;"><i data-lucide="check-square"></i> 실전 자가진단 퀴즈 (10문항)</h3>
+        
+        <div style="margin-top: 1rem;">
+          
+          <!-- Q1 -->
+          <div class="quiz-card" id="q1">
+            <div class="quiz-num">Question 01</div>
+            <div class="quiz-question">
+              미국 연방재난관리청(FEMA)이 추진하는 '총체적 공동체(Whole Community)' 접근법의 핵심 철학으로 가장 적절한 것은?
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="selectQuizOption(this, 1, false)">① 대형 재난은 고도로 훈련된 전문 관료 및 군 경찰 단독 체계로만 해결해야 한다.</div>
+              <div class="quiz-option" onclick="selectQuizOption(this, 1, false)">② 재난 복원력의 목표는 취약했던 재난 이전의 원상태로 단순 회귀(Bouncing Back)하는 것이다.</div>
+              <div class="quiz-option" onclick="selectQuizOption(this, 1, true)">③ 정부 단독의 한계를 인정하고 비영리, 민간, 시민이 협력하여 재난 이전보다 더 나은 상태로 도약(Bouncing Forward)해야 한다.</div>
+              <div class="quiz-option" onclick="selectQuizOption(this, 1, false)">④ 모든 비공식 조력자의 현장 참여를 전면 차단하고 상향식 명령체계만을 고수해야 한다.</div>
+            </div>
+            <div class="quiz-explanation">
+              <strong>해설 정답: ③</strong><br/>
+              총체적 공동체 접근법은 공무원만의 한정된 자원으로는 대형 복합 재난을 감당할 수 없다는 현실에서 출발합니다. 지역사회 전체(시민, NGO, 민간)가 자원을 공유하고 취약성을 낮추어 재난 후 더 나은 상태로 도약(Bouncing Forward)하는 것을 핵심 목표로 삼습니다.
+            </div>
+          </div>
+
+          <!-- Q2 -->
+          <div class="quiz-card" id="q2">
+            <div class="quiz-num">Question 02</div>
+            <div class="quiz-question">
+              Kapucu & Garayev(2014)가 제시한 지방 및 카운티 수준의 재난대응 네트워크 3대 구조 모델 중, 교통·통신·구호 등 '기능별 클러스터'를 중심으로 주관기관과 지원기관이 협력하는 수평적/탈중앙형 모델은?
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="selectQuizOption(this, 2, false)">① 사고현장지휘체계 (ICS) 모델</div>
+              <div class="quiz-option" onclick="selectQuizOption(this, 2, true)">② 긴급지원기능 (ESF) 모델</div>
+              <div class="quiz-option" onclick="selectQuizOption(this, 2, false)">③ 하이브리드 혼합 모델</div>
+              <div class="quiz-option" onclick="selectQuizOption(this, 2, false)">④ 도시지역안보이니셔티브 (UASI) 모델</div>
+            </div>
+            <div class="quiz-explanation">
+              <strong>해설 정답: ②</strong><br/>
+              긴급지원기능(ESF: Emergency Support Function) 시스템은 재난 시 필요한 기능군별로 주관 기관과 지원 기관을 묶어 수평적·탈중앙적으로 운영하는 모델입니다. 반면 ICS는 현장 지휘관 중심의 수직적·계층적 모델입니다.
+            </div>
+          </div>
+
+          <!-- Q3 -->
+          <div class="quiz-card" id="q3">
+            <div class="quiz-num">Question 03</div>
+            <div class="quiz-question">
+              Alexandra Jordan(2010)의 도시지역 안보 이니셔티브(UASI) 네트워크 연구에서 밝혀진 교외 및 농촌 지역의 협력 동기와 권력 동학에 관한 설명으로 옳은 것은?
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="selectQuizOption(this, 3, false)">① 도시와 농촌 간의 완벽한 상호 신뢰와 호혜적 유대감에서 자발적으로 출발했다.</div>
+              <div class="quiz-option" onclick="selectQuizOption(this, 3, true)">② 주된 동기는 연방 자금 확보에 있었으며, 도시와 주변 지역 간의 '권력 불균형'에서 비롯된 협력이었다.</div>
+              <div class="quiz-option" onclick="selectQuizOption(this, 3, false)">③ 농촌 지역이 대도시보다 더 큰 발언권과 자금 배분 결정권을 독점했다.</div>
+              <div class="quiz-option" onclick="selectQuizOption(this, 3, false)">④ 연방 정부의 강제 명령이 없었음에도 자발적 민간 기부금에 의해 네트워크가 형성되었다.</div>
+            </div>
+            <div class="quiz-explanation">
+              <strong>해설 정답: ②</strong><br/>
+              Jordan(2010)의 분석에 따르면, UASI를 통한 주변 지역의 협력 참여는 순수한 지역적 공통 필요라기보다 '연방 자금 확보'가 주된 동기였으며, 대도시와 농촌/교외 간의 권력 불균형(Power Imbalances)에서 파생된 종속적 협력 양상을 보였습니다.
+            </div>
+          </div>
+
+          <!-- Q4 -->
+          <div class="quiz-card" id="q4">
+            <div class="quiz-num">Question 04</div>
+            <div class="quiz-question">
+              Turrini et al.(2010)의 공공 네트워크 효과성 메타분석에서 제시된 효과성 평가의 '3대 수준(Levels)'에 해당하지 않는 것은?
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="selectQuizOption(this, 4, false)">① 수혜자/클라이언트 수준 (Client-level)</div>
+              <div class="quiz-option" onclick="selectQuizOption(this, 4, false)">② 지역사회 수준 (Community-level)</div>
+              <div class="quiz-option" onclick="selectQuizOption(this, 4, false)">③ 네트워크 수준 (Network-level)</div>
+              <div class="quiz-option" onclick="selectQuizOption(this, 4, true)">④ 개별 국가 GDP 성장 수준 (Macro-economic level)</div>
+            </div>
+            <div class="quiz-explanation">
+              <strong>해설 정답: ④</strong><br/>
+              Turrini 등은 Keith Provan & Milward의 프레임워크를 발전시켜 네트워크 효과성을 1) 클라이언트 수준(이용자 만족), 2) 커뮤니티 수준(지역사회 기여 및 인프라 복원), 3) 네트워크 수준(목표 달성 역량, 지속가능성, 혁신)의 3단계로 분류했습니다.
+            </div>
+          </div>
+
+          <!-- Q5 -->
+          <div class="quiz-card" id="q5">
+            <div class="quiz-num">Question 05</div>
+            <div class="quiz-question">
+              Nowell & Steelman(2014)의 산불 대응 통신망 연구 결과에 대한 설명으로 가장 정확한 것은?
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="selectQuizOption(this, 5, false)">① 공식 법령과 지휘 계통(제도적 매몰성)만이 실제 통신 네트워크를 100% 결정했다.</div>
+              <div class="quiz-option" onclick="selectQuizOption(this, 5, true)">② 참여자 간 친숙도를 의미하는 '관계적 매몰성'이 화재 현장의 빈번한 의사소통망 형성을 유의미하게 예측했다.</div>
+              <div class="quiz-option" onclick="selectQuizOption(this, 5, false)">③ 산불 현장에서는 사전에 아는 사람과의 소통이 완전히 단절되고 오직 무작위 연결만 나타났다.</div>
+              <div class="quiz-option" onclick="selectQuizOption(this, 5, false)">④ 관계적 매몰성은 네트워크 효과성에 심각한 해악만을 끼치는 것으로 입증되었다.</div>
+            </div>
+            <div class="quiz-explanation">
+              <strong>해설 정답: ②</strong><br/>
+              Nowell & Steelman(2014)은 산불 통신망 분석에서 사전 사회적 유대, 공통 이해관계, 친숙도를 뜻하는 관계적 매몰성(Relational Embeddedness)이 실제 대응 통신망 형성을 유의미하게 예측했음을 밝혔습니다. 제도적 배치는 기본 밀도 형성에 부분 기여하는 데 그쳤습니다.
+            </div>
+          </div>
+
+          <!-- Q6 -->
+          <div class="quiz-card" id="q6">
+            <div class="quiz-num">Question 06</div>
+            <div class="quiz-question">
+              Choi & Brower(2006)의 인지적 정확성 모형에서 계획서상 주관 기관, 참여자들이 인지한 가장 영향력 있는 기관, 실제 네트워크 최고 중심성 기관이 '3자 모두 완벽히 일치'하는 가장 이상적인 유형은?
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="selectQuizOption(this, 6, true)">① 유형 I (Type I)</div>
+              <div class="quiz-option" onclick="selectQuizOption(this, 6, false)">② 유형 II (Type II)</div>
+              <div class="quiz-option" onclick="selectQuizOption(this, 6, false)">③ 유형 III (Type III)</div>
+              <div class="quiz-option" onclick="selectQuizOption(this, 6, false)">④ 유형 IV (Type IV)</div>
+            </div>
+            <div class="quiz-explanation">
+              <strong>해설 정답: ①</strong><br/>
+              유형 I은 계획서, 인지, 실제 네트워크 중심 조직이 3자 일치하는 가장 일관된 유형입니다. 유형 II와 III은 2자만 부분 일치하며, 유형 IV는 세 차원 모두 불일치하여 현장 혼란이 가장 큰 상태를 의미합니다.
+            </div>
+          </div>
+
+          <!-- Q7 -->
+          <div class="quiz-card" id="q7">
+            <div class="quiz-num">Question 07</div>
+            <div class="quiz-question">
+              Faas et al.(2016)의 산불 가교 행위자(Bridging Actors) 식별 연구에서 입증된 '실제 위기 실행 현장(Practice)'의 법칙은?
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="selectQuizOption(this, 7, false)">① 사람들은 실제 화재 진압 시에도 오직 자신과 성격이 유사하고 친한 상대(유사성 가설)하고만 가교를 형성한다.</div>
+              <div class="quiz-option" onclick="selectQuizOption(this, 7, true)">② 실제 실행에서는 친숙함보다 작전상 필요한 '운영상 우선순위(비유사성 가설)'가 가교 형성을 더 강하게 지배한다.</div>
+              <div class="quiz-option" onclick="selectQuizOption(this, 7, false)">③ 가교 행위자는 위기 시 아무런 기능적 역할을 하지 못하고 제거된다.</div>
+              <div class="quiz-option" onclick="selectQuizOption(this, 7, false)">④ 유사성 가설과 비유사성 가설 모두 완전히 기각되었으며 오직 중앙 컴퓨터 명령만 작동했다.</div>
+            </div>
+            <div class="quiz-explanation">
+              <strong>해설 정답: ②</strong><br/>
+              Faas 등은 사람들이 사전에 기대할 때는 친숙하고 유사한 집단을 가교자로 꼽았지만(유사성 가설), 실제 화재 진압 현장에서는 작전 수행에 필수적인 자원과 기능을 가진 '비유사한 상대'와 다리를 놓는 비유사성 가설(Dissimilarity thesis)이 더 큰 설득력을 가짐을 증명했습니다.
+            </div>
+          </div>
+
+          <!-- Q8 -->
+          <div class="quiz-card" id="q8">
+            <div class="quiz-num">Question 08</div>
+            <div class="quiz-question">
+              Kapucu & Hu(2014)의 오렌지 카운티 연구에서 ICT(정보통신기술) 활용도와 네트워크 중심성의 관계에 대한 분석 결과로 옳은 것은?
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="selectQuizOption(this, 8, false)">① 재난 대응 네트워크의 중심 기관일수록 ICT 활용도가 압도적으로 높았다.</div>
+              <div class="quiz-option" onclick="selectQuizOption(this, 8, false)">② 대비 네트워크에서는 ICT 활용도와 중심성 간에 아무런 관계가 없었다.</div>
+              <div class="quiz-option" onclick="selectQuizOption(this, 8, true)">③ 대비 네트워크에서는 중심 조직의 ICT 활용이 높았으나, 실제 대응 네트워크에서는 중심 조직이라고 해서 ICT 활용도가 높지 않았다.</div>
+              <div class="quiz-option" onclick="selectQuizOption(this, 8, false)">④ 위기 시 전통적인 대면 상호작용이나 유선 전화는 완전히 무용지물이 되었다.</div>
+            </div>
+            <div class="quiz-explanation">
+              <strong>해설 정답: ③</strong><br/>
+              대비 단계에서는 중심 기관이 ICT를 적극 활용했으나, 실제 혼란스러운 대응 현장에서는 중심 조직이나 중개 조직이라고 해서 ICT 활용도가 높지 않았습니다. 위기 시에는 전화, 대면 접촉 등 전통적이고 신뢰할 수 있는 소통 수단이 여전히 강력하게 작동합니다.
+            </div>
+          </div>
+
+          <!-- Q9 -->
+          <div class="quiz-card" id="q9">
+            <div class="quiz-num">Question 09</div>
+            <div class="quiz-question">
+              Moynihan(2008)의 캘리포니아 외래 뉴캐슬병(END) 사례 연구에서 이 사건이 토네이도나 지진과 달리 '위기 네트워크 학습'을 크게 촉진할 수 있었던 본질적 요인은?
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="selectQuizOption(this, 9, false)">① 단 2시간 만에 신속하게 상황이 종료되었기 때문이다.</div>
+              <div class="quiz-option" onclick="selectQuizOption(this, 9, false)">② 연방 군대 단일 부대가 계층적 지휘로 전권을 행사했기 때문이다.</div>
+              <div class="quiz-option" onclick="selectQuizOption(this, 9, true)">③ 대응 기간이 약 1년간 지속되어 참여자들이 상황을 숙고(sense-making)하고 신뢰를 구축하며 적응할 충분한 시간을 제공했기 때문이다.</div>
+              <div class="quiz-option" onclick="selectQuizOption(this, 9, false)">④ 바이러스 감염 위험이 전혀 없어 참여자들이 긴장하지 않았기 때문이다.</div>
+            </div>
+            <div class="quiz-explanation">
+              <strong>해설 정답: ③</strong><br/>
+              뉴캐슬병 사태는 약 1년 동안 지속되었기 때문에, 순간적으로 발생해 수습할 틈을 주지 않는 단기 재난(토네이도, 지진)과 달리 조직들이 상황을 곱씹고(sense-making) 관계와 신뢰를 축적하며 환경 변화에 '적응(adapt)'할 충분한 시간성을 제공했습니다.
+            </div>
+          </div>
+
+          <!-- Q10 -->
+          <div class="quiz-card" id="q10">
+            <div class="quiz-num">Question 10</div>
+            <div class="quiz-question">
+              조직 간 네트워크 메타-매트릭스(Table 3.1)에서 '누가 어떤 과업을 수행하는가(Who performs what tasks?)'를 분석하기 위해 '행위자(Agents)'와 '과업(Tasks)'을 결합한 2-모드 네트워크는?
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="selectQuizOption(this, 10, false)">① 역량망 (Capabilities Network)</div>
+              <div class="quiz-option" onclick="selectQuizOption(this, 10, true)">② 배정망 (Assignment Network)</div>
+              <div class="quiz-option" onclick="selectQuizOption(this, 10, false)">③ 부문책임망 (Sector Responsibility Network)</div>
+              <div class="quiz-option" onclick="selectQuizOption(this, 10, false)">④ 선행망 (Precedence Network)</div>
+            </div>
+            <div class="quiz-explanation">
+              <strong>해설 정답: ②</strong><br/>
+              메타-매트릭스 체계에서 Agents × Tasks 결합은 특정 행위자(조직/개인)에게 특정 작업이 할당되는 양상을 나타내는 '배정망(Assignment Network)'입니다. 참고로 Agents × Resources는 역량망, Tasks × Tasks는 선행망, Tasks × Functions는 부문책임망입니다.
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- Lightbox Modal -->
+  <div id="imageModal" class="modal-overlay" onclick="closeLightbox()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <button class="modal-close-btn" onclick="closeLightbox()" title="닫기">&times;</button>
+      <img id="modalImg" src="" alt="확대 이미지">
+      <div id="modalCaption" class="modal-caption"></div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // 1. Initialize Lucide Icons
+      if (typeof lucide !== 'undefined') {
+        try {
+          lucide.createIcons();
+        } catch(e) {
+          console.warn('Lucide icons error:', e);
+        }
+      }
+
+      // 2. Reading Progress Bar
+      window.addEventListener('scroll', function() {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        const pBar = document.getElementById('progress-bar');
+        if (pBar) {
+          pBar.style.width = scrolled + '%';
+        }
+      });
+
+      // 3. Theme Toggle
+      const themeToggleBtn = document.getElementById('themeToggle');
+      const themeIcon = document.getElementById('themeIcon');
+      
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      updateThemeIcon(savedTheme);
+
+      if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', function() {
+          const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+          const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+          document.documentElement.setAttribute('data-theme', newTheme);
+          localStorage.setItem('theme', newTheme);
+          updateThemeIcon(newTheme);
+        });
+      }
+
+      function updateThemeIcon(theme) {
+        if (!themeIcon) return;
+        if (theme === 'light') {
+          themeIcon.setAttribute('data-lucide', 'moon');
+        } else {
+          themeIcon.setAttribute('data-lucide', 'sun');
+        }
+        if (typeof lucide !== 'undefined') {
+          try { lucide.createIcons(); } catch(e){}
+        }
+      }
+
+      // 4. ScrollSpy for Left Sidebar TOC
+      const sections = document.querySelectorAll('.content-section');
+      const navItems = document.querySelectorAll('.toc-item');
+
+      function updateScrollSpy() {
+        let currentSectionId = '';
+        const scrollPosition = window.scrollY + 180;
+
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.offsetHeight;
+          if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            currentSectionId = section.getAttribute('id');
+          }
+        });
+
+        if (!currentSectionId && window.scrollY < 200 && sections.length > 0) {
+          currentSectionId = sections[0].getAttribute('id');
+        }
+
+        navItems.forEach(item => {
+          if (item.getAttribute('data-target') === currentSectionId) {
+            item.classList.add('active');
+            // Auto-scroll sidebar TOC if needed
+            item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          } else {
+            item.classList.remove('active');
+          }
+        });
+      }
+
+      window.addEventListener('scroll', updateScrollSpy, { passive: true });
+      updateScrollSpy();
+
+      // 5. Search Logic in Sidebar
+      const searchInput = document.getElementById('searchInput');
+      if (searchInput) {
+        searchInput.addEventListener('input', function(e) {
+          const query = e.target.value.toLowerCase().trim();
+          
+          document.querySelectorAll('.content-section, .card, .callout').forEach(el => {
+            if (!query) {
+              el.style.display = '';
+            } else {
+              const text = el.textContent.toLowerCase();
+              el.style.display = text.includes(query) ? '' : 'none';
+            }
+          });
+        });
+      }
+
+      // 6. Accordion Toggle
+      document.querySelectorAll('.accordion-header').forEach(header => {
+        header.addEventListener('click', function() {
+          const item = header.parentElement;
+          if (item) {
+            item.classList.toggle('active');
+          }
+        });
+      });
+    });
+
+    // Mobile Sidebar Drawer Toggle
+    function toggleSidebar() {
+      const sidebar = document.getElementById('appSidebar');
+      const overlay = document.getElementById('mobileOverlay');
+      if (sidebar && overlay) {
+        sidebar.classList.toggle('open');
+        overlay.classList.toggle('active');
+      }
+    }
+
+    // Lightbox Functions
+    function openLightbox(imgSrc, captionText) {
+      const modal = document.getElementById('imageModal');
+      const modalImg = document.getElementById('modalImg');
+      const modalCaption = document.getElementById('modalCaption');
+      if (!modal || !modalImg) return;
+
+      modalImg.src = imgSrc;
+      modalCaption.textContent = captionText || '';
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      const modal = document.getElementById('imageModal');
+      if (!modal) return;
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    // Meta-Matrix Detail Database & Display Function
+    const metaData = {
+      'comm': {
+        title: '의사소통망 (Communication Network) : Agents × Agents',
+        desc: '<strong>핵심 질문:</strong> 누가 누구를 알고 누구와 직접 소통하는가? (Who knows and talks to whom?)<br/><strong>재난관리 적용:</strong> 비상운영센터(EOC) 내 기관 대표자 간 무전, 유선 전화, 대면 브리핑을 통한 실시간 정보 교환 연결망.'
+      },
+      'know': {
+        title: '지식망 (Knowledge Network) : Agents × Knowledge',
+        desc: '<strong>핵심 질문:</strong> 누가 어떤 지식을 알고 있는가? (Who knows what?)<br/><strong>재난관리 적용:</strong> 유독화학물질 확산 모델링, 항공 수색 구조 전술 등 특정 전문 지식을 보유한 기관 및 전문가 식별망.'
+      },
+      'capa': {
+        title: '역량망 (Capabilities Network) : Agents × Resources',
+        desc: '<strong>핵심 질문:</strong> 누가 어떤 자원을 보유하고 있는가? (Who has what resources?)<br/><strong>재난관리 적용:</strong> 소방 헬기, 제방 보강 모래주머니, 구호 텐트, 이동식 발전기 등 필수 방재 물자를 통제·보유하는 기관 매핑.'
+      },
+      'assi': {
+        title: '배정망 (Assignment Network) : Agents × Tasks',
+        desc: '<strong>핵심 질문:</strong> 누가 어떤 과업을 수행하는가? (Who is assigned to what tasks?)<br/><strong>재난관리 적용:</strong> 수색 구조, 이재민 급식, 임시 주거시설 운영 등 세부 작전 과업에 특정 부서 및 NGO가 배정된 구조.'
+      },
+      'affi': {
+        title: '소속/기능망 (Affiliation Network) : Agents × Functions',
+        desc: '<strong>핵심 질문:</strong> 누가 어떤 기능에 책임을 지는가? (Who is affiliated with what functions?)<br/><strong>재난관리 적용:</strong> 긴급지원기능(ESF 1~17)별로 주관 기관(Primary) 및 지원 기관(Support)으로 공식 지정된 소속 연계망.'
+      },
+      'info': {
+        title: '정보망 (Information Network) : Knowledge × Knowledge',
+        desc: '<strong>핵심 질문:</strong> 어떤 지식이 다른 지식의 공유 내용을 알려주는가? (What knowledge informs what?)<br/><strong>재난관리 적용:</strong> 기상청 레이더 강우량 데이터 지식이 하천 범람 수위 예측 지식과 연계되는 정보 간 상관망.'
+      },
+      'skill': {
+        title: '기술망 (Skills Network) : Knowledge × Resources',
+        desc: '<strong>핵심 질문:</strong> 어떤 자원을 사용하는 데 어떤 지식이 요구되는가? (What knowledge is needed to use what resources?)<br/><strong>재난관리 적용:</strong> 드론 영상 정찰 장비나 중장비를 운용하기 위해 특수 조종 자격 및 엔지니어링 지식이 결합되는 체계.'
+      },
+      'need': {
+        title: '필요망 (Needs Network) : Knowledge × Tasks',
+        desc: '<strong>핵심 질문:</strong> 어떤 과업을 수행하는 데 어떤 지식이 필요한가? (What knowledge is needed to perform what tasks?)<br/><strong>재난관리 적용:</strong> 방사능 누출 차단 과업을 완수하기 위해 원자력 공학 및 방사선 방호 지식이 요구되는 매핑.'
+      },
+      'comp': {
+        title: '전문역량망 (Competency Network) : Knowledge × Functions',
+        desc: '<strong>핵심 질문:</strong> 특정 기능을 수행하는 데 어떤 지식 체계가 요구되는가? (What knowledge is required for what functions?)<br/><strong>재난관리 적용:</strong> 보건·의료 지원 기능(ESF 8)을 정상 수행하기 위해 역학 조사 및 외상 치료 지식이 매칭되는 구조.'
+      },
+      'subs': {
+        title: '대체망 (Substitution Network) : Resources × Resources',
+        desc: '<strong>핵심 질문:</strong> 어떤 자원이 서로 대체되거나 공유될 수 있는가? (What resources can substitute for what?)<br/><strong>재난관리 적용:</strong> 정전 시 비상 디젤 발전기와 태양광 ESS 배터리가 상호 대체 가능한 자원으로 묶이는 연결망.'
+      },
+      'res-dep': {
+        title: '자원의존망 (Resource Dependence Network) : Resources × Tasks',
+        desc: '<strong>핵심 질문:</strong> 특정 과업 수행에 어떤 자원이 필수적인가? (What resources are required to perform what tasks?)<br/><strong>재난관리 적용:</strong> 고립 주민 구출 과업에 수륙양용차와 구명보트가 직결되는 자원 의존성 체계.'
+      },
+      'comm-cap': {
+        title: '지역사회자본망 (Community Capital Network) : Resources × Functions',
+        desc: '<strong>핵심 질문:</strong> 특정 기능을 지탱하기 위해 어떤 지역사회 자원이 요구되는가? (What resources are needed for what functions?)<br/><strong>재난관리 적용:</strong> 대피소 수용 기능을 위해 학교 강당, 체육관, 침구류 등 지역사회 물리적 자본이 연계되는 망.'
+      },
+      'prec': {
+        title: '선행망 (Precedence Network) : Tasks × Tasks',
+        desc: '<strong>핵심 질문:</strong> 어떤 과업이 다른 과업보다 먼저 완료되어야 하는가? (What tasks must precede what?)<br/><strong>재난관리 적용:</strong> 도로 잔해물 제거 과업이 완료되어야만 소방차 진입 및 이재민 구호물자 배송 과업이 진행 가능한 선후 공정망.'
+      },
+      'sect': {
+        title: '부문책임망 (Sector Responsibility Network) : Tasks × Functions',
+        desc: '<strong>핵심 질문:</strong> 세부 과업들이 어떤 상위 기능 범주에 할당되는가? (What tasks are assigned to what functions?)<br/><strong>재난관리 적용:</strong> 환자 이송 및 시신 안치 과업이 공공보건의료 기능(ESF 8)의 책임 범위로 귀속되는 배정망.'
+      },
+      'inter-org': {
+        title: '조직간 네트워크 (Interorganizational Networks) : Functions × Functions',
+        desc: '<strong>핵심 질문:</strong> 전체 재난관리를 달성하기 위해 어떤 기능군들이 상호 협력하는가? (What functions coordinate with what functions?)<br/><strong>재난관리 적용:</strong> 수송 기능(ESF 1)과 공공사업·공학 기능(ESF 3), 자원 지원 기능(ESF 7)이 복구 작업을 위해 횡적으로 결합하는 초광역 연계망.'
+      }
+    };
+
+    function showMetaDetail(key) {
+      document.querySelectorAll('.meta-cell-item').forEach(el => el.classList.remove('active'));
+      const activeItem = event.currentTarget;
+      if (activeItem) activeItem.classList.add('active');
+
+      const data = metaData[key];
+      const box = document.getElementById('metaDetailBox');
+      const title = document.getElementById('metaDetailTitle');
+      const desc = document.getElementById('metaDetailDesc');
+
+      if (box && data && title && desc) {
+        title.innerHTML = data.title;
+        desc.innerHTML = data.desc;
+        box.classList.add('active');
+      }
+    }
+
+    // Quiz Option Selection Handler
+    function selectQuizOption(element, qNum, isCorrect) {
+      const parent = element.parentElement;
+      if (!parent) return;
+      
+      const options = parent.querySelectorAll('.quiz-option');
+      const card = document.getElementById('q' + qNum);
+      const exp = card ? card.querySelector('.quiz-explanation') : null;
+
+      options.forEach(opt => {
+        opt.classList.remove('selected', 'correct', 'incorrect');
+      });
+
+      element.classList.add('selected');
+      if (isCorrect) {
+        element.classList.add('correct');
+      } else {
+        element.classList.add('incorrect');
+      }
+
+      if (exp) {
+        exp.style.display = 'block';
+      }
+    }
+  </script>
+</body>
+</html>

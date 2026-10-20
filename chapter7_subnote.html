@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>재난관리연구방법론 | Chapter 7. 주의의 이동: 콜로라도 산불 당시 미국 재난관리 유관 조직 간 팔로워 관계 동학 모델링</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&family=Outfit:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- MathJax Configuration & Script -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Mermaid JS for diagrams -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typeof mermaid !== 'undefined') {
+        try {
+          mermaid.initialize({ 
+            startOnLoad: true, 
+            theme: 'dark',
+            securityLevel: 'loose',
+            fontFamily: 'Noto Sans KR, Inter, sans-serif'
+          });
+        } catch(e) {
+          console.warn('Mermaid initialization deferred:', e);
+        }
+      }
+    });
+  </script>
+
+  <style>
+    :root {
+      --bg-primary: #0b1120;
+      --bg-secondary: #131c31;
+      --bg-sidebar: #0f172a;
+      --bg-card: #1e293b;
+      --bg-card-hover: #26354d;
+      --accent-primary: #38bdf8;
+      --accent-secondary: #818cf8;
+      --accent-emerald: #34d399;
+      --accent-amber: #fbbf24;
+      --accent-rose: #fb7185;
+      --accent-purple: #c084fc;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --border-color: #334155;
+      --sidebar-border: #1e293b;
+      --sidebar-width: 330px;
+      --glass-bg: rgba(19, 28, 49, 0.85);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.35);
+      --shadow-lg: 0 12px 30px -6px rgba(0, 0, 0, 0.5);
+      --radius: 12px;
+      --radius-sm: 8px;
+      --radius-lg: 16px;
+      --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    [data-theme="light"] {
+      --bg-primary: #f8fafc;
+      --bg-secondary: #ffffff;
+      --bg-sidebar: #ffffff;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f1f5f9;
+      --accent-primary: #0284c7;
+      --accent-secondary: #6366f1;
+      --accent-emerald: #059669;
+      --accent-amber: #d97706;
+      --accent-rose: #e11d48;
+      --accent-purple: #9333ea;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --text-dim: #94a3b8;
+      --border-color: #e2e8f0;
+      --sidebar-border: #e2e8f0;
+      --glass-bg: rgba(255, 255, 255, 0.9);
+      --glass-border: rgba(0, 0, 0, 0.08);
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 12px 30px -6px rgba(0, 0, 0, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Noto Sans KR', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.85;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      min-height: 100vh;
+    }
+
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-primary), var(--accent-emerald), var(--accent-amber));
+      width: 0%;
+      z-index: 1000;
+      transition: width 0.1s ease-out;
+    }
+
+    .app-layout {
+      display: flex;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* LEFT SIDEBAR */
+    .sidebar {
+      width: var(--sidebar-width);
+      flex-shrink: 0;
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      background: var(--bg-sidebar);
+      border-right: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      z-index: 100;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .sidebar-header {
+      padding: 1.5rem 1.25rem 1rem 1.25rem;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .sidebar-brand {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand-badge {
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-emerald));
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 0.75rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    .theme-toggle-btn {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 0.45rem;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      width: 34px;
+      height: 34px;
+    }
+
+    .theme-toggle-btn:hover {
+      background: var(--bg-card-hover);
+      color: var(--accent-primary);
+      transform: rotate(15deg);
+    }
+
+    .sidebar-title {
+      font-family: 'Outfit', 'Noto Sans KR', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.35;
+    }
+
+    .sidebar-subtitle {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .sidebar-search {
+      position: relative;
+      margin-top: 0.25rem;
+    }
+
+    .sidebar-search input {
+      width: 100%;
+      padding: 0.5rem 0.75rem 0.5rem 2.2rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      color: var(--text-main);
+      font-size: 0.825rem;
+      outline: none;
+      transition: var(--transition);
+    }
+
+    .sidebar-search input:focus {
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+    }
+
+    .sidebar-search i {
+      position: absolute;
+      left: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      width: 15px;
+      height: 15px;
+    }
+
+    .sidebar-nav-container {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1rem 0.75rem;
+      scrollbar-width: thin;
+    }
+
+    .sidebar-nav-container::-webkit-scrollbar {
+      width: 5px;
+    }
+    .sidebar-nav-container::-webkit-scrollbar-thumb {
+      background: var(--border-color);
+      border-radius: 4px;
+    }
+
+    .toc-label {
+      font-size: 0.725rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--text-dim);
+      padding: 0 0.5rem 0.6rem 0.5rem;
+    }
+
+    .toc-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.22rem;
+    }
+
+    .toc-item a {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.6rem 0.75rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.83rem;
+      border-radius: 8px;
+      transition: var(--transition);
+      line-height: 1.38;
+      position: relative;
+    }
+
+    .toc-item.sub-toc a {
+      padding-left: 1.65rem;
+      font-size: 0.79rem;
+    }
+
+    .toc-item a:hover {
+      color: var(--text-main);
+      background: var(--bg-secondary);
+    }
+
+    .toc-item.active a {
+      color: var(--accent-primary);
+      background: rgba(56, 189, 248, 0.1);
+      font-weight: 600;
+      border-left: 3px solid var(--accent-primary);
+    }
+
+    .toc-badge {
+      font-size: 0.68rem;
+      padding: 0.12rem 0.42rem;
+      border-radius: 4px;
+      background: var(--bg-card);
+      color: var(--text-dim);
+      margin-left: auto;
+      flex-shrink: 0;
+    }
+
+    /* MAIN CONTENT AREA */
+    .main-wrapper {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      background-color: var(--bg-primary);
+    }
+
+    .top-header {
+      padding: 1rem 2.5rem;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 90;
+    }
+
+    .header-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .header-breadcrumb a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .header-breadcrumb a:hover {
+      color: var(--accent-primary);
+    }
+
+    .content-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 3rem 2.5rem 6rem 2.5rem;
+      width: 100%;
+    }
+
+    /* HERO BANNER */
+    .hero-banner {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.85) 0%, rgba(15, 23, 42, 0.95) 100%);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 3rem 2.5rem;
+      margin-bottom: 3.5rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .hero-banner::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.16) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      color: var(--accent-primary);
+      padding: 0.3rem 0.85rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-title {
+      font-family: 'Outfit', 'Noto Sans KR', sans-serif;
+      font-size: 2.15rem;
+      font-weight: 800;
+      line-height: 1.32;
+      color: var(--text-main);
+      margin-bottom: 1rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+      color: var(--text-muted);
+      margin-bottom: 1.75rem;
+      line-height: 1.6;
+    }
+
+    .hero-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 1.5rem;
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .meta-label {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .meta-value {
+      font-size: 0.875rem;
+      color: var(--text-main);
+      font-weight: 500;
+    }
+
+    /* SECTION STYLING */
+    .section-block {
+      margin-bottom: 4rem;
+      scroll-margin-top: 90px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.75rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid var(--border-color);
+    }
+
+    .section-icon {
+      color: var(--accent-primary);
+      width: 28px;
+      height: 28px;
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-family: 'Outfit', 'Noto Sans KR', sans-serif;
+      font-size: 1.65rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .section-badge {
+      font-size: 0.75rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      margin-left: auto;
+    }
+
+    .subsection-block {
+      margin-top: 2.75rem;
+      margin-bottom: 2.5rem;
+      scroll-margin-top: 90px;
+    }
+
+    .subsection-title {
+      font-family: 'Outfit', 'Noto Sans KR', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--accent-primary);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* PARAGRAPH CARD */
+    .para-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+
+    .para-card:hover {
+      border-color: rgba(56, 189, 248, 0.4);
+      box-shadow: var(--shadow-md);
+    }
+
+    .para-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--accent-secondary);
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px dashed var(--border-color);
+    }
+
+    .para-content {
+      font-size: 0.95rem;
+      color: var(--text-main);
+      line-height: 1.85;
+    }
+
+    .para-content ul, .para-content ol {
+      margin-left: 1.5rem;
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .para-content li {
+      margin-bottom: 0.4rem;
+    }
+
+    /* CALLOUT BOX / NOTE CARD */
+    .callout-box {
+      background: rgba(30, 41, 59, 0.65);
+      border-left: 4px solid var(--accent-primary);
+      border-top: 1px solid var(--border-color);
+      border-right: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 1.5rem 1.75rem;
+      margin: 2rem 0;
+    }
+
+    .callout-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--accent-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .callout-content {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    /* FIGURES & TABLES */
+    .figure-container {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin: 2rem 0;
+      text-align: center;
+      box-shadow: var(--shadow-md);
+    }
+
+    .figure-container img {
+      max-width: 100%;
+      height: auto;
+      border-radius: var(--radius-sm);
+      margin-bottom: 1rem;
+      border: 1px solid var(--border-color);
+    }
+
+    .figure-caption {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-style: italic;
+      line-height: 1.6;
+      text-align: left;
+      padding: 0.5rem 0.75rem;
+      background: var(--bg-card);
+      border-radius: var(--radius-sm);
+    }
+
+    .table-container {
+      overflow-x: auto;
+      margin: 2rem 0;
+      border-radius: var(--radius);
+      border: 1px solid var(--border-color);
+      background: var(--bg-secondary);
+      box-shadow: var(--shadow-md);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+      text-align: left;
+    }
+
+    th {
+      background: var(--bg-card);
+      color: var(--text-main);
+      font-weight: 700;
+      padding: 0.85rem 1rem;
+      border-bottom: 2px solid var(--border-color);
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-main);
+      vertical-align: middle;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background: var(--bg-card-hover);
+    }
+
+    .sig-star {
+      color: var(--accent-rose);
+      font-weight: 800;
+    }
+
+    /* MERMAID DIAGRAM BOX */
+    .mermaid-box {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.75rem 1.5rem;
+      margin: 2rem 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: var(--shadow-md);
+    }
+
+    .mermaid-caption {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    /* EQUATION BOX */
+    .eq-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* CODE PILL */
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85em;
+      background: rgba(56, 189, 248, 0.12);
+      color: var(--accent-primary);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      border: 1px solid rgba(56, 189, 248, 0.2);
+    }
+
+    details {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      margin: 1.5rem 0;
+    }
+
+    summary {
+      font-weight: 600;
+      color: var(--accent-primary);
+      cursor: pointer;
+      outline: none;
+    }
+
+    details[open] summary {
+      margin-bottom: 0.75rem;
+    }
+
+    /* FOOTNOTES */
+    .footnote-section {
+      border-top: 2px solid var(--border-color);
+      padding-top: 2rem;
+      margin-top: 4rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .footnote-section p {
+      margin-bottom: 0.6rem;
+    }
+
+    @media (max-width: 1024px) {
+      .sidebar {
+        display: none;
+      }
+      .content-container {
+        padding: 2rem 1.5rem 4rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="progress-bar"></div>
+
+  <div class="app-layout">
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-brand">
+          <span class="brand-badge">SNA RESEARCH</span>
+          <button class="theme-toggle-btn" id="theme-toggle" title="테마 전환">
+            <i data-lucide="moon" id="theme-icon"></i>
+          </button>
+        </div>
+        <div class="sidebar-title">제7장 주의의 이동 (Sub-Note)</div>
+        <div class="sidebar-subtitle">Almquist, Spiro, & Butts (2017)</div>
+        
+        <div class="sidebar-search">
+          <i data-lucide="search"></i>
+          <input type="text" id="search-input" placeholder="목차 및 키워드 검색...">
+        </div>
+      </div>
+
+      <div class="sidebar-nav-container">
+        <div class="toc-label">CHAPTER OUTLINE</div>
+        <ul class="toc-list" id="toc-list">
+          <li class="toc-item active"><a href="#sec-intro"><i data-lucide="book-open"></i>서론 (Introduction) <span class="toc-badge">p.94</span></a></li>
+          <li class="toc-item"><a href="#sec-lit"><i data-lucide="library"></i>문헌 검토 (Lit Review) <span class="toc-badge">p.95</span></a></li>
+          <li class="toc-item"><a href="#sec-mech"><i data-lucide="activity"></i>주의 상호작용 메커니즘 <span class="toc-badge">p.97</span></a></li>
+          <li class="toc-item"><a href="#sec-data"><i data-lucide="database"></i>데이터 (Data) <span class="toc-badge">p.98</span></a></li>
+          <li class="toc-item sub-toc"><a href="#subsec-dynamic-net"><i data-lucide="chevron-right"></i>동적 네트워크 <span class="toc-badge">p.98</span></a></li>
+          <li class="toc-item sub-toc"><a href="#subsec-duckett-fire"><i data-lucide="chevron-right"></i>콜로라도 덕켓 산불 사례 <span class="toc-badge">p.102</span></a></li>
+          <li class="toc-item"><a href="#sec-methods"><i data-lucide="cpu"></i>연구 방법 (Methods) <span class="toc-badge">p.103</span></a></li>
+          <li class="toc-item sub-toc"><a href="#subsec-notation"><i data-lucide="chevron-right"></i>수학적 표기법 <span class="toc-badge">p.103</span></a></li>
+          <li class="toc-item sub-toc"><a href="#subsec-dnr"><i data-lucide="chevron-right"></i>동적 네트워크 회귀 (DNR) <span class="toc-badge">p.105</span></a></li>
+          <li class="toc-item sub-toc"><a href="#subsec-mech-param"><i data-lucide="chevron-right"></i>주의 동학 매개변수화 <span class="toc-badge">p.105</span></a></li>
+          <li class="toc-item"><a href="#sec-results"><i data-lucide="bar-chart-2"></i>분석 결과 (Results) <span class="toc-badge">p.107</span></a></li>
+          <li class="toc-item sub-toc"><a href="#subsec-interpretation"><i data-lucide="chevron-right"></i>결과 해석 (Interpretation) <span class="toc-badge">p.107</span></a></li>
+          <li class="toc-item"><a href="#sec-discussion"><i data-lucide="message-square"></i>논의 (Discussion) <span class="toc-badge">p.109</span></a></li>
+          <li class="toc-item"><a href="#sec-summary"><i data-lucide="check-circle-2"></i>요약 (Summary) <span class="toc-badge">p.111</span></a></li>
+          <li class="toc-item"><a href="#sec-ack"><i data-lucide="award"></i>사사 (Acknowledgments) <span class="toc-badge">p.112</span></a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-wrapper">
+      <header class="top-header">
+        <div class="header-breadcrumb">
+          <a href="#">SNA in Disaster Management</a>
+          <i data-lucide="chevron-right" style="width:14px; height:14px;"></i>
+          <span>Chapter 7 Sub-Note</span>
+        </div>
+        <div style="font-size:0.85rem; color:var(--text-muted);">
+          동적 네트워크 로지스틱 회귀 (DNR) 심층 학습 교재
+        </div>
+      </header>
+
+      <div class="content-container">
+        <!-- HERO BANNER -->
+        <div class="hero-banner">
+          <div class="hero-tag">
+            <i data-lucide="flame" style="width:14px; height:14px;"></i>
+            DISASTER SNA • CHAPTER 7 SUB-NOTE
+          </div>
+          <h1 class="hero-title">주의의 이동: 콜로라도 산불 당시 미국 재난관리 유관 조직 간 팔로워 관계 동학 모델링</h1>
+          <p class="hero-subtitle">
+            SHIFTING ATTENTION: MODELING FOLLOWER RELATIONSHIP DYNAMICS AMONG US EMERGENCY MANAGEMENT-RELATED ORGANIZATIONS DURING A COLORADO WILDFIRE
+          </p>
+          <div class="hero-meta-grid">
+            <div class="meta-item">
+              <span class="meta-label">저자</span>
+              <span class="meta-value">Zack W. Almquist, Emma S. Spiro, Carter T. Butts</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">소속 기관</span>
+              <span class="meta-value">Univ. of Minnesota, Univ. of Washington, UC Irvine</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">출처 및 연도</span>
+              <span class="meta-value">Elsevier Inc. (2017, pp. 93–113)</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">DOI 식별자</span>
+              <span class="meta-value"><a href="http://dx.doi.org/10.1016/B978-0-12-805196-2.00007-8" target="_blank" style="color:var(--accent-primary); text-decoration:none;">10.1016/B978-0-12-805196-2.00007-8</a></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 1. INTRODUCTION -->
+        <section class="section-block" id="sec-intro">
+          <div class="section-header">
+            <i data-lucide="book-open" class="section-icon"></i>
+            <h2 class="section-title">INTRODUCTION (서론)</h2>
+            <span class="section-badge">원문 pp. 94–95</span>
+          </div>
+
+          <div class="para-card">
+            <div class="para-header"><i data-lucide="file-text" style="width:16px;"></i> [문단 1] 재난관리 조직 간 상호의존성과 '주의(Attention)'의 기본적 성격</div>
+            <div class="para-content">
+              재난관리 조직(Emergency management organizations)은 진공 상태에서 행동하는 경우가 거의 없습니다. 정부 조직(governmental organizations)과 비정부 조직(nongovernmental organizations) 모두 평시(routine) 및 비평시(nonroutine) 환경 모두에서 시의적절한 주제 정보(topical information)와 실무적 지침(practical guidance)을 얻기 위해 서로를 주시합니다(Comfort et al., 2004; Drabek & McEntire, 2002).
+              <ul>
+                <li><strong>주의(Attention)의 정의</strong>: 이러한 상호작용의 가장 기본적인 발현 형태는 바로 <strong>주의(Attention)</strong>입니다. 즉, <em>"한 조직이 다른 조직의 행동을 관찰하거나 다른 조직으로부터 정보를 수신하기 위해 기울이는 체계적인 노력(a systematic effort on the part of one organization to observe the actions of and/or to receive information from another)"</em>을 의미합니다.</li>
+                <li><strong>정보 확산의 통로(Conduit)</strong>: 주의 관계는 위기 상황(crisis events) 동안 정보 확산(information diffusion)을 위한 통로로서 특히 중요할 수 있으며, 평시 운영 기간 동안에는 조직의 루틴(routines), 관행(practices), 표준(standards)을 전파하는 통로가 됩니다(DiMaggio & Powell, 1983; Reeder et al., 2014).</li>
+                <li><strong>신호 전달 기능(Signaling Function)</strong>: 제3자에게 공개적으로 가시화될 때, 주의 관계는 주의를 기울이는 자(attender)와 주의를 받는 자(attendee) 사이의 제휴·소속(affiliation) 형태를 제3자에게 알리는 <strong>신호 전달 기능(signaling function)</strong>도 가질 수 있습니다(Kwak et al., 2010). 예를 들어, 연방 기관(federal agency)이 특정 지방 기관(local agency)을 팔로우(follow)하기 시작하면, 대중은 그 지방 기관이 연방 정부의 공식 지원을 받거나 연방 기관과 제휴 관계에 있다고 인식할 수 있습니다.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="para-card">
+            <div class="para-header"><i data-lucide="file-text" style="width:16px;"></i> [문단 2] 실현된 소통 관계 vs 잠재적 정보 전달 통로로서의 주의 관계</div>
+            <div class="para-content">
+              실제로 발생한 소통 관계(realized communication relationships; 예: 직접적인 메시지 발송, 전화 통화, 멘션 등)와 달리, <strong>주의 관계(attentional relationships)</strong>는 <strong>정보 전송의 잠재력(potential for information transmission)</strong>을 반영합니다. 따라서 송신자의 적극적 행동과 무관하게(net of sender behavior) 조직 간 정보가 흐를 수 있는 <strong>기회의 구조(structure of opportunities)</strong>를 탐색하는 데 매우 유용합니다. 마찬가지로, 송신 조직이 수신 조직을 구체적으로 타깃팅하려는 의도적인 노력을 기울이지 않더라도(예: 주의를 기울이는 관찰자가 피관찰자의 행동이나 일반적 공지사항을 수동적으로 지켜봄으로써), 정보가 수신 조직으로 흘러 들어갈 수 있는 경로를 나타내 줍니다.
+            </div>
+          </div>
+
+          <div class="para-card">
+            <div class="para-header"><i data-lucide="file-text" style="width:16px;"></i> [문단 3] 주의 관계 실증 연구의 역사적 난점과 온라인 소셜 미디어의 기회</div>
+            <div class="para-content">
+              주의 관계는 그 중요성에도 불구하고 역사적으로 연구하기가 매우 어려웠습니다. 조직 정보 제공자를 대상으로 한 회고적 설문조사(retrospective surveys)나 보존 기록물(archival materials)은 누가 누구에게 주의를 기울이고 있었는지에 대해 매우 제한적인 증거만을 제공하기 때문입니다. 그러나 조직 활동이 온라인 영역으로 확장되면서 이전에는 포착하기 어려웠던 이러한 네트워크를 연구할 수 있는 획기적인 기회가 열렸습니다. 특정 컴퓨터 매개 커뮤니케이션(CMC) 시스템들은 운영의 부수적 결과로서 주의 관계를 자동으로 기록하기 때문입니다. 이러한 소스에서 도출된 관계 기록은 적어도 특정 환경 내에서 조직들이 시간에 따라 주의 관계를 형성하고 해체하는 과정(formation and dissolution)을 들여다볼 수 있는 독특한 창(unique window)을 제공합니다.
+            </div>
+          </div>
+
+          <div class="para-card">
+            <div class="para-header"><i data-lucide="file-text" style="width:16px;"></i> [문단 4] 트위터(Twitter) 플랫폼의 활용과 기존 연구의 한계</div>
+            <div class="para-content">
+              조직들이 주의 관계를 직접적이고 공개적으로 표명하는 대표적인 환경 중 하나가 바로 <strong>트위터(Twitter)</strong>입니다. 트위터는 평시 상황과 위기 상황 모두에서 재난관리 기관의 참여와 활용이 급증하고 있는 대중적 마이크로블로깅 서비스입니다.
+              <ul>
+                <li><strong>기존 연구의 편중</strong>: 비상 상황에서 트위터 활용을 다룬 선행 연구들은 주로 신속한 정보 보급 및 전송 촉진, 집단적 의미구성(collective sense-making) 과정 및 루머 유포(rumoring) 지원 역량에 집중되어 왔습니다(Spiro et al., 2012; Sutton, 2010; Sutton et al., 2014). 다른 연구들은 디지털 자원봉사와 상황인식 향상 가능성을 살펴보기도 했습니다(Starbird & Palen, 2011; Vieweg et al., 2010).</li>
+                <li><strong>선행 연구의 공백</strong>: 그러나 이 맥락에서 비상대응 조직 자체(emergency response organizations themselves)의 활동을 조사한 연구는 거의 없었습니다(Hughes et al., 2014; Reeder et al., 2014 등 제외). 나아가 조직 간 주의 관계의 진화하는 양상을 장기간 추적하고, 관계 형성(tie formation)과 해체(tie dissolution)를 지배하는 메커니즘을 체계적으로 규명한 연구는 존재하지 않았습니다.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="para-card">
+            <div class="para-header"><i data-lucide="file-text" style="width:16px;"></i> [문단 5] 연구 목적: 동적 네트워크 로지스틱 회귀(DNR)를 통한 실증 규명</div>
+            <div class="para-content">
+              본 연구는 <strong>동적 네트워크 로지스틱 회귀(Dynamic Network Logistic Regression; DNR)</strong> 모델링 접근법을 적용하여 이 연구 공백을 해결합니다. 미국 연방 및 주 수준의 재난관리 유관 조직 213개 간의 장기간에 걸친 트위터 팔로워(구독) 관계를 추적합니다. DNR은 과거 상호작용의 시간적 관계(예: 선호적 연결, preferential attachment)를 직접 모델링하여 미래의 상호작용을 예측할 수 있게 해줍니다(Almquist & Butts, 2013, 2014b). 본 연구는 조직들의 사회연결망 내 구조적 위치와 정보 교환 패턴을 연계하고, 실제 발생한 <strong>2011년 콜로라도 덕켓 산불 재난 사건이 지역 트위터 피드에 미친 직접적 효과</strong>를 실증적으로 추정합니다.
+            </div>
+          </div>
+
+          <div class="callout-box">
+            <div class="callout-title"><i data-lucide="info"></i> 🔍 [보조교재 심화 해설: '주의(Attention)'의 네트워크적 함의]</div>
+            <div class="callout-content">
+              <strong>소통(Communication) vs 주의(Attention)</strong>: 기존 사회연결망 연구는 주로 실제 발생한 메시지 송수신(멘션, 리트윗, 통화 등)에 집중했습니다. 하지만 재난 현장에서는 "내가 정보를 보내지 않더라도 상대방이 내 계정을 지켜보고 있는가(구독/팔로우)"가 정보 전달의 잠재적 용량(channel capacity)을 결정합니다. 팔로워 네트워크는 비상 상황 발생 시 즉각 작동할 수 있는 <strong>정보 통로의 기저 파이프라인</strong> 역할을 합니다.
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. LITERATURE REVIEW -->
+        <section class="section-block" id="sec-lit">
+          <div class="section-header">
+            <i data-lucide="library" class="section-icon"></i>
+            <h2 class="section-title">LITERATURE REVIEW (문헌 검토)</h2>
+            <span class="section-badge">원문 pp. 95–97</span>
+          </div>
+
+          <div class="para-card">
+            <div class="para-header"><i data-lucide="file-text" style="width:16px;"></i> [문단 1] 재난 연구에서 사회연결망 이론의 부상</div>
+            <div class="para-content">
+              재난(Disasters)은 일상생활을 극단적이고 위험하게 파괴하며 기존 지원·통신 네트워크를 마비시킵니다. 이에 따라 재난 시 커뮤니케이션 네트워크 분석(Butts, 2008a; Sutton et al., 2012), 사회적 지지의 중요성(Jones et al., 2013), 재난 구호 및 관리에서의 다면적 효과(Hamra et al., 2012) 등 방대한 사회연결망 연구가 축적되어 왔습니다. 본 연구는 대응 조직들이 재난 환경에서 보이는 <strong>주의 동학(attentional dynamics)</strong>의 중요성에 집중합니다.
+            </div>
+          </div>
+
+          <div class="para-card">
+            <div class="para-header"><i data-lucide="file-text" style="width:16px;"></i> [문단 2] 온라인 환경 및 소셜 미디어가 가져온 위기 커뮤니케이션의 패러다임 전환</div>
+            <div class="para-content">
+              전통적인 TV, 라디오는 일방향 브로드캐스트(broadcast)에 국한되고 소수의 주요 언론사에 의해 통제되지만, 온라인 및 소셜 미디어 채널은 <strong>양방향 커뮤니케이션(two-way communication)</strong>을 허용하고 발신 조직이 메시지 타이밍과 콘텐츠를 직접 제어하며 실시간으로 업데이트할 수 있습니다(Bruns et al., 2011). 특히 리트윗과 같은 <strong>재전송 메커니즘(retransmission mechanisms)</strong>이 내장되어 있어 네트워크를 통한 기하급수적 정보 확산을 촉진합니다(Sutton et al., 2014, 2015a,b).
+            </div>
+          </div>
+
+          <div class="para-card">
+            <div class="para-header"><i data-lucide="file-text" style="width:16px;"></i> [문단 3] 소셜 미디어 활용의 세 가지 범주와 조직의 피드백 적응</div>
+            <div class="para-content">
+              Lindsay(2011)는 재난 시 소셜 미디어 활용을 ① 정보 보급(disseminate information)과 ② 관리 도구 자체(victim requests for assistance 접수 등)의 두 가지로 분류했으나, 이는 <strong>③ 정보 수집 및 상황인식 개선(information collection and improved situational awareness)</strong>이라는 결정적 제3의 역할을 누락하고 있습니다(Mehrotra et al., 2004). 2012년 허리케인 샌디 당시 응급 대응자들은 순수 브로드캐스트 패러다임에서 벗어나 주민들의 구조 요청을 인지하고 소통 프로토콜을 적응시켰습니다(Hughes et al., 2014).
+            </div>
+          </div>
+
+          <div class="para-card">
+            <div class="para-header"><i data-lucide="file-text" style="width:16px;"></i> [문단 4 & 5] 트위터의 명암과 정부 조직 연구의 결핍</div>
+            <div class="para-content">
+              트위터는 전례 없는 규모와 속도로 정보를 확산시키고 목격자 보고를 통해 상황인식을 높여주지만, <strong>오정보(misinformation)와 허위정보(disinformation)</strong>가 만연하여 공공 기관이 정보원으로 신뢰하기를 꺼리는 요인이 됩니다(Hiltz et al., 2014). 대중의 트위터 활용 및 루머 전파에 대한 연구는 많으나, 온라인 정보 생태계 내에서 <strong>정부 재난대응 조직 자체</strong>가 어떻게 관계를 형성하고 주의를 배분하는지에 대한 실증 연구는 극히 부족했습니다.
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. MECHANISMS -->
+        <section class="section-block" id="sec-mech">
+          <div class="section-header">
+            <i data-lucide="activity" class="section-icon"></i>
+            <h2 class="section-title">MECHANISMS OF ATTENTIONAL INTERACTION DURING A DISASTER (재난 시 주의 상호작용의 메커니즘)</h2>
+            <span class="section-badge">원문 pp. 97–98</span>
+          </div>
+
+          <div class="para-card">
+            <div class="para-header"><i data-lucide="shield-alert" style="width:16px;"></i> [핵심 이론] 연결 형성의 저비용성과 제거의 고비용성: 강력한 관성(Inertia) 가설</div>
+            <div class="para-content">
+              트위터에서 팔로우 관계를 맺는 것은 클릭 한 번으로 끝나므로 <strong>초기 형성 비용(initial cost)이 극히 낮습니다.</strong> 반면, 이미 맺어진 팔로우 관계를 끊으려면 해당 계정을 직접 찾아가 언팔로우해야 하는 번거로움이 있어 <strong>관계 제거가 훨씬 더 높은 비용을 발생</strong>시킵니다. 이러한 비대칭적 비용 구조는 트위터 주의 네트워크가 매우 강력한 <strong>관성 효과(inertial effects)</strong>를 지닐 것임을 시사합니다.
+            </div>
+          </div>
+
+          <div class="mermaid-box">
+            <div class="mermaid">
+flowchart TD
+    subgraph 시간적동학["1. 시간적 동학"]
+        H1["가설 1: 관성 (Inertia)<br/>과거 연결의 지속 경향"]
+    end
+    subgraph 속성기반["2. 행위자 속성"]
+        H2["가설 2: 동질혼 (Homophily)<br/>동일 주(State) / FEMA 소속 일치"]
+    end
+    subgraph 내생적구조["3. 내생적 네트워크 구조 (구조적 의존성)"]
+        H3["가설 3: 공유 파트너 (Shared Partners)<br/>동일한 제3자를 팔로우"]
+        H4["가설 4: 이행성 (Transitivity)<br/>i->j, j->k => i->k 삼항 폐쇄"]
+        H5["가설 5: 활동도 (Activity)<br/>많은 대상을 팔로우하는 외향성"]
+        H6["가설 6: 인기도 (Popularity)<br/>많은 팔로워를 보유한 내향성"]
+        H7["가설 7: 상호성 (Reciprocity)<br/>과거 팔로우에 대한 맞팔로우"]
+    end
+    subgraph 외생적환경["4. 외생적 환경 및 이벤트"]
+        H8["가설 8: 계절성 (Seasonality)<br/>주말 vs 주중 활동 차이"]
+        H9["가설 9: 재해 사건 효과 (Hazard Event)<br/>재난 발생 지역 계정의 현저성 급증"]
+    end
+    시간적동학 --> DNR["동적 네트워크 로지스틱 회귀 (DNR) 모델"]
+    속성기반 --> DNR
+    내생적구조 --> DNR
+    외생적환경 --> DNR
+            </div>
+            <div class="mermaid-caption">[Figure 7.A] 본 연구에서 제안된 9대 핵심 네트워크 가설 체계도</div>
+          </div>
+        </section>
+
+        <!-- 4. DATA -->
+        <section class="section-block" id="sec-data">
+          <div class="section-header">
+            <i data-lucide="database" class="section-icon"></i>
+            <h2 class="section-title">DATA (데이터)</h2>
+            <span class="section-badge">원문 pp. 98–103</span>
+          </div>
+
+          <div class="para-card">
+            <div class="para-header"><i data-lucide="server" style="width:16px;"></i> 데이터 수집 개요 및 대상 계정 식별</div>
+            <div class="para-content">
+              HEROIC 프로젝트 연구진(Butts et al., 2011)은 전국의 모든 주 및 연방 비상관리 공식 웹페이지를 전수 조사하여 공식 트위터 링크를 수작업으로 검증하였습니다. 이를 통해 <strong>213개</strong>의 공공 안전 관련 목표 계정을 식별하였으며, 트위터 REST API를 통해 매일 팔로잉 관계 데이터를 수집했습니다. 결측치가 없는 <strong>2011년 4월 28일부터 8월 30일까지 125일간의 완전한 일별 연속 데이터</strong>를 분석에 사용합니다.
+            </div>
+          </div>
+
+          <figure class="figure-container">
+            <img src="image-13.png" alt="Figure 7.1 FEMA Homepage">
+            <figcaption class="figure-caption">
+              <strong>Figure 7.1</strong> Image of the Federal Emergency Management Agency (FEMA) homepage with link to the FEMA handle highlighted. (연방재난관리청 FEMA 공식 홈페이지 메인 화면에서 FEMA 공식 트위터 핸들 링크가 하이라이트된 모습)
+            </figcaption>
+          </figure>
+
+          <!-- SUBSECTION: DYNAMIC NETWORK -->
+          <div class="subsection-block" id="subsec-dynamic-net">
+            <h3 class="subsection-title"><i data-lucide="share-2"></i> THE DYNAMIC NETWORK (동적 네트워크)</h3>
+            
+            <div class="para-card">
+              <div class="para-content">
+                미국 50개 전역, DC, 푸에르토리코 소재 213개 조직으로 구성되며, 연방 조직 22개(FEMA 13개)가 포함됩니다(Table 7.1). 전체 기간 평균 네트워크 밀도는 <strong>0.0574</strong>로 매우 희소(sparse)하며, 각 계정은 특정 시점에 <strong>평균 약 13개의 다른 계정만을 팔로우</strong>하고 있었습니다.
+              </div>
+            </div>
+
+            <figure class="figure-container">
+              <img src="image-14.png" alt="Table 7.1 Screenshot">
+            </figure>
+
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>State</th><th>Freq</th><th>State</th><th>Freq</th><th>State</th><th>Freq</th><th>State</th><th>Freq</th><th>State</th><th>Freq</th><th>State</th><th>Freq</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td><strong>AK</strong></td><td>4</td><td><strong>FL</strong></td><td>4</td><td><strong>MA</strong></td><td>6</td><td><strong>NE</strong></td><td>3</td><td><strong>RI</strong></td><td>4</td><td><strong>WI</strong></td><td>3</td></tr>
+                  <tr><td><strong>AL</strong></td><td>6</td><td><strong>GA</strong></td><td>5</td><td><strong>MD</strong></td><td>4</td><td><strong>NH</strong></td><td>2</td><td><strong>SC</strong></td><td>4</td><td><strong>WV</strong></td><td>2</td></tr>
+                  <tr><td><strong>AR</strong></td><td>3</td><td><strong>HI</strong></td><td>2</td><td><strong>ME</strong></td><td>5</td><td><strong>NJ</strong></td><td>4</td><td><strong>SD</strong></td><td>1</td><td><strong>WY</strong></td><td>1</td></tr>
+                  <tr><td><strong>AZ</strong></td><td>2</td><td><strong>IA</strong></td><td>4</td><td><strong>MI</strong></td><td>5</td><td><strong>NM</strong></td><td>1</td><td><strong>TN</strong></td><td>3</td><td></td><td></td></tr>
+                  <tr><td><strong>CA</strong></td><td>7</td><td><strong>ID</strong></td><td>3</td><td><strong>MN</strong></td><td>5</td><td><strong>NY</strong></td><td>9</td><td><strong>TX</strong></td><td>4</td><td></td><td></td></tr>
+                  <tr><td><strong>CO</strong></td><td><strong>10</strong></td><td><strong>IL</strong></td><td>2</td><td><strong>MO</strong></td><td>3</td><td><strong>OH</strong></td><td>6</td><td><strong>UT</strong></td><td>2</td><td></td><td></td></tr>
+                  <tr><td><strong>CT</strong></td><td>4</td><td><strong>IN</strong></td><td>3</td><td><strong>MS</strong></td><td>2</td><td><strong>OK</strong></td><td>3</td><td><strong>VA</strong></td><td>6</td><td></td><td></td></tr>
+                  <tr><td><strong>DC</strong></td><td>3</td><td><strong>KS</strong></td><td>6</td><td><strong>MT</strong></td><td>2</td><td><strong>OR</strong></td><td>3</td><td><strong>VI</strong></td><td>3</td><td></td><td></td></tr>
+                  <tr><td><strong>DE</strong></td><td>5</td><td><strong>KY</strong></td><td>4</td><td><strong>NC</strong></td><td>2</td><td><strong>PA</strong></td><td>1</td><td><strong>VT</strong></td><td>1</td><td></td><td></td></tr>
+                  <tr><td><strong>Federal</strong></td><td><strong>22</strong></td><td><strong>LA</strong></td><td>5</td><td><strong>ND</strong></td><td>2</td><td><strong>PR</strong></td><td>1</td><td><strong>WA</strong></td><td>6</td><td></td><td></td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <figure class="figure-container">
+              <img src="image-15.png" alt="Figure 7.2 Core Periphery Network">
+              <figcaption class="figure-caption">
+                <strong>Figure 7.2</strong> Time-averaged network of attentional ties for all 213 United States emergency management-related organizations. Edges are shaded based on attention level over the observed time period (darker ties indicate longer duration following). (213개 미국 재난관리 유관 조직의 시간 평균 주의 연결망. 진할수록 장기간 팔로우가 지속되었음을 나타냄)
+              </figcaption>
+            </figure>
+
+            <details>
+              <summary>📌 [참고: Figure 7.2 그래프에 포함된 213개 트위터 계정 핸들 전체 목록 보기]</summary>
+              <p style="font-size:0.85rem; color:var(--text-muted); line-height:1.7; margin-top:0.5rem;">
+                <code>brianschweitzer</code>, <code>akgovparnell</code>, <code>govgregoire</code>, <code>idahodoi</code>, <code>govwalker</code>, <code>butchotter</code>, <code>govsambrownback</code>, <code>gov_heineman</code>, <code>mearng</code>, <code>fortalezapr</code>, <code>hickforco</code>, <code>johnkasich</code>, <code>wa_natl_guard</code>, <code>ctnationalguard</code>, <code>txmilitaryforce</code>, <code>ianationalguard</code>, <code>mnnationalguard</code>, <code>mdng</code>, <code>wyoguard</code>, <code>kansasemergency</code>, <code>lanationalguard</code>, <code>ohgov</code>, <code>missouri_ng</code>, <code>ohaoregon</code>, <code>scnationalguard</code>, <code>govmarkdayton</code>, <code>oshp</code>, <code>jerrybrowngov</code>, <code>neilabercrombie</code>, <code>delawareng</code>, <code>ohnationalguard</code>, <code>ohdeptofhealth</code>, <code>kshighwaypatrol</code>, <code>govkitz</code>, <code>mndps_msp</code>, <code>wi_guard</code>, <code>kansasguard</code>, <code>governoromalley</code>, <code>governorherbert</code>, <code>aknationalguard</code>, <code>ncnationalguard</code>, <code>wa_deptofhealth</code>, <code>capublichealth</code>, <code>governormarkell</code>, <code>sectrehargett</code>, <code>texasgov</code>, <code>ksgovernment</code>, <code>mnhealth</code>, <code>delaware_gov</code>, <code>alaska_dhss</code>, <code>sdgovdaugaard</code>, <code>ncgovoffice</code>, <code>govchristie</code>, <code>govmalloyoffice</code>, <code>destatepolice</code>, <code>terrybranstad</code>, <code>nhdhhspio</code>, <code>delaware_dhss</code>, <code>lincolnchafee</code>, <code>in_gov</code>, <code>nhgov</code>, <code>idahogov</code>, <code>georgiagov</code>, <code>scgov</code>, <code>uscgalaska</code>, <code>icommandantuscg</code>, <code>mogov</code>, <code>uscgheartland</code>, <code>cal_fire</code>, <code>usgs_co</code>, <code>usgsted</code>, <code>usgslive</code>, <code>faanews</code>, <code>texgov</code>, <code>higov_health</code>, <code>tsablogteam</code>, <code>cagovernment</code>, <code>georgiaguard</code>, <code>ndnationalguard</code>, <code>coloradogov</code>, <code>nationalguardny</code>, <code>whitehouse</code>, <code>uscgpacificnw</code>, <code>wwwicegov</code>, <code>usagov</code>, <code>statedept</code>, <code>noradnorthcom</code>, <code>uscoastguard</code>, <code>femaregion7</code>, <code>dhsjournal</code>, <code>femaregion8</code>, <code>mndps_hsem</code>, <code>gohsep</code>, <code>calema</code>, <code>femaregion5</code>, <code>readydotgov</code>, <code>craigatfema</code>, <code>usgs</code>, <code>femaregion10</code>, <code>oregonoem</code>, <code>usnoaagov</code>, <code>www_maine_gov</code>, <code>nebraskagov</code>, <code>billhaslam</code>, <code>kdhe</code>, <code>migov</code>, <code>rigov</code>, <code>kygov</code>, <code>govstevebeshear</code>, <code>njdhss</code>, <code>massgovernor</code>, <code>governorbentley</code>, <code>mainegov_news</code>, <code>massgov</code>, <code>customsborder</code>, <code>wvgov</code>, <code>okgov</code>, <code>alabamagov</code>, <code>mepublichealth</code>, <code>la_health_dept</code>, <code>rihealth</code>, <code>usda</code>, <code>njsp</code>, <code>michstatepolice</code>, <code>hhsgov</code>, <code>fbipressoffice</code>, <code>fema</code>, <code>cdcemergency</code>, <code>femaregion1</code>, <code>aldhs</code>, <code>femaregion2</code>, <code>femaregion4</code>, <code>mass_hhs</code>, <code>nebraskadhhs</code>, <code>nygovcuomo</code>, <code>azdhs</code>, <code>iapublichealth</code>, <code>massdph</code>, <code>michsos</code>, <code>ctdph</code>, <code>mihealth</code>, <code>governorva</code>, <code>kystatepolice</code>, <code>epagov</code>, <code>femaregion3</code>, <code>ctdemhs</code>, <code>mediaalabamagov</code>, <code>healthvermont</code>, <code>njohsp</code>, <code>chpsouthern</code>, <code>governordejongh</code>, <code>femaregion9</code>, <code>michemhs</code>, <code>alabamaema</code>, <code>adhpio</code>, <code>usoceangov</code>, <code>readywisconsin</code>, <code>femaregion6</code>, <code>iowahsemd</code>, <code>massema</code>, <code>myvdh</code>, <code>ohpublicsafety</code>, <code>waemd</code>, <code>nmdhsem</code>, <code>nasahurricane</code>, <code>emdsc</code>, <code>utahemergency</code>, <code>georgiaema</code>, <code>ntasalerts</code>, <code>t_e_m_a</code>, <code>kyempio</code>, <code>azein</code>, <code>coemergency</code>, <code>readyusvi</code>, <code>readycolorado</code>, <code>okem</code>, <code>alabama_dhs</code>, <code>nysemo</code>, <code>rhodeislandema</code>, <code>coastiechris</code>, <code>femalro</code>, <code>ar_emergencies</code>, <code>cofire</code>, <code>nddes</code>, <code>maineema</code>, <code>msema</code>, <code>vdem</code>, <code>healthnygov</code>, <code>wvdhsem</code>, <code>readyillinois</code>, <code>flstatewatch</code>, <code>flsert</code>, <code>capitalalert</code>, <code>dc_hsema</code>, <code>idhs</code>, <code>nystatecio</code>, <code>nysoct</code>, <code>inpublichealth</code>, <code>msdh</code>, <code>arkansasgov</code>, <code>nysdos</code>, <code>noaacio</code>, <code>dohdc</code>, <code>cspchief</code>, <code>flsertweather</code>, <code>nyalert</code>, <code>scdhec</code>, <code>dcfireems</code>, <code>mayorvincegray</code>
+              </p>
+            </details>
+
+            <figure class="figure-container">
+              <img src="image-16.png" alt="Table 7.2 Screenshot">
+            </figure>
+
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>조직 분류 (Affiliation)</th>
+                    <th>핵심 멤버 트위터 핸들 (Core Twitter Accounts)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>FEMA (연방재난관리청)</strong></td>
+                    <td><code>craigatfema</code>, <code>fema</code>, <code>femaregion1</code> ~ <code>femaregion10</code> (총 12개)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>National Guard (주 방위군)</strong></td>
+                    <td><code>georgiaguard</code>, <code>ndnationalguard</code>, <code>uscoastguard</code></td>
+                  </tr>
+                  <tr>
+                    <td><strong>State (주 정부 기관)</strong></td>
+                    <td><code>alabamaema</code>, <code>ar_emergencies</code>, <code>azein</code>, <code>calema</code>, <code>emdsc</code>, <code>georgiaema</code>, <code>gohsep</code>, <code>mass_hhs</code>, <code>massema</code>, <code>massgov</code>, <code>michemhs</code>, <code>mndps_hsem</code>, <code>msema</code>, <code>nmdhsem</code>, <code>nysemo</code>, <code>okem</code>, <code>readycolorado</code>, <code>t_e_m_a</code>, <code>utahemergency</code></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Federal (기타 연방 기관)</strong></td>
+                    <td><code>cdcemergency</code>, <code>customsborder</code>, <code>dhsjournal</code>, <code>fbipressoffice</code>, <code>readydotgov</code>, <code>statedept</code>, <code>tsablogteam</code>, <code>usagov</code>, <code>usgs</code>, <code>usnoaagov</code>, <code>usoceangov</code>, <code>whitehouse</code></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- SUBSECTION: DUCKETT FIRE -->
+          <div class="subsection-block" id="subsec-duckett-fire">
+            <h3 class="subsection-title"><i data-lucide="map-pin"></i> DISASTER CASE STUDY: COLORADO DUCKETT FIRE (재난 사례: 콜로라도 덕켓 산불)</h3>
+            
+            <div class="para-card">
+              <div class="para-content">
+                2011년 6월, 콜로라도 남부 샌 이사벨 국유림(San Isabel National Forest)에서 발생한 덕켓 산불은 FEMA에 의해 6월 15일부터 24일까지 공식 재난으로 선포되었습니다. 약 650명의 인력이 투입되었고 프레몬트 및 커스터 카운티의 130여 가구가 대피하였으며 피해액은 400만 달러 이상이었습니다. 이 사건은 <strong>재난 발생 시 콜로라도 계정들과 다른 모든 계정들의 주의 동학 차이를 대조</strong>할 수 있는 결정적인 준실험적 연구 환경을 제공합니다.
+              </div>
+            </div>
+
+            <figure class="figure-container">
+              <img src="image-17.png" alt="Figure 7.3 Colorado Map">
+              <figcaption class="figure-caption">
+                <strong>Figure 7.3</strong> Colorado state with county borders projected in latitude/longitude space. Blue dots represent Twitter handle geocodes and the red dot represents San Isabel National Forest location, which was the start location of the Duckett Fire. (콜로라도 주 지도. 파란 점은 트위터 계정 위치, 빨간 점은 덕켓 산불 시작점)
+              </figcaption>
+            </figure>
+
+            <figure class="figure-container">
+              <img src="image-18.png" alt="Figure 7.4 Helicopter Firefighting">
+              <figcaption class="figure-caption">
+                <strong>Figure 7.4</strong> Type 1 helicopter flying over Duckett fire captured by the US Forest Service on June 15, 2011. (덕켓 산불 현장에 투입된 Type 1 대형 진화 헬리콥터)
+              </figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <!-- 5. METHODS -->
+        <section class="section-block" id="sec-methods">
+          <div class="section-header">
+            <i data-lucide="cpu" class="section-icon"></i>
+            <h2 class="section-title">METHODS (연구 방법)</h2>
+            <span class="section-badge">원문 pp. 103–107</span>
+          </div>
+
+          <!-- SUBSECTION: NOTATION -->
+          <div class="subsection-block" id="subsec-notation">
+            <h3 class="subsection-title"><i data-lucide="code"></i> NOTATION (수학적 표기법)</h3>
+            <div class="para-card">
+              <div class="para-content">
+                그래프 $G = (V, E)$는 노드 집합 $V$(조직)와 변 집합 $E$(링크)로 구성됩니다. 트위터 팔로워 네트워크는 ① 방향성(directed), ② 자기 자신 팔로우 불가(no self-loops), ③ 다중 연결 불가(no multigraph)의 특성을 갖는 <strong>단순 유향 그래프(simple digraph)</strong>입니다. 인접 행렬 $Y^t$는 시점 $t$에서 $i$가 $j$를 팔로우하면 $Y_{ij}^t = 1$, 아니면 $0$입니다.
+              </div>
+            </div>
+          </div>
+
+          <!-- SUBSECTION: DNR -->
+          <div class="subsection-block" id="subsec-dnr">
+            <h3 class="subsection-title"><i data-lucide="calculator"></i> DYNAMIC NETWORK REGRESSION (동적 네트워크 회귀; DNR)</h3>
+            <div class="para-card">
+              <div class="para-content">
+                DNR은 이전 $k$일간의 과거 네트워크 상태 $Y_{t-k}^{t-1} = (Y_{t-1}, \dots, Y_{t-k})$에 조건화된 현재 시점 네트워크 $Y_t$를 모델링합니다(Almquist & Butts, 2013, 2014b). 각 시점의 연결 상태를 종속변수로 하는 <strong>로지스틱 회귀(Logistic Regression)</strong> 형태로 재작성되므로, 조건부 오즈비(conditional odds ratio) 해석이 가능합니다.
+              </div>
+            </div>
+
+            <figure class="figure-container">
+              <img src="image-19.png" alt="Equation 7.1 Screenshot" style="max-height:80px; width:auto;">
+            </figure>
+
+            <div class="eq-box">
+              $$\Pr\left(Y^t \mid Y_{t-k}^{t-1}, X^t\right) = \prod_{i \neq j \in V^t \times V^t} \mathcal{B}\left(Y_{ij}^t; \, \operatorname{logit}^{-1}\left(\theta^T u(i, j, Y_{t-k}^{t-1}, X^t)\right)\right) \tag{7.1}$$
+              <p style="font-size:0.85rem; color:var(--text-muted); margin-top:0.75rem;">
+                식 (7.1) 동적 네트워크 로지스틱 회귀(DNR) 우도함수. $\mathcal{B}$는 베르누이 pmf, $u$는 충분통계량 벡터, $\theta$는 모수 벡터.
+              </p>
+            </div>
+          </div>
+
+          <!-- SUBSECTION: MECHANISMS PARAMETERIZATION -->
+          <div class="subsection-block" id="subsec-mech-param">
+            <h3 class="subsection-title"><i data-lucide="sliders"></i> MECHANISMS OF ATTENTIONAL DYNAMICS (주의 동학 매개변수화)</h3>
+            
+            <div class="para-card">
+              <div class="para-content">
+                <ol>
+                  <li><strong>기저 주의율 (Base Rate, $\delta$)</strong>: 임의의 두 계정이 연결될 기본 절편(intercept).</li>
+                  <li><strong>관성 (Inertia, $Y_{t-1} \sim Y_{t-7}$)</strong>: 1일~7일까지의 일별 과거 연결 지속 효과.</li>
+                  <li><strong>동질혼 (Homophily)</strong>: 동일 주(STATE) 일치 및 FEMA 소속 일치 여부.</li>
+                  <li><strong>공유 파트너 (Shared Partners, $SP$)</strong>: 두 조직이 동시에 팔로우하는 제3자 $k$의 수.</li>
+                  <li><strong>이행성 (Transitivity, $\text{Trans}$)</strong>: $i \rightarrow k \rightarrow j$ 2-경로의 수.</li>
+                  <li><strong>인기도와 활동도</strong>: 내향차수($\text{InDeg}$, 인기도) 및 외향차수($\text{OutDeg}$, 활동도).</li>
+                  <li><strong>상호성 ($\text{Mut}$)</strong>: 시차 호혜성(상호 맞팔로우) 횟수.</li>
+                  <li><strong>계절성 ($I\{\text{Weekend}\}$)</strong>: 주말 vs 주중 활동 차이.</li>
+                  <li><strong>재해 사건 효과 ($I\{\text{COFire}\}$)</strong>: 콜로라도 계정 × FEMA 산불 재난 선포 기간 상호작용.</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 6. RESULTS -->
+        <section class="section-block" id="sec-results">
+          <div class="section-header">
+            <i data-lucide="bar-chart-2" class="section-icon"></i>
+            <h2 class="section-title">RESULTS (분석 결과)</h2>
+            <span class="section-badge">원문 pp. 107–109</span>
+          </div>
+
+          <figure class="figure-container">
+            <img src="image-20.png" alt="Table 7.3 Regression Table">
+          </figure>
+
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>매개변수 (Parameters)</th>
+                  <th>추정치 (Estimate)</th>
+                  <th>표준편차 (SD)</th>
+                  <th>매개변수 (Parameters)</th>
+                  <th>추정치 (Estimate)</th>
+                  <th>표준편차 (SD)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>절편 ($\delta$, Baseline)</strong></td><td><strong>-6.6860<span class="sig-star">*</span></strong></td><td>0.0548</td><td><strong>$SP(Y_{t-1})$ (공유파트너 1일)</strong></td><td><strong>-0.1237<span class="sig-star">*</span></strong></td><td>0.0156</td></tr>
+                <tr><td><strong>FEMA 동질혼</strong></td><td>-0.0201</td><td>0.0382</td><td><strong>$SP(Y_{t-2})$ (공유파트너 2일)</strong></td><td><strong>-0.1195<span class="sig-star">*</span></strong></td><td>0.0153</td></tr>
+                <tr><td><strong>STATE 동질혼</strong></td><td>0.0623</td><td>0.0772</td><td><strong>$SP(Y_{t-3})$ (공유파트너 3일)</strong></td><td>0.1159</td><td>0.1707</td></tr>
+                <tr><td><strong>$I\{\text{Weekend}\}$ (주말 효과)</strong></td><td><strong>0.7646<span class="sig-star">*</span></strong></td><td>0.0356</td><td><strong>$SP(Y_{t-4})$ (공유파트너 4일)</strong></td><td><strong>0.0207<span class="sig-star">*</span></strong></td><td>0.0064</td></tr>
+                <tr><td><strong>$I\{\text{COFire}\}$ (산불 재난)</strong></td><td><strong>1.4819<span class="sig-star">*</span></strong></td><td>0.1042</td><td><strong>$SP(Y_{t-5})$ (공유파트너 5일)</strong></td><td>-0.0036</td><td>0.0025</td></tr>
+                <tr><td><strong>$\text{Trans}(Y_{t-1})$ (이행성 1일)</strong></td><td><strong>-0.0237<span class="sig-star">*</span></strong></td><td>0.0041</td><td><strong>$SP(Y_{t-6})$ (공유파트너 6일)</strong></td><td>-0.0047</td><td>0.0166</td></tr>
+                <tr><td><strong>$\text{Trans}(Y_{t-2})$ (이행성 2일)</strong></td><td>0.0010</td><td>0.0016</td><td><strong>$SP(Y_{t-7})$ (공유파트너 7일)</strong></td><td>-0.0072</td><td>0.0160</td></tr>
+                <tr><td><strong>$\text{Trans}(Y_{t-3})$ (이행성 3일)</strong></td><td><strong>0.0569<span class="sig-star">*</span></strong></td><td>0.0106</td><td><strong>$\text{OutDeg}(Y_{t-1})$ (활동도 1일)</strong></td><td>-0.0018</td><td>0.0023</td></tr>
+                <tr><td><strong>$\text{Trans}(Y_{t-4})$ (이행성 4일)</strong></td><td><strong>0.0696<span class="sig-star">*</span></strong></td><td>0.0104</td><td><strong>$\text{OutDeg}(Y_{t-2})$ (활동도 2일)</strong></td><td><strong>-0.1985<span class="sig-star">*</span></strong></td><td>0.0159</td></tr>
+                <tr><td><strong>$\text{Trans}(Y_{t-5})$ (이행성 5일)</strong></td><td>0.0897</td><td>0.1190</td><td><strong>$\text{OutDeg}(Y_{t-3})$ (활동도 3일)</strong></td><td><strong>-0.1924<span class="sig-star">*</span></strong></td><td>0.0152</td></tr>
+                <tr><td><strong>$\text{Trans}(Y_{t-6})$ (이행성 6일)</strong></td><td><strong>0.0241<span class="sig-star">*</span></strong></td><td>0.0060</td><td><strong>$\text{OutDeg}(Y_{t-4})$ (활동도 4일)</strong></td><td><strong>-0.4868<span class="sig-star">*</span></strong></td><td>0.1728</td></tr>
+                <tr><td><strong>$\text{Trans}(Y_{t-7})$ (이행성 7일)</strong></td><td>-0.0002</td><td>0.0023</td><td><strong>$\text{OutDeg}(Y_{t-5})$ (활동도 5일)</strong></td><td><strong>0.0363<span class="sig-star">*</span></strong></td><td>0.0058</td></tr>
+                <tr><td><strong>$\text{InDeg}(Y_{t-1})$ (인기도 1일)</strong></td><td><strong>-0.3907<span class="sig-star">*</span></strong></td><td>0.1837</td><td><strong>$\text{OutDeg}(Y_{t-6})$ (활동도 6일)</strong></td><td>-0.0044</td><td>0.0023</td></tr>
+                <tr><td><strong>$\text{InDeg}(Y_{t-2})$ (인기도 2일)</strong></td><td><strong>-0.0406<span class="sig-star">*</span></strong></td><td>0.0055</td><td><strong>$\text{OutDeg}(Y_{t-7})$ (활동도 7일)</strong></td><td><strong>-0.1297<span class="sig-star">*</span></strong></td><td>0.0154</td></tr>
+                <tr><td><strong>$\text{InDeg}(Y_{t-3})$ (인기도 3일)</strong></td><td>0.0034</td><td>0.0021</td><td><strong>$Y_{t-1}$ (관성 1일)</strong></td><td><strong>2.8834<span class="sig-star">*</span></strong></td><td>0.0589</td></tr>
+                <tr><td><strong>$\text{InDeg}(Y_{t-4})$ (인기도 4일)</strong></td><td><strong>0.1087<span class="sig-star">*</span></strong></td><td>0.0139</td><td><strong>$Y_{t-2}$ (관성 2일)</strong></td><td><strong>-1.0183<span class="sig-star">*</span></strong></td><td>0.1187</td></tr>
+                <tr><td><strong>$\text{InDeg}(Y_{t-5})$ (인기도 5일)</strong></td><td><strong>0.0967<span class="sig-star">*</span></strong></td><td>0.0135</td><td><strong>$Y_{t-3}$ (관성 3일)</strong></td><td><strong>1.5953<span class="sig-star">*</span></strong></td><td>0.1174</td></tr>
+                <tr><td><strong>$\text{InDeg}(Y_{t-6})$ (인기도 6일)</strong></td><td><strong>0.3616<span class="sig-star">*</span></strong></td><td>0.1557</td><td><strong>$Y_{t-4}$ (관성 4일)</strong></td><td><strong>3.5918<span class="sig-star">*</span></strong></td><td>0.0761</td></tr>
+                <tr><td><strong>$\text{InDeg}(Y_{t-7})$ (인기도 7일)</strong></td><td><strong>0.0606<span class="sig-star">*</span></strong></td><td>0.0060</td><td><strong>$Y_{t-5}$ (관성 5일)</strong></td><td><strong>-2.6662<span class="sig-star">*</span></strong></td><td>0.0926</td></tr>
+                <tr><td><strong>$\text{Mut}(Y_{t-1})$ (상호성 1일)</strong></td><td><strong>-0.0897<span class="sig-star">*</span></strong></td><td>0.0145</td><td><strong>$Y_{t-6}$ (관성 6일)</strong></td><td><strong>3.2747<span class="sig-star">*</span></strong></td><td>0.0771</td></tr>
+                <tr><td><strong>$\text{Mut}(Y_{t-2})$ (상호성 2일)</strong></td><td>-0.0595</td><td>0.1654</td><td><strong>$Y_{t-7}$ (관성 7일)</strong></td><td><strong>6.0267<span class="sig-star">*</span></strong></td><td>0.0475</td></tr>
+                <tr><td><strong>$\text{Mut}(Y_{t-3})$ (상호성 3일)</strong></td><td><strong>-0.0338<span class="sig-star">*</span></strong></td><td>0.0038</td><td colspan="3" rowspan="5" style="background:var(--bg-card); text-align:center; vertical-align:middle;">
+                  <strong style="font-size:1.05rem; color:var(--accent-primary);">최종 BIC = 71,312.96</strong><br/>
+                  <span style="font-size:0.8rem; color:var(--text-muted);">(* 95% 중앙 사후 신뢰구간 기준 p &lt; .05 수준에서 유의함)</span>
+                </td></tr>
+                <tr><td><strong>$\text{Mut}(Y_{t-4})$ (상호성 4일)</strong></td><td>-0.0028</td><td>0.0016</td></tr>
+                <tr><td><strong>$\text{Mut}(Y_{t-5})$ (상호성 5일)</strong></td><td><strong>0.1021<span class="sig-star">*</span></strong></td><td>0.0107</td></tr>
+                <tr><td><strong>$\text{Mut}(Y_{t-6})$ (상호성 6일)</strong></td><td><strong>0.0677<span class="sig-star">*</span></strong></td><td>0.0102</td></tr>
+                <tr><td><strong>$\text{Mut}(Y_{t-7})$ (상호성 7일)</strong></td><td><strong>0.2947<span class="sig-star">*</span></strong></td><td>0.1168</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- SUBSECTION: INTERPRETATION -->
+          <div class="subsection-block" id="subsec-interpretation">
+            <h3 class="subsection-title"><i data-lucide="check-square"></i> INTERPRETATION (결과 해석)</h3>
+
+            <div class="para-card">
+              <div class="para-header"><i data-lucide="check" style="width:16px;"></i> 1. 극도로 낮은 기저 확률과 압도적인 관성(Inertia)</div>
+              <div class="para-content">
+                절편($\delta = -6.6860$)은 과거 7일간 무교류였던 쌍의 자발적 연결 확률이 거의 0임을 뜻합니다. 반면 직전 1일차($t-1$)에만 연결이 존재했더라도 오즈비는 $e^{2.8834} \approx 18$배(약 20배) 폭증하며, 7일간 지속된 경우($\beta = 6.0267$) 연결은 사실상 고착화됩니다.
+              </div>
+            </div>
+
+            <div class="para-card">
+              <div class="para-header"><i data-lucide="check" style="width:16px;"></i> 2. 동질혼의 부재 (Lack of Homophily)</div>
+              <div class="para-content">
+                동일 주(STATE = 0.0623) 및 FEMA 소속 일치(FEMA = -0.0201) 효과는 모두 통계적으로 유의하지 않았습니다. 공공기관들은 단순한 소속이나 지리적 동일성만으로 주의 관계를 맺지 않습니다.
+              </div>
+            </div>
+
+            <div class="para-card">
+              <div class="para-header"><i data-lucide="check" style="width:16px;"></i> 3. 장기 지속 구조 vs 일시적 구조의 비대칭성 (Enduring vs Transient)</div>
+              <div class="para-content">
+                <ul>
+                  <li><strong>이행성 & 상호성</strong>: 단기 시차(1~3일)에서는 음수(-)이나, 4~7일 장기 시차에서는 매우 강한 양수(+)로 전환됩니다. 즉, 일시적인 삼항 관계나 맞팔로우는 쉽게 소멸되지만, 며칠간 유지된 관계는 삼항 폐쇄와 결속을 강화합니다.</li>
+                  <li><strong>인기도 (InDeg)</strong>: 단기에는 음수이나 장기에는 큰 양수로 총합이 양수입니다. 즉, 일시적 반짝 인기는 곧 가라앉지만 지속적인 인기를 끈 계정은 팔로워를 계속 끌어당깁니다.</li>
+                  <li><strong>활동도의 역설 (OutDeg Penalty)</strong>: 외향연결정도는 전 시차에서 일관되게 강력한 음수(-0.4868 등)입니다. 자신이 너무 많은 계정을 팔로우하면 오히려 주의 대상에서 탈락하는 심각한 페널티를 받습니다.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="para-card">
+              <div class="para-header"><i data-lucide="check" style="width:16px;"></i> 4. 주말 효과와 콜로라도 산불 재난의 폭발적 충격</div>
+              <div class="para-content">
+                주말 지시자($\beta = +0.7646$)가 유의한 양수를 보여 정규 근무시간 외에 계정 관리 활동이 활발함을 시사합니다. 또한 산불 지시자($I\{\text{COFire}\} = +1.4819$)는 엄청난 양수로서 재난 발생 즉시 지역 계정들의 현저성이 급증함을 실증합니다.
+              </div>
+            </div>
+
+            <figure class="figure-container">
+              <img src="image-21.png" alt="Figure 7.5 June 16 vs 17 Network">
+              <figcaption class="figure-caption">
+                <strong>Figure 7.5</strong> Induced attentional network of Colorado-based US emergency management–related organizations over June 16 and June 17, 2011. Note the clear surge in attentional relationships associated with the onset of the disaster. (2011년 6월 16일과 17일 사이 콜로라도 계정 네트워크. 재난 선포 직후 완전 고립 노드 상태에서 하룻밤 사이에 완전 연결망으로 급변함)
+              </figcaption>
+            </figure>
+
+            <figure class="figure-container">
+              <img src="image-22.png" alt="Figure 7.6 Degree Evolution">
+              <figcaption class="figure-caption">
+                <strong>Figure 7.6</strong> Mean degree within CO Twitter accounts and mean in- and outdegree of the CO Twitter account groups. (FEMA 재난 선포 기간인 붉은색 음영 구간 동안 콜로라도 계정 그룹의 연결차수가 폭발적으로 치솟는 모습)
+              </figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <!-- 7. DISCUSSION -->
+        <section class="section-block" id="sec-discussion">
+          <div class="section-header">
+            <i data-lucide="message-square" class="section-icon"></i>
+            <h2 class="section-title">DISCUSSION (논의)</h2>
+            <span class="section-badge">원문 pp. 109–111</span>
+          </div>
+
+          <div class="para-card">
+            <div class="para-header"><i data-lucide="crosshair" style="width:16px;"></i> [문단 1 & 2] 스포트라이트의 전환과 구조적 적응 전술</div>
+            <div class="para-content">
+              재난이 터지면 전체 네트워크의 주의가 거대 중앙 조직이 아니라 <strong>현장의 로컬 조직(local organizations)으로 집중(spotlight)</strong>됩니다. 지속적 관계는 관성적으로 유지하되 단기 관계는 매우 적극적으로 순환(actively cycled)시키는 것은, 조직들이 제한된 집중력 하에서 <strong>상황인식(situational awareness)을 극대화하기 위해 구사하는 생존 전술</strong>입니다.
+            </div>
+          </div>
+
+          <div class="para-card">
+            <div class="para-header"><i data-lucide="alert-triangle" style="width:16px;"></i> [문단 3 & 4] 신호 효과와 사전 상태 고착화(Lock-in)의 위험</div>
+            <div class="para-content">
+              많은 팔로워를 보유하는 것(InDeg)은 권위 있는 정보원이라는 신호이지만, 너무 많은 대상을 팔로우하는 것(OutDeg)은 "루프 밖(out of the loop)"에 있다는 부정적 신호를 전달합니다. 한편, 시스템에 내재된 강력한 관성으로 인해 <strong>주의 관계가 평시 사전 상태(preevent states)에 고착(stuck)</strong>될 경우, 급변하는 재난 현장에 적응하지 못하여 골든타임을 상실하는 중대한 위기가 발생할 수 있습니다.
+            </div>
+          </div>
+
+          <div class="callout-box">
+            <div class="callout-title"><i data-lucide="lightbulb"></i> 🔍 [보조교재 심화 해설: 재난관리 실무 및 정책적 제언]</div>
+            <div class="callout-content">
+              <strong>1. 무분별한 팔로잉의 역효과 방지</strong>: 많은 계정을 팔로우할수록 타 기관으로부터 전문성이 떨어진다는 인식을 주어 네트워크 중심성을 잃게 됩니다(Out-degree penalty).<br/>
+              <strong>2. 로컬 상호 연계 프로토콜(SOP)의 사전 제도화</strong>: Figure 7.5처럼 산불이 터진 후에야 하룻밤 사이에 계정을 급조하여 팔로우하는 방식은 초기 대응 지연을 초래합니다. 관할 방재 기관 간의 상호 팔로우 및 피드 연계를 평시 위기대응 매뉴얼에 공식 등록해 두어야 합니다.
+            </div>
+          </div>
+        </section>
+
+        <!-- 8. SUMMARY -->
+        <section class="section-block" id="sec-summary">
+          <div class="section-header">
+            <i data-lucide="check-circle-2" class="section-icon"></i>
+            <h2 class="section-title">SUMMARY (요약)</h2>
+            <span class="section-badge">원문 pp. 111–112</span>
+          </div>
+
+          <div class="para-card">
+            <div class="para-content">
+              본 연구는 트위터 상에서 미국 재난관리 유관 조직들의 주의 네트워크를 통계적 네트워크 모델(DNR)로 최초 분석하였습니다. 7일 시차에 걸친 복잡한 역사적 의존성, 활동적 노드로부터의 이탈 경향, 삼항 폐쇄, 영속적 구조와 일시적 구조의 비대칭성, 그리고 대규모 재난(콜로라도 산불) 발생 시 로컬 조직의 폭발적 부상을 실증적으로 규명하였습니다.
+            </div>
+          </div>
+        </section>
+
+        <!-- 9. ACKNOWLEDGMENTS -->
+        <section class="section-block" id="sec-ack">
+          <div class="section-header">
+            <i data-lucide="award" class="section-icon"></i>
+            <h2 class="section-title">ACKNOWLEDGMENTS (사사)</h2>
+            <span class="section-badge">원문 p. 112</span>
+          </div>
+
+          <div class="para-card">
+            <div class="para-content" style="font-size:0.875rem; color:var(--text-muted);">
+              This work was supported in part by Army Research Office awards #W911NF-14-1-0577 (YIP), #W911NF-15-1-0270 (YIP), and #W911NF-14-1-0552, and by National Science Foundation awards CMMI-1031853, CMMI-1031779, and CMMI-1536319.
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // Lucide Icons Render
+    lucide.createIcons();
+
+    // Reading Progress Bar
+    window.addEventListener('scroll', () => {
+      const winScroll = document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('progress-bar').style.width = scrolled + '%';
+    });
+
+    // Theme Toggle
+    const themeBtn = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    let isLight = false;
+
+    themeBtn.addEventListener('click', () => {
+      isLight = !isLight;
+      if (isLight) {
+        document.documentElement.setAttribute('data-theme', 'light');
+        themeIcon.setAttribute('data-lucide', 'sun');
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+        themeIcon.setAttribute('data-lucide', 'moon');
+      }
+      lucide.createIcons();
+    });
+
+    // TOC Active State on Scroll
+    const trackedBlocks = document.querySelectorAll('.section-block, .subsection-block');
+    const navItems = document.querySelectorAll('.toc-item');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      trackedBlocks.forEach(block => {
+        const blockTop = block.offsetTop;
+        if (window.pageYOffset >= blockTop - 130) {
+          current = block.getAttribute('id');
+        }
+      });
+
+      navItems.forEach(item => {
+        item.classList.remove('active');
+        const link = item.querySelector('a');
+        if (link && link.getAttribute('href') === `#${current}`) {
+          item.classList.add('active');
+        }
+      });
+    });
+
+    // Sidebar Search Filter
+    const searchInput = document.getElementById('search-input');
+    const tocList = document.getElementById('toc-list');
+    const tocLinks = tocList.getElementsByTagName('li');
+
+    searchInput.addEventListener('input', (e) => {
+      const term = e.target.value.toLowerCase();
+      Array.from(tocLinks).forEach(li => {
+        const text = li.innerText.toLowerCase();
+        if (text.includes(term)) {
+          li.style.display = 'block';
+        } else {
+          li.style.display = 'none';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
