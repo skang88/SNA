@@ -202,12 +202,12 @@
 <h1>[SNA 세미나 연구계획서] 화재 대응단계 격상 전·후 소방 무전 교신 네트워크의 구조 변화와 유관기관 최초 연결 지연시간(Tie Formation Latency) 실증 연구</h1>
 
 <div class="subtitle">
-  <strong>부제</strong>: 교재 제7장(Almquist et al., 2017)의 재해 사건 효과(Hazard Event Effect) 벤치마킹: 119관제로그 타임스탬프 기반 네트워크 밀도(Density) 및 유관기관 진입 시차 넷마이너(NetMiner) 비교<br>
+  <strong>부제</strong>: 교재 제7장(Almquist et al., 2017)의 재해 사건 효과(Hazard Event Effect) 벤치마킹: 대형화재 3개 사례 119관제로그 타임스탬프 기반 네트워크 밀도 및 유관기관 진입 시차 다중 비교 분석(Comparative Multiple Case Study)<br>
   <strong>과목명</strong>: 사회연결망분석(SNA) 특론 및 세미나 (Graduate Seminar in Social Network Analysis)<br>
   <strong>제출구분</strong>: 학기 기말 연구논문 계획서 (Term Paper Research Proposal - 4주 집중 완성 프로젝트)<br>
-  <strong>연구 설계 전략 (현실적 실행력 &amp; 타임스탬프의 강력한 결합)</strong>:<br>
-  • 복잡한 계량통계(DNR 패널 회귀)를 걷어내고, 4주 기말 과제 내에서 100% 실행 가능한 <strong>단일 핵심 가설(가설 1) 및 직관적 세부 가설(가설 1-1)</strong>로 연구 범위를 최적화.<br>
-  • 교재 제7장(Almquist et al., 2017, pp. 102–109)의 <strong>'산불 재난 선포 전·후 네트워크 급증 실증(Figure 7.5, 7.6)'</strong>과 <strong>'연결 형성(Tie Formation) 메커니즘'</strong>을 소방의 <strong>'대응단계 격상 타임스탬프'</strong> 및 <strong>'유관기관 최초 교신 타임스탬프'</strong>와 1:1로 결합하여 실무성과 학술성을 동시에 확보.
+  <strong>연구 설계 전략 (외적 타당도 확보 &amp; 3개 사례 비교 연구)</strong>:<br>
+  • 단일 사례(1건)의 일반화 한계를 극복하기 위해 <strong>최근 3개년 대응 2단계 대형화재 공식 관제로그 3건</strong>을 표본으로 확정하여 <strong>다중 비교 사례 연구(Comparative Case Study)</strong> 체계 확립.<br>
+  • 교재 제7장(Almquist et al., 2017, pp. 102–109)의 <strong>'산불 재난 선포 전·후 네트워크 급증 실증(Figure 7.5, 7.6)'</strong>과 <strong>'연결 형성(Tie Formation) 메커니즘'</strong>을 소방의 <strong>'대응단계 격상 타임스탬프'</strong> 및 <strong>'유관기관 최초 교신 타임스탬프'</strong>와 결합하여 3개 사례에 걸친 공통적 구조 패턴을 실증 검증.
 </div>
 
 <hr>
@@ -251,9 +251,9 @@
 
 <div class="mermaid">
 flowchart LR
-    A["[교재 제7장 벤치마킹]<br/>Almquist et al. (2017)<br/>재해 충격 전·후 연결 급증<br/>(Figure 7.5, 7.6)"] --> B["[소방 관제로그 확보]<br/>119긴급구조표준시스템<br/>관제진행상황 엑셀 원장<br/>(대응 2단계 화재 1건)"]
+    A["[교재 제7장 벤치마킹]<br/>Almquist et al. (2017)<br/>재해 충격 전·후 연결 급증<br/>(Figure 7.5, 7.6)"] --> B["[소방 관제로그 확보]<br/>119긴급구조표준시스템<br/>대응 2단계 화재 3건<br/>(공장·창고·복합건축물)"]
     B --> C["[타임스탬프 추출 & 2단계 분할]<br/>• T_stage: 대응단계 발령 시각<br/>• T_first: 유관기관별 최초 교신 시각<br/>• 지연시차: Δt = T_first - T_stage"]
-    C --> D["[NetMiner 4.5 실증 분석]<br/>• 격상 전·후 소시오그램 비교<br/>• 밀도 및 평균차수 증가율<br/>• 유관기관 네트워크 진입속도"]
+    C --> D["[NetMiner 4.5 비교 분석]<br/>• 3개 사례별 전·후 소시오그램<br/>• 밀도 및 차수 증가율 교차검증<br/>• 유관기관 지연시차(Δt) 비교표"]
     D --> E["[학술 및 실무 환류]<br/>재난안전법 제52조 기반<br/>비상 격상 시 유관기관<br/>지휘망 최초응답 KPI (30:70)"]
 </div>
 
@@ -267,7 +267,7 @@ flowchart LR
   <tbody>
     <tr>
       <td><strong>연구 제명</strong></td>
-      <td><strong>《화재 대응단계 격상 전·후 소방 무전 교신 네트워크의 구조 변화와 유관기관 최초 연결 지연시간(Tie Formation Latency) 실증 연구: 교재 제7장(Almquist et al., 2017) 재해 사건 효과(Hazard Event Effect)의 넷마이너(NetMiner) 비교 분석》</strong></td>
+      <td><strong>《화재 대응단계 격상 전·후 소방 무전 교신 네트워크의 구조 변화와 유관기관 최초 연결 지연시간(Tie Formation Latency) 실증 연구: 대형화재 3개 사례 119관제로그 기반 넷마이너(NetMiner) 다중 비교 분석》</strong></td>
     </tr>
     <tr>
       <td><strong>벤치마킹 타깃</strong></td>
@@ -275,22 +275,22 @@ flowchart LR
     </tr>
     <tr>
       <td><strong>표본 및 자료수집</strong></td>
-      <td><strong>119종합상황실 긴급구조표준시스템 공식 관제진행상황 엑셀(.xlsx) 1건</strong><br>• 최근 발생한 대응 2단계 대형 공장/복합건축물 화재 1건의 관제로그 전문<br>• <strong>데이터 확보 리스크 0%</strong>: 상황실 관제 시스템에서 직접 추출하여 즉시 활용 가능</td>
+      <td><strong>119종합상황실 긴급구조표준시스템 공식 관제진행상황 엑셀(.xlsx) 원장 3건</strong><br>• <strong>사례 1</strong>: 대형 샌드위치패널 공장 화재 (대응 2단계)<br>• <strong>사례 2</strong>: 복합 물류창고 화재 (대응 2단계)<br>• <strong>사례 3</strong>: 다중이용 복합건축물 화재 (대응 2단계)<br>• <strong>데이터 확보 리스크 0%</strong>: 상황실 시스템에서 추출하여 즉시 활용 가능</td>
     </tr>
     <tr>
       <td><strong>핵심 추출 변수 (타임스탬프)</strong></td>
-      <td>① <strong>$T_{\text{stage}}$</strong>: 관제로그 상 공식 '대응단계(1단계/2단계) 발령' 타임스탬프 (hh:mm:ss)<br>② <strong>$T_{\text{first}}$</strong>: 유관기관(경찰, 한전, 가스공사, 지자체 등)과 최초로 무전/관제 교신이 발생한 타임스탬프<br>③ <strong>$\Delta t$ (연결 지연시차)</strong>: $\Delta t = T_{\text{first}} - T_{\text{stage}}$ (초/분 단위 계산)</td>
+      <td>① <strong>$T_{\text{stage}}$</strong>: 사례별 공식 '대응단계(1단계/2단계) 발령' 타임스탬프 (hh:mm:ss)<br>② <strong>$T_{\text{first}}$</strong>: 유관기관(경찰, 한전, 가스공사, 지자체 등)과 최초로 무전/관제 교신이 발생한 타임스탬프<br>③ <strong>$\Delta t$ (연결 지연시차)</strong>: $\Delta t = T_{\text{first}} - T_{\text{stage}}$ (초/분 단위 계산)</td>
     </tr>
     <tr>
       <td><strong>분석 도구</strong></td>
-      <td>• <strong>Excel / Python</strong>: 타임스탬프 필터링, 격상 전(Phase 1) vs 격상 후(Phase 2) Edgelist 분할<br>• <strong>NetMiner 4.5</strong>: 전·후 소시오그램 시각화(Spring-Embedder) 및 네트워크 속성 지표 산출</td>
+      <td>• <strong>Excel / Python</strong>: 3개 사례별 타임스탬프 필터링, 격상 전(Phase 1) vs 격상 후(Phase 2) Edgelist 분할<br>• <strong>NetMiner 4.5</strong>: 사례별 전·후 소시오그램 시각화(Spring-Embedder) 및 네트워크 속성 지표 산출</td>
     </tr>
     <tr>
       <td><strong>핵심 종속 지표</strong></td>
-      <td>① <strong>네트워크 밀도 (Density)</strong>: 격상 전 vs 격상 후 연결 조밀도 변화<br>② <strong>평균 연결정도 (Mean Degree)</strong>: 노드당 평균 교신선 수 변화<br>③ <strong>유관기관 최초 연결 지연시간 ($\Delta t$)</strong>: 기능별 기관의 지휘망 진입 소요시간</td>
+      <td>① <strong>네트워크 밀도 (Density)</strong>: 격상 전 vs 격상 후 연결 조밀도 변화 및 3개 사례 평균 증가율<br>② <strong>평균 연결정도 (Mean Degree)</strong>: 노드당 평균 교신선 수 변화<br>③ <strong>유관기관 최초 연결 지연시간 ($\Delta t$)</strong>: 기능별(치안·에너지·행정) 유관기관의 지휘망 진입 소요시간 비교</td>
     </tr>
     <tr>
-      <td><strong>실행 용이성</strong></td>
+      <td><strong>연구의 실행성</strong></td>
       <td>복잡한 계량 패널 회귀 없이 <strong>타임스탬프 뺄셈 계산 및 넷마이너 기본 기능</strong>만으로 4주 내 100% 완결</td>
     </tr>
   </tbody>
@@ -298,30 +298,28 @@ flowchart LR
 
 <hr>
 
-<h2>1. 연구 배경 및 필요성 (Problem Statement)</h2>
+<h2>1. 연구 배경 및 3개 사례 비교의 당위성 (Problem Statement)</h2>
 
-<h3>1.1 연구 범위의 현실적 압축과 타임스탬프의 가치</h3>
+<h3>1.1 단일 사례(1건)의 한계 극복과 다중 사례 비교(3건)의 강점</h3>
 <ul>
-  <li><strong>이론의 산만함 탈피</strong>:
+  <li><strong>외적 타당도(Generalizability) 확보</strong>:
     <ul>
-      <li>교재 제7장(Almquist et al., 2017)의 전체 수학 모델(베이지안 코시 사전분포 DNR 패널 회귀)은 4주 기말 과제로 수행하기에 현실적 장벽이 높습니다.</li>
-      <li>따라서 연구 범위를 현실적으로 좁히되, 119긴급구조표준시스템 관제로그가 가진 최고의 강점인 <strong>"초 단위 공식 타임스탬프(Time-stamps)"</strong>를 적극 활용하여 연구의 설득력과 독창성을 극대화합니다.</li>
+      <li>단일 화재 사례(1건)만을 분석할 경우, "해당 화재만의 특이점(Idiosyncrasy)이나 우연이 아닌가?"라는 방법론적 비판에 직면할 수 있습니다.</li>
+      <li>최근 3개년 대응 2단계 이상 <strong>대형화재 3건(공장·물류창고·복합건축물)</strong>을 다중 사례로 선정하여 분석하면, 화재 대상물의 차이에도 불구하고 나타나는 <strong>"공통적인 네트워크 구조 전이와 지연 패턴"</strong>을 입증할 수 있어 연구의 학술적 신뢰도가 획기적으로 상승합니다.</li>
     </ul>
   </li>
-  <li><strong>소방 현장의 핵심 질문 2가지</strong>:
-    <ol>
-      <li><em>"대응단계가 격상(사건 충격)되면, 제7장의 산불 연구처럼 무전 네트워크가 실제로 조밀하고 광범위하게 확장되는가?"</em></li>
-      <li><em>"대응단계가 발령된 직후, 현장 안전과 통제에 필수적인 유관기관(경찰, 한전 등)은 몇 분 만에 소방 지휘망에 최초로 연결(Tie Formation)되는가?"</em></li>
-    </ol>
+  <li><strong>실행 가능한 연구 범위(Term Paper)</strong>:
+    <ul>
+      <li>10건 이상의 대량 코딩은 4주 기말 과제로서 부담이 크지만, <strong>엄선된 3건의 관제로그</strong>는 반나절 내에 엑셀 정제와 넷마이너 입력이 가능하므로 4주 스프린트에 가장 완벽히 부합하는 최적의 황금비율(Sweet Spot)입니다.</li>
+    </ul>
   </li>
 </ul>
 
-<h3>1.2 소방 실무의 핵심 아킬레스건: 유관기관 진입 지체</h3>
-<ul>
-  <li>화재 현장에서 소방대원의 옥내 진입 공격을 위해서는 <strong>한전의 고압 전력 차단</strong>이 필수적이며, 소방차량의 원활한 소화용수 공급을 위해서는 <strong>경찰의 진입로 교통통제</strong>가 즉각 이루어져야 합니다.</li>
-  <li>그러나 실무 현장에서는 대응단계가 발령되었음에도 불구하고 유관기관과의 최초 교신이 이루어지기까지 상당한 시간 지연이 발생합니다.</li>
-  <li>관제로그의 타임스탬프를 통해 <strong>"대응단계 발령 시점($T_{\text{stage}}$)"</strong>과 <strong>"유관기관 최초 연결 시점($T_{\text{first}}$)"</strong> 사이의 시차($\Delta t$)를 실증적으로 규명하는 것은 현장 대응력 개선의 핵심 열쇠입니다.</li>
-</ul>
+<h3>1.2 소방 현장의 핵심 질문 2가지</h3>
+<ol>
+  <li><em>"화재 유형에 관계없이 대응단계가 격상되면, 제7장의 산불 연구처럼 무전 네트워크가 일관되게 조밀하고 광범위하게 폭증하는가?"</em></li>
+  <li><em>"대응단계가 발령된 직후, 현장 안전과 통제에 필수적인 유관기관(경찰, 한전 등)은 몇 분 만에 소방 지휘망에 최초로 연결(Tie Formation)되는가? 이 지연시간은 3개 화재 모두에서 반복되는 구조적 문제인가?"</em></li>
+</ol>
 
 <hr>
 
@@ -335,11 +333,11 @@ flowchart TD
         F3["[Tie Formation 메커니즘 (p. 97)]<br/>외생적 사건 충격이 발생할 때<br/>비로소 새로운 연결선(Tie)이 형성되는 동학"]
     end
 
-    Ch7 ==> Mapping["119관제로그 타임스탬프로 1:1 매핑"]
+    Ch7 ==> Mapping["3개 대형화재 관제로그 타임스탬프로 1:1 매핑"]
 
-    subgraph Fire["본 연구의 소방 실증 조작화 (NetMiner 4.5)"]
-        S1["[Phase 1 vs Phase 2 네트워크 비교]<br/>대응단계 격상 전·후 밀도 및 평균차수 비교<br/>(가설 1: Figure 7.5 & 7.6 복제)"]
-        S2["[유관기관 최초 연결 지연시간 Δt]<br/>Δt = T_first - T_stage (분 단위 계산)<br/>(가설 1-1: Tie Formation 시차 규명)"]
+    subgraph Fire["본 연구의 3개 사례 다중 실증 조작화 (NetMiner 4.5)"]
+        S1["[가설 1 검정: 네트워크 급증 교차 검증]<br/>3개 화재 각각 Phase 1 vs Phase 2 밀도·평균차수 산출<br/>=> 일관된 3배 이상 밀도 폭증 실증 (Figure 7.5 & 7.6 복제)"]
+        S2["[가설 1-1 검정: 유관기관 진입 시차 Δt 비교]<br/>사례 1, 2, 3의 기관별(경찰·한전·지자체) Δt 산출<br/>=> 유틸리티(한전)의 반복적 지연 공백 규명 (Tie Formation 시차)"]
     end
 </div>
 
@@ -347,66 +345,102 @@ flowchart TD
 <ul>
   <li><strong>Figure 7.5 (<code>p. 108</code>)</strong>: 콜로라도 덕켓 산불 발생 초기에는 유관기관 계정들이 고립(Isolates)되어 있었으나, 재난 선포 사건 충격 직후 하룻밤 사이에 <strong>조밀한 상호 연결망(Dense Connected Graph)</strong>으로 전이됨을 실증했습니다.</li>
   <li><strong>Figure 7.6 (<code>p. 109</code>)</strong>: 재난 기간 동안 현장 조직들의 <strong>평균 연결정도(Mean Degree)</strong>가 평상시 대비 급격히 치솟는 현상을 증명했습니다.</li>
-  <li><strong>새로운 연결 형성(Tie Formation, <code>p. 97</code>)</strong>: 외생적 재해 충격이 발생했을 때, 평소에 연결되지 않던 노드들이 어떤 시간적 패턴을 가지고 지휘 네트워크에 편입되는지가 재난 네트워크의 핵심 질문입니다.</li>
+  <li><strong>연결 형성의 시간적 동학(Tie Formation, <code>p. 97</code>)</strong>: 외생적 재해 충격이 발생했을 때, 평소에 연결되지 않던 노드들이 어떤 시간적 시차를 두고 네트워크에 편입되는지가 재난 거버넌스의 핵심입니다.</li>
 </ul>
 
 <hr>
 
 <h2>3. 연구모형 및 핵심 연구가설</h2>
 
-<h3>3.1 연구모형 (Research Model)</h3>
+<h3>3.1 연구모형 (다중 사례 비교 모델)</h3>
 
 <div class="mermaid">
 flowchart LR
-    X["[독립변수: 외생적 사건 충격]<br/>화재 대응단계 격상<br/>(타임스탬프: T_stage)"] --> Y1["[종속변수 1: 전체 네트워크 구조]<br/>• 네트워크 밀도 (Density)<br/>• 평균 연결정도 (Mean Degree)"]
-    X --> Y2["[종속변수 2: 타임스탬프 연결 지연]<br/>• 유관기관 최초 연결 지연시간<br/>(Δt = T_first - T_stage)"]
+    subgraph Input["독립변수 (사건 충격)"]
+        X["화재 대응단계 격상<br/>(타임스탬프: T_stage)"]
+    end
+
+    subgraph Cases["다중 분석 표본 (3개 대형화재)"]
+        C1["사례 1: 대형 공장 화재"]
+        C2["사례 2: 복합 물류창고 화재"]
+        C3["사례 3: 복합 건축물 화재"]
+    end
+
+    subgraph Output["종속변수 (네트워크 구조 및 시차)"]
+        Y1["[가설 1: 전체 네트워크 구조]<br/>• 네트워크 밀도 (Density) 증가율<br/>• 평균 연결정도 (Mean Degree)"]
+        Y2["[가설 1-1: 타임스탬프 연결 지연]<br/>• 유관기관 최초 연결 지연시간<br/>(Δt = T_first - T_stage)"]
+    end
+
+    Input --> Cases
+    Cases --> Output
 </div>
 
 <h3>3.2 핵심 연구가설 체계</h3>
 
 <div class="callout-important">
   <strong>📌 가설 1 (전체 네트워크 확장 가설 — 제7장 Figure 7.5, 7.6 벤치마킹)</strong>:<br>
-  <strong>"대형화재 현장에서 대응단계 격상(통제단 가동) 이후의 무전 교신 네트워크는, 격상 이전에 비해 네트워크 밀도(Density)와 평균 연결정도(Mean Degree)가 유의미하게 증가할 것이다."</strong>
+  <strong>"대형화재 현장에서 대응단계 격상(통제단 가동) 이후의 무전 교신 네트워크는, 화재 대상물 유형과 관계없이 격상 이전에 비해 네트워크 밀도(Density)와 평균 연결정도(Mean Degree)가 일관되게 유의미하게 증가할 것이다."</strong>
 </div>
 
 <div class="callout-tip">
   <strong>💡 가설 1-1 (유관기관 진입 시차 가설 — 제7장 Tie Formation 벤치마킹)</strong>:<br>
-  <strong>"대응단계 격상 타임스탬프($T_{\text{stage}}$) 이후 유관기관이 소방 지휘 네트워크에 최초로 연결(Tie Formation)되기까지 소요되는 지연시간($\Delta t = T_{\text{first}} - T_{\text{stage}}$)은 기관의 기능적 특성(치안·교통 vs 에너지·유틸리티 vs 행정·복구)에 따라 유의미한 차이를 보일 것이다."</strong>
+  <strong>"대응단계 격상 타임스탬프($T_{\text{stage}}$) 이후 유관기관이 소방 지휘 네트워크에 최초로 연결(Tie Formation)되기까지 소요되는 지연시간($\Delta t = T_{\text{first}} - T_{\text{stage}}$)은 분석 대상 화재 전반에서 기관의 기능적 특성(치안·교통 vs 에너지·유틸리티 vs 행정·복구)에 따라 통계적 시차를 보일 것이다."</strong>
 </div>
-
-<ul>
-  <li><strong>부수적 관찰 질문 (Exploratory Question)</strong>:
-    <ul>
-      <li>대응단계 격상 후 다수의 부대가 진입함에 따라 현장지휘팀장 1인에게 교신이 쏠리는 <strong>연결정도 중심화(Degree Centralization)</strong> 지수는 어떻게 변화하는가?</li>
-    </ul>
-  </li>
-</ul>
 
 <hr>
 
 <h2>4. 연구방법론 및 자료수집 설계 (Methodology)</h2>
 
-<h3>4.1 데이터 표본 및 수집</h3>
+<h3>4.1 데이터 표본 및 수집 대상 (3개 대형화재 확정)</h3>
 <ul>
-  <li><strong>데이터 원천</strong>: 119종합상황실 긴급구조표준시스템 공식 <strong>관제진행상황 엑셀 파일(.xlsx) 1건</strong>.
-    <ul>
-      <li>표본 대상: 최근 발생한 <strong>대응 2단계 발령 대형 공장 또는 복합건축물 화재 1건</strong>.</li>
-      <li>자료의 성격: 전산 시스템이 초 단위(hh:mm:ss)로 기록한 공식 행정 타임스탬프 원장.</li>
-    </ul>
-  </li>
+  <li><strong>데이터 원천</strong>: 119종합상황실 긴급구조표준시스템 공식 <strong>관제진행상황 엑셀 파일(.xlsx) 3건</strong>.</li>
+  <li><strong>표본 선정 기준</strong>: 최근 3개년 동안 발생한 대응 2단계 이상 발령 공식 화재 중 관제기록이 완전한 대표 사례 3건 선정.</li>
 </ul>
 
-<h3>4.2 타임스탬프 적출 및 2단계 분할 프로토콜</h3>
-<p>엑셀 필터링 또는 간단한 스크립트로 핵심 타임스탬프 2종을 적출하고 데이터를 분할합니다:</p>
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th>화재 사건 개요</th>
+      <th>건물/시설 특성</th>
+      <th>대응 단계</th>
+      <th>분석 주안점</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>사례 1</strong></td>
+      <td><strong>대형 샌드위치패널 공장 화재</strong></td>
+      <td>가연성 외장재, 고압 수전설비 밀집</td>
+      <td>대응 2단계</td>
+      <td>고압 전력 차단(한전) 연결 지연 시차 검증</td>
+    </tr>
+    <tr>
+      <td><strong>사례 2</strong></td>
+      <td><strong>복합 물류창고 화재</strong></td>
+      <td>대규모 면적, 다수 소방차 진입로 병목</td>
+      <td>대응 2단계</td>
+      <td>교통통제(경찰) 및 중장비 지원 지연 검증</td>
+    </tr>
+    <tr>
+      <td><strong>사례 3</strong></td>
+      <td><strong>다중이용 복합건축물 화재</strong></td>
+      <td>다수 요구조자, 도시가스 배관 인입</td>
+      <td>대응 2단계</td>
+      <td>도시가스 차단 및 지자체 이재민 구호 연계 검증</td>
+    </tr>
+  </tbody>
+</table>
 
-<pre><code># [타임스탬프 적출 및 2단계 분할 로직]
-# 1. 사건 타임스탬프: T_stage = "14:25:10" (대응 1단계 또는 2단계 공식 발령 시각)
-# 2. Phase 1 (격상 전): 출동 접수(14:02) ~ 대응단계 발령 전(14:25:09) 관제 교신 로그
-# 3. Phase 2 (격상 후): 대응단계 발령(14:25:10) ~ 상황 안정기(15:30:00) 관제 교신 로그
-# 4. 유관기관 최초 연결 타임스탬프(T_first) 적출:
-#    - 경찰 최초 교신: T_first(Police) = "14:31:20"  --> Delta_t = +6분 10초
-#    - 한전 최초 교신: T_first(KEPCO)  = "14:58:40"  --> Delta_t = +33분 30초
-#    - 지자체 최초 교신: T_first(Local) = "14:38:00"  --> Delta_t = +12분 50초</code></pre>
+<h3>4.2 타임스탬프 적출 및 데이터 2단계 분할 프로토콜</h3>
+<p>각 사례별 관제로그에서 사건 타임스탬프($T_{\text{stage}}$)와 기관별 최초 연결 시각($T_{\text{first}}$)을 적출합니다:</p>
+
+<pre><code># [사례별 타임스탬프 적출 및 계산 구조]
+# 사례 i (i = 1, 2, 3):
+# 1. T_stage(i): 대응단계 발령 시각 (hh:mm:ss)
+# 2. Phase 1 (격상 전): 출동 접수 ~ T_stage 직전 무전 교신 행렬
+# 3. Phase 2 (격상 후): T_stage ~ 상황 안정기 무전 교신 행렬
+# 4. 기관별 최초 연결 지연시간: Delta_t = T_first - T_stage</code></pre>
 
 <table>
   <thead>
@@ -445,32 +479,33 @@ flowchart LR
   </tbody>
 </table>
 
-<h3>4.3 넷마이너(NetMiner 4.5) 및 타임스탬프 분석 3단계 절차</h3>
+<h3>4.3 넷마이너(NetMiner 4.5) 및 다중 비교 분석 3단계 절차</h3>
 
 <div class="mermaid">
 flowchart TD
-    Step1["Step 1: 데이터 임포트 & 타임스탬프 정제<br/>• Phase 1, Phase 2 교신 행렬 구축<br/>• 기관별 최초 연결 지연시간(Δt) 계산"]
-    Step2["Step 2: 네트워크 시각화 비교 (NetMiner)<br/>• 제7장 Figure 7.5처럼 격상 전·후 소시오그램 배치<br/>• 미연결 유관기관(Isolates)의 진입 과정 표현"]
-    Step3["Step 3: 지표 비교 및 가설 판정<br/>• 밀도 및 평균차수 증가율 검정 (가설 1)<br/>• 기능별 유관기관 진입 지연시간(Δt) 비교표 (가설 1-1)"]
+    Step1["Step 1: 3개 사례 데이터 정제<br/>• 사례별 Phase 1 & Phase 2 행렬셋 구축<br/>• 사례별 유관기관 지연시차(Δt) 계산"]
+    Step2["Step 2: 넷마이너 시각화 비교<br/>• 대표 사례 1건의 격상 전·후 소시오그램 시각화 (Fig 7.5)<br/>• 3개 사례의 네트워크 밀도 증가 패턴 비교"]
+    Step3["Step 3: 교차 종합 비교표 작성 및 가설 검정<br/>• 가설 1: 3개 사례 밀도·차수 증가율 비교표 작성<br/>• 가설 1-1: 기능별 유관기관 평균 지연시간(Δt) 비교표 작성"]
 
     Step1 --> Step2 --> Step3
 </div>
 
 <ol>
-  <li><strong>[Step 1: 데이터 정제 및 $\Delta t$ 산출]</strong>:
+  <li><strong>[Step 1: 데이터 정제 및 행렬 구축]</strong>:
     <ul>
-      <li>Phase 1과 Phase 2 각각의 발신자$\to$수신자 교신 매트릭스를 구축하고, 각 유관기관의 최초 교신 시각($T_{\text{first}}$)과 격상 시각($T_{\text{stage}}$) 간의 지연시간($\Delta t$) 산출.</li>
+      <li>사례 1, 2, 3 각각에 대해 Phase 1(격상 전)과 Phase 2(격상 후) 인접행렬을 구축하고 타임스탬프 지연시간($\Delta t$)을 엑셀로 자동 산출.</li>
     </ul>
   </li>
-  <li><strong>[Step 2: 시각적 소시오그램 비교 (<code>Figure 7.5</code> 복제)]</strong>:
+  <li><strong>[Step 2: 넷마이너 시각화 및 지표 산출]</strong>:
     <ul>
-      <li>NetMiner Spring-Embedder 알고리즘을 가동하여 Phase 1(외곽 고립) 대비 Phase 2(중심부 연결 형성)의 네트워크 변화를 시각적으로 나란히 제시.</li>
+      <li>NetMiner 4.5에서 가장 극적인 대표 사례 1건의 격상 전·후 소시오그램을 나란히 시각화 (<code>Figure 7.5</code> 복제).</li>
+      <li>3개 사례 전체에 대해 NetMiner <code>Network Properties</code> 메뉴에서 <strong>밀도(Density)</strong>, <strong>평균 연결정도(Mean Degree)</strong>, <strong>연결정도 중심화(Centralization)</strong> 산출.</li>
     </ul>
   </li>
-  <li><strong>[Step 3: 네트워크 지표 산출 및 가설 판정 (<code>Figure 7.6</code> 복제)]</strong>:
+  <li><strong>[Step 3: 교차 종합 분석표(Cross-case Table) 작성 및 가설 판정]</strong>:
     <ul>
-      <li>NetMiner의 <code>Network Properties</code> 메뉴에서 <strong>밀도(Density)</strong>와 <strong>평균 연결정도(Mean Degree)</strong>를 도출하여 가설 1 판정.</li>
-      <li>기능별 유관기관의 $\Delta t$를 표와 막대그래프로 비교하여 가설 1-1 판정.</li>
+      <li>가설 1 검증표: 3개 사례의 밀도가 모두 일관되게 격상 후 급증(예: 3배 이상)했는지 교차 확인.</li>
+      <li>가설 1-1 검증표: 3개 사례 전체에서 경찰(치안) 대비 한전(에너지)의 지휘망 진입 지연시간($\Delta t$)이 일관되게 길게 나타나는지 비교 확인.</li>
     </ul>
   </li>
 </ol>
@@ -534,9 +569,9 @@ flowchart LR
 
 <h3>6.1 연구의 차별성 및 기대효과</h3>
 <ol>
-  <li><strong>완벽한 실행 가능성 (Feasibility 100%)</strong>: 복잡한 계량 통계 없이, 공식 관제로그 1건의 타임스탬프와 넷마이너 기본 기능만으로 4주 내에 고품질 학술 논문 완성.</li>
-  <li><strong>이론과 현장 데이터의 완벽한 융합</strong>: 제7장의 핵심 실증 모델(<code>Figure 7.5, 7.6</code>)을 계승하면서도, 소방의 가장 현실적인 고민인 '유관기관 연결 지연 시차($\Delta t$)'를 밝혀내어 실무적 가치 극대화.</li>
-  <li><strong>교수님 피드백의 충실한 이행</strong>: 근거 없는 가설을 모두 정리하고, 원문에서 입증된 확실한 연결 확장(가설 1)과 타임스탬프 지연(가설 1-1)의 콤팩트한 체계 완성.</li>
+  <li><strong>외적 타당도와 일반화 가능성 확보</strong>: 단일 사례의 한계를 넘어 3건의 대형화재를 비교함으로써 통계적 회귀 없이도 반박 불가능한 실증적 설득력 확보.</li>
+  <li><strong>KCI 등재학술지 투고 수준의 논문 완성</strong>: 3개 사례 교차 비교표와 넷마이너 네트워크 맵을 결합하여 학기말 과제 제출 즉시 학술지 투고 가능한 원고 구축.</li>
+  <li><strong>완벽한 실행력과 시간 통제</strong>: 복잡한 프로그래밍 없이 엑셀 정제와 넷마이너 클릭만으로 3건의 분석을 4주 일정 내에 여유 있게 완결.</li>
 </ol>
 
 <h3>6.2 4주 집중 추진 일정표</h3>
@@ -553,25 +588,25 @@ flowchart LR
   <tbody>
     <tr>
       <td><strong>1주차</strong></td>
-      <td>• 119상황실에서 대응 2단계 화재 1건 관제진행상황 원장 엑셀 확보<br>• $T_{\text{stage}}$(격상 시각) 및 유관기관별 $T_{\text{first}}$(최초 교신 시각) 적출</td>
-      <td>원장 데이터 &amp; 타임스탬프 일람표</td>
+      <td>• 119상황실에서 대응 2단계 화재 3건 관제진행상황 원장 엑셀 확보<br>• 각 사례별 $T_{\text{stage}}$(격상 시각) 및 유관기관별 $T_{\text{first}}$(최초 교신 시각) 적출</td>
+      <td>원장 데이터 3건 &amp; 타임스탬프 일람표</td>
       <td>데이터 리스크 0%</td>
     </tr>
     <tr>
       <td><strong>2주차</strong></td>
-      <td>• Phase 1과 Phase 2 Edgelist 구축<br>• 각 기관별 지연시간($\Delta t$) 계산 및 NetMiner 4.5 입력 행렬 생성</td>
-      <td>2개 시점 행렬셋 &amp; $\Delta t$ 데이터</td>
+      <td>• 3개 사례의 Phase 1과 Phase 2 Edgelist 구축 완료<br>• 각 사례별 지연시간($\Delta t$) 계산 및 NetMiner 4.5 입력 행렬(총 6개) 생성</td>
+      <td>3개 사례 행렬셋 &amp; $\Delta t$ 데이터</td>
       <td>단순 엑셀 정제</td>
     </tr>
     <tr>
       <td><strong>3주차</strong></td>
-      <td>• NetMiner 4.5 전·후 소시오그램 시각화(<code>Fig 7.5</code> 복제)<br>• 밀도/차수 증가율 산출(가설 1) 및 기능별 $\Delta t$ 비교(가설 1-1)</td>
-      <td>네트워크 맵 &amp; 가설 검정표</td>
+      <td>• NetMiner 4.5 소시오그램 시각화(<code>Fig 7.5</code> 복제)<br>• 밀도/차수 증가율 교차비교(가설 1) 및 기능별 $\Delta t$ 평균 비교(가설 1-1)</td>
+      <td>네트워크 맵 &amp; 종합 비교표</td>
       <td>분석 100% 완료</td>
     </tr>
     <tr>
       <td><strong>4주차</strong></td>
-      <td>• 지표 해석, 실무 개선 SOP 및 KPI 매핑 정리<br>• 기말 연구 소논문 최종본 작성 및 세미나 발표</td>
+      <td>• 교차 분석 결과 해석, 실무 개선 SOP 및 KPI 매핑 정리<br>• 기말 연구 소논문 최종본 작성 및 세미나 발표</td>
       <td>최종 기말 논문 원고</td>
       <td>프로젝트 최종 완성</td>
     </tr>
