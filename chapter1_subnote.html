@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>재난관리연구방법론 | Chapter 1. 재난 맥락에서의 사회연결망 분석 서설</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&family=Outfit:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- MathJax Configuration & Script -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Mermaid JS for diagrams -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typeof mermaid !== 'undefined') {
+        try {
+          mermaid.initialize({ 
+            startOnLoad: true, 
+            theme: 'dark',
+            securityLevel: 'loose',
+            fontFamily: 'Noto Sans KR, Inter, sans-serif'
+          });
+        } catch(e) {
+          console.warn('Mermaid initialization deferred:', e);
+        }
+      }
+    });
+  </script>
+
+  <style>
+    :root {
+      --bg-primary: #0b1120;
+      --bg-secondary: #131c31;
+      --bg-sidebar: #0f172a;
+      --bg-card: #1e293b;
+      --bg-card-hover: #26354d;
+      --accent-primary: #38bdf8;
+      --accent-secondary: #818cf8;
+      --accent-emerald: #34d399;
+      --accent-amber: #fbbf24;
+      --accent-rose: #fb7185;
+      --accent-purple: #c084fc;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --border-color: #334155;
+      --sidebar-border: #1e293b;
+      --sidebar-width: 320px;
+      --glass-bg: rgba(19, 28, 49, 0.85);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.35);
+      --shadow-lg: 0 12px 30px -6px rgba(0, 0, 0, 0.5);
+      --radius: 12px;
+      --radius-sm: 8px;
+      --radius-lg: 16px;
+      --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    [data-theme="light"] {
+      --bg-primary: #f8fafc;
+      --bg-secondary: #ffffff;
+      --bg-sidebar: #ffffff;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f1f5f9;
+      --accent-primary: #0284c7;
+      --accent-secondary: #6366f1;
+      --accent-emerald: #059669;
+      --accent-amber: #d97706;
+      --accent-rose: #e11d48;
+      --accent-purple: #9333ea;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --text-dim: #94a3b8;
+      --border-color: #e2e8f0;
+      --sidebar-border: #e2e8f0;
+      --glass-bg: rgba(255, 255, 255, 0.9);
+      --glass-border: rgba(0, 0, 0, 0.08);
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 12px 30px -6px rgba(0, 0, 0, 0.1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Sans KR', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.8;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      min-height: 100vh;
+    }
+
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary), var(--accent-purple));
+      width: 0%;
+      z-index: 1000;
+      transition: width 0.1s ease-out;
+    }
+
+    .app-layout {
+      display: flex;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    .sidebar {
+      width: var(--sidebar-width);
+      flex-shrink: 0;
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      background: var(--bg-sidebar);
+      border-right: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      z-index: 100;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .sidebar-header {
+      padding: 1.5rem 1.25rem 1rem 1.25rem;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .sidebar-brand {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand-badge {
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 0.75rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    .theme-toggle-btn {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 0.45rem;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      width: 34px;
+      height: 34px;
+    }
+
+    .theme-toggle-btn:hover {
+      background: var(--bg-card-hover);
+      color: var(--accent-primary);
+      transform: rotate(15deg);
+    }
+
+    .sidebar-title {
+      font-family: 'Outfit', 'Noto Sans KR', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.35;
+    }
+
+    .sidebar-subtitle {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .sidebar-search {
+      position: relative;
+      margin-top: 0.25rem;
+    }
+
+    .sidebar-search input {
+      width: 100%;
+      padding: 0.5rem 0.75rem 0.5rem 2.2rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      color: var(--text-main);
+      font-size: 0.825rem;
+      outline: none;
+      transition: var(--transition);
+    }
+
+    .sidebar-search input:focus {
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+    }
+
+    .sidebar-search i {
+      position: absolute;
+      left: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      width: 15px;
+      height: 15px;
+    }
+
+    .sidebar-nav-container {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1rem 0.75rem;
+      scrollbar-width: thin;
+    }
+
+    .toc-label {
+      font-size: 0.725rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--text-dim);
+      padding: 0 0.5rem 0.6rem 0.5rem;
+    }
+
+    .toc-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .toc-item a {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.65rem 0.75rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      border-radius: 8px;
+      transition: var(--transition);
+      line-height: 1.4;
+    }
+
+    .toc-item a:hover {
+      color: var(--text-main);
+      background: var(--bg-secondary);
+    }
+
+    .toc-item.active a {
+      color: var(--accent-primary);
+      background: rgba(56, 189, 248, 0.1);
+      font-weight: 600;
+      border-left: 3px solid var(--accent-primary);
+    }
+
+    .toc-badge {
+      font-size: 0.7rem;
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      background: var(--bg-card);
+      color: var(--text-dim);
+      margin-left: auto;
+    }
+
+    .toc-item.special a {
+      color: var(--accent-emerald);
+      font-weight: 600;
+      background: rgba(52, 211, 153, 0.08);
+      border: 1px dashed rgba(52, 211, 153, 0.3);
+    }
+
+    .toc-item.special a:hover {
+      background: rgba(52, 211, 153, 0.18);
+    }
+
+    .main-wrapper {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      background-color: var(--bg-primary);
+    }
+
+    .top-header {
+      padding: 1rem 2.5rem;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 90;
+    }
+
+    .header-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .header-breadcrumb a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .header-breadcrumb a:hover { color: var(--accent-primary); }
+
+    .chapter-nav-dropdown {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .chapter-select {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 0.4rem 0.8rem;
+      border-radius: 8px;
+      font-size: 0.825rem;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .content-container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 3rem 2.5rem 6rem 2.5rem;
+      width: 100%;
+    }
+
+    .hero-banner {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.85) 0%, rgba(15, 23, 42, 0.95) 100%);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 3rem 2.5rem;
+      margin-bottom: 3.5rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .hero-banner::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 250px;
+      height: 250px;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: var(--accent-primary);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-title {
+      font-family: 'Outfit', 'Noto Sans KR', sans-serif;
+      font-size: 2.35rem;
+      font-weight: 800;
+      line-height: 1.3;
+      color: var(--text-main);
+      margin-bottom: 1rem;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+      color: var(--accent-secondary);
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+
+    .hero-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.25rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .hero-meta-item { display: flex; flex-direction: column; gap: 0.25rem; }
+    .hero-meta-label {
+      font-size: 0.725rem;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--text-dim);
+      font-weight: 700;
+    }
+    .hero-meta-val {
+      font-size: 0.875rem;
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .section-block {
+      margin-bottom: 4rem;
+      scroll-margin-top: 80px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .section-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(56, 189, 248, 0.1);
+      color: var(--accent-primary);
+      flex-shrink: 0;
+    }
+    .section-icon.emerald { background: rgba(52, 211, 153, 0.1); color: var(--accent-emerald); }
+    .section-icon.purple { background: rgba(192, 132, 252, 0.1); color: var(--accent-purple); }
+    .section-icon.amber { background: rgba(251, 191, 36, 0.1); color: var(--accent-amber); }
+    .section-icon.rose { background: rgba(251, 113, 133, 0.1); color: var(--accent-rose); }
+
+    .section-title {
+      font-family: 'Outfit', 'Noto Sans KR', sans-serif;
+      font-size: 1.65rem;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -0.3px;
+    }
+
+    h3.sub-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin: 2rem 0 1rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    h3.sub-title::before {
+      content: '';
+      width: 4px;
+      height: 1.1rem;
+      background: var(--accent-primary);
+      border-radius: 2px;
+      display: inline-block;
+    }
+
+    p {
+      margin-bottom: 1.25rem;
+      color: var(--text-main);
+      font-size: 0.975rem;
+      line-height: 1.85;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+      margin: 1.5rem 0 2rem 0;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      transition: var(--transition);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--accent-primary);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .card-body {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .card-badge {
+      display: inline-block;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .badge-primary { background: rgba(56, 189, 248, 0.15); color: var(--accent-primary); }
+    .badge-emerald { background: rgba(52, 211, 153, 0.15); color: var(--accent-emerald); }
+    .badge-purple { background: rgba(192, 132, 252, 0.15); color: var(--accent-purple); }
+    .badge-amber { background: rgba(251, 191, 36, 0.15); color: var(--accent-amber); }
+
+    .callout {
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      margin: 1.5rem 0 2rem 0;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      border: 1px solid transparent;
+    }
+
+    .callout-info {
+      background: rgba(56, 189, 248, 0.08);
+      border-color: rgba(56, 189, 248, 0.25);
+    }
+    .callout-info i { color: var(--accent-primary); }
+
+    .callout-important {
+      background: rgba(251, 113, 133, 0.08);
+      border-color: rgba(251, 113, 133, 0.25);
+    }
+    .callout-important i { color: var(--accent-rose); }
+
+    .callout-success {
+      background: rgba(52, 211, 153, 0.08);
+      border-color: rgba(52, 211, 153, 0.25);
+    }
+    .callout-success i { color: var(--accent-emerald); }
+
+    .callout-content { flex: 1; }
+    .callout-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 0.35rem;
+      color: var(--text-main);
+    }
+    .callout-text {
+      font-size: 0.885rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    .diagram-container {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 2rem 1.5rem;
+      margin: 2rem 0;
+      overflow-x: auto;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .diagram-caption {
+      margin-top: 1rem;
+      font-size: 0.825rem;
+      color: var(--text-dim);
+      font-weight: 500;
+    }
+
+    .table-container {
+      overflow-x: auto;
+      margin: 1.5rem 0 2rem 0;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      background: var(--bg-card);
+      box-shadow: var(--shadow-sm);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+      text-align: left;
+    }
+
+    th {
+      background: var(--bg-secondary);
+      padding: 0.85rem 1rem;
+      font-weight: 700;
+      color: var(--text-main);
+      border-bottom: 1px solid var(--border-color);
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-muted);
+      vertical-align: middle;
+    }
+
+    tr:last-child td { border-bottom: none; }
+    tr:hover td {
+      background: var(--bg-card-hover);
+      color: var(--text-main);
+    }
+
+    .table-badge {
+      display: inline-block;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.75rem;
+    }
+
+    .footer-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.25rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      color: var(--text-main);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+
+    .nav-btn:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--accent-primary);
+      color: var(--accent-primary);
+    }
+  </style>
+</head>
+<body>
+  <div id="progress-bar"></div>
+
+  <div class="app-layout">
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-brand">
+          <span class="brand-badge">SNA METHODOLOGY</span>
+          <button class="theme-toggle-btn" id="theme-toggle" title="테마 전환">
+            <i data-lucide="moon" id="theme-icon"></i>
+          </button>
+        </div>
+        <div class="sidebar-title">재난관리연구방법론</div>
+        <div class="sidebar-subtitle">Chapter 1. 사회연결망 분석 서설</div>
+        <div class="sidebar-search">
+          <i data-lucide="search"></i>
+          <input type="text" id="search-input" placeholder="목차 빠른 검색...">
+        </div>
+      </div>
+
+      <div class="sidebar-nav-container">
+        <div class="toc-label">Table of Contents</div>
+        <ul class="toc-list" id="toc-list">
+          <li class="toc-item active"><a href="#intro"><i data-lucide="book-open"></i>1. 서론: 위험에서 재난으로</a></li>
+          <li class="toc-item"><a href="#layout"><i data-lucide="layers"></i>2. 도서 구성 & 표 1.1 분석</a></li>
+          <li class="toc-item"><a href="#highlights"><i data-lucide="compass"></i>3. 핵심 주목 6대 쟁점</a></li>
+          <li class="toc-item"><a href="#ontology"><i data-lucide="cpu"></i>4. 네트워크 존재론의 문제</a></li>
+          <li class="toc-item"><a href="#conclusion"><i data-lucide="check-circle"></i>5. 결론 및 일상성 회복</a></li>
+          <li class="toc-item special"><a href="#fire-application"><i data-lucide="flame"></i>6. 소방 적용 연구 & QAP</a></li>
+          <li class="toc-item special"><a href="#phd-template"><i data-lucide="graduation-cap"></i>[부록] 학위논문 9단계 분석</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="main-wrapper">
+      <header class="top-header">
+        <div class="header-breadcrumb">
+          <a href="#">SNA Series</a>
+          <span>/</span>
+          <a href="#">Part I. Theoretical Orientation</a>
+          <span>/</span>
+          <span style="color: var(--text-main); font-weight: 600;">Chapter 1</span>
+        </div>
+        <div class="chapter-nav-dropdown">
+          <select class="chapter-select" onchange="location.href=this.value;">
+            <option value="chapter1_subnote.html" selected>Ch 1. SNA 서설</option>
+            <option value="chapter2_subnote.html">Ch 2. 개인 중심 SNA</option>
+            <option value="chapter3_subnote.html">Ch 3. 조직간 네트워크</option>
+            <option value="chapter4_subnote.html">Ch 4. SNA 연구 전략</option>
+            <option value="chapter5_subnote.html">Ch 5. 산불 대응 거버넌스</option>
+            <option value="chapter6_subnote.html">Ch 6. 허리케인과 소통</option>
+            <option value="chapter7_subnote.html">Ch 7. 다기관 네트워크 리더십</option>
+          </select>
+        </div>
+      </header>
+
+      <div class="content-container">
+        <!-- HERO BANNER -->
+        <section class="hero-banner">
+          <div class="hero-tag"><i data-lucide="sparkles"></i> CHAPTER 01 • THEORETICAL ORIENTATION</div>
+          <h1 class="hero-title">재난 맥락에서의 사회연결망 분석 서설</h1>
+          <div class="hero-subtitle">An Introduction to Social Network Analysis in Disaster Contexts</div>
+          <div class="hero-meta-grid">
+            <div class="hero-meta-item">
+              <span class="hero-meta-label">저자 (Authors)</span>
+              <span class="hero-meta-val">Eric C. Jones & A.J. Faas</span>
+            </div>
+            <div class="hero-meta-item">
+              <span class="hero-meta-label">소속 (Affiliations)</span>
+              <span class="hero-meta-val">UT Health Houston / San Jose State Univ.</span>
+            </div>
+            <div class="hero-meta-item">
+              <span class="hero-meta-label">출처 (Source)</span>
+              <span class="hero-meta-val">Elsevier Inc. (2017, pp. 3–9)</span>
+            </div>
+            <div class="hero-meta-item">
+              <span class="hero-meta-label">연구 대상</span>
+              <span class="hero-meta-val">재난 연결망 패러다임 및 12개 실증 연구</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 1: 서론 -->
+        <section id="intro" class="section-block">
+          <div class="section-header">
+            <div class="section-icon"><i data-lucide="book-open"></i></div>
+            <h2 class="section-title">1. 서론: 위험에서 재난으로의 전이와 SNA</h2>
+          </div>
+
+          <p>
+            위험(hazard)은 사람들이 안전하고 안정적인 삶과 생계를 유지하기 위한 기회와 제약이 심각한 한계에 부딪힐 때 비로소 ‘재난(disaster)’으로 비화됩니다. 
+            재난 전, 도중, 그리고 이후에 걸쳐 개인, 기관, 조직은 서로를 돕기도 하고 방해하기도 하며 새로운 가능성을 열거나 제약을 부과합니다. 
+            따라서 사회연결망은 인간-환경의 복잡한 얽힘과 사회적 관계 양식을 규명하는 가장 강력하고 매력적인 과학적 도구입니다.
+          </p>
+
+          <div class="diagram-container">
+            <div class="mermaid">
+flowchart LR
+    H["자연적·사회적 위험<br/>(Hazards)"] --> S["안전·생계 유지의<br/>사회적 한계 봉착"]
+    S --> D["파국적 재난으로 비화<br/>(Disasters)"]
+    
+    subgraph SNA["사회연결망(SNA)의 매개 역할"]
+        T["행위자 간 사회적 관계망<br/>(개인, 집단, 지역사회, 조직)"]
+        T -- "자원 지원 & 조정" --> R1["피해 완화 및 복구 촉진"]
+        T -- "소통 단절 & 갈등" --> R2["사회적 스트레스 심화"]
+    end
+    
+    S --> SNA
+    SNA --> Outcome["대응·복구·적응의 차별적 성과"]
+            </div>
+            <div class="diagram-caption">그림 1.1: 위험(Hazard)에서 재난(Disaster)으로의 전이 과정과 사회연결망의 매개 기능</div>
+          </div>
+
+          <h3 class="sub-title">사회과학에서 사회연결망을 다루는 2대 접근법</h3>
+          <div class="card-grid">
+            <div class="card">
+              <span class="card-badge badge-primary">접근법 1</span>
+              <div class="card-header">
+                <i data-lucide="message-square" style="color: var(--accent-primary);"></i>
+                <div class="card-title">은유적·발견적 접근법 (Heuristic)</div>
+              </div>
+              <div class="card-body">
+                연구자가 현장에서 직관적으로 포착한 관계나 상호작용의 패턴을 질적으로 요약하거나, 관계적 관찰을 이끄는 개념적 안내틀(가이드라인)로 활용하는 방식입니다.
+              </div>
+            </div>
+
+            <div class="card">
+              <span class="card-badge badge-emerald">접근법 2 • 본 도서의 지향</span>
+              <div class="card-header">
+                <i data-lucide="network" style="color: var(--accent-emerald);"></i>
+                <div class="card-title">공식적 측정 시스템 (Formal SNA)</div>
+              </div>
+              <div class="card-body">
+                그래프 이론(Graph Theory)에 기반하여 밀도(density), 집중도(centralization), 중심성(centrality), 교량화(bridging), 복잡성 및 종단적 변화를 엄밀한 수학적 지표로 측정하는 체계입니다.
+              </div>
+            </div>
+          </div>
+
+          <div class="callout callout-info">
+            <i data-lucide="info"></i>
+            <div class="callout-content">
+              <div class="callout-title">본 도서의 핵심 학술적 가치: 분절된 두 영역의 통합</div>
+              <div class="callout-text">
+                그동안 학술적으로 철저히 분절되어 있던 <strong>'대인 재난 네트워크(interpersonal networks)'</strong> 연구와 <strong>'조직간 재난 네트워크(interorganizational networks)'</strong> 연구를 하나로 결합했습니다. 
+                예를 들어 '교량화(bridging)' 개념은 대인망에서는 권력·취약성·자산을 분석하는 렌즈가 되며, 조직망에서는 커뮤니케이션 효과성과 목표 일치도를 평가하는 렌즈가 됩니다.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 2: 도서 구성 및 표 1.1 -->
+        <section id="layout" class="section-block">
+          <div class="section-header">
+            <div class="section-icon emerald"><i data-lucide="layers"></i></div>
+            <h2 class="section-title">2. 도서의 내용과 구성 체계 & 표 1.1 분석</h2>
+          </div>
+
+          <p>
+            본 도서는 재난을 다룬 12개의 실증 연구 사례를 포함하고 있으며, 허리케인 카트리나·샌디, 중국 원촨 지진, 일본 고베 지진, 뉴질랜드 캔터베리 지진부터 에콰도르 화산, 멕시코 어린이집 화재, 동아프리카 가뭄까지 다양한 재해를 포괄합니다.
+          </p>
+
+          <h3 class="sub-title">표 1.1: 도서 수록 실증 연구 챕터들의 접근법 및 연구 초점 (Table 1.1)</h3>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>장 (Chapter)</th>
+                  <th>네트워크 분석 수준 및 행위자 유형</th>
+                  <th>사회적 지원 (Social Support)</th>
+                  <th>조정 (Coordination)</th>
+                  <th>구조적 지표 (Structure)</th>
+                  <th>종단 설계 (Longitudinal)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>제5장 (Nowell et al.)</strong></td>
+                  <td>사회중심(Sociocentric) — 조직(Organizations)</td>
+                  <td>—</td>
+                  <td><span class="table-badge badge-primary">X</span></td>
+                  <td><span class="table-badge badge-primary">X</span></td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td><strong>제6장 (Harris & Doerfel)</strong></td>
+                  <td>사회중심(Sociocentric) — 조직(Organizations)</td>
+                  <td>—</td>
+                  <td><span class="table-badge badge-primary">X</span></td>
+                  <td><span class="table-badge badge-primary">X</span></td>
+                  <td><span class="table-badge badge-emerald">X</span></td>
+                </tr>
+                <tr>
+                  <td><strong>제7장 (Kapucu et al.)</strong></td>
+                  <td>사회중심(Sociocentric) — 조직(Organizations)</td>
+                  <td>—</td>
+                  <td><span class="table-badge badge-primary">X</span></td>
+                  <td><span class="table-badge badge-primary">X</span></td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td><strong>제8장 (Marcum et al.)</strong></td>
+                  <td>자아중심(Egocentric) — 개인(Individuals)</td>
+                  <td><span class="table-badge badge-purple">X</span></td>
+                  <td>—</td>
+                  <td>—</td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td><strong>제9장 (Meyer)</strong></td>
+                  <td>자아중심(Egocentric) — 개인(Individuals)</td>
+                  <td><span class="table-badge badge-purple">X</span></td>
+                  <td>—</td>
+                  <td>—</td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td><strong>제10장 (Stevenson et al.)</strong></td>
+                  <td>사회중심(Sociocentric) — 조직(Organizations)</td>
+                  <td>—</td>
+                  <td><span class="table-badge badge-primary">X</span></td>
+                  <td><span class="table-badge badge-primary">X</span></td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td><strong>제11장 (Almquist et al.)</strong></td>
+                  <td>자아중심(Egocentric) — 조직(Organizations)</td>
+                  <td>—</td>
+                  <td><span class="table-badge badge-primary">X</span></td>
+                  <td>—</td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td><strong>제12장 (Tobin et al.)</strong></td>
+                  <td>사회중심(Sociocentric) — 개인(Individuals)</td>
+                  <td><span class="table-badge badge-purple">X</span></td>
+                  <td>—</td>
+                  <td><span class="table-badge badge-primary">X</span></td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td><strong>제13장 (Lee & Sugiura)</strong></td>
+                  <td>자아중심(Egocentric) — 개인(Individuals)</td>
+                  <td><span class="table-badge badge-purple">X</span></td>
+                  <td>—</td>
+                  <td>—</td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td><strong>제14장 (Takasaki)</strong></td>
+                  <td>자아중심(Egocentric) — 개인/가구(Households)</td>
+                  <td><span class="table-badge badge-purple">X</span></td>
+                  <td>—</td>
+                  <td>—</td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td><strong>제15장 (Lu)</strong></td>
+                  <td>자아중심(Egocentric) — 개인(Individuals)</td>
+                  <td><span class="table-badge badge-purple">X</span></td>
+                  <td>—</td>
+                  <td>—</td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td><strong>제16장 (Moritz)</strong></td>
+                  <td>자아중심(Egocentric) — 개인(Individuals)</td>
+                  <td><span class="table-badge badge-purple">X</span></td>
+                  <td>—</td>
+                  <td><span class="table-badge badge-primary">X</span></td>
+                  <td><span class="table-badge badge-emerald">X</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="callout callout-important">
+            <i data-lucide="alert-triangle"></i>
+            <div class="callout-content">
+              <div class="callout-title">표 1.1이 고발하는 재난 연결망 연구의 학술적 불균형</div>
+              <div class="callout-text">
+                12개 실증 챕터 중 10개 챕터가 <strong>"개인 = 자아중심 네트워크(Egocentric)"</strong>, <strong>"조직 = 사회중심 전체 네트워크(Sociocentric)"</strong>라는 이분법적 도식에 갇혀 있습니다. 
+                또한 밀도·응집력 등 네트워크 구조(Structure)를 정밀 분석하거나 시간에 따른 변화를 종단(Longitudinal) 추적한 연구는 극소수에 불과하여 향후 연구의 개척 영역임을 보여줍니다.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 3: 6대 쟁점 -->
+        <section id="highlights" class="section-block">
+          <div class="section-header">
+            <div class="section-icon purple"><i data-lucide="compass"></i></div>
+            <h2 class="section-title">3. 핵심 하이라이트 및 주요 주목 6대 쟁점</h2>
+          </div>
+
+          <div class="card-grid">
+            <div class="card">
+              <span class="card-badge badge-primary">쟁점 1</span>
+              <div class="card-header"><div class="card-title">역할 (Roles)</div></div>
+              <div class="card-body">
+                조직 간 연계의 상당수는 실제 <strong>개인적 친분 관계</strong>입니다. 반면 담당자가 바뀌어도 지속되는 <strong>역할 간 관계(interrole)</strong>, 금융 이체처럼 개인성이 배제된 <strong>비인격적 거래</strong>가 공존하므로 이를 엄밀히 구분해야 합니다.
+              </div>
+            </div>
+
+            <div class="card">
+              <span class="card-badge badge-emerald">쟁점 2</span>
+              <div class="card-header"><div class="card-title">네트워크 분석 수준의 결합</div></div>
+              <div class="card-body">
+                개인의 자아중심 네트워크들을 모아 지역사회 전체의 대푯값 네트워크로 통합하는 <strong>다수준(Multilevel) 네트워크 모델링</strong>을 적극 도입하여 개인과 구조의 상호작용을 파악해야 합니다.
+              </div>
+            </div>
+
+            <div class="card">
+              <span class="card-badge badge-purple">쟁점 3</span>
+              <div class="card-header"><div class="card-title">학제간 융합 연구</div></div>
+              <div class="card-body">
+                행정학, 사회학, 커뮤니케이션학, 인류학, 지리학, 경제학의 단일 학문 분과적 한계를 탈피하고, 다학제적 분석 틀을 통해 통합적 재난 거버넌스 이론을 구축해야 합니다.
+              </div>
+            </div>
+
+            <div class="card">
+              <span class="card-badge badge-amber">쟁점 4</span>
+              <div class="card-header"><div class="card-title">잠재적 연계 vs 실현된 연계</div></div>
+              <div class="card-body">
+                평상시 감정 기반의 <strong>잠재적 연계(Potential Ties)</strong>는 재난 성과 예측력이 낮습니다. 실제 재난 시 도구적으로 작동한 <strong>실현된 연계(Realized/Activated Ties)</strong>와의 간극을 규명해야 합니다.
+              </div>
+            </div>
+
+            <div class="card">
+              <span class="card-badge badge-primary">쟁점 5</span>
+              <div class="card-header"><div class="card-title">취약 인구 명명과 연구 윤리</div></div>
+              <div class="card-body">
+                이름생성기(Name Generator)로 동의 없이 노출되는 제3자의 민감정보(종교, 재산, 정치)를 고유 ID로 비식별화해야 하며, 조사 결과를 환류할 때 공동체 내부 갈등을 촉발하지 않도록 통제해야 합니다.
+              </div>
+            </div>
+
+            <div class="card">
+              <span class="card-badge badge-emerald">쟁점 6</span>
+              <div class="card-header"><div class="card-title">정책 실무 적용 (Applications)</div></div>
+              <div class="card-body">
+                단순히 "사회적 자본이 부족했다"는 피상적 결론(satisficing; Simon, 1957)을 버리고, UNISDR 및 IFRC의 권고대로 사회연결망을 실질적인 <strong>‘지역사회 역량(community competence)’</strong>으로 정책화해야 합니다.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 4: 존재론 -->
+        <section id="ontology" class="section-block">
+          <div class="section-header">
+            <div class="section-icon amber"><i data-lucide="cpu"></i></div>
+            <h2 class="section-title">4. 재난과 네트워크 존재론의 문제 (Network Ontologies)</h2>
+          </div>
+
+          <div class="callout callout-important">
+            <i data-lucide="shield-alert"></i>
+            <div class="callout-content">
+              <div class="callout-title">저자들의 단호한 존재론적 선언</div>
+              <div class="callout-text">
+                <strong>"엄밀히 말해 사회연결망은 공식 조직 외부에서는 '객관적 실체(objective things)'로 존재하지 않는다."</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="diagram-container">
+            <div class="mermaid">
+flowchart TD
+    Reality["현실 세계의 파편화된 상호작용"] --> Bounding["연구자의 이론적 경계 설정<br/>(Theoretical Bounding)"]
+    Bounding --> Abstraction["분석적 추상물로서의 네트워크<br/>(Analytical Abstraction)"]
+    Abstraction -. "착각 경계" .- Fallacy["물신화의 오류(Fallacy of Reification):<br/>네트워크 자체가 스스로 의도와 목적을 갖는다는 착각"]
+            </div>
+            <div class="diagram-caption">그림 1.2: 분석적 추상물로서의 네트워크와 물신화의 오류</div>
+          </div>
+
+          <p>
+            네트워크는 연구자가 이론적 경계를 긋고 관찰한 <strong>‘분석적 추상물(analytical abstractions)’</strong>입니다. 
+            네트워크 자체에는 목적(telos)이나 의도성(intentionality)이 없으며, 행위성과 의도를 가진 주체는 오직 개별 인간과 조직뿐입니다.
+          </p>
+
+          <h3 class="sub-title">'정보의 흐름(Flow)' 개념에 대한 비판적 재검토</h3>
+          <p>
+            네트워크 연계를 통해 정보가 파이프라인처럼 온전하게 흐른다는 것은 환상입니다. 
+            현실에서 정보는 네트워크 매개자(brokers)와 구조적 제약에 의해 <strong>격상(upgraded), 격하(downgraded), 수정(revised), 또는 모호화(obfuscated)</strong>됩니다.
+          </p>
+        </section>
+
+        <!-- SECTION 5: 결론 -->
+        <section id="conclusion" class="section-block">
+          <div class="section-header">
+            <div class="section-icon rose"><i data-lucide="check-circle"></i></div>
+            <h2 class="section-title">5. 결론: 임계 공간(Liminal Space)의 일상성 회복</h2>
+          </div>
+
+          <p>
+            재난은 기존의 정상성이 붕괴되고 경계가 흐려지는 <strong>임계 공간(liminal space)</strong>을 만듭니다. 
+            비록 정상성이 아득히 멀어 보일지라도, 재난 피해자들은 매일매일 사회연결망을 통해 그 일상성을 다시 끌어당깁니다(reeled in daily through social networks). 
+            연결망 분석은 이처럼 덧없고 역동적인 재난 현장의 인간 행위를 포착하는 가장 강력한 렌즈입니다.
+          </p>
+        </section>
+
+        <!-- SECTION 6: 소방 적용 연구 및 방법론 -->
+        <section id="fire-application" class="section-block">
+          <div class="section-header">
+            <div class="section-icon rose"><i data-lucide="flame"></i></div>
+            <h2 class="section-title">6. 소방 조직 및 현장 대응 적용: 이중 네트워크(Dual Network)와 정보 왜곡 분석</h2>
+          </div>
+
+          <div class="callout callout-info">
+            <i data-lucide="sparkles"></i>
+            <div class="callout-content">
+              <div class="callout-title">학습 지도노트 연계: AI 활용 성과지표(KPI) 도출 7대 원칙 및 박사학위 연구모델 확장</div>
+              <div class="callout-text">
+                제1장의 핵심 이론인 <strong>(1) 대인망 vs 조직망 이원론 극복</strong>, <strong>(2) 잠재적 연계 vs 실현된 연계</strong>, <strong>(3) 정보 흐름의 왜곡(격상·격하·모호화)</strong>, <strong>(4) 네트워크 비물신화(분석적 추상물)</strong> 개념을 일선 소방 현장에 실증적으로 접목합니다.
+              </div>
+            </div>
+          </div>
+
+          <!-- 1. 연구질문 -->
+          <h3 class="sub-title">1. 연구질문 (Research Questions)</h3>
+          <div class="card-grid">
+            <div class="card">
+              <div class="card-header"><span class="card-title">RQ 1: 잠재망과 실현망의 괴리</span><span class="card-badge badge-blue">Dual Network</span></div>
+              <div class="card-body">
+                평시 비공식 신뢰/조언 잠재망($M_{\text{potential}}$)과 출동 시 무전 교신 실현망($M_{\text{realized}}$) 간의 구조적 상관성(QAP Matrix Correlation)은 얼마나 일치하며, 어디서 구조적 단절이 발생하는가?
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header"><span class="card-title">RQ 2: 정보 흐름의 왜곡 및 병목</span><span class="card-badge badge-rose">Distortion</span></div>
+              <div class="card-body">
+                무전 지휘선에서 현장 대원의 위험 보고가 최고지휘관에게 전달될 때, 특정 중간관리자(소방위·소방장)에 의해 정보가 <strong>격하(downgraded), 수정(revised), 또는 묵살(obfuscated)</strong>되는 병목 현상이 발생하는가?
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header"><span class="card-title">RQ 3: 계통망(ICS) vs 비공식 자문망</span><span class="card-badge badge-amber">Command vs Advice</span></div>
+              <div class="card-body">
+                화재진압 현장에서 공식 긴급구조통제단 지휘선과 비공식 전문 전술 조언망의 불일치가 현장 진입 후 초진 시간 및 대원 안전사고(아차사고 은폐)에 미치는 영향은 무엇인가?
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header"><span class="card-title">RQ 4: 잠재 연계의 활성화(Activation)</span><span class="card-badge badge-emerald">Activation</span></div>
+              <div class="card-body">
+                평시 잠재망에서 높은 중심성을 가진 대원이 실제 긴급출동 현장(실현망)에서 핵심적인 상황 전파자 및 중개자로 온전히 활성화(Activation)되는가?
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header"><span class="card-title">RQ 5: 네트워크 정합도와 안전 성과</span><span class="card-badge badge-purple">Safety Performance</span></div>
+              <div class="card-body">
+                잠재망과 실현망 간의 정합도(Alignment)가 높은 팀일수록 현장 아차사고(Near-Miss) 자발적 보고율이 높고 현장 안전수칙 위반율이 통계적으로 유의미하게 낮은가?
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. 확인한 연구결과 -->
+          <h3 class="sub-title">2. 확인한 연구결과 (Key Findings from Literature)</h3>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width: 25%;">이론 및 챕터 출처</th>
+                  <th style="width: 35%;">선행연구 핵심 실증 결과</th>
+                  <th style="width: 40%;">본 소방 안전 네트워크 연구로의 연계 시사점</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>대인망 vs 조직망 이원론 극복<br>(Chapter 1; Quarantelli & Dynes)</strong></td>
+                  <td>대부분의 재난 연구가 개인 수준 또는 조직 수준 중 하나에 편중되어 양자 간 배태성을 놓침.</td>
+                  <td>소방서라는 공식 조직(조직 수준) 내에서 개별 대원 간의 비공식 대인망(개인 수준)이 상호작용하는 다수준(Multilevel) 분석 틀 구축.</td>
+                </tr>
+                <tr>
+                  <td><strong>잠재적 연계 vs 실현된 연계<br>(Chapter 1; Table 1.1)</strong></td>
+                  <td>평상시 형성된 사회적 자본(잠재망)이 재난 충격 시 실제로 활성화(실현망)되지 못하면 무용지물이 됨.</td>
+                  <td>평시 비공식 조언망(잠재망)과 출동 시 무전 교신망(실현망)의 불일치도를 QAP 행렬 상관으로 정량화하여 유휴 자본 발견.</td>
+                </tr>
+                <tr>
+                  <td><strong>정보 흐름 왜곡 메커니즘<br>(Chapter 1; Pickering 비판)</strong></td>
+                  <td>정보는 파이프라인처럼 온전히 흐르지 않고 매개자에 의해 격상, 격하, 수정, 모호화됨.</td>
+                  <td>현장 대원이 보고한 급격한 연소 위험 신호가 중간 지휘관에 의해 묵살·격하되어 지휘관에게 미도달하는 병목 노드 식별.</td>
+                </tr>
+                <tr>
+                  <td><strong>네트워크 비물신화<br>(Chapter 1; Ontological Stance)</strong></td>
+                  <td>네트워크는 스스로 움직이는 실체가 아니며 연구자의 목적에 따라 경계가 획정되는 '분석적 추상물'임.</td>
+                  <td>'재난 대응 네트워크'라는 추상적 개념을 의령소방서 출동 대원들의 구체적 무전 통화 및 Roster 설문으로 정밀 조작화.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- 3. 연구절차 -->
+          <h3 class="sub-title">3. 연구절차 (Research Procedure: 6단계 표준 프로세스)</h3>
+          <div class="diagram-container">
+            <div class="mermaid">
+flowchart LR
+    S1["[STEP 1]<br/>연구 0점 & 경계 설정<br/>(의령소방서 출동대원 40명)"] --> S2["[STEP 2]<br/>이중 데이터 도구 설계<br/>(명부형 설문 + 무전 녹취록)"]
+    S2 --> S3["[STEP 3]<br/>전수 데이터 수집<br/>(잠재망 설문 & 무전 로그)"]
+    S3 --> S4["[STEP 4]<br/>데이터 정제 & 코딩<br/>(잠재망/실현망 N×N 행렬)"]
+    S4 --> S5["[STEP 5]<br/>넷마이너(NetMiner) 분석<br/>(QAP 상관 및 왜곡 지수)"]
+    S5 --> S6["[STEP 6]<br/>실무 개선 & KPI 도출<br/>(다이렉트 무전망 및 지수화)"]
+            </div>
+            <div class="diagram-caption">그림 1.3: 소방 조직 이중 네트워크(잠재망 vs 실현망) 6단계 표준 연구 절차</div>
+          </div>
+
+          <!-- 4. 네트워크 분석단위 및 분석지표 -->
+          <h3 class="sub-title">4. 네트워크 분석단위 및 분석지표 (Units & Network Metrics)</h3>
+          <div class="card-grid">
+            <div class="card">
+              <div class="card-header"><span class="card-title">1. 노드 수준 (Node-level)</span><span class="card-badge badge-blue">미시 분석</span></div>
+              <div class="card-body">
+                <strong>개별 소방공무원 노드 ($N \approx 40$명)</strong><br>
+                • <strong>In-Degree (인입 연결정도)</strong>: 평시 대원들로부터 안전 조언/도움을 요청받는 빈도 $\to$ 신뢰받는 안전 리더 지수.<br>
+                • <strong>Out-Degree (인출 연결정도)</strong>: 출동 시 무전 지시 및 보고를 적극적으로 발신하는 빈도.<br>
+                • <strong>Betweenness (매개 중심성)</strong>: 지휘부와 현장 대원 사이에서 통신을 독점하는 소통 교량(Bridge) 또는 정보 차단 병목(Bottleneck).<br>
+                • <strong>Information Distortion Index</strong>: 하위 발신 정보와 상위 수신 정보 간 누락·격하율.
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header"><span class="card-title">2. 하위집단 수준 (Subgroup-level)</span><span class="card-badge badge-emerald">중범위 분석</span></div>
+              <div class="card-body">
+                <strong>계급별(지휘층, 중간층, 일선대원층) 및 부서별(구조대, 진압대, 구급대)</strong><br>
+                • <strong>E-I Index (External-Internal Index)</strong>: 집단 내부 무전 교신 vs 집단 간 교신 비율 산출 ($-1$에 가까울수록 부서 간 소통이 단절된 폐쇄적 무전, $+1$에 가까울수록 개방적 합동 교신).<br>
+                • <strong>K-core & 파벌(Cliques)</strong>: 비공식적 안전 소통 결속 하위집단 분리.
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header"><span class="card-title">3. 전체망 수준 (Whole-level)</span><span class="card-badge badge-amber">거시 분석</span></div>
+              <div class="card-body">
+                <strong>의령소방서 출동부서 전체망</strong><br>
+                • <strong>Network Density (네트워크 밀도)</strong>: 잠재망 밀도 vs 실현망 밀도의 전이율.<br>
+                • <strong>Network Centralization (집중도)</strong>: 무전 교신이 현장지휘관 1인에게 지나치게 집중되어 과부하가 발생하는지 측정.<br>
+                • <strong>Reciprocity (호혜성)</strong>: 명령과 복명복창(피드백)의 상호 교환 비율.
+              </div>
+            </div>
+          </div>
+
+          <!-- 5. 데이터 구조 및 코딩처리 방식 -->
+          <h3 class="sub-title">5. 네트워크 데이터 구조 및 코딩처리 방식 (Data & Coding Method)</h3>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>구분</th>
+                  <th>데이터 형식</th>
+                  <th>변수 구성 및 코딩 기준</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>노드 속성 데이터<br>(Node Properties)</strong></td>
+                  <td>1-mode 엑셀 테이블<br>(행 = 소방관 $i$)</td>
+                  <td>• <strong>ID</strong>: 고유 식별코드 (Fire-01 ~ Fire-40)<br>• <strong>Rank (계급)</strong>: 1=지휘관리층(령·경), 2=중간관리층(위·장), 3=일선대원층(교·사)<br>• <strong>Team (부서)</strong>: 1=119구조대, 2=현장대응단 진압대, 3=구급대<br>• <strong>Role (직무)</strong>: 지휘, 진압, 구조, 구급, 운전<br>• <strong>Radio_CH</strong>: 주 사용 무전 채널 (지휘망, 작전1망, 작전2망)</td>
+                </tr>
+                <tr>
+                  <td><strong>잠재망 행렬<br>($M_{\text{potential}}$)</strong></td>
+                  <td>$N \times N$ 정방 행렬</td>
+                  <td>"평상시 고위험 현장 출동을 앞두고 가장 신뢰하고 전술 조언을 구하는 동료는 누구인가?"<br>1점(전혀안함) ~ 5점(매우자주). 4점 이상을 연계 존재(1)로 이진화(Binarization) 병행.</td>
+                </tr>
+                <tr>
+                  <td><strong>실현망 행렬<br>($M_{\text{realized}}$)</strong></td>
+                  <td>$N \times N$ 정방 행렬</td>
+                  <td>대형 화재 현장 무전 교신 녹취록(PS-LTE/소방무전) 내용분석: 소방관 $i$가 소방관 $j$를 호출하여 위험/지시를 하달한 총 발화 횟수 코딩.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="callout callout-amber">
+            <i data-lucide="alert-circle"></i>
+            <div class="callout-content">
+              <div class="callout-title">코딩 정제 및 결측치 관리 원칙</div>
+              <div class="callout-text">
+                1. <strong>대각선 요소 처리</strong>: 자기 자신과의 관계($i = j$)는 모두 `0`으로 처리합니다.<br>
+                2. <strong>결측치(Missing Data) 통제</strong>: Valente et al.(2008) 기준에 따라 비번/출장 대원에 대해 3회에 걸친 대면 추적 조사를 실시하여 결측률을 10% 미만으로 강제 통제합니다.<br>
+                3. <strong>무전 녹취록 코딩 신뢰도</strong>: 2인의 분석자가 독립적으로 무전 녹취록을 코딩하여 크립펜도르프 알파(Krippendorff's $\alpha$) 0.85 이상 확보 후 불일치 항목 상호 합의.
+              </div>
+            </div>
+          </div>
+
+          <!-- 6. 자료수집 전략 -->
+          <h3 class="sub-title">6. 자료수집 및 설문조사/녹취록 집행 전략 (Data Collection)</h3>
+          <ul style="margin-left: 1.5rem; color: var(--text-muted); line-height: 1.9;">
+            <li><strong>사전 명부 방식(Prepared Roster Method) 전면 채택</strong>: 자유 명명생성법의 철자 오류 및 과소보고를 방지하기 위해 관내 출동대원 40명의 성명·직책이 인쇄된 표준 명부형 설문지 배포.</li>
+            <li><strong>사후보고서(AAR) 및 무전 녹취록 연계</strong>: 최근 발생한 대형 공장·산불 화재 2건의 공식 소방활동 검토보고서(AAR)에 첨부된 무전 교신 녹취록 전수 텍스트 마이닝.</li>
+            <li><strong>연구 윤리 및 비문책 보증</strong>: 설문 및 교신 분석 결과가 감찰이나 징계에 일체 활용되지 않음을 보증하는 기관장 협약서 및 연구윤리 서약서 체결.</li>
+          </ul>
+
+          <!-- 7. 넷마이너 프로토콜 -->
+          <h3 class="sub-title">7. 넷마이너(NetMiner) 4단계 정밀 분석 프로토콜</h3>
+          <div class="card-grid">
+            <div class="card">
+              <div class="card-header"><span class="card-title">Step 1: 데이터 모델링</span><span class="card-badge badge-blue">Import</span></div>
+              <div class="card-body">노드 속성 테이블과 $M_{\text{potential}}, M_{\text{realized}}$ 행렬을 넷마이너 4에 임포트하여 이중 네트워크 레이어 구축.</div>
+            </div>
+            <div class="card">
+              <div class="card-header"><span class="card-title">Step 2: 토폴로지 시각화</span><span class="card-badge badge-emerald">Visualization</span></div>
+              <div class="card-body">Spring-Embedder 알고리즘을 적용하여 평시 잠재망과 출동 실현망의 구조적 배치를 나란히 2D 매핑. 링크 굵기 = 교신 빈도.</div>
+            </div>
+            <div class="card">
+              <div class="card-header"><span class="card-title">Step 3: 중심성 & 병목 분석</span><span class="card-badge badge-amber">Analysis</span></div>
+              <div class="card-body">In/Out-Degree, Betweenness 산출. 잠재망에서는 중심에 있으나 실현망에서 고립되는 노드(유휴 자원) 및 정보 왜곡 병목 노드 적출.</div>
+            </div>
+            <div class="card">
+              <div class="card-header"><span class="card-title">Step 4: QAP 추론 검정</span><span class="card-badge badge-purple">Inference</span></div>
+              <div class="card-body">NetMiner QAP Correlation 모듈(Permutations = 5,000회)을 실행하여 잠재망과 실현망 간의 상관계수 검정. MRQAP 회귀분석으로 계급 및 부서 일치도가 교신 빈도를 설명하는지 검증.</div>
+            </div>
+          </div>
+
+          <!-- 8. KPI 및 법적 근거 -->
+          <h3 class="sub-title">8. 최종 실무·정책 환류: 소방 안전관리 KPI 도출 및 법적 근거</h3>
+          <div class="callout callout-emerald" style="margin-bottom: 1.5rem;">
+            <i data-lucide="check-check"></i>
+            <div class="callout-content">
+              <div class="callout-title">소방 실무 개선 및 KPI 환류</div>
+              <div class="callout-text">
+                • <strong>다이렉트 비상 무전 채널(Direct Emergency Channel) 신설</strong>: 중간 지휘관의 자의적 정보 필터링을 방지하기 위해 현장 대원이 긴급 위험 직면 시 최고지휘관에게 즉각 보고하는 비상 채널 공식화.<br>
+                • <strong>소방 고유 KPI(70%)</strong>: <strong>'현장 안전교신 상호운용성 및 잠재-실현망 일치도 지수'</strong>를 신설하여 일선 소방서 안전관리 종합평가에 반영.
+              </div>
+            </div>
+          </div>
+
+          <div class="card-grid">
+            <div class="card">
+              <span class="card-badge badge-primary">법률 조문 1</span>
+              <div class="card-header"><div class="card-title">소방기본법 제16조의2·제16조의3</div></div>
+              <div class="card-body">소방지원활동 및 현장 활동에 대한 방해 배제 규정. 지휘 통신선 교란 방지.</div>
+            </div>
+            <div class="card">
+              <span class="card-badge badge-emerald">법률 조문 2</span>
+              <div class="card-header"><div class="card-title">재난안전법 제52조</div></div>
+              <div class="card-body">긴급구조통제단장의 현장지휘: 현장지휘관의 명확한 지휘 통일성과 정보 왜곡 방지 의무화.</div>
+            </div>
+            <div class="card">
+              <span class="card-badge badge-purple">훈령 및 지침</span>
+              <div class="card-header"><div class="card-title">현장소방활동 안전관리 로드맵</div></div>
+              <div class="card-body">현장 대원의 위험 상황 보고권(Safety Voice) 보장 및 무전 통신망 상시 모니터링 규정.</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 7: 학위논문 9단계 선행연구 템플릿 -->
+        <section id="phd-template" class="section-block">
+          <div class="section-header">
+            <div class="section-icon emerald"><i data-lucide="graduation-cap"></i></div>
+            <h2 class="section-title">[부록] 박사학위 논문 선행연구 9단계 분석 템플릿</h2>
+          </div>
+
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width: 15%;">단계</th>
+                  <th style="width: 25%;">분석 항목</th>
+                  <th style="width: 60%;">제1장 핵심 분석 내용 및 연구자 통제 관점</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>1단계</strong></td>
+                  <td><strong>연구배경 (Background)</strong></td>
+                  <td>재난은 사회 인프라와 관계망을 급격히 교란함. 재난 피해의 완화와 악화는 사회적 관계망의 구조에 좌우되나 대인망과 조직망 연구가 심각하게 분절되어 있음.</td>
+                </tr>
+                <tr>
+                  <td><strong>2단계</strong></td>
+                  <td><strong>이론적 개념 (Concepts)</strong></td>
+                  <td>은유적 vs 공식 측정 SNA; 이원적 관계(Dyad) vs 전체망(Whole Network); 잠재적 연계 vs 실현된 연계; 네트워크 존재론(분석적 추상물).</td>
+                </tr>
+                <tr>
+                  <td><strong>3단계</strong></td>
+                  <td><strong>연구목적 (Objective)</strong></td>
+                  <td>분과 학문별로 흩어진 재난 연결망 연구를 집대성하고, 대인망과 조직망을 아우르는 체계적 이론·방법론적 분석 틀 확립.</td>
+                </tr>
+                <tr>
+                  <td><strong>4단계</strong></td>
+                  <td><strong>연구방법 (Methodology)</strong></td>
+                  <td>문헌 고찰 및 12개 실증 연구 매트릭스 비교 분석 (분석 수준, 행위자 유형, 지원, 조정, 구조 지표, 종단 연구 여부 교차 검토).</td>
+                </tr>
+                <tr>
+                  <td><strong>5단계</strong></td>
+                  <td><strong>연구결과 (Results)</strong></td>
+                  <td>실증 연구 다수가 '개인-자아중심망' 또는 '조직-사회중심망'의 이분법에 고착되어 있으며, 구조 분석과 종단 분석이 절대적으로 결여됨 (표 1.1).</td>
+                </tr>
+                <tr>
+                  <td><strong>6단계</strong></td>
+                  <td><strong>핵심 발견 (Findings)</strong></td>
+                  <td>1) 네트워크는 분석적 추상물이며 목적성이 없음.<br>2) 조직망 기저에는 대인 관계가 혼재함.<br>3) 정보는 온전히 흐르지 않고 매개자에 의해 왜곡·변형됨.</td>
+                </tr>
+                <tr>
+                  <td><strong>7단계</strong></td>
+                  <td><strong>연구의 한계 (Limitations)</strong></td>
+                  <td>단일 학문 분과 중심의 연구 한계, 잠재적 연계가 실현된 연계로 전이되는 조건적 메커니즘을 규명하는 종단 데이터 부족.</td>
+                </tr>
+                <tr>
+                  <td><strong>8단계</strong></td>
+                  <td><strong>이론적 시사점 (Implications)</strong></td>
+                  <td>네트워크 물신화(Reification)를 경계하고, 행위자의 의도성과 구조적 제약의 변증법적 상호작용으로 재난 거버넌스를 파악해야 함을 입증.</td>
+                </tr>
+                <tr>
+                  <td><strong>9단계</strong></td>
+                  <td><strong>후속 연구 제언 (Future Scope)</strong></td>
+                  <td>개인망과 조직망을 연계하는 다수준(Multilevel) 네트워크 모델링 도입, 취약 인구 연구 윤리 가이드라인 수립, 종단적 네트워크 패널 구축.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- FOOTER NAV -->
+        <div class="footer-nav">
+          <a href="#" class="nav-btn" style="visibility: hidden;"><i data-lucide="arrow-left"></i> 이전 챕터</a>
+          <a href="chapter2_subnote.html" class="nav-btn">다음 챕터: Ch 2. 개인 중심 SNA <i data-lucide="arrow-right"></i></a>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    window.addEventListener('scroll', () => {
+      const winScroll = document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('progress-bar').style.width = scrolled + '%';
+    });
+
+    const themeBtn = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    let isLight = false;
+
+    themeBtn.addEventListener('click', () => {
+      isLight = !isLight;
+      if (isLight) {
+        document.documentElement.setAttribute('data-theme', 'light');
+        themeIcon.setAttribute('data-lucide', 'sun');
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+        themeIcon.setAttribute('data-lucide', 'moon');
+      }
+      lucide.createIcons();
+    });
+
+    const sections = document.querySelectorAll('.section-block');
+    const navItems = document.querySelectorAll('.toc-item');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        if (pageYOffset >= sectionTop - 120) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navItems.forEach(item => {
+        item.classList.remove('active');
+        const link = item.querySelector('a');
+        if (link.getAttribute('href') === `#${current}`) {
+          item.classList.add('active');
+        }
+      });
+    });
+
+    const searchInput = document.getElementById('search-input');
+    const tocList = document.getElementById('toc-list');
+    const tocLinks = tocList.getElementsByTagName('li');
+
+    searchInput.addEventListener('input', (e) => {
+      const term = e.target.value.toLowerCase();
+      Array.from(tocLinks).forEach(li => {
+        const text = li.innerText.toLowerCase();
+        if (text.includes(term)) {
+          li.style.display = 'block';
+        } else {
+          li.style.display = 'none';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
