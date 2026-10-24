@@ -94,6 +94,9 @@ classDiagram
     }
 ```
 
+![Table 1.1: Approaches and Foci of Empirical Chapters](image-23.png)  
+*TABLE 1.1: Approaches and Foci of Empirical Chapters (원문 p. 5 표 1.1 스캔본).*
+
 | 장 (Chapter) | 네트워크 분석 수준 및 행위자 유형 | 사회적 지원 (Social Support) | 조정 (Coordination) | 구조적 지표 (Structure) | 종단적 설계 (Longitudinal) |
 | :---: | :--- | :---: | :---: | :---: | :---: |
 | **제5장** | 사회중심(Sociocentric) — 조직(Organizations) | | **X** | **X** | |

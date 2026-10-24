@@ -89,7 +89,7 @@ flowchart TD
   2. *수평적·분권적 모델 (ESF)*: 긴급지원기능별 책임 부서 중심의 협력체계.
   3. *복합 하이브리드 모델*: 수직적 통제와 수평적 기능 연계를 결합한 형태.
 
-![FIGURE 3.1: Orange County ESF Network](image.png)  
+![FIGURE 3.1: Orange County ESF Network](image-24.png)  
 *FIGURE 3.1: Orange County, Florida, emergency support function affiliation network (오렌지 카운티의 17개 긴급지원기능을 중심으로 공공·민간 기관들이 클러스터링된 2모드 소속 네트워크).*
 
 ---
@@ -129,8 +129,14 @@ classDiagram
   - **대비 단계의 공식 협업**은 실제 재난 대응 협업을 가장 강력하게 예측하는 변수임 (사적 친분망보다 우위).
   - 정보통신기술(ICT) 활용도는 대비망의 중심 조직에서 높게 나타났으나, 실제 긴급 대응 단계에서는 이메일, 유무선 전화, 대면 접촉 등 전통적 소통 방식이 여전히 결정적 역할을 수행함.
 
-![FIGURE 3.2A-C: Orange County Networks](image.png)  
-*FIGURE 3.2A–C: Orange County, Florida의 친구망(Friendship), 재난대비망(Preparedness), 재난대응망(Response) 비교.*
+![FIGURE 3.2A: Orange County Friendship Network](image-25.png)  
+*FIGURE 3.2A: Orange County, Florida의 친구망(Friendship Network).*
+
+![FIGURE 3.2B: Orange County Disaster Preparedness Network](image-26.png)  
+*FIGURE 3.2B: Orange County, Florida의 재난대비망(Disaster Preparedness Network).*
+
+![FIGURE 3.2C: Orange County Disaster Response Network](image-27.png)  
+*FIGURE 3.2C: Orange County, Florida의 재난대응망(Disaster Response Network).*
 
 ### 4. 신뢰와 사회적 자본 (Trust and Social Capital)
 - **공식 연계와 비공식 연계의 상호보완**: MOU 등 공식 협약은 자원 공유의 틀을 제공하며, 관리자의 개인적 사회적 자본과 신뢰는 긴급 상황 시 신속한 작동을 보장함 (McGuire & Silvia, 2010; Kapucu et al., 2009).
@@ -181,7 +187,7 @@ flowchart TD
 3. **권력 불균형(Power Imbalances)**:
    - 자원을 독점한 중심 도시가 주변부 관할권을 일방적으로 지배하거나, 반대로 소외시키는 현상.
 
-![FIGURE 3.3: Factors Influencing Interorganizational Networks](image.png)  
+![FIGURE 3.3: Factors Influencing Interorganizational Networks](image-28.png)  
 *FIGURE 3.3: Factors influencing effective interorganizational networks in disaster management (재난 관리 조직간 네트워크에 영향을 미치는 촉진 및 저해 요인 개념 모델).*
 
 ---
