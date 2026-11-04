@@ -1,0 +1,763 @@
+import os
+
+html_content = r'''<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>경남 기후재난(수해·산불) 연계 소상공인 실증연구 및 데이터 수집 계획서</title>
+  
+  <!-- Pretendard Font & Google Fonts -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- MathJax Configuration & Script -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Mermaid JS for diagrams -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typeof mermaid !== 'undefined') {
+        try {
+          mermaid.initialize({ 
+            startOnLoad: true, 
+            theme: 'dark',
+            securityLevel: 'loose',
+            fontFamily: 'Pretendard, sans-serif',
+            flowchart: {
+              useMaxWidth: false,
+              htmlLabels: true
+            }
+          });
+        } catch(e) {
+          console.warn('Mermaid initialization deferred:', e);
+        }
+      }
+    });
+  </script>
+
+  <style>
+    :root {
+      --bg-primary: #0b1120;
+      --bg-secondary: #131c31;
+      --bg-sidebar: #0f172a;
+      --bg-card: #1e293b;
+      --bg-card-hover: #26354d;
+      --accent-primary: #38bdf8;
+      --accent-secondary: #818cf8;
+      --accent-emerald: #34d399;
+      --accent-amber: #fbbf24;
+      --accent-rose: #fb7185;
+      --accent-cyan: #06b6d4;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --border-color: #334155;
+      --radius: 12px;
+      --radius-sm: 8px;
+      --radius-lg: 16px;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.35);
+      --shadow-lg: 0 12px 30px -6px rgba(0, 0, 0, 0.5);
+      --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    [data-theme="light"] {
+      --bg-primary: #f8fafc;
+      --bg-secondary: #ffffff;
+      --bg-sidebar: #ffffff;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f1f5f9;
+      --accent-primary: #0284c7;
+      --accent-secondary: #6366f1;
+      --accent-emerald: #059669;
+      --accent-amber: #d97706;
+      --accent-rose: #e11d48;
+      --accent-cyan: #0891b2;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --text-dim: #94a3b8;
+      --border-color: #e2e8f0;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 12px 30px -6px rgba(0, 0, 0, 0.1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.85;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      min-height: 100vh;
+      padding: 2.5rem 1.5rem 5rem 1.5rem;
+    }
+
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+
+    /* TOP BAR */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-badge {
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-primary));
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 0.78rem;
+      padding: 0.35rem 0.8rem;
+      border-radius: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    .theme-toggle-btn {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 0.45rem;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      width: 38px;
+      height: 38px;
+    }
+
+    .theme-toggle-btn:hover {
+      background: var(--bg-card-hover);
+      color: var(--accent-primary);
+      transform: rotate(15deg);
+    }
+
+    /* HERO BANNER */
+    .hero-banner {
+      background: linear-gradient(135deg, rgba(19, 28, 49, 0.9) 0%, rgba(15, 23, 42, 0.98) 100%);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 2.75rem 2.5rem;
+      margin-bottom: 2.5rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .hero-banner::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(6, 182, 212, 0.2) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .tag {
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 0.3rem 0.75rem;
+      border-radius: 9999px;
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent-primary);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .tag.cyan { background: rgba(6, 182, 212, 0.15); color: var(--accent-cyan); border-color: rgba(6, 182, 212, 0.3); }
+    .tag.emerald { background: rgba(52, 211, 153, 0.15); color: var(--accent-emerald); border-color: rgba(52, 211, 153, 0.3); }
+    .tag.amber { background: rgba(251, 191, 36, 0.15); color: var(--accent-amber); border-color: rgba(251, 191, 36, 0.3); }
+    .tag.rose { background: rgba(251, 113, 133, 0.15); color: var(--accent-rose); border-color: rgba(251, 113, 133, 0.3); }
+
+    .hero-title {
+      font-family: 'Outfit', 'Pretendard', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      line-height: 1.35;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #ffffff 40%, var(--accent-cyan) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    [data-theme="light"] .hero-title {
+      background: linear-gradient(135deg, #0f172a 40%, #0891b2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 1.12rem;
+      color: var(--text-muted);
+      margin-bottom: 1.75rem;
+      line-height: 1.7;
+    }
+
+    .hero-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.9rem;
+    }
+
+    .hero-meta-item { display: flex; flex-direction: column; gap: 0.25rem; }
+    .hero-meta-label { color: var(--text-dim); font-size: 0.78rem; text-transform: uppercase; font-weight: 600; }
+    .hero-meta-val { color: var(--text-main); font-weight: 700; }
+
+    /* STATS SUMMARY */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.35rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+
+    .stat-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--accent-cyan);
+    }
+
+    .stat-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(6, 182, 212, 0.12);
+      color: var(--accent-cyan);
+      flex-shrink: 0;
+    }
+
+    .stat-icon.rose { background: rgba(251, 113, 133, 0.12); color: var(--accent-rose); }
+    .stat-icon.emerald { background: rgba(52, 211, 153, 0.12); color: var(--accent-emerald); }
+    .stat-icon.amber { background: rgba(251, 191, 36, 0.12); color: var(--accent-amber); }
+
+    .stat-info { display: flex; flex-direction: column; }
+    .stat-val { font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--text-main); line-height: 1.1; }
+    .stat-desc { font-size: 0.82rem; color: var(--text-muted); margin-top: 0.3rem; }
+
+    /* SECTION CARD */
+    .section-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 2.25rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .section-title {
+      font-family: 'Outfit', 'Pretendard', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid var(--border-color);
+    }
+
+    .section-title i { color: var(--accent-cyan); }
+
+    /* MERMAID BOX */
+    .mermaid-box {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 2rem 1.5rem;
+      margin: 1.75rem 0;
+      overflow-x: auto;
+      text-align: center;
+    }
+
+    .mermaid-box::-webkit-scrollbar { height: 8px; }
+    .mermaid-box::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; }
+    .mermaid-box .mermaid { display: inline-block; text-align: left; min-width: 840px; }
+    .mermaid-box svg { max-width: none !important; height: auto !important; }
+
+    /* TABLE */
+    .table-wrapper {
+      overflow-x: auto;
+      margin: 1.25rem 0;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+    }
+
+    .custom-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      text-align: left;
+    }
+
+    .custom-table th {
+      background: var(--bg-secondary);
+      color: var(--text-main);
+      font-weight: 700;
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .custom-table td {
+      padding: 0.95rem 1.25rem;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-muted);
+    }
+
+    .custom-table tr:hover td {
+      background: var(--bg-card-hover);
+      color: var(--text-main);
+    }
+
+    /* CALLOUT */
+    .callout {
+      border-left: 4px solid var(--accent-cyan);
+      background: rgba(6, 182, 212, 0.08);
+      padding: 1.35rem 1.65rem;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin: 1.35rem 0;
+    }
+
+    .callout.emerald { border-left-color: var(--accent-emerald); background: rgba(52, 211, 153, 0.08); }
+    .callout.amber { border-left-color: var(--accent-amber); background: rgba(251, 191, 36, 0.08); }
+    .callout.rose { border-left-color: var(--accent-rose); background: rgba(251, 113, 133, 0.08); }
+
+    .callout-title {
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .callout-desc {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+    }
+
+    /* CODE BLOCK */
+    .code-box {
+      background: #0f172a;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 1.25rem 1.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: #e2e8f0;
+      overflow-x: auto;
+      margin: 1.25rem 0;
+      line-height: 1.65;
+    }
+
+    /* BUTTONS */
+    .btn-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.4rem;
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+      cursor: pointer;
+      transition: var(--transition);
+      border: 1px solid var(--border-color);
+      background: var(--bg-secondary);
+      color: var(--text-main);
+    }
+
+    .btn:hover {
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+      transform: translateY(-2px);
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-primary));
+      color: #ffffff;
+      border: none;
+    }
+
+    .btn.primary:hover {
+      box-shadow: 0 4px 14px rgba(6, 182, 212, 0.4);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- TOP BAR -->
+    <header class="top-bar">
+      <div class="brand-group">
+        <span class="brand-badge">경남 기후재난 특화 연구 기획</span>
+        <span style="font-weight:600; font-size:0.9rem; color:var(--text-muted);">수해·산불 연계 소상공인 정책 데이터셋</span>
+      </div>
+      <button class="theme-toggle-btn" id="theme-toggle" title="테마 전환">
+        <i data-lucide="moon" id="theme-icon"></i>
+      </button>
+    </header>
+
+    <!-- HERO BANNER -->
+    <section class="hero-banner">
+      <div class="hero-tags">
+        <span class="tag cyan"><i data-lucide="flame"></i> 밀양·합천 산불 & 태풍 수해</span>
+        <span class="tag emerald"><i data-lucide="database"></i> 즉시 수집 가능 공공데이터 4종</span>
+        <span class="tag amber"><i data-lucide="shield-check"></i> 소진공 재해 긴급경영안정자금</span>
+        <span class="tag rose"><i data-lucide="clock"></i> D-15 실전 출품 가이드</span>
+      </div>
+
+      <h1 class="hero-title">기후재난(수해·산불) 충격이 경남 소상공인의 생존과<br/>‘가족의 부담(The Family’s Burden)’에 미친 영향</h1>
+      <p class="hero-subtitle">소상공인시장진흥공단 재해 긴급경영안정자금의 완충 효과(Buffering Effect)를 중심으로</p>
+
+      <div class="hero-meta-grid">
+        <div class="hero-meta-item">
+          <span class="hero-meta-label">연구 대상 지역</span>
+          <span class="hero-meta-val">경상남도 18개 시·군 (밀양, 합천, 하동, 창원, 김해 등)</span>
+        </div>
+        <div class="hero-meta-item">
+          <span class="hero-meta-label">적용 이론적 기틀</span>
+          <span class="hero-meta-val">Chapter 9 '가족의 부담' & 재난 다발 지역(Hazard-Prone)</span>
+        </div>
+        <div class="hero-meta-item">
+          <span class="hero-meta-label">핵심 데이터 출처</span>
+          <span class="hero-meta-val">행안부 재해연보 + 소진공 정책자금 + MDIS 실태조사</span>
+        </div>
+        <div class="hero-meta-item">
+          <span class="hero-meta-label">데이터 확보 소요</span>
+          <span class="hero-meta-val" style="color:var(--accent-emerald);">당일 즉시 무료 다운로드 (1~2일 내 완료)</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS SUMMARY -->
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-icon"><i data-lucide="map-pin"></i></div>
+        <div class="stat-info">
+          <span class="stat-val">18개 시·군</span>
+          <span class="stat-desc">경남 전역 시군별 재해-상권 매칭</span>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon rose"><i data-lucide="alert-triangle"></i></div>
+        <div class="stat-info">
+          <span class="stat-val">수해 + 산불</span>
+          <span class="stat-desc">2020~2024 경남 발생 복합 자연재난</span>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon emerald"><i data-lucide="coins"></i></div>
+        <div class="stat-info">
+          <span class="stat-val">연 2.0% 고정</span>
+          <span class="stat-desc">소진공 재해 긴급자금(최대 1억원)</span>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon amber"><i data-lucide="file-spreadsheet"></i></div>
+        <div class="stat-info">
+          <span class="stat-val">4종 융합</span>
+          <span class="stat-desc">행안부+소진공+MDIS+상가정보</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 1: RESEARCH FRAMEWORK -->
+    <div class="section-card">
+      <h2 class="section-title"><i data-lucide="git-merge"></i> 1. 경남 재난-소상공인 통합 실증 프레임워크</h2>
+
+      <p style="font-size:1.02rem; color:var(--text-main); margin-bottom:1.25rem;">
+        플로리다의 허리케인·산불 위험을 다룬 <strong>Chapter 9</strong>의 논리는, 최근 <strong>밀양·합천 산불</strong>과 <strong>태풍 힌남노·카눈 및 남해안 집중호우</strong>로 큰 피해를 입은 <strong>경상남도 소상공인 생태계</strong>에 정확하게 들어맞습니다.
+      </p>
+
+      <div class="mermaid-box">
+        <div class="mermaid">
+flowchart TD
+    subgraph Shock["[외생적 충격: 기후재난]"]
+        S1["행안부 재해연보: 경남 18개 시군별 수해 피해액"]
+        S2["산림청 통계: 밀양·합천·하동 산불 피해 면적"]
+        S3["대통령 특별재난지역 선포 이력 (선포 여부 1/0)"]
+    end
+
+    subgraph Channel["[자금 조달 경로: Chapter 9 이론 검증]"]
+        C1["비재정적 지원: 상인회·동료 상인 잔해 제거 협력"]
+        C2["🚨 재정적 조달: 오직 '가족의 짐(Family's Burden)'<br/>→ 가족 대출 고갈 시 고금리 사금융 전락 & 파산"]
+    end
+
+    subgraph Policy["[공적 정책 개입: 완충 기제]"]
+        P1["지자체: '재해 중소기업(소상공인) 확인증' 발급"]
+        P2["소진공: '재해 긴급경영안정자금' (연 2.0%, 최대 1억원)"]
+        P3["경남신용보증재단: 재해 소상공인 특례보증 공급"]
+    end
+
+    subgraph Outcome["[최종 성과: 상권 생존력]"]
+        O1["소진공 상가(상권)정보: 점포 생존율 & 폐업 기간"]
+        O2["MDIS 실태조사: 폐업 고려 여부 및 부채 상환율"]
+    end
+
+    Shock --> Channel
+    Channel --> Policy
+    Policy --> Outcome
+        </div>
+      </div>
+
+      <div class="callout cyan">
+        <div class="callout-title" style="color:var(--accent-cyan);"><i data-lucide="sparkles"></i> 연구의 결정적 차별성 (Policy 학술 가치)</div>
+        <div class="callout-desc">
+          재난이 발생했을 때 소상공인은 자력이나 이웃 상인에게 돈을 빌릴 수 없어 <strong>결국 가족의 빚으로 전락</strong>합니다. 이때 <strong>소진공의 '재해 긴급경영안정자금'이 사적 금융망의 붕괴를 어떻게 방어하고 상권의 폐업 도미노를 막아냈는가(Buffer Effect)</strong>를 실증함으로써, 정책학회와 소진공 심사위원 모두에게 최상의 정책적 시사점을 제공합니다.
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 2: 4 CORE DATASETS -->
+    <div class="section-card">
+      <h2 class="section-title"><i data-lucide="database"></i> 2. 지금 즉시 다운로드 가능한 4대 핵심 공공데이터 가이드</h2>
+
+      <div class="table-wrapper">
+        <table class="custom-table">
+          <thead>
+            <tr>
+              <th style="width:18%;">데이터명</th>
+              <th style="width:20%;">제공 기관 및 사이트</th>
+              <th style="width:38%;">제공 변수 및 경남 세부 항목</th>
+              <th style="width:24%;">수집 방법 & 소요시간</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="font-weight:700; color:var(--accent-rose);">1. 행안부<br/>재해연보</td>
+              <td><strong>공공데이터포털</strong><br/>(data.go.kr)<br/>국가통계포털(KOSIS)</td>
+              <td>
+                • 연도별(2018~2024), <strong>경남 18개 시군별</strong><br/>
+                • 재난 유형: 호우, 태풍, 산불, 대설 등<br/>
+                • 사유시설 피해액, 공공시설 피해액, 이재민 수
+              </td>
+              <td>
+                <span class="tag emerald" style="font-size:0.75rem;">즉시 다운로드</span><br/>
+                CSV / Excel 무료 (5분 소요)
+              </td>
+            </tr>
+            <tr>
+              <td style="font-weight:700; color:var(--accent-cyan);">2. 소진공<br/>정책자금 지원</td>
+              <td><strong>소상공인시장진흥공단</strong><br/>공공데이터포털(data.go.kr)</td>
+              <td>
+                • 시군구별, 연도별, 자금종류별 지원 실적<br/>
+                • <strong>[긴급경영안정자금 - 재해소상공인 트랙]</strong><br/>
+                • 경남 지역 집행 건수 및 총 대출금액
+              </td>
+              <td>
+                <span class="tag emerald" style="font-size:0.75rem;">즉시 다운로드</span><br/>
+                CSV / API (당일 확보)
+              </td>
+            </tr>
+            <tr>
+              <td style="font-weight:700; color:var(--accent-amber);">3. 소진공<br/>상가(상권)정보</td>
+              <td><strong>소상공인시장진흥공단</strong><br/>(data.go.kr)</td>
+              <td>
+                • 경남 18개 시군 읍면동 단위 점포 전수<br/>
+                • 업종 대/중/소분류, 도로명주소, 좌표<br/>
+                • <strong>개업일자 및 폐업일자 (생존 분석용)</strong>
+              </td>
+              <td>
+                <span class="tag emerald" style="font-size:0.75rem;">즉시 다운로드</span><br/>
+                경남 CSV 파일 (10분 소요)
+              </td>
+            </tr>
+            <tr>
+              <td style="font-weight:700; color:var(--accent-primary);">4. 통계청 MDIS<br/>소상공인실태조사</td>
+              <td><strong>MDIS 마이크로데이터</strong><br/>(mdis.kostat.go.kr)</td>
+              <td>
+                • 경남 거주 소상공인 마이크로 원자료<br/>
+                • 위기 시 자금조달처: <strong>[가족차용 / 정책자금 등]</strong><br/>
+                • 폐업 고려 여부, 연매출, 부채, 대표자 연령
+              </td>
+              <td>
+                <span class="tag emerald" style="font-size:0.75rem;">온라인 신청 즉시 승인</span><br/>
+                마이크로 원자료 (반나절 소요)
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- SECTION 3: PYTHON DATA MERGE CODE -->
+    <div class="section-card">
+      <h2 class="section-title"><i data-lucide="code-2"></i> 3. 실전 데이터 병합(Merge) 및 분석 파이썬 스크립트</h2>
+      
+      <p style="font-size:0.95rem; color:var(--text-main); margin-bottom:0.75rem;">
+        다운로드받은 행안부 재해통계와 소진공 상가정보 및 MDIS 실태조사를 <strong>경남 시·군 코드(`sigungu_cd`)를 기준으로 1:1 결합</strong>하는 파이프라인 코드입니다.
+      </p>
+
+      <div class="code-box">
+<span style="color:#64748b;"># 1. 라이브러리 로드</span>
+<span style="color:#38bdf8;">import</span> pandas <span style="color:#38bdf8;">as</span> pd
+<span style="color:#38bdf8;">import</span> statsmodels.api <span style="color:#38bdf8;">as</span> sm
+<span style="color:#38bdf8;">import</span> statsmodels.formula.api <span style="color:#38bdf8;">as</span> smf
+
+<span style="color:#64748b;"># 2. 데이터 불러오기</span>
+disaster_df = pd.read_csv(<span style="color:#34d399;">"경남_시군별_재난피해_2020_2024.csv"</span>)   <span style="color:#64748b;"># 행안부 재해연보</span>
+semas_fund_df = pd.read_csv(<span style="color:#34d399;">"경남_재해긴급경영자금_집행현황.csv"</span>) <span style="color:#64748b;"># 소진공 정책자금</span>
+survey_df = pd.read_csv(<span style="color:#34d399;">"mdis_소상공인실태조사_경남.csv"</span>)        <span style="color:#64748b;"># MDIS 마이크로데이터</span>
+
+<span style="color:#64748b;"># 3. 경남 시군 단위 병합 (Key: sigungu_cd)</span>
+merged_df = pd.merge(survey_df, disaster_df, on=<span style="color:#34d399;">"sigungu_cd"</span>, how=<span style="color:#34d399;">"left"</span>)
+merged_df = pd.merge(merged_df, semas_fund_df, on=<span style="color:#34d399;">"sigungu_cd"</span>, how=<span style="color:#34d399;">"left"</span>)
+
+<span style="color:#64748b;"># 4. Chapter 9 확장 로지스틱 회귀분석 실행 (가설 검정)</span>
+<span style="color:#64748b;"># 종속변수: 폐업 고려 여부(close_down_intent: 1/0) 또는 가족대출 의존 여부(family_loan: 1/0)</span>
+model = smf.logit(
+    <span style="color:#34d399;">"close_down_intent ~ disaster_damage + elderly_owner + tenant_business + semas_fund_received + (disaster_damage * semas_fund_received)"</span>,
+    data=merged_df
+).fit()
+
+<span style="color:#64748b;"># 5. 결과 요약 출력 (Table 9.3 형식)</span>
+print(model.summary())
+      </div>
+
+      <div class="callout emerald">
+        <div class="callout-title" style="color:var(--accent-emerald);"><i data-lucide="check-square"></i> 모델 상호작용항 `(disaster_damage * semas_fund_received)`의 의미</div>
+        <div class="callout-desc">
+          재난 피해(`disaster_damage`)가 커질수록 소상공인의 폐업 및 가족 대출 전락 확률이 급증하지만, <strong>소진공의 재해 정책자금(`semas_fund_received`)을 지원받은 경우 이 기울기가 완만하게 꺾이는 상호작용 완충 효과(Negative Interaction Term, $p < 0.05$)</strong>를 입증할 수 있습니다.
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 4: POLICY IMPLICATIONS -->
+    <div class="section-card">
+      <h2 class="section-title"><i data-lucide="award"></i> 4. 경남도청 및 소상공인시장진흥공단 맞춤 정책 제언</h2>
+
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:1.25rem;">
+        <div class="callout cyan">
+          <div class="callout-title" style="color:var(--accent-cyan);"><i data-lucide="file-text"></i> 1. '재해확인증' 발급 시효 완화 및 디지털화</div>
+          <div class="callout-desc">
+            현행 지자체 재해 확인 신청 기한(10일 이내)은 경황이 없는 이재민에게 너무 촉박합니다. <strong>소방·지자체 현장 출동 DB와 연계하여 자동 발급하는 '원스톱 패스트트랙'</strong> 도입을 제안합니다.
+          </div>
+        </div>
+
+        <div class="callout amber">
+          <div class="callout-title" style="color:var(--accent-amber);"><i data-lucide="user-x"></i> 2. '가족 부재' 고립 영세상인 핀셋 대환대출</div>
+          <div class="callout-desc">
+            Chapter 9 분석처럼 노인·1인 소상공인은 가족 금융망이 없습니다. 이들에게 신용보증 문턱을 낮추고 <strong>순수 공적 재해긴급자금(2.0% 이하)을 100% 직접대출로 지원</strong>하는 안전망 확충이 시급합니다.
+          </div>
+        </div>
+
+        <div class="callout emerald">
+          <div class="callout-title" style="color:var(--accent-emerald);"><i data-lucide="users"></i> 3. 상인회 중심 비재정 방재 네트워크 구축</div>
+          <div class="callout-desc">
+            이웃 상인은 돈을 빌려줄 순 없지만, 잔해 치우기와 차수판 설치 등 물리적 지원에 가장 유용합니다. <strong>전통시장 및 골목상인회를 '준공식 자율방재단'으로 육성</strong>하는 거버넌스를 제안합니다.
+          </div>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <a href="소상공인_논문공모전_연구계획서.html" class="btn"><i data-lucide="arrow-left"></i> 공모전 전체 계획서 보기</a>
+        <a href="https://data.go.kr" target="_blank" class="btn"><i data-lucide="download"></i> 공공데이터포털 바로가기</a>
+        <a href="https://mdis.kostat.go.kr" target="_blank" class="btn primary"><i data-lucide="database"></i> MDIS 마이크로데이터 신청</a>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    // Theme Toggle
+    const themeBtn = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    let isLight = false;
+
+    themeBtn.addEventListener('click', () => {
+      isLight = !isLight;
+      if (isLight) {
+        document.documentElement.setAttribute('data-theme', 'light');
+        themeIcon.setAttribute('data-lucide', 'sun');
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+        themeIcon.setAttribute('data-lucide', 'moon');
+      }
+      lucide.createIcons();
+    });
+  </script>
+</body>
+</html>
+'''
+
+output_path = '/Users/sg/Project/SNA/경남_재난소상공인_데이터수집_연구계획서.html'
+with open(output_path, 'w', encoding='utf-8') as f:
+    f.write(html_content)
+
+print(f"Successfully generated {os.path.getsize(output_path)} bytes to {output_path}")

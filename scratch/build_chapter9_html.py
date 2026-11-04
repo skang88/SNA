@@ -1,0 +1,1617 @@
+import os
+
+html_content = r'''<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>재난관리연구방법론 | Chapter 9. 가족의 부담: 재난 다발 플로리다의 개인 재난 지원 연결망 자원</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&family=Outfit:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- MathJax Configuration & Script -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Mermaid JS for diagrams -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typeof mermaid !== 'undefined') {
+        try {
+          mermaid.initialize({ 
+            startOnLoad: true, 
+            theme: 'dark',
+            securityLevel: 'loose',
+            fontFamily: 'Noto Sans KR, Inter, sans-serif',
+            flowchart: {
+              useMaxWidth: false,
+              htmlLabels: true,
+              curve: 'basis'
+            }
+          });
+        } catch(e) {
+          console.warn('Mermaid initialization deferred:', e);
+        }
+      }
+    });
+  </script>
+
+  <style>
+    :root {
+      --bg-primary: #0b1120;
+      --bg-secondary: #131c31;
+      --bg-sidebar: #0f172a;
+      --bg-card: #1e293b;
+      --bg-card-hover: #26354d;
+      --accent-primary: #38bdf8;
+      --accent-secondary: #818cf8;
+      --accent-emerald: #34d399;
+      --accent-amber: #fbbf24;
+      --accent-rose: #fb7185;
+      --accent-purple: #c084fc;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --border-color: #334155;
+      --sidebar-border: #1e293b;
+      --sidebar-width: 320px;
+      --glass-bg: rgba(19, 28, 49, 0.85);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.35);
+      --shadow-lg: 0 12px 30px -6px rgba(0, 0, 0, 0.5);
+      --radius: 12px;
+      --radius-sm: 8px;
+      --radius-lg: 16px;
+      --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    [data-theme="light"] {
+      --bg-primary: #f8fafc;
+      --bg-secondary: #ffffff;
+      --bg-sidebar: #ffffff;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f1f5f9;
+      --accent-primary: #0284c7;
+      --accent-secondary: #6366f1;
+      --accent-emerald: #059669;
+      --accent-amber: #d97706;
+      --accent-rose: #e11d48;
+      --accent-purple: #9333ea;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --text-dim: #94a3b8;
+      --border-color: #e2e8f0;
+      --sidebar-border: #e2e8f0;
+      --glass-bg: rgba(255, 255, 255, 0.9);
+      --glass-border: rgba(0, 0, 0, 0.08);
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 12px 30px -6px rgba(0, 0, 0, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Noto Sans KR', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.85;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      min-height: 100vh;
+    }
+
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-primary), var(--accent-emerald), var(--accent-amber));
+      width: 0%;
+      z-index: 1000;
+      transition: width 0.1s ease-out;
+    }
+
+    .app-layout {
+      display: flex;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* LEFT SIDEBAR */
+    .sidebar {
+      width: var(--sidebar-width);
+      flex-shrink: 0;
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      background: var(--bg-sidebar);
+      border-right: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      z-index: 100;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .sidebar-header {
+      padding: 1.5rem 1.25rem 1rem 1.25rem;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .sidebar-brand {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand-badge {
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-emerald));
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 0.75rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    .theme-toggle-btn {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 0.45rem;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      width: 34px;
+      height: 34px;
+    }
+
+    .theme-toggle-btn:hover {
+      background: var(--bg-card-hover);
+      color: var(--accent-primary);
+      transform: rotate(15deg);
+    }
+
+    .sidebar-title {
+      font-family: 'Outfit', 'Noto Sans KR', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.35;
+    }
+
+    .sidebar-subtitle {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .sidebar-search {
+      position: relative;
+      margin-top: 0.25rem;
+    }
+
+    .sidebar-search input {
+      width: 100%;
+      padding: 0.5rem 0.75rem 0.5rem 2.2rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+      background: var(--bg-secondary);
+      color: var(--text-main);
+      font-size: 0.85rem;
+      outline: none;
+      transition: var(--transition);
+    }
+
+    .sidebar-search input:focus {
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+    }
+
+    .sidebar-search i {
+      position: absolute;
+      left: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-dim);
+      width: 16px;
+      height: 16px;
+    }
+
+    .sidebar-nav-container {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1rem 0.75rem;
+    }
+
+    .sidebar-nav-container::-webkit-scrollbar {
+      width: 5px;
+    }
+    .sidebar-nav-container::-webkit-scrollbar-thumb {
+      background: var(--border-color);
+      border-radius: 4px;
+    }
+
+    .toc-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .toc-item a {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      padding: 0.5rem 0.75rem;
+      border-radius: var(--radius-sm);
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .toc-item a:hover {
+      background: var(--bg-secondary);
+      color: var(--accent-primary);
+      transform: translateX(3px);
+    }
+
+    .toc-item.active a {
+      background: linear-gradient(90deg, rgba(56, 189, 248, 0.15), transparent);
+      color: var(--accent-primary);
+      font-weight: 700;
+      border-left: 3px solid var(--accent-primary);
+    }
+
+    .toc-item i {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+
+    .sidebar-footer {
+      padding: 1rem 1.25rem;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      color: var(--text-dim);
+    }
+
+    .sidebar-footer a {
+      color: var(--accent-primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    /* MAIN CONTENT */
+    .main-wrapper {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* 가로폭 대폭 확장: 1440px로 넉넉하게 확장하여 시원한 뷰 제공 */
+    .main-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 2.5rem 3rem 6rem 3rem;
+      width: 100%;
+    }
+
+    /* HERO BANNER */
+    .hero-banner {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.95) 100%);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 2.25rem;
+      margin-bottom: 2.5rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+    }
+
+    .hero-banner::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 250px;
+      height: 250px;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero-badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.25rem 0.65rem;
+      border-radius: 9999px;
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent-primary);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .hero-badge.emerald {
+      background: rgba(52, 211, 153, 0.15);
+      color: var(--accent-emerald);
+      border-color: rgba(52, 211, 153, 0.3);
+    }
+
+    .hero-badge.amber {
+      background: rgba(251, 191, 36, 0.15);
+      color: var(--accent-amber);
+      border-color: rgba(251, 191, 36, 0.3);
+    }
+
+    .hero-badge.rose {
+      background: rgba(251, 113, 133, 0.15);
+      color: var(--accent-rose);
+      border-color: rgba(251, 113, 133, 0.3);
+    }
+
+    .hero-title {
+      font-family: 'Outfit', 'Noto Sans KR', sans-serif;
+      font-size: 2.15rem;
+      font-weight: 800;
+      line-height: 1.3;
+      margin-bottom: 0.75rem;
+      background: linear-gradient(135deg, #ffffff 40%, var(--accent-primary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    [data-theme="light"] .hero-title {
+      background: linear-gradient(135deg, #0f172a 40%, #0284c7 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .hero-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.85rem;
+    }
+
+    .hero-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .hero-meta-label {
+      color: var(--text-dim);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-meta-val {
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    /* STAT CARDS */
+    .stat-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      transition: var(--transition);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .stat-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--accent-primary);
+    }
+
+    .stat-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(56, 189, 248, 0.12);
+      color: var(--accent-primary);
+      flex-shrink: 0;
+    }
+
+    .stat-icon.emerald {
+      background: rgba(52, 211, 153, 0.12);
+      color: var(--accent-emerald);
+    }
+
+    .stat-icon.amber {
+      background: rgba(251, 191, 36, 0.12);
+      color: var(--accent-amber);
+    }
+
+    .stat-icon.rose {
+      background: rgba(251, 113, 133, 0.12);
+      color: var(--accent-rose);
+    }
+
+    .stat-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stat-value {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--text-main);
+      line-height: 1.1;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.3rem;
+    }
+
+    /* SECTION STYLING */
+    .section-block {
+      margin-bottom: 3.5rem;
+      scroll-margin-top: 2rem;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid var(--border-color);
+    }
+
+    .section-title {
+      font-family: 'Outfit', 'Noto Sans KR', sans-serif;
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .section-title i {
+      color: var(--accent-primary);
+    }
+
+    .section-badge {
+      font-size: 0.75rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+      color: var(--text-dim);
+    }
+
+    /* CONTENT CARDS */
+    .content-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card-title i {
+      color: var(--accent-secondary);
+      width: 20px;
+      height: 20px;
+    }
+
+    /* MERMAID WRAPPER: 가로 스크롤 허용 & SVG 축소 방지 핵심 스타일 */
+    .mermaid-box {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 2rem 1.5rem;
+      margin: 1.75rem 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .mermaid-box::-webkit-scrollbar {
+      height: 9px;
+    }
+    .mermaid-box::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 4px;
+    }
+    .mermaid-box::-webkit-scrollbar-thumb {
+      background: var(--border-color);
+      border-radius: 4px;
+    }
+    .mermaid-box::-webkit-scrollbar-thumb:hover {
+      background: var(--accent-primary);
+    }
+
+    .mermaid-box .mermaid {
+      display: inline-block;
+      text-align: left;
+      min-width: 860px; /* 차트의 글자가 찌그러지지 않도록 넉넉한 최소 너비 보장 */
+      font-size: 15px;
+    }
+
+    /* 핵심: Mermaid SVG가 부모 박스에 맞춰 축소(Scale-down)되는 것을 방지 */
+    .mermaid-box svg {
+      max-width: none !important;
+      height: auto !important;
+    }
+
+    .mermaid-caption {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    /* 4대 학술적 의의 강조 카드 그리드 */
+    .significance-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+      margin: 1.5rem 0;
+    }
+
+    .significance-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 1.25rem 1.5rem;
+      transition: var(--transition);
+      border-top: 3px solid var(--accent-primary);
+    }
+
+    .significance-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--accent-primary);
+    }
+
+    .significance-card.emerald { border-top-color: var(--accent-emerald); }
+    .significance-card.amber { border-top-color: var(--accent-amber); }
+    .significance-card.rose { border-top-color: var(--accent-rose); }
+
+    .sig-num {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--accent-primary);
+      margin-bottom: 0.35rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .significance-card.emerald .sig-num { color: var(--accent-emerald); }
+    .significance-card.amber .sig-num { color: var(--accent-amber); }
+    .significance-card.rose .sig-num { color: var(--accent-rose); }
+
+    .sig-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.5rem;
+      line-height: 1.4;
+    }
+
+    .sig-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* FIGURE BOX */
+    .figure-container {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      margin: 1.75rem 0;
+      text-align: center;
+    }
+
+    .figure-container img {
+      max-width: 100%;
+      height: auto;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+      background: #ffffff;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .figure-caption {
+      margin-top: 1rem;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .figure-subcaption {
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      margin-top: 0.3rem;
+    }
+
+    /* DATA TABLE */
+    .table-container {
+      overflow-x: auto;
+      margin: 1.25rem 0;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+    }
+
+    .styled-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      text-align: left;
+    }
+
+    .styled-table th {
+      background: var(--bg-secondary);
+      color: var(--text-main);
+      font-weight: 700;
+      padding: 0.95rem 1.15rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .styled-table td {
+      padding: 0.9rem 1.15rem;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-muted);
+    }
+
+    .styled-table tr:hover td {
+      background: var(--bg-card-hover);
+      color: var(--text-main);
+    }
+
+    /* QUOTE BOX */
+    .interview-quote {
+      border-left: 4px solid var(--accent-secondary);
+      background: var(--bg-secondary);
+      padding: 1.35rem 1.75rem;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin: 1.35rem 0;
+      position: relative;
+    }
+
+    .interview-quote.low-income {
+      border-left-color: var(--accent-amber);
+    }
+
+    .interview-quote.high-income {
+      border-left-color: var(--accent-emerald);
+    }
+
+    .quote-speaker {
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .quote-text {
+      font-style: italic;
+      color: var(--text-main);
+      font-size: 0.95rem;
+      line-height: 1.75;
+    }
+
+    /* CALLOUT BOX */
+    .callout-box {
+      border-left: 4px solid var(--accent-primary);
+      background: rgba(56, 189, 248, 0.08);
+      padding: 1.35rem 1.65rem;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin: 1.35rem 0;
+    }
+
+    .callout-box.emerald {
+      border-left-color: var(--accent-emerald);
+      background: rgba(52, 211, 153, 0.08);
+    }
+
+    .callout-box.amber {
+      border-left-color: var(--accent-amber);
+      background: rgba(251, 191, 36, 0.08);
+    }
+
+    .callout-box.rose {
+      border-left-color: var(--accent-rose);
+      background: rgba(251, 113, 133, 0.08);
+    }
+
+    .callout-title {
+      font-weight: 700;
+      font-size: 0.98rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .callout-content {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    /* ACTION BUTTONS */
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.35rem;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-size: 0.88rem;
+      text-decoration: none;
+      transition: var(--transition);
+      cursor: pointer;
+      border: 1px solid var(--border-color);
+      background: var(--bg-secondary);
+      color: var(--text-main);
+    }
+
+    .action-btn:hover {
+      border-color: var(--accent-primary);
+      color: var(--accent-primary);
+      transform: translateY(-2px);
+    }
+
+    .action-btn.primary {
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      color: #ffffff;
+      border: none;
+    }
+
+    .action-btn.primary:hover {
+      box-shadow: 0 4px 12px rgba(56, 189, 248, 0.35);
+    }
+
+    @media (max-width: 1024px) {
+      .sidebar {
+        display: none;
+      }
+      .main-container {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="progress-bar"></div>
+
+  <div class="app-layout">
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-brand">
+          <span class="brand-badge">SNA DISASTER METHOD</span>
+          <button class="theme-toggle-btn" id="theme-toggle" title="테마 전환">
+            <i data-lucide="moon" id="theme-icon"></i>
+          </button>
+        </div>
+        <div class="sidebar-title">제9장 가족의 부담 (Sub-Note)</div>
+        <div class="sidebar-subtitle">Michelle Meyer (2017)</div>
+        
+        <div class="sidebar-search">
+          <i data-lucide="search"></i>
+          <input type="text" id="search-input" placeholder="목차 빠른 검색...">
+        </div>
+      </div>
+
+      <nav class="sidebar-nav-container">
+        <ul class="toc-list" id="toc-list">
+          <li class="toc-item"><a href="#section-intro"><i data-lucide="book-open"></i> 1. 서론 및 이론적 배경</a></li>
+          <li class="toc-item"><a href="#section-methods"><i data-lucide="cpu"></i> 2. 연구 방법 및 표본</a></li>
+          <li class="toc-item"><a href="#section-size"><i data-lucide="pie-chart"></i> 3. 네트워크 규모와 자원</a></li>
+          <li class="toc-item"><a href="#section-comp"><i data-lucide="users"></i> 4. 네트워크 구성과 가족의 부담</a></li>
+          <li class="toc-item"><a href="#section-ses"><i data-lucide="trending-up"></i> 5. 사회경제적 지위와 불평등</a></li>
+          <li class="toc-item"><a href="#section-discuss"><i data-lucide="message-square"></i> 6. 논의 및 학술적 시사점</a></li>
+          <li class="toc-item"><a href="#section-appendix"><i data-lucide="file-text"></i> 7. 박사학위 선행연구 9단계</a></li>
+          <li class="toc-item active"><a href="#section-apply"><i data-lucide="shield-alert"></i> 8. ★ 소방 취약계층 안전망 적용</a></li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="chapter8_subnote.html"><i data-lucide="chevron-left"></i> Ch.8 서브노트</a>
+        <a href="index.html"><i data-lucide="home"></i> 통합 인덱스</a>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT AREA -->
+    <div class="main-wrapper">
+      <main class="main-container">
+
+        <!-- HERO BANNER -->
+        <header class="hero-banner">
+          <div class="hero-badge-row">
+            <span class="hero-badge"><i data-lucide="network"></i> Egocentric Network Analysis</span>
+            <span class="hero-badge emerald"><i data-lucide="heart-handshake"></i> Kin Embeddedness</span>
+            <span class="hero-badge amber"><i data-lucide="dollar-sign"></i> The Family's Burden</span>
+            <span class="hero-badge rose"><i data-lucide="alert-triangle"></i> Pre-Disaster Perception</span>
+          </div>
+
+          <h1 class="hero-title">제9장 가족의 부담: 재난 다발 지역 플로리다 주민들이 인지하는 개인 재난 지원 사회연결망 자원</h1>
+          <p class="hero-subtitle">THE FAMILY’S BURDEN: PERCEIVED SOCIAL NETWORK RESOURCES FOR INDIVIDUAL DISASTER ASSISTANCE IN HAZARD-PRONE FLORIDA</p>
+
+          <div class="hero-meta-grid">
+            <div class="hero-meta-item">
+              <span class="hero-meta-label">Author</span>
+              <span class="hero-meta-val">Michelle Meyer (Louisiana State Univ.)</span>
+            </div>
+            <div class="hero-meta-item">
+              <span class="hero-meta-label">Publication</span>
+              <span class="hero-meta-val">Social Network Analysis of Disaster Response (2017)</span>
+            </div>
+            <div class="hero-meta-item">
+              <span class="hero-meta-label">Study Region</span>
+              <span class="hero-meta-val">Florida (Leon County & Dixie County)</span>
+            </div>
+            <div class="hero-meta-item">
+              <span class="hero-meta-label">DOI</span>
+              <span class="hero-meta-val"><a href="http://dx.doi.org/10.1016/B978-0-12-805196-2.00009-1" target="_blank" style="color:var(--accent-primary); text-decoration:none;">10.1016/B978-0-12-805196-2.00009-1</a></span>
+            </div>
+          </div>
+        </header>
+
+        <!-- STAT CARDS -->
+        <section class="stat-cards-grid">
+          <div class="stat-card">
+            <div class="stat-icon"><i data-lucide="users"></i></div>
+            <div class="stat-info">
+              <span class="stat-value">3.7명</span>
+              <span class="stat-label">평균 전체 재난 지지망 규모</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon rose"><i data-lucide="dollar-sign"></i></div>
+            <div class="stat-info">
+              <span class="stat-value">40.0%</span>
+              <span class="stat-label">재정 지원 가능 인원 0명 비율</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon emerald"><i data-lucide="heart"></i></div>
+            <div class="stat-info">
+              <span class="stat-value">59.0%</span>
+              <span class="stat-label">네트워크 내 가족(Family) 점유율</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon amber"><i data-lucide="user-x"></i></div>
+            <div class="stat-info">
+              <span class="stat-value">0.31배</span>
+              <span class="stat-label">노인층 재정망 보유 승산비(OR)</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 1 -->
+        <section id="section-intro" class="section-block">
+          <div class="section-header">
+            <h2 class="section-title"><i data-lucide="book-open"></i> 1. 서론 및 이론적 배경</h2>
+            <span class="section-badge">pp. 127–129</span>
+          </div>
+
+          <div class="content-card">
+            <h3 class="card-title"><i data-lucide="layers"></i> 재난 시 비공식 사회연결망의 결정적 역할: "진정한 최초 대응자"</h3>
+            <p>친구, 가족, 직장 동료, 이웃 등은 비밀을 나누고 정서적 지지를 교환하는 개인 네트워크(Personal Networks)를 형성합니다(Paxton, 1999). 재난 문헌에 따르면 <strong>가족, 친구, 이웃은 공공 긴급구조기관이 현장에 도착하기 전 가장 먼저 개입하는 "진정한 최초 대응자(real first responders)"</strong>입니다.</p>
+            <p style="margin-top:0.75rem;">이들은 재난 경보 메시지 전파, 구호물품 조달, 긴급 수색 및 구조(Search & Rescue), 대피 피난처 제공, 잔해 제거 및 주택 수리, 그리고 막대한 정서적·재정적 지원을 수행합니다(Elliott et al., 2010; Hurlbert et al., 2000).</p>
+
+            <div class="callout-box" style="margin-top:1.5rem;">
+              <div class="callout-title"><i data-lucide="help-circle"></i> 본 연구의 핵심 질문과 독창적 차별성 (사전 인지 연구)</div>
+              <div class="callout-content">
+                기존 재난 연결망 연구는 대부분 재난이 발생한 후(Post-event) 생존자들의 사후 회상(Recall)에 의존했습니다. 그러나 본 연구는 <strong>상시 재난 취약지대인 플로리다 주민들을 대상으로, 향후 재난 발생 시 누구에게 어떤 자원(재정 vs 비재정)을 요청할 것인지에 대한 "사전 인지(Pre-disaster Perceptions)"를 측정</strong>하여 회상 편향을 극복하고 주민들의 인지된 자원 깊이를 실증했습니다.
+              </div>
+            </div>
+
+            <!-- 4대 학술적 의의 강조 카드 그리드 -->
+            <div class="significance-grid">
+              <div class="significance-card">
+                <div class="sig-num">Significance 01</div>
+                <div class="sig-title">정신건강 및 스트레스 완화 예측</div>
+                <div class="sig-desc">실제 객관적 자원의 존재 유무와 독립적으로, 개인이 마음속으로 <strong>"위기 시 나를 도와줄 사람이 있다"고 지각(Perception)하는 것 자체</strong>가 극심한 스트레스 상황에서 심리적 안정과 정신건강을 강력하게 견인합니다.</div>
+              </div>
+
+              <div class="significance-card emerald">
+                <div class="sig-num">Significance 02</div>
+                <div class="sig-title">네트워크 자원 깊이(Resource Depth) 진단</div>
+                <div class="sig-desc">재난이 닥쳤을 때 기존 사적 네트워크 내부의 자원만으로 감당할 수 있는지, 아니면 <strong>외부 공공기관(FEMA, 지자체, 소방)의 개입과 외부 자원 동원이 필수적인지</strong>를 선제적으로 판별할 수 있습니다.</div>
+              </div>
+
+              <div class="significance-card amber">
+                <div class="sig-num">Significance 03</div>
+                <div class="sig-title">실제 구호 요청 행동의 사전 규정</div>
+                <div class="sig-desc">자신의 연결망에 피난처나 긴급 자금을 내어줄 사람이 없다고 믿는 개인은, 실제 재난이 닥쳤을 때 <strong>사적 네트워크에 도움을 요청하는 행동 자체를 사전에 포기</strong>하게 됩니다.</div>
+              </div>
+
+              <div class="significance-card rose">
+                <div class="sig-num">Significance 04</div>
+                <div class="sig-title">치료적 공동체 환상 검증 및 1차 방어선 식별</div>
+                <div class="sig-desc">재난 발생 시 온 마을이 돕는다는 '치료적 공동체(Therapeutic Community)'의 환상과 달리, 주민들은 교회나 시민단체보다 <strong>"가족이 무조건 우선(Family comes first)"</strong>이라는 냉정한 1차 방어선 현실을 보여줍니다.</div>
+              </div>
+            </div>
+
+            <!-- Mermaid Diagram: 가로 스크롤 허용 및 원본 크기 유지 -->
+            <div class="mermaid-box">
+              <div class="mermaid">
+flowchart TD
+    subgraph PreEvent["사전 인지된 네트워크(Perceived Networks)의 4대 학술적 의의"]
+        direction TB
+        A["<b>1. 정신건강 및 스트레스 완화 예측</b><br/>(객관적 자원 유무와 별개로 지각된 지지가 심리적 안정 견인)"]
+        B["<b>2. 네트워크의 자원 깊이(Resource Depth) 진단</b><br/>(내부 자원으로 극복 가능한지, 공적 외부 개입 필수적인지 식별)"]
+        C["<b>3. 실제 구호 요청 행동의 사전 규정</b><br/>(네트워크에 자원이 없다고 믿으면 실제 위기 시 도움 요청 포기)"]
+        D["<b>4. 치료적 공동체의 환상 검증 및 1차 방어선 식별</b><br/>(재난 시 교회/단체보다 '가족이 우선'이라는 냉정한 현실 증명)"]
+    end
+              </div>
+              <div class="mermaid-caption">[다이어그램] 사전 인지된 네트워크(Perceived Networks)의 4대 학술적 의의 체계 (너비 초과 시 가로 스크롤 가능)</div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- SECTION 2 -->
+        <section id="section-methods" class="section-block">
+          <div class="section-header">
+            <h2 class="section-title"><i data-lucide="cpu"></i> 2. 연구 방법 및 표본 (Data and Methods)</h2>
+            <span class="section-badge">pp. 129–131</span>
+          </div>
+
+          <div class="content-card">
+            <h3 class="card-title"><i data-lucide="map-pin"></i> 플로리다주 2개 카운티의 다중 생태학적 비교 설계</h3>
+            <p>플로리다는 6월부터 10월까지 허리케인 시즌이 이어지며 토네이도, 홍수, 산불이 빈발하는 대표적 재난 취약 지역입니다. 본 연구는 동일한 자연재해 위험에 노출되어 있으나 사회경제적 환경이 대조적인 두 카운티를 비교 대상으로 선정했습니다:</p>
+            
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:1.25rem; margin:1.25rem 0;">
+              <div style="background:var(--bg-secondary); border:1px solid var(--border-color); border-radius:var(--radius-sm); padding:1.35rem;">
+                <div style="font-weight:700; color:var(--accent-primary); margin-bottom:0.5rem; font-size:1.05rem;"><i data-lucide="building"></i> 레온 카운티 (Leon County)</div>
+                <div style="font-size:0.88rem; color:var(--text-muted); line-height:1.7;">
+                  • 주도 탤러해시(Tallahassee) 소재 교외 및 도시 지역<br/>
+                  • 높은 인구밀도, 높은 교육 수준 (대졸 57%)<br/>
+                  • 중위 가계소득: <strong>$44,490</strong>
+                </div>
+              </div>
+
+              <div style="background:var(--bg-secondary); border:1px solid var(--border-color); border-radius:var(--radius-sm); padding:1.35rem;">
+                <div style="font-weight:700; color:var(--accent-amber); margin-bottom:0.5rem; font-size:1.05rem;"><i data-lucide="trees"></i> 딕시 카운티 (Dixie County)</div>
+                <div style="font-size:0.88rem; color:var(--text-muted); line-height:1.7;">
+                  • 멕시코만 연안 농촌(Rural) 어촌 및 산림 지대<br/>
+                  • 극히 낮은 인구밀도, 취약한 산업 기반 (고졸 이하 다수)<br/>
+                  • 중위 가계소득: <strong>$32,312</strong>
+                </div>
+              </div>
+            </div>
+
+            <h3 class="card-title" style="margin-top:2rem;"><i data-lucide="list-checks"></i> 재난 지원 이름 생성 질문법 (Name Generator)</h3>
+            <p>설문 참여자들에게 재난 발생 시 도움을 요청할 대상(Alters)을 최대 8명까지 열거하도록 유도하였으며, 각 인물과의 관계, 연령, 거주 위치, 인종/성별, 그리고 <strong>제공 가능한 자원의 유형(재정적 지원 vs 비재정적 지원)</strong>을 분리하여 측정했습니다.</p>
+
+            <!-- Table 9.1 Image -->
+            <div class="figure-container">
+              <img src="image-31.png" alt="Table 9.1 Survey Name Generator for Disaster Support Networks">
+              <div class="figure-caption">Table 9.1 Survey Name Generator for Disaster Support Networks</div>
+              <div class="figure-subcaption">재난 지원 네트워크 측정을 위한 설문 도구 구성 (최대 8인 알터의 속성 및 자원 유형 기표)</div>
+            </div>
+
+            <!-- Table 9.2 Image -->
+            <div class="figure-container">
+              <img src="image-32.png" alt="Table 9.2 Participant and County Demographics">
+              <div class="figure-caption">Table 9.2 Participant and County Demographics</div>
+              <div class="figure-subcaption">연구 참여자 및 카운티별 인구통계학적 특성 비교표 (설문 N=138, 심층 인터뷰 N=25)</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 3 -->
+        <section id="section-size" class="section-block">
+          <div class="section-header">
+            <h2 class="section-title"><i data-lucide="pie-chart"></i> 3. 재난 지원 네트워크: 규모와 자원</h2>
+            <span class="section-badge">pp. 131–134</span>
+          </div>
+
+          <div class="content-card">
+            <h3 class="card-title"><i data-lucide="bar-chart-2"></i> 자원 유형별 네트워크 규모의 극심한 비대칭성</h3>
+            <p>조사 결과, 개인들이 재난 시 기댈 수 있는 전체 네트워크 규모는 평균 3.7명이었으나, <strong>지원받을 수 있는 자원의 성격(재정적 vs 비재정적)</strong>에 따라 극단적인 양극화와 결핍이 드러났습니다.</p>
+
+            <!-- Figure 9.1 Image -->
+            <div class="figure-container">
+              <img src="image-33.png" alt="Figure 9.1 Percent survey respondents by disaster support network size and resource available">
+              <div class="figure-caption">FIGURE 9.1 Percent survey respondents by disaster support network size (0–8) and resource available.</div>
+              <div class="figure-subcaption">네트워크 규모(0~8명) 및 가용 자원 유형별 응답자 비율 분포</div>
+            </div>
+
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:1.25rem; margin:1.5rem 0;">
+              <div class="callout-box" style="border-left-color:var(--accent-primary);">
+                <div class="callout-title" style="color:var(--accent-primary);"><i data-lucide="activity"></i> 비재정적 지원망 (평균 3.1명)</div>
+                <div class="callout-content">
+                  • 0명(고립): 17.0%<br/>
+                  • 물리적 잔해 제거, 대피소 공유, 임시 거처, 발전기 공유 등 비교적 원활한 연결망 형성.
+                </div>
+              </div>
+
+              <div class="callout-box rose">
+                <div class="callout-title" style="color:var(--accent-rose);"><i data-lucide="alert-octagon"></i> 재정적 지원망 (평균 1.7명)</div>
+                <div class="callout-content">
+                  • <strong>0명(완전 고립): 40.0%</strong><br/>
+                  • 재난 긴급 복구 자금이나 모텔 투숙비를 빌릴 수 있는 대상이 단 1명도 없는 가구가 무려 40%에 달함.
+                </div>
+              </div>
+            </div>
+
+            <div class="interview-quote">
+              <div class="quote-speaker"><i data-lucide="user"></i> Glen (레온 카운티 교외 거주자 심층 인터뷰)</div>
+              <div class="quote-text">
+                "이웃 친구 조지와는 20년 동안 알고 지냈고 집 수리나 노동을 서로 도왔죠. 하지만 재정적인 지원에 대해선 이야기를 나눠본 적이 없습니다. 재정 지원에 대해서는 기댈 곳이 전혀 없어요. 내 힘으로 감당할 수 있는 만큼만 버텨야 합니다."
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 4 -->
+        <section id="section-comp" class="section-block">
+          <div class="section-header">
+            <h2 class="section-title"><i data-lucide="users"></i> 4. 재난 지원 네트워크 구성과 "가족의 부담"</h2>
+            <span class="section-badge">pp. 134–137</span>
+          </div>
+
+          <div class="content-card">
+            <h3 class="card-title"><i data-lucide="pie-chart"></i> 네트워크 구성: 압도적인 가족 중심성 (Figure 9.2 & 9.3)</h3>
+            <p>최소 1명 이상의 네트워크를 보고한 응답자들의 관계 구성을 분석한 결과, <strong>가족(Family)이 전체 네트워크의 59%</strong>를 차지하여 지배적이었습니다. 친구는 31%, 이웃은 7%, 기타 단체는 3%에 불과했습니다.</p>
+
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap:1.5rem; margin:1.5rem 0;">
+              <!-- Figure 9.2 Image -->
+              <div class="figure-container" style="margin:0;">
+                <img src="image-34.png" alt="Figure 9.2 Mean percent composition of disaster support networks">
+                <div class="figure-caption">FIGURE 9.2 Mean percent composition of disaster support networks.</div>
+                <div class="figure-subcaption">가족 59%, 친구 31%, 이웃 7%, 기타 3%</div>
+              </div>
+
+              <!-- Figure 9.3 Image -->
+              <div class="figure-container" style="margin:0;">
+                <img src="image-35.png" alt="Figure 9.3 Percent respondents who listed at least one relationship type">
+                <div class="figure-caption">FIGURE 9.3 Percent respondents who listed relationship types.</div>
+                <div class="figure-subcaption">가족 포함율 85% 이상 (부모 45%, 형제자매, 자녀 순)</div>
+              </div>
+            </div>
+
+            <h3 class="card-title" style="margin-top:2rem;"><i data-lucide="git-branch"></i> 1차 지원처 선택의 극단적 분화: 자원 유형 vs 공간 위치 (Figure 9.4)</h3>
+            <p>응답자들에게 재난 시 재정적 지원과 비재정적 지원을 가장 먼저 요청할 1차 자원(First Source)을 질문한 결과, 연결망 동원 기제가 완벽하게 양분되었습니다.</p>
+
+            <!-- Figure 9.4 Image -->
+            <div class="figure-container">
+              <img src="image-36.png" alt="Figure 9.4 Anticipated first source of financial and nonfinancial disaster assistance">
+              <div class="figure-caption">FIGURE 9.4 Anticipated first source of financial and nonfinancial disaster assistance.</div>
+              <div class="figure-subcaption">재정 지원은 혈연 중심(가족 53%), 비재정 지원은 공간 중심(로컬 이웃/친구/가족)</div>
+            </div>
+
+            <div class="mermaid-box">
+              <div class="mermaid">
+flowchart LR
+    subgraph Fin["재정 지원 (Financial Resource)"]
+        direction TB
+        F1["사회적 규범 및 적합성<br/>(Relationship-driven)"] --> F2["오직 혈연 가족(Family 53%)에 집중<br/>(로컬 가족 27% + 원거리 가족 26%)"]
+        F2 --> F3["이웃(1%), 친구(2%), 정부(미미)<br/>→ 돈을 빌리는 것은 타인에게 큰 부담"]
+    end
+
+    subgraph NonFin["비재정 지원 (Nonfinancial Resource)"]
+        direction TB
+        N1["지리적 근접성<br/>(Location-driven)"] --> N2["현장 인접 로컬 연계에 분산<br/>(로컬 가족 35%, 이웃 26%, 친구 13%)"]
+        N2 --> N3["피난처 제공, 잔해 제거, 응급 복구<br/>→ 물리적으로 가까운 자가 최우선"]
+    end
+              </div>
+              <div class="mermaid-caption">[다이어그램] 재정 vs 비재정 자원별 1차 지원처 선택의 이원화 메커니즘 (가로 스크롤 가능)</div>
+            </div>
+
+            <div class="callout-box amber" style="margin-top:1.5rem;">
+              <div class="callout-title" style="color:var(--accent-amber);"><i data-lucide="shield-alert"></i> 핵심 개념: "가족의 부담(The Family's Burden)"</div>
+              <div class="callout-content">
+                이웃이나 친구에게는 잔해를 치워주거나 잠시 머물 방을 빌리는 부탁을 스스럼없이 할 수 있지만, <strong>화폐(돈)를 요구하는 것은 인간관계를 파괴할 수 있는 극도의 사회적 부담(social burden)</strong>입니다. 결국 재난 시 재정적 구호의 무거운 짐은 전적으로 가족(Family)에게만 지워집니다.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 5 -->
+        <section id="section-ses" class="section-block">
+          <div class="section-header">
+            <h2 class="section-title"><i data-lucide="trending-up"></i> 5. 사회경제적 지위(SES) 및 사회적 취약성과 지지망 불평등</h2>
+            <span class="section-badge">pp. 137–139</span>
+          </div>
+
+          <div class="content-card">
+            <h3 class="card-title"><i data-lucide="calculator"></i> 로지스틱 회귀분석: 재정 지원망 보유 결정요인 (Table 9.3)</h3>
+            <p>연구진은 재난 시 최소 1명 이상의 재정 지원 연계를 보유하고 있는지 여부(1=있음, 0=없음)를 종속변수로 다중 로지스틱 회귀분석을 실시했습니다.</p>
+
+            <!-- Table 9.3 Image -->
+            <div class="figure-container">
+              <img src="image-37.png" alt="Table 9.3 Odds Ratios of Reporting at Least One Network Tie That Could Provide Financial Support in a Disaster">
+              <div class="figure-caption">Table 9.3 Odds Ratios of Reporting at Least One Network Tie That Could Provide Financial Support in a Disaster</div>
+              <div class="figure-subcaption">카운티, 인구사회학적 요인, 주거 형태, 인종별 재정 지원망 보유 승산비(Odds Ratio) 분석</div>
+            </div>
+
+            <div class="table-container">
+              <table class="styled-table">
+                <thead>
+                  <tr>
+                    <th>독립변수 (Variables)</th>
+                    <th>모형 1: 카운티</th>
+                    <th>모형 2: 인구학적 결합</th>
+                    <th>모형 3: 주거형태 결합</th>
+                    <th>모형 4: 인종 결합</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>레온 카운티 거주 (Leon County)</strong></td>
+                    <td style="color:var(--accent-primary); font-weight:700;">3.20*** (1.20)</td>
+                    <td style="color:var(--accent-primary); font-weight:700;">3.27*** (1.49)</td>
+                    <td style="color:var(--accent-primary); font-weight:700;">2.21* (1.05)</td>
+                    <td style="color:var(--accent-primary); font-weight:700;">3.38*** (1.35)</td>
+                  </tr>
+                  <tr>
+                    <td>여성 (Female)</td>
+                    <td>—</td>
+                    <td>0.81 (0.38)</td>
+                    <td>—</td>
+                    <td>—</td>
+                  </tr>
+                  <tr>
+                    <td>빈곤선 150% 이하 (Poverty)</td>
+                    <td>—</td>
+                    <td>0.84 (0.41)</td>
+                    <td>—</td>
+                    <td>—</td>
+                  </tr>
+                  <tr>
+                    <td><strong>노인 (Elderly, 65세 이상)</strong></td>
+                    <td>—</td>
+                    <td style="color:var(--accent-rose); font-weight:700;">0.31*** (0.14)</td>
+                    <td>—</td>
+                    <td>—</td>
+                  </tr>
+                  <tr>
+                    <td>장애 가구원 (Disability)</td>
+                    <td>—</td>
+                    <td>0.45 (0.25)</td>
+                    <td>—</td>
+                    <td>—</td>
+                  </tr>
+                  <tr>
+                    <td>이동식 주택 거주 (Mobile Home)</td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td>0.82 (0.38)</td>
+                    <td>—</td>
+                  </tr>
+                  <tr>
+                    <td><strong>자가 주택 소유자 (Homeowner)</strong></td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td style="color:var(--accent-amber); font-weight:700;">0.32** (0.18)</td>
+                    <td>—</td>
+                  </tr>
+                  <tr>
+                    <td>소수인종 (Minority)</td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td>0.95 (0.59)</td>
+                  </tr>
+                  <tr style="background:var(--bg-secondary);">
+                    <td><strong>Pseudo $R^2$ / 관측치(N)</strong></td>
+                    <td>0.056 (N=137)</td>
+                    <td style="font-weight:700; color:var(--accent-emerald);">0.163 (N=119)</td>
+                    <td>0.085 (N=134)</td>
+                    <td>0.060 (N=132)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div style="font-size:0.8rem; color:var(--text-dim); margin-top:0.4rem;">*p < 0.10, **p < 0.05, ***p < 0.01 (기준집단: 딕시 카운티).</div>
+
+            <h3 class="card-title" style="margin-top:2rem;"><i data-lucide="message-circle"></i> 질적 인터뷰 분석: 계층별 사회자본 동원의 질적 양극화</h3>
+            
+            <div class="interview-quote high-income">
+              <div class="quote-speaker" style="color:var(--accent-emerald);"><i data-lucide="check-circle"></i> Debra (레온 카운티 고소득층 거주자)</div>
+              <div class="quote-text">
+                "집이 망가지는 건 재정적인 문제이고, 우리는 보험과 저축이 완벽해요. 친구와 이웃은 창문이 깨지거나 카펫에 물이 차는 것 같은 '성가신 일(annoyance kinds of things)'을 도와달라고 부르는 즉각적인 지원 시스템일 뿐이죠."
+              </div>
+            </div>
+
+            <div class="interview-quote low-income">
+              <div class="quote-speaker" style="color:var(--accent-amber);"><i data-lucide="alert-circle"></i> Sheila (딕시 카운티 저소득 빈곤층 거주자)</div>
+              <div class="quote-text">
+                "주변에 사는 친구나 이웃들은 주머니에 동전 두 개 부딪칠 돈도 없어요(don't have two nickels to rub together). 쓰러진 나무 치우는 건 여기 친구들이 도와주겠지만, 돈이 필요하다면 시카고에 사는 친척들에게 전화해야만 해요."
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 6 -->
+        <section id="section-discuss" class="section-block">
+          <div class="section-header">
+            <h2 class="section-title"><i data-lucide="message-square"></i> 6. 논의 및 학술적 시사점</h2>
+            <span class="section-badge">pp. 139–141</span>
+          </div>
+
+          <div class="content-card">
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:1.25rem;">
+              <div class="callout-box" style="border-left-color:var(--accent-primary);">
+                <div class="callout-title" style="color:var(--accent-primary);"><i data-lucide="zap"></i> 1. 강한 유대의 힘 (Strength of Strong Ties)</div>
+                <div class="callout-content">
+                  재난과 같은 극한의 위기 상황에서는 Granovetter의 '약한 유대'가 아닌, 무조건적 신뢰와 희생을 감수하는 <strong>강한 친족 유대(Kinship Ties)</strong>만이 생존과 실질적 재정 구호를 지탱합니다.
+                </div>
+              </div>
+
+              <div class="callout-box rose">
+                <div class="callout-title" style="color:var(--accent-rose);"><i data-lucide="alert-triangle"></i> 2. 치료적 공동체의 환상과 이중 취약성</div>
+                <div class="callout-content">
+                  '이재민들이 서로 돕는 유토피아적 공동체'는 잔해 치우기 등 비재정 영역에 국한됩니다. <strong>가족이 없거나 가족마저 극빈층인 가구(Doubly disadvantaged)</strong>는 사적 안전망에서 완전히 배제되어 사망 위험(1995 시카고 폭염 참사)에 직면합니다.
+                </div>
+              </div>
+
+              <div class="callout-box emerald">
+                <div class="callout-title" style="color:var(--accent-emerald);"><i data-lucide="shield-check"></i> 3. 공공 구호기관의 패러다임 전환</div>
+                <div class="callout-content">
+                  재난관리 기관은 전통적 소득 지표 외에도 <strong>"가족 연결망 결핍(Lack of family ties)"을 핵심 재난 취약성 지표로 편입</strong>하고, 사적 네트워크를 대체할 공적 긴급재난지원금과 임시주거를 선제적으로 배정해야 합니다.
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 7: APPENDIX 9-STEP -->
+        <section id="section-appendix" class="section-block">
+          <div class="section-header">
+            <h2 class="section-title"><i data-lucide="file-text"></i> 7. [부록] 박사학위 논문 선행연구 검토 9단계 표준 템플릿</h2>
+            <span class="section-badge">Academic Template</span>
+          </div>
+
+          <div class="content-card">
+            <div class="table-container">
+              <table class="styled-table">
+                <thead>
+                  <tr>
+                    <th style="width:12%;">순서 / 단계</th>
+                    <th style="width:28%;">핵심 개념 및 질문</th>
+                    <th style="width:60%;">Chapter 9 학술 논문 분석 매핑</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>1. 연구배경</strong></td>
+                    <td>사후 회상 편향 극복 및 사전 연결망 인식 규명</td>
+                    <td>재난 시 비공식 지지망이 필수적이나 기존 연구는 사후 회상에 의존. 상시 위험 지역 주민들의 재난 대비 사전 인지 자원 및 취약성 실증 필요.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>2. 이론적 개념</strong></td>
+                    <td>친족 배태성, 사회자본, 가족의 부담</td>
+                    <td>제도 붕괴 시 혈연 안전망(Kin embeddedness), 자원 동원 불평등, 화폐적 지원의 혈연 배타성(The Family's Burden), 인지된 사회적 지지.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>3. 연구목적</strong></td>
+                    <td>규모, 구성, 자원별 분화 및 SES 영향 규명</td>
+                    <td>플로리다 2개 카운티 주민의 재난 지지망 규모/구성 파악, 재정 vs 비재정 자원 분화 규명, 취약계층의 재정망 결핍 실증.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>4. 연구방법</strong></td>
+                    <td>혼합연구방법론 (설문 N=138, 면담 N=25)</td>
+                    <td>Ego-Network Name Generator (최대 8인), 층화 군집 및 무작위 표본추출, 로지스틱 회귀분석 및 질적 주제분석.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>5. 연구결과</strong></td>
+                    <td>평균 3.7명, 재정 0명(40%), 가족 59%</td>
+                    <td>전체 3.7명(비재정 3.1명 vs 재정 1.7명). 가족 59%, 친구 31%, 이웃 7%. 노인층 재정망 보유 승산 0.31배 급감.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>6. 핵심 발견</strong></td>
+                    <td>재정 지원의 가족 전가 및 이중 취약성</td>
+                    <td>돈을 빌리는 것은 오직 가족의 짐. 노인 및 농촌 빈곤층은 경제적 빈곤과 지지망 결핍이 중첩되는 이중 취약성 직면.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>7. 연구의 한계</strong></td>
+                    <td>표본 크기 및 사전-사후 일치도 미검증</td>
+                    <td>플로리다 2개 카운티 138명으로 일반화 한계, Name Generator 8인 상한에 따른 하향 추정 가능성, 실제 재난 후 수혜와의 추적 패널 부재.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>8. 이론적 시사점</strong></td>
+                    <td>강한 유대의 회복력 견인 및 치료공동체 재정립</td>
+                    <td>위기 시 Granovetter의 약한 유대가 아닌 강한 친족 유대가 작동. 치료적 공동체 이론의 범위를 비재정적 지원으로 한정 정교화.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>9. 후속 연구</strong></td>
+                    <td>사전-사후 패널 설계 및 1인 가구 안전망 연구</td>
+                    <td>사전 인지와 사후 실측을 연계한 종단 패널 연구, 1인 가구 급증에 따른 공공 대리 안전망(Proxy Safety Net) 제도화 연구.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 8: MY STUDY APPLICATION -->
+        <section id="section-apply" class="section-block">
+          <div class="section-header">
+            <h2 class="section-title" style="color:var(--accent-rose);"><i data-lucide="shield-alert"></i> 8. ★ [내 연구 적용] 취약계층 보호를 위한 소방·지자체 현장 대응망 및 '가족 부재' 고립 가구 선제적 구호 프로토콜</h2>
+            <span class="section-badge" style="border-color:var(--accent-rose); color:var(--accent-rose);">소방 현장 환류</span>
+          </div>
+
+          <div class="content-card">
+            <h3 class="card-title"><i data-lucide="target"></i> 문제의식: 신고 기반 대응(Reactive)의 한계와 사적 지지망 결핍 가구의 참사</h3>
+            <p>Chapter 9의 실증 분석은 <strong>"재난 시 실질적 생존·재정 지원은 전적으로 가족에게 지워지며, 가족이 없는 독거노인·빈곤층은 사적 연결망에서 완전히 배제된다"</strong>는 엄중한 현실을 밝혔습니다. 현행 소방의 '119 신고 접수 후 출동' 방식은 지지망이 단절되어 구조 요청조차 못 하는 고립 가구를 놓칠 수밖에 없습니다(신림동 반지하 참사, 시카고 폭염 참사).</p>
+
+            <div class="mermaid-box">
+              <div class="mermaid">
+flowchart TD
+    P1["[1단계] 취약가구 사전 Name Generator 전수 스크리닝<br/>(비상대피 도우미 유무, 상주 친족 유무, 119안심콜 연계)"] --> P2["[2단계] 네트워크 결핍 지수(NDI) 기반 완전 고립가구 공간 군집화<br/>(가족 0명, 이웃 0명인 고위험 가구 GIS 매핑)"]
+    P2 --> P3["[3단계] 소방-지자체 1:1 '공공 대리 혈연(Proxy Family)' 결연<br/>(의용소방대원 및 119생활안전대원을 전담 매칭)"]
+    P3 --> P4["[4단계] 기상특보 발령 시 선제적 방문 및 대피 유도<br/>(경보 전파, 현장 방문, 긴급 대피소 선제적 이송)"]
+    P4 --> P5["[5단계] 재난 직후 긴급구호 및 공적 금융자원 직결<br/>(지자체 긴급생계비, 재해구호기금, 임시주거 바우처 연계)"]
+    P5 --> P6["[6단계] Q방법론 및 실증 효과성 다원적 평가<br/>(수혜 주민 및 소방대원의 주관적 안전체감도 유형화)"]
+              </div>
+              <div class="mermaid-caption">[다이어그램] 취약계층 고립가구 선제적 구호 6단계 프로토콜 (가로 스크롤 가능)</div>
+            </div>
+
+            <h3 class="card-title" style="margin-top:2rem;"><i data-lucide="award"></i> 현장 맞춤형 핵심성과지표 (KPI 가중치: 고유 70% / 협업 30%)</h3>
+            <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:1rem;">교수님 심화 지도 원칙에 따라 소방 관서 통제 가능한 <strong>고유 지표(70%)</strong>와 유관기관 <strong>협업 지표(30%)</strong>를 엄격히 분배하고 법적 조문을 강제 매핑했습니다.</p>
+
+            <div class="table-container">
+              <table class="styled-table">
+                <thead>
+                  <tr>
+                    <th>분류</th>
+                    <th>단계</th>
+                    <th>가중치</th>
+                    <th>핵심 성과지표 (KPI)</th>
+                    <th>산출 공식 및 목표치</th>
+                    <th>판단 근거 (서브노트 매핑)</th>
+                    <th>관련 법적 근거</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td rowspan="3" style="font-weight:700; color:var(--accent-primary); background:rgba(56, 189, 248, 0.05);">소방 고유<br/>(70%)</td>
+                    <td>예방</td>
+                    <td>25%</td>
+                    <td><strong>사적 지지망 결핍 고립가구 발굴률</strong></td>
+                    <td>$\frac{\text{발굴된 무의탁·고립가구 수}}{\text{관내 추정 취약가구 수}} \times 100 \ge 90\%$</td>
+                    <td>Table 9.3 (노인층 재정망 승산비 0.31배 급감 반영)</td>
+                    <td><strong>소방기본법</strong> 제16조의2<br/>(소방안전지원활동)</td>
+                  </tr>
+                  <tr>
+                    <td>대비</td>
+                    <td>25%</td>
+                    <td><strong>119안심콜 및 공공대리인 등록률</strong></td>
+                    <td>$\frac{\text{공공대리인 지정 등록 완료 가구}}{\text{총 발굴 고립가구}} \times 100 \ge 95\%$</td>
+                    <td>Figure 9.1 (40% 무자원 가구 공적 대체망 구축)</td>
+                    <td><strong>119구조·구급법</strong> 제2조의2<br/>(119안심콜서비스 운영)</td>
+                  </tr>
+                  <tr>
+                    <td>대응</td>
+                    <td>20%</td>
+                    <td><strong>고립가구 선제적 피난 유도율</strong></td>
+                    <td>$\frac{\text{특보 시 현장 방문 피난 완료 건}}{\text{피난 권고대상 고립가구}} \times 100 \ge 85\%$</td>
+                    <td>Figure 9.4 (비재정 지원의 공간 근접성 극대화)</td>
+                    <td><strong>재난안전기본법</strong> 제40조<br/>(대피명령 및 현장조치)</td>
+                  </tr>
+                  <tr>
+                    <td rowspan="2" style="font-weight:700; color:var(--accent-amber); background:rgba(251, 191, 36, 0.05);">기관 협업<br/>(30%)</td>
+                    <td>대응</td>
+                    <td>15%</td>
+                    <td><strong>의용소방대-이·통장 매칭 출동률</strong></td>
+                    <td>$\frac{\text{민관 공동 현장 확인 출동 건}}{\text{취약가구 비상소집 건수}} \times 100 \ge 90\%$</td>
+                    <td>Figure 9.2 (이웃 7% 한계 극복을 위한 준공식 조직화)</td>
+                    <td><strong>의용소방대법</strong> 제7조<br/>(임무: 주민 대피 및 구호)</td>
+                  </tr>
+                  <tr>
+                    <td>복구</td>
+                    <td>15%</td>
+                    <td><strong>긴급구호 및 주거복구 연계율</strong></td>
+                    <td>$\frac{\text{지자체 긴급지원금/임시주거 배정 건}}{\text{소방 의뢰 고립가구 건수}} \times 100 \ge 95\%$</td>
+                    <td>p. 138 (저소득층 공적 금융안전망 직접 연결)</td>
+                    <td><strong>재해구호법</strong> 제4조·제7조<br/>(임시주거 및 물품 지원)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="callout-box emerald" style="margin-top:1.5rem;">
+              <div class="callout-title" style="color:var(--accent-emerald);"><i data-lucide="scale"></i> 조문 단위 강제 법적 근거</div>
+              <div class="callout-content">
+                <ul>
+                  <li><strong>재난 및 안전관리 기본법 제4조(국가 등의 책무)</strong>: 안전취약계층(어린이, 노인, 장애인 등)의 재난 안전 확보를 위한 맞춤형 대책 수립 의무화.</li>
+                  <li><strong>소방기본법 제16조의2(소방안전지원활동)</strong>: 소방관서장의 재난 취약계층 주거 안전 확보 및 물품 보급, 사전 안전점검 법적 의무.</li>
+                  <li><strong>119구조·구급에 관한 법률 제2조의2</strong>: 119안심콜 서비스 등 취약계층 사전 등록 DB 기반의 맞춤형 출동체계 확립.</li>
+                  <li><strong>의용소방대 설치 및 운영에 관한 법률 제7조(임무)</strong>: 화재·재난 시 취약계층 대피 유도 및 현장 구호활동 임무 명시.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- FOOTER NAV -->
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:3.5rem; padding-top:2rem; border-top:1px solid var(--border-color); flex-wrap:wrap; gap:1rem;">
+          <a href="chapter8_subnote.html" class="action-btn">
+            <i data-lucide="arrow-left"></i> 이전: Chapter 8 허리케인 아이크
+          </a>
+          <a href="index.html" class="action-btn primary">
+            <i data-lucide="grid"></i> SNA 통합 포털로 이동
+          </a>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <script>
+    // Lucide Icons Render
+    lucide.createIcons();
+
+    // Reading Progress Bar
+    window.addEventListener('scroll', () => {
+      const winScroll = document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('progress-bar').style.width = scrolled + '%';
+    });
+
+    // Theme Toggle
+    const themeBtn = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    let isLight = false;
+
+    themeBtn.addEventListener('click', () => {
+      isLight = !isLight;
+      if (isLight) {
+        document.documentElement.setAttribute('data-theme', 'light');
+        themeIcon.setAttribute('data-lucide', 'sun');
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+        themeIcon.setAttribute('data-lucide', 'moon');
+      }
+      lucide.createIcons();
+    });
+
+    // TOC Active State on Scroll
+    const trackedBlocks = document.querySelectorAll('.section-block');
+    const navItems = document.querySelectorAll('.toc-item');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      trackedBlocks.forEach(block => {
+        const blockTop = block.offsetTop;
+        if (window.pageYOffset >= blockTop - 130) {
+          current = block.getAttribute('id');
+        }
+      });
+
+      navItems.forEach(item => {
+        item.classList.remove('active');
+        const link = item.querySelector('a');
+        if (link && link.getAttribute('href') === `#${current}`) {
+          item.classList.add('active');
+        }
+      });
+    });
+
+    // Sidebar Search Filter
+    const searchInput = document.getElementById('search-input');
+    const tocList = document.getElementById('toc-list');
+    const tocLinks = tocList.getElementsByTagName('li');
+
+    searchInput.addEventListener('input', (e) => {
+      const term = e.target.value.toLowerCase();
+      Array.from(tocLinks).forEach(li => {
+        const text = li.innerText.toLowerCase();
+        if (text.includes(term)) {
+          li.style.display = 'block';
+        } else {
+          li.style.display = 'none';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+'''
+
+output_path = '/Users/sg/Project/SNA/subnote/chapter9_subnote.html'
+with open(output_path, 'w', encoding='utf-8') as f:
+    f.write(html_content)
+
+print(f"Successfully updated {os.path.getsize(output_path)} bytes to {output_path}")
