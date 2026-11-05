@@ -421,6 +421,13 @@
       color: var(--accent-emerald);
     }
 
+    .parallel-row[data-type="h4"], .content-cell h4 {
+      font-size: 0.94rem;
+      font-weight: 600;
+      color: var(--accent-amber);
+      margin-top: 0.25rem;
+    }
+
     .parallel-row[data-type="meta"] {
       font-size: 0.85rem;
       color: var(--text-muted);
@@ -743,13 +750,11 @@
       if (!text) return '<span style="color:var(--text-subtle);">(내용 없음)</span>';
       
       // If image
-      if (type === 'image') {
-        // e.g. text could be "!caption|images/image-24.png" or markdown "![caption](image-24.png)"
+      if (type === 'image' || text.startsWith('![')) {
         let match = text.match(/!\[(.*?)\]\((.*?)\)/);
         if (match) {
           let caption = match[1];
           let src = match[2];
-          // Ensure path points to images/
           if (!src.startsWith('images/') && !src.startsWith('http')) {
             src = 'images/' + src.replace(/^\.\.\/subnote\//, '').replace(/^subnote\//, '');
           }
@@ -763,22 +768,27 @@
       }
 
       // If table
-      if (type === 'table') {
+      if (type === 'table' || text.startsWith('|')) {
         return renderMarkdownTable(text);
       }
       
-      // If header
-      if (type === 'title') {
-        return `<h1>${escapeHtml(text)}</h1>`;
+      // Auto-detect and strip markdown headers
+      let cleanText = text.replace(/^#{1,6}\s+/, '').trim();
+
+      if (type === 'title' || text.startsWith('# ')) {
+        return `<h1>${escapeHtml(cleanText)}</h1>`;
       }
-      if (type === 'h2') {
-        return `<h2>${escapeHtml(text)}</h2>`;
+      if (type === 'h2' || text.startsWith('## ')) {
+        return `<h2>${escapeHtml(cleanText)}</h2>`;
       }
-      if (type === 'h3') {
-        return `<h3>${escapeHtml(text)}</h3>`;
+      if (type === 'h3' || text.startsWith('### ')) {
+        return `<h3>${escapeHtml(cleanText)}</h3>`;
+      }
+      if (type === 'h4' || text.startsWith('#### ')) {
+        return `<h4>${escapeHtml(cleanText)}</h4>`;
       }
 
-      // Default paragraph with bold markdown support
+      // Default paragraph with bold/italic markdown support
       let parsed = escapeHtml(text)
         .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
         .replace(/\*(.*?)\*/g, '<em>$1</em>')

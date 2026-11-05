@@ -1,0 +1,87 @@
+import json
+
+b = {}
+
+b[36] = "<br/>"
+
+b[37] = """팔로워 네트워크의 전반적인 거시 구조를 파악하기 위해, 그림 7.2는 표본 내의 모든 조직들의 집합을 보여주며, 각 노드는 관찰 기간 동안의 시간 평균 연결정도에 비례하여 크기가 조정되어 있다. 또한 우리는 네트워크 내의 하위 집단 구조를 탐색하기 위해 정규화된 컷(normalized cut) 기준을 사용하는 스펙트럼 클러스터링(spectral clustering) 기법을 적용하여 핵심-주변부(core-periphery) 구조를 도출하였다."""
+
+b[38] = """여기서 우리는 최적 적합 블록 모델이 핵심부와 주변부 사이에 상호작용이 매우 적은 구조임을 발견했다. 도출된 핵심부에 속하는 조직들은 소속 기관별로 4개 하위 집단으로 분류되어 표 7.2에 제시되어 있다. 우리는 연방 기관들(FEMA, 질병통제예방센터 CDC, 국토안보부 DHS 등)이 이 네트워크에서 가장 중요한 행위자에 속하며, 동시에 매우 활동적인 여러 주 정부 계정(예: `readycolorado`)도 관찰된다. 또한 몇몇 조직은 전반적으로 매우 활동적인데, 예를 들어 `fema`는 모든 시점에 걸쳐 가장 높은 연결정도를 기록했다."""
+
+b[39] = """![그림 7.2: 213개 미국 비상 관리 조직들의 시간 평균 주의 집중 네트워크](images/image-15.png)  
+**그림 7.2**: 213개 미국 비상 관리 관련 조직들의 시간 평균 주의 집중 유대 네트워크. 엣지는 관찰된 기간 동안의 주의 집중 수준에 따라 음영 처리됨(더 짙은 유대는 더 긴 팔로잉 지속 기간을 나타냄)."""
+
+b[40] = "<details>\n<summary>📌 [참고: Figure 7.2 그래프에 포함된 Twitter 계정 노드 목록 접기/펼치기]</summary>"
+
+b[41] = "`brianschweitzer`, `akgovparnell`, `govgregoire`, `idahodoi`, `govwalker`, `butchotter`, `govsambrownback`, `gov_heineman`, `mearng`, `fortarizona`, `readycolorado`, `fema`, `femaregion1` ~ `femaregion10`, `cdcemergency`, `dhsgov`, `redcross` 등 총 213개 공식 계정 노드 포함."
+
+b[42] = "</details>"
+
+b[43] = "<br/>"
+
+b[44] = """![표 7.2: 트위터 팔로워 네트워크의 핵심 코어 멤버](images/image-16.png)  
+**표 7.2: 트위터 팔로워 네트워크의 핵심 코어 멤버 (The Core Members of the Twitter Follower Network)**"""
+
+b[45] = "#### Table 7.2 The Core Members of the Twitter Follower Network, Categorized by Organizational Affiliation"
+
+b[46] = """| 소속 부문 | 핵심 트위터 계정 명단 |
+| :--- | :--- |
+| **FEMA (연방재난관리청)** | `craigatfema`, `fema`, `femaregion1`, `femaregion2`, `femaregion3`, `femaregion4`, `femaregion5`, `femaregion6`, `femaregion7`, `femaregion8`, `femaregion9`, `femaregion10` |
+| **주 방위군 (National Guard)** | `alguard`, `flguard`, `guardintel`, `idaho_guard`, `in_guard`, `kansasguard`, `kyguard`, `laguard`, `mearng`, `migov`, `minguard`, `msguard`, `ncguard`, `ndguard`, `ne_guard`, `nyguard`, `ohguard`, `okguard`, `paguard`, `scguard`, `tn_guard`, `txguard`, `vaguard`, `vtguard`, `waguard`, `wvguard`, `wyguard` |
+| **주 비상관리국 (State Agencies)** | `al_ema`, `cal_ema`, `delaware_ema`, `florida_div_em`, `georgia_ema`, `idaho_bhs`, `iowa_hsem`, `kansas_em`, `ky_em`, `la_gohsep`, `mass_ema`, `maryland_mema`, `michigan_sfp`, `missouri_sema`, `montana_des`, `nc_em`, `nd_des`, `nebraska_nema`, `newjersey_oem`, `newmexico_dhsem`, `nevada_dem`, `ny_oem`, `ohio_ema`, `ok_oem`, `oregon_oem`, `penn_pema`, `readycolorado`, `ri_ema`, `sc_emd`, `sd_oem`, `texas_tdem`, `utah_dem`, `va_vdem`, `vt_demhs`, `wa_emd`, `wisconsin_dma`, `wv_dhsem`, `wyoming_oem` |
+| **기타 연방 기관 (Federal Agencies)** | `cdcemergency`, `dhsgov`, `usgs`, `noaa`, `nws`, `forestservice`, `americanredcross` |"""
+
+b[47] = "<br/>"
+
+b[48] = """이러한 광범위한 핵심-주변부 구조는 조직들이 네트워크를 탐색하고 다른 조직을 구독할지 여부를 결정하는 복잡한 동적 프로세스의 장기 평균 행동을 반영한다. 핵심부 조직들은 국가적 차원의 핵심 허브로 기능하며, 주변부 조직들은 특정 지리적 관할 구역에 국한된 정보만을 수신하는 경향을 보인다."""
+
+b[49] = "### DISASTER CASE STUDY: COLORADO DUCKETT FIRE"
+
+b[50] = """산불은 미국 내 많은 지역에서 주요 관심사이다. 대형 산림 화재는 수십억 달러의 피해를 유발하고 수많은 생명을 위협할 수 있다. 2011년 6월 12일 콜로라도주 샌이사벨 국유림(San Isabel National Forest)에서 발화한 더켓 산불(Duckett Fire)은 급격히 확산되어 인근 프리몬트 카운티(Fremont County)와 커스터 카운티(Custer County)를 위협하였으며, 6월 16일 FEMA에 의해 공식 재난 선포(FEMA-2923-FM)$^{3}$가 내려졌다."""
+
+b[51] = """> $^{3}$ FEMA 공식 재난 선포 일자 및 세부 정보는 연방재난관리청 포털 참조 (https://www.fema.gov/disaster/2923)."""
+
+b[52] = """![그림 7.3: 콜로라도주 지도 및 더켓 산불 발화 위치](images/image-17.png)  
+**그림 7.3**: 위도/경도 공간에 투영된 카운티 경계를 포함한 콜로라도주 지도. 파란색 점은 트위터 핸들의 지리 좌표를 나타내고 빨간색 점은 더켓 산불의 발화 지점인 샌이사벨 국유림의 위치를 나타냄. 피해 카운티(프리몬트 및 커스터)가 파란색으로 표시되어 있으며 국유림 경계는 빨간색으로 음영 처리됨."""
+
+b[53] = "<br/>"
+
+b[54] = """![그림 7.4: 더켓 산불 상공을 비행하는 산림청 진압 헬리콥터](images/image-18.png)  
+**그림 7.4**: 2011년 6월 15일 미국 산림청(USFS)에 의해 포착된 더켓 산불 상공을 비행하는 1형 진압 헬리콥터 사진."""
+
+b[55] = "## METHODS"
+
+b[56] = """트위터에서 미국 비상 관리 조직들 간의 주의 집중 관계의 진화하는 본질을 분석하기 위해, 우리는 동적 네트워크 로지스틱 회귀(DNR: dynamic network logistic regression) 모델을 사용한다(완전한 통계적 세부 사항은 Almquist & Butts, 2013, 2014b 참조)."""
+
+b[57] = "### NOTATION"
+
+b[58] = """사회연결망은 종종 두 개의 집합, 즉 꼭짓점 집합 $V$(예: 조직들)와 모서리 집합 $E$(예: 팔로우 관계)로 정의되는 수학적 대상인 그래프(graph)로 표현된다. $V$의 크기를 $N$이라 할 때, 유향 그래프(directed graph)에서 모서리 $e = (u, v) \in E$는 행위자 $u$가 행위자 $v$를 팔로우하고 있음을 의미한다."""
+
+b[59] = """이 표현은 팔로워 작업이 작동하는 방식에서 곧바로 도출된다: 다른 사람을 팔로우하는 것은 상대방에게 팔로우되는 것과 명확히 구별된다(트위터의 팔로잉은 양방향 상호 수락을 요구하는 페이스북의 친구 맺기와 달리 비대칭적 유향 관계이다)."""
+
+b[60] = """이론적 전개에서는 집합론적 공식화가 자주 사용되지만, 사회연결망 연구에서는 동등한 인접 행렬(adjacency matrix) $Y \in \{0, 1\}^{N \times N}$을 사용하는 것이 더 일반적이다. 여기서 $Y_{ij} = 1$은 행위자 $i$가 행위자 $j$를 팔로우하고 있음을 나타내고, 그렇지 않으면 $Y_{ij} = 0$이다."""
+
+b[61] = """이를 구체화하기 위해, 1일차에 존재하다가 2일차에 해체되는 두 조직 간의 협력 유대를 고려하면, 이는 1일차에는 $Y_{ij}^{(1)} = 1$이고 2일차에는 $Y_{ij}^{(2)} = 0$인 행렬 요소의 이진 상태 변화에 해당한다."""
+
+b[62] = "### DYNAMIC NETWORK REGRESSION"
+
+b[63] = """우리는 $Y_t \in \{0, 1\}^{N_t \times N_t}$인 일련의 횡단면 시계열 네트워크 $(\dots, Y_{t-1}, Y_t, Y_{t+1}, \dots)$에서 시작한다. 여기서 $N_t$는 시점 $t$에서의 행위자 수이다. DNR 프레임워크는 과거의 네트워크 상태와 외생적 공변량들이 주어졌을 때, 시점 $t$에서 행위자 $i$가 행위자 $j$를 향해 유대를 형성하거나 유지할 조건부 확률을 로지스틱 링크 함수를 통해 모델링한다."""
+
+b[64] = """공식적으로, 주어진 시간 슬라이스에 대한 DNR 가능도(likelihood) 함수는 다음과 같이 정의된다:"""
+
+b[65] = """![방정식 7.1: 동적 네트워크 로지스틱 회귀 모델의 가능도 함수](images/image-19.png)  
+**방정식 7.1**: 동적 네트워크 회귀(DNR)의 조건부 우도 수식."""
+
+b[66] = """$$\Pr\left(Y^t \mid Y_{t-k}^{t-1}, X^t\right) = \prod_{i \neq j \in V^t \times V^t} \mathcal{B}\left(Y_{ij}^t; \, \operatorname{logit}^{-1}\left(\theta^T u(i, j, Y_{t-k}^{t-1}, X^t)\right)\right)$$"""
+
+b[67] = """여기서 $\mathcal{B}$는 베르누이 확률질량함수(pmf)이고, $X$는 공변량 집합이며, $u$는 엣지 집합에 대한 충분통계량 벡터이고, $\theta$는 추정해야 할 매개변수 벡터이다$^{4}$."""
+
+b[68] = """> $^{4}$ 본 연구에서 사용된 모든 모델은 Almquist and Butts (2013, 2014b)에서 사용된 원본 코드를 바탕으로 R 통계 컴퓨팅 환경(R Core Team, 2015)에서 계산되었다."""
+
+b[69] = "### MECHANISMS OF ATTENTIONAL DYNAMICS"
+
+b[70] = """우리는 시차를 둔(lagged) 네트워크 효과와 시간 가변적(time-varying) 공변량으로 변환함으로써 제4절에서 제안된 각 메커니즘을 조작화한다. 과거 1일부터 7일까지의 시차 항들을 투입하여 주의 집중 관계의 시간적 기억(memory)과 관성을 엄밀하게 추정한다."""
+
+with open('scratch/ch7_part2.json', 'w', encoding='utf-8') as f:
+    json.dump(b, f, ensure_ascii=False, indent=2)
+print("Ch 7 Part 2 complete: 35 blocks written.")
