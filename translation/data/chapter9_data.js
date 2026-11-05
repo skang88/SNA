@@ -120,6 +120,11 @@ window.CHAPTER_DATA[9] = {
     "ko": "응답자들은 또한 나열된 각 인물에 대해 관계, 연령, 거주 위치, 인종, 성별, 제공 가능한 재난 지원의 유형(재정적 지원 또는 비재정적 지원), 인터뷰 대상자에게 제공된 이전 지원 및 인터뷰 대상자가 제공했던 이전 지원에 관한 정보(표 9.1 참조)를 제공하였다. 본 연구에서 재정적 지원은 대피 비용이나 재건 비용 지원과 같은 모든 유형의 금전적 지원으로 정의되었으며, 비재정적 지원은 노동력 제공, 자녀 돌봄, 정서적 지지와 같은 기타 형태의 지원으로 정의되었다."
   },
   {
+    "type": "image",
+    "en": "![Table 9.1: Survey Name Generator for Disaster Support Networks](image-31.png)  \n*Table 9.1 Survey Name Generator for Disaster Support Networks*",
+    "ko": "![표 9.1: 재난 지원 네트워크 설문 이름 생성기](image-31.png)  \n*표 9.1 재난 지원 네트워크 설문 이름 생성기 문항 및 수집 속성 정보*"
+  },
+  {
     "type": "p",
     "en": "I calculated network size as the total number of social ties each survey respondent listed in the name generator and, based on type of resource indicated, I calculated the size of financial and nonfinancial networks separately. Then, I used relationship to describe network composition. Survey respondents listed a variety of relationships, which I categorized into three groups: family, friends, and neighbors. Family included parents, children, siblings, grandparents, grandchildren, aunts/uncles, and cousins, as well as family through marriage (in-laws) and blended family members (step-parents and step-siblings). Friends included friends and coworkers. Neighbors were only those individuals listed as neighbors.",
     "ko": "필자는 네트워크 규모를 각 설문 응답자가 이름 생성기에 기명한 사회적 유대의 총수로 계산하였으며, 표시된 자원 유형을 기반으로 재정적 네트워크와 비재정적 네트워크의 규모를 별도로 산출하였다. 그런 다음 관계 유형을 활용하여 네트워크 구성을 기술하였다. 설문 응답자들은 다양한 관계를 기명하였으며, 필자는 이를 가족, 친구, 이웃의 세 그룹으로 범주화하였다. 가족에는 부모, 자녀, 형제자매, 조부모, 손자녀, 이모/고모/삼촌, 사촌뿐만 아니라 결혼을 통한 가족(인척) 및 재혼 혼합 가족 구성원(의붓부모, 의붓형제)이 포함되었다. 친구에는 친구와 직장 동료가 포함되었다. 이웃은 명시적으로 이웃으로 기명된 개인들로만 한정되었다."
@@ -150,14 +155,9 @@ window.CHAPTER_DATA[9] = {
     "ko": "우편 설문의 마지막 문항에서는 대면 인터뷰 참여에 대한 응답자의 의향을 질문하였으며, 인터뷰 참여에 대해 10달러의 인센티브를 제공하였다. 필자는 딕시 카운티에서 9명, 레온 카운티에서 16명 등 총 25명을 인터뷰하였다. 인터뷰 참여자의 52%는 여성이었고 76%는 백인이었다. 인터뷰는 20분에서 2시간 동안 진행되었으며, 디지털로 녹음된 후 분석을 위해 축어록(verbatim)으로 전사되었다."
   },
   {
-    "type": "p",
-    "en": "<details>\n<summary>📌 복사된 원문 텍스트 데이터 (참고용 펼쳐보기)</summary>",
-    "ko": "<details>\n<summary>📌 복사된 원문 텍스트 데이터 (참고용 펼쳐보기)</summary>"
-  },
-  {
-    "type": "p",
-    "en": "```text\nTable 9.2 Participant and County Demographics\nDixie County:\n- Survey (n = 75)\n- Population 2010: Median age 45, Reported disability 28%, High school 90%, College 25%, Female 51%, White 73%, Black 6%, Other 46% (Note: Census stats)\nLeon County:\n- Survey (n = 63)\n- Population 2010: Median age 30, Reported disability 9%, High school 94%, College 57%, Female 54%, White 63%, Black 30%, Asian 3%, Other 4%\nTotal:\n- Survey (n = 138): Median age 60, Disability 20%, High school 92%, College 40%, Female 53%, White 81%, Black 15%, Asian 0%, Other 4%, Median years living on coast 31, Median hurricanes experienced 3\n- Interview (n = 25): Median age 60, Disability 36%, High school 83%, College 42%, Female 52%, White 76%, Black 20%, Asian 0%, Other 4%, Median years living on coast 35, Median hurricanes experienced 2\nHousehold income distributions: Less than $15,000 (21% / 22% / 32%), $15,000–30,000 (25% / 20% / 18%), $30,000–45,000 (22% / 19% / 14%), $45,000–60,000 (9% / 10% / 0%), $60,000–75,000 (8% / 9% / 9%), $75,000–130,000 (3% / 4% / 4%), Greater than $130,000 (2% / 4.6%)\n```\n</details>",
-    "ko": "```text\n표 9.2 참여자 및 카운티 인구통계학적 특성\n딕시 카운티(Dixie County):\n- 설문 참여자 (n = 75)\n- 2010년 인구 통계: 중위 연령 45세, 장애 보고율 28%, 고졸 이상 90%, 대졸 이상 25%, 여성 51%, 백인 73%, 흑인 6%, 기타 46% (참고: 센서스 통계치)\n레온 카운티(Leon County):\n- 설문 참여자 (n = 63)\n- 2010년 인구 통계: 중위 연령 30세, 장애 보고율 9%, 고졸 이상 94%, 대졸 이상 57%, 여성 54%, 백인 63%, 흑인 30%, 아시아계 3%, 기타 4%\n전체(Total):\n- 설문 전체 (n = 138): 중위 연령 60세, 장애 20%, 고졸 이상 92%, 대졸 이상 40%, 여성 53%, 백인 81%, 흑인 15%, 아시아계 0%, 기타 4%, 해안가 거주 중위 연수 31년, 경험한 허리케인 중위 횟수 3회\n- 대면 인터뷰 (n = 25): 중위 연령 60세, 장애 36%, 고졸 이상 83%, 대졸 이상 42%, 여성 52%, 백인 76%, 흑인 20%, 아시아계 0%, 기타 4%, 해안가 거주 중위 연수 35년, 경험한 허리케인 중위 횟수 2회\n가구 소득 분포: $15,000 미만 (21% / 22% / 32%), $15,000–$30,000 (25% / 20% / 18%), $30,000–$45,000 (22% / 19% / 14%), $45,000–$60,000 (9% / 10% / 0%), $60,000–$75,000 (8% / 9% / 9%), $75,000–$130,000 (3% / 4% / 4%), $130,000 초과 (2% / 4.6%)\n```\n</details>"
+    "type": "image",
+    "en": "![Table 9.2: Participant and County Demographics](image-32.png)  \n*Table 9.2 Participant and County Demographics*",
+    "ko": "![표 9.2: 참여자 및 카운티 인구통계학적 특성](image-32.png)  \n*표 9.2 참여자 및 카운티 인구통계학적 특성(딕시 및 레온 카운티)*"
   },
   {
     "type": "h2",
@@ -175,12 +175,12 @@ window.CHAPTER_DATA[9] = {
     "ko": "> \"제 생각에 [조지와 저는] 20년 정도 친구로 지내왔습니다. 그는 우리 집과 꽤 가까이 살고 있죠. 우리는 주택 수리 프로젝트 같은 일들을 서로 도왔기 때문에, 말하자면 노동력을 때때로 주고받는 그런 친구입니다.... 재난에 관해서는 솔직히 많은 이야기를 나누지 않은 것 같습니다. 아마도 재난이 닥치면 그 친구조차 여기에 없을지도 모르죠.... 어, 글쎄요, 저는 [재정적 지원을 위해] 의지할 다른 곳이 전혀 없습니다. 제 생각에 저는 그냥 스스로 해결해야 할 처지인 것 같아요, 아시겠어요? 제 말은, 제가 가진 것만큼 버티는 수밖에 없고, 그게 우리를 버티게 해주는 한계일 뿐이라는 겁니다.\""
   },
   {
-    "type": "image",
+    "type": "p",
     "en": "Many respondents were similar to Glen—they listed few social ties available for disaster assistance, and when divided by type of assistance (financial versus nonfinancial), they listed even fewer social ties that would provide financial assistance. Fig. 9.1 shows the percentage of survey respondents who reported each size of network, from zero to eight persons. The mean and standard deviation of network size are included. The overall network column identifies the number of all individuals listed in the name generator regardless of type of assistance. Network sizes are also specified by type of resource: financial or nonfinancial.",
     "ko": "많은 응답자들이 글렌과 유사했다. 즉, 재난 지원을 위해 가용한 사회적 유대를 거의 나열하지 못했으며, 지원의 유형(재정적 지원 대 비재정적 지원)별로 세분화했을 때 재정적 지원을 제공해 줄 사회적 유대는 훨씬 더 적게 나열하였다. 그림 9.1은 0명에서 8명까지 응답자들이 보고한 네트워크 규모별 설문 응답자 비율을 보여준다. 네트워크 규모의 평균과 표준편차도 함께 제시되었다. 전체 네트워크 열은 지원의 유형과 상관없이 이름 생성기에 기명된 모든 인물의 수를 나타낸다. 네트워크 규모는 자원의 유형(재정적 자원 또는 비재정적 자원)별로도 명시되어 있다."
   },
   {
-    "type": "image",
+    "type": "p",
     "en": "Fig. 9.1 shows that there is variation in size of reported disaster support networks. Nearly 10% of all survey respondents listed no individuals in their disaster support network, irrespective of resource type. At the other end of the spectrum, 18% of respondents reported eight individuals in their disaster support network, which is the maximum possible from the name generator.",
     "ko": "그림 9.1은 보고된 재난 지원 네트워크의 규모에 상당한 변이가 존재함을 보여준다. 전체 설문 응답자의 거의 10%는 자원 유형과 관계없이 자신의 재난 지원 네트워크에 단 한 사람도 나열하지 못했다. 반대편 극단에서는 응답자의 18%가 이름 생성기에서 기명할 수 있는 최대 인원인 8명을 자신의 재난 지원 네트워크로 보고하였다."
   },
@@ -188,6 +188,11 @@ window.CHAPTER_DATA[9] = {
     "type": "p",
     "en": "When the type of resource is included, the number of people that respondents believe could provide financial resources in a disaster was smaller than the number of people they felt could provide nonfinancial support. Specifically, nearly 40% of all respondents reported no friends, family, or neighbors that could or would provide financial assistance to them during a disaster, whereas only 17% reported the same for nonfinancial assistance. Average network sizes also varied by resource, with 3.7 persons listed on average regardless of resource, 3.1 persons listed on average for nonfinancial support, and only 1.7 persons reported on average for financial support.",
     "ko": "자원의 유형을 포함하여 분석할 때, 응답자들이 재난 시 재정적 자원을 제공해 줄 수 있다고 믿는 사람의 수는 비재정적 지원을 제공할 수 있다고 생각하는 사람의 수보다 훨씬 적었다. 구체적으로 전체 응답자의 거의 40%는 재난 기간 동안 자신에게 재정적 지원을 제공할 수 있거나 제공해 줄 친구, 가족, 이웃이 단 한 명도 없다고 보고한 반면, 비재정적 지원에 대해 동일하게 응답한 비율은 17%에 불과했다. 평균 네트워크 규모 역시 자원에 따라 차이를 보였는데, 자원 유형에 무관하게는 평균 3.7명이 기명된 반면, 비재정적 지원의 경우 평균 3.1명이 기명되었고, 재정적 지원의 경우 평균 1.7명만이 보고되었다."
+  },
+  {
+    "type": "image",
+    "en": "![FIGURE 9.1: Percent survey respondents by disaster support network size (0–8) and resource available](image-33.png)  \n*FIGURE 9.1 Percent survey respondents by disaster support network size (0–8) and resource available.*",
+    "ko": "![그림 9.1: 재난 지원 네트워크 규모 및 가용 자원별 설문 응답자 비율](image-33.png)  \n*그림 9.1 재난 지원 네트워크 규모(0–8명) 및 가용 자원별 설문 응답자 비율*"
   },
   {
     "type": "p",
@@ -245,7 +250,7 @@ window.CHAPTER_DATA[9] = {
     "ko": "네트워크 규모에서 구성으로 넘어가며, 필자는 이름 생성기에 나열된 유대들의 관계 유형을 분석하였고 인터뷰 데이터를 다시 활용하여 맥락적 설명을 제시하였다. 연구 결과는 응답자들이 재난 시 재정적·비재정적 지원 모두에서 자신들을 지지해 줄 대상으로 친족에게 압도적으로 의지할 것이라 믿고 있음을 보여줌으로써, 가족이 재난 지원 네트워크의 핵심이라는 사실을 확증해 준다. 친구, 이웃, 기타 관계들이 많은 설문 응답자의 네트워크에 포함되었지만, 가족 구성원이 이러한 네트워크를 압도적으로 지배하였다."
   },
   {
-    "type": "image",
+    "type": "p",
     "en": "Fig. 9.2 shows the average composition of disaster support networks by type of relationship between the respondent and the listed social tie. Recall that 10% of all survey respondents indicated no disaster social network ties. On average for respondents reporting at least one network tie, 59% of these respondents’ overall disaster networks were comprised of immediate or extended family. As Meryl, an interviewee from Dixie County, explained, a disaster is:",
     "ko": "그림 9.2는 응답자와 나열된 사회적 유대 간의 관계 유형별 재난 지원 네트워크의 평균 구성을 보여준다. 전체 설문 응답자의 10%가 재난 사회연결망 유대가 전혀 없다고 응답했음을 상기하자. 적어도 하나 이상의 네트워크 유대를 보고한 응답자들의 경우, 이들의 전체 재난 네트워크 중 평균 59%가 직계 또는 확대 가족으로 구성되어 있었다. 딕시 카운티의 인터뷰 대상자인 메릴(Meryl)이 설명했듯이, 재난이란 다음과 같은 순간이다:"
   },
@@ -261,8 +266,18 @@ window.CHAPTER_DATA[9] = {
   },
   {
     "type": "image",
+    "en": "![FIGURE 9.2: Mean percent composition of disaster support networks](image-34.png)  \n*FIGURE 9.2 Mean percent composition of disaster support networks.*  \n*(Note: Family 59%, Friends 31%, Neighbors 7%, Other 3%)*",
+    "ko": "![그림 9.2: 재난 지원 네트워크의 평균 구성 비율](image-34.png)  \n*그림 9.2 재난 지원 네트워크의 관계 유형별 평균 구성 비율*"
+  },
+  {
+    "type": "p",
     "en": "To provide more detail, Fig. 9.3 shows the percent of respondents who included at least one of the common relationships reported (any family member, parent, sibling, child, extended family, grandchild, grandparent, neighbor, and friend). Of people who named at least one person in response to the name generator, over 85% included at least one family member in their disaster support networks. Parent was the most common familial relationship type, with 45% of respondents including at least one parent. Sibling and child were the second and third most common familial relationship listed. While the average percent of neighbors in networks was small, approximately 56% of respondents listed at least one neighbor in their disaster support networks. Fewer respondents reported at least one friend in their networks (24%).",
     "ko": "보다 구체적인 세부 사항을 제공하기 위해, 그림 9.3은 보고된 일반적인 관계 유형(가족 전체, 부모, 형제자매, 자녀, 확대 가족, 손자녀, 조부모, 이웃, 친구) 중 적어도 하나 이상을 포함시킨 응답자의 비율을 보여준다. 이름 생성기에 응답하여 적어도 한 사람 이상의 이름을 거명한 사람들 중 85% 이상이 재난 지원 네트워크에 적어도 한 명의 가족 구성원을 포함시켰다. 부모는 가장 흔한 가족 관계 유형으로 응답자의 45%가 적어도 한 명의 부모를 포함시켰다. 형제자매와 자녀는 두 번째와 세 번째로 흔하게 나열된 가족 관계였다. 네트워크 내 이웃의 평균 비율은 작았지만, 응답자의 약 56%는 재난 지원 네트워크에 적어도 한 명의 이웃을 기명하였다. 네트워크에 적어도 한 명의 친구가 있다고 보고한 응답자는 그보다 적었다(24%)."
+  },
+  {
+    "type": "image",
+    "en": "![FIGURE 9.3: Percent respondents who listed at least one of the relationship types in disaster support networks](image-35.png)  \n*FIGURE 9.3 Percent respondents who listed at least one of the relationship types in disaster support networks.*",
+    "ko": "![그림 9.3: 재난 지원 네트워크에 주요 관계 유형을 적어도 하나 이상 포함한 응답자 비율](image-35.png)  \n*그림 9.3 재난 지원 네트워크에 주요 관계 유형을 적어도 하나 이상 포함한 응답자 비율*"
   },
   {
     "type": "p",
@@ -285,9 +300,14 @@ window.CHAPTER_DATA[9] = {
     "ko": "> \"우리는 또한 우리 집에서 불과 몇 채 떨어진 곳에 친구들이 살고 있다는 것을 알고 있으며, 그들이 [가족이 해주는 것과] 똑같이 우리를 재워줄 것이라고 확신합니다.\""
   },
   {
-    "type": "image",
+    "type": "p",
     "en": "While friends and neighbors were described by interviewees as potential sources of nonfinancial disaster assistance, family was viewed as the most common source of financial assistance. Fig. 9.4 shows the differences between relationship and type of resource one expects to receive during a disaster. Overwhelmingly, respondents indicate that family is their primary source for financial assistance compared to neighbors, friends, organizations, and government. Fifty-three percent of respondents selected either local or extralocal family as their first source of financial assistance. While relationship seems to drive the selection of ties for financial assistance, location drives the selection of ties for nonfinancial assistance with local family, friends, and neighbors being the most common first sources of nonfinancial assistance.",
     "ko": "인터뷰 대상자들에 의해 친구와 이웃이 비재정적 재난 지원의 잠재적 원천으로 묘사된 반면, 가족은 재정적 지원의 가장 주된 원천으로 인식되었다. 그림 9.4는 개인이 재난 시 받을 것으로 기대하는 자원의 유형과 관계 간의 차이를 보여준다. 압도적으로 응답자들은 이웃, 친구, 구호조직, 정부와 비교하여 가족이 재정적 지원의 제1차 원천이라고 응답하였다. 응답자의 53%는 현지 거주 가족이나 타지역 거주 가족을 재정 지원의 첫 번째 원천으로 선택했다. 재정적 지원을 위한 유대 선택을 이끄는 요인이 '관계(relationship)'인 반면, 비재정적 지원을 위한 유대 선택을 이끄는 요인은 '지리적 위치(location)'인 것으로 나타났으며, 현지 가족, 친구, 이웃이 비재정적 지원의 가장 흔한 1차 원천이었다."
+  },
+  {
+    "type": "image",
+    "en": "![FIGURE 9.4: Anticipated first source of financial and nonfinancial disaster assistance](image-36.png)  \n*FIGURE 9.4 Anticipated first source of financial and nonfinancial disaster assistance.*",
+    "ko": "![그림 9.4: 예상되는 제1차 재정적 및 비재정적 재난 지원 원천](image-36.png)  \n*그림 9.4 예상되는 제1차 재정적 및 비재정적 재난 지원 원천(가족, 친구, 이웃 등)*"
   },
   {
     "type": "h2",
@@ -305,19 +325,9 @@ window.CHAPTER_DATA[9] = {
     "ko": "이 문제를 다루기 위해, 필자는 재정적 자본과 사회적 취약성의 다양한 지표들이 적어도 하나의 재정적 유대를 보고할 오즈(확률비, odds)에 미치는 영향을 분석하였다(표 9.3은 각 독립변수의 승산비[Odds Ratios]를 보여준다). 네트워크 유대를 통해 재정적 자원에 접근하는 것은 비재정적 자원에 접근하는 것보다 더 어렵거나 덜 적절한 것으로 지각되며, 전체 조사 대상자의 거의 40%가 금전적 지원을 제공할 사회적 유대가 전혀 없었음을 상기하자. 표본 크기가 작기 때문에, 필자는 인구통계학적 특성, 주거 형태, 인종이라는 주요 관심 변수 그룹별로 회귀분석 결과를 제시한다."
   },
   {
-    "type": "p",
-    "en": "<details>\n<summary>📌 복사된 원문 텍스트 데이터 (참고용 펼쳐보기)</summary>",
-    "ko": "<details>\n<summary>📌 복사된 원문 텍스트 데이터 (참고용 펼쳐보기)</summary>"
-  },
-  {
-    "type": "p",
-    "en": "```text\nTable 9.3 Odds Ratios of Reporting at Least One Network Tie That Could Provide Financial Support in a Disaster\nDependent variable: Reporting at least one financial tie (Odds Ratio (SE))\nModels:\n1. County: Leon county 3.20*** (1.20), Constant 1.00 (0.23), Pseudo R2 = 0.056, Obs = 137\n2. County and Demographics: Leon county 3.27*** (1.49), Female 0.81 (0.38), At or below 150% poverty 0.84 (0.41), Elderly 0.31*** (0.14), Disability 0.45 (0.25), Constant 2.51** (1.13), Pseudo R2 = 0.163, Obs = 119\n3. County and Housing Status: Leon county 2.21* (1.05), Mobile home 0.82 (0.38), Homeowner 0.32** (0.18), Constant 3.15* (1.98), Pseudo R2 = 0.085, Obs = 134\n4. County and Race: Leon county 3.38*** (1.35), Minority 0.95 (0.59), Constant 0.92 (0.22), Pseudo R2 = 0.060, Obs = 132",
-    "ko": "```text\n표 9.3 재난 시 재정적 지원을 제공할 수 있는 네트워크 유대를 적어도 하나 이상 보고할 승산비(Odds Ratios)\n종속변수: 적어도 하나의 재정적 유대 보고 여부 (승산비 Odds Ratio (표준오차 SE))\n모형:\n1. 카운티 모형: 레온 카운티 3.20*** (1.20), 상수항 1.00 (0.23), Pseudo R2 = 0.056, 관측치 = 137\n2. 카운티 및 인구통계 모형: 레온 카운티 3.27*** (1.49), 여성 0.81 (0.38), 빈곤선 150% 이하 0.84 (0.41), 노인 0.31*** (0.14), 장애 0.45 (0.25), 상수항 2.51** (1.13), Pseudo R2 = 0.163, 관측치 = 119\n3. 카운티 및 주거 상태 모형: 레온 카운티 2.21* (1.05), 이동식 주택(모바일 홈) 0.82 (0.38), 주택 소유자 0.32** (0.18), 상수항 3.15* (1.98), Pseudo R2 = 0.085, 관측치 = 134\n4. 카운티 및 인종 모형: 레온 카운티 3.38*** (1.35), 소수 인종 0.95 (0.59), 상수항 0.92 (0.22), Pseudo R2 = 0.060, 관측치 = 132\n```"
-  },
-  {
-    "type": "p",
-    "en": "*p < 0.10, **p < 0.05, ***p < 0.01.\nDixie County is reference category.\n```\n</details>",
-    "ko": "```text\n*p < 0.10, **p < 0.05, ***p < 0.01.\n딕시 카운티(Dixie County)가 기준 집단(참조 범주)임.\n```\n</details>"
+    "type": "image",
+    "en": "![Table 9.3: Odds Ratios of Reporting at Least One Network Tie That Could Provide Financial Support in a Disaster](image-37.png)  \n*Table 9.3 Odds Ratios of Reporting at Least One Network Tie That Could Provide Financial Support in a Disaster*",
+    "ko": "![표 9.3: 재난 시 재정적 지원을 제공할 수 있는 네트워크 유대를 적어도 하나 이상 보고할 승산비](image-37.png)  \n*표 9.3 재난 시 재정적 지원 제공 유대 보유에 관한 로지스틱 회귀분석 승산비(Odds Ratios)*"
   },
   {
     "type": "p",

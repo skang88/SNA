@@ -531,7 +531,19 @@ Now that we have identified that there are, on average, more network members enu
 
 ---
 
-### [단락 47] P
+### [단락 47] IMAGE
+
+**[EN]**
+![FIGURE 8.1: Family-level average differences in number of relations enumerated comparing pre-disaster with response and recovery phases](image-29.png)  
+*FIGURE 8.1 Family-level average differences in number of relations enumerated comparing pre-disaster with response and recovery phases. (\*p < .05, \*\*p < .01)*
+
+**[KO]**
+![그림 8.1: 재난 이전 대비 대응기 및 복구기 간 열거된 관계 유형의 가족 수준 평균 차이](image-29.png)  
+*그림 8.1 재난 이전 대비 대응기 및 복구기 간 열거된 관계 유형 수의 가족 수준 평균 차이 (독립표본 t-검정, \*p < .05, \*\*p < .01)*
+
+---
+
+### [단락 48] P
 
 **[EN]**
 These results suggest partial support of **H2**; there were more second-degree relatives, i.e., aunts and uncles but not grandparents, enumerated during the response period. Part of this result can be attributed to the enumeration questionnaire; parents and grandparents were elicited by design as parents and grandparents were explicitly asked about by the enumeration instrument. However, enumeration of others was unaffected by this design, which has the implication that we can only find partial support of this hypothesis. We also observe a significant drop in the number of enumerated friends[^1] that persists over time. This suggests that there is a short-term trade-off preferring extended family members over friends as a result of the disaster; but the likelihood of enumerating friends continues to be low even when the propensity to nominate second-degree relatives returns to baseline. While providing only partial support of our hypothesis, this result is consistent with the conclusion by Jari Saramäki and colleagues (2014) that individuals must drop some ties in favor of others during periods of high communication in their network, and that there is considerable persistence of that signature over time.
@@ -541,7 +553,7 @@ These results suggest partial support of **H2**; there were more second-degree r
 
 ---
 
-### [단락 48] P
+### [단락 49] P
 
 **[EN]**
 Finally, we evaluate whether the perceptions of sending, receiving, reciprocating, or not exchanging favors differs across response period. Table 8.3 reports the standardized Pearson residuals and chi-square contingency test from the log-linear model of dyadic favor exchanges on time period. These values represent relatively how much the observed counts of favors differ from expected counts of favors based on the total number of favors reported (i.e., from chance). In the predisaster period, we observe significantly fewer reports of favors sent (but not received) and more reports of reciprocated favors than expected by the margins of the log-linear model. The table also shows that these results represent a trade-off in the recovery period, where we observe more favors sent and fewer favors reciprocated than expected. Interestingly, we observe the expected frequencies of each dyadic favor exchange configuration during the response period. Thus, we find no evidence in support of the hypothesis that the response period is a time of greater than expected favor exchanges (**H3**).
@@ -551,7 +563,7 @@ Finally, we evaluate whether the perceptions of sending, receiving, reciprocatin
 
 ---
 
-### [단락 49] H3
+### [단락 50] H3
 
 **[EN]**
 ### Table 8.3 Standardized Pearson Residuals from the Log-Linear Model of Dyadic Favor Exchanges on Time Period
@@ -561,17 +573,18 @@ Finally, we evaluate whether the perceptions of sending, receiving, reciprocatin
 
 ---
 
-### [단락 50] IMAGE
+### [단락 51] IMAGE
 
 **[EN]**
 ![Table 8.3: Standardized Pearson Residuals from the Log-Linear Model of Dyadic Favor Exchanges on Time Period](image-30.png)
 
 **[KO]**
-![표 8.3: 시기별 이항 호의 교환 로그선형 모형의 표준화 피어슨 잔차](image-30.png)
+![표 8.3: 시기별 이항 호의 교환 로그선형 모형의 표준화 피어슨 잔차](image-30.png)  
+*표 8.3 시기별 이항 호의 교환 로그선형 모형의 표준화 피어슨 잔차 (Standardized Pearson Residuals)*
 
 ---
 
-### [단락 51] TABLE
+### [단락 52] TABLE
 
 **[EN]**
 | Period | No Favors | Received Only | Sent Only | Reciprocated Favors |
@@ -579,6 +592,17 @@ Finally, we evaluate whether the perceptions of sending, receiving, reciprocatin
 | **Predisaster** | -0.619 | 0.766 | -5.697*** | 3.828** |
 | **Response** | -0.776 | 0.282 | 1.353 | -0.087 |
 | **Recovery** | 0.995 | 0.710 | 2.627* | -2.398* |
+
+**[KO]**
+![표 8.3: 시기별 이항 호의 교환 로그선형 모형의 표준화 피어슨 잔차](image-30.png)
+
+---
+
+### [단락 53] P
+
+**[EN]**
+*$\chi^2 = 64.7482$; $df = 6$; $p < 4.856 \times 10^{-12}$*  
+*\*p < .05; \*\*p < .01; \*\*\*p < .001.*
 
 **[KO]**
 | 시기 (Period) | 호의 교환 없음 (No Favors) | 받기만 함 (Received Only) | 주기만 함 (Sent Only) | 호혜적 교환 (Reciprocated Favors) |
@@ -589,11 +613,10 @@ Finally, we evaluate whether the perceptions of sending, receiving, reciprocatin
 
 ---
 
-### [단락 52] P
+### [단락 54] H2
 
 **[EN]**
-*$\chi^2 = 64.7482$; $df = 6$; $p < 4.856 \times 10^{-12}$*  
-*\*p < .05; \*\*p < .01; \*\*\*p < .001.*
+## DISCUSSION: FAMILY NETWORKS AND DISASTERS
 
 **[KO]**
 *$\chi^2 = 64.7482$; $df = 6$; $p < 4.856 	imes 10^{-12}$*  
@@ -601,123 +624,113 @@ Finally, we evaluate whether the perceptions of sending, receiving, reciprocatin
 
 ---
 
-### [단락 53] H2
-
-**[EN]**
-## DISCUSSION: FAMILY NETWORKS AND DISASTERS
-
-**[KO]**
-## DISCUSSION: FAMILY NETWORKS AND DISASTERS
-
----
-
-### [단락 54] P
+### [단락 55] P
 
 **[EN]**
 Hurricane Ike’s disruptions to the original research project—how ways of providing family disease risk information influenced how families approach health—may warrant modification of analytic designs to account for potential impacts on social mechanisms that are integral to intervention outcomes. Fortunately, in our diagnostics, Hurricane Ike does not appear to have affected the results on the key health communication outcomes, even when larger networks were obtained during the response period, presenting potentially more communication pathways (Dunning, 2012). Moreover, while current US federal guidelines for human subject research require storing records for at least three years [45 CFR 46.115(b)], we found that permanently archiving our study records in digital form to be an invaluable resource in both reconstructing exactly when participants were recruited from participant tracking records and contextualizing study efforts from correspondence sent during the disaster. We advise future researchers planning to conduct studies in disaster-prone areas to consider the longevity of their record keeping in the development of their protocols.
 
 **[KO]**
-허리케인 아이크로 인한 원래 연구 프로젝트—가족 질환 위험 정보를 제공하는 방식이 가족의 건강 접근법에 어떻게 영향을 미치는지—의 중단은 중재 결과에 핵심적인 사회적 메커니즘에 미치는 잠재적 영향을 설명하기 위해 분석 설계를 수정할 필요성을 정당화할 수 있다. 다행스럽게도 우리의 진단 검사에서 허리케인 아이크는 주요 건강 의사소통 결과에 유의미한 왜곡을 일으키지 않은 것으로 나타났으며, 대응 기간 동안 더 큰 네트워크가 획득되었을 때에도 더 많은 의사소통 경로를 제시해 주었다(Dunning, 2012). 더욱이 인간 대상 연구에 관한 현행 미국 연방 지침이 최소 3년간 기록을 보관하도록 요구하는 반면[45 CFR 46.115(b)], 우리는 연구 기록을 디지털 형태로 영구 보관하는 것이 참여자 추적 기록으로부터 정확한 모집 시점을 재구성하고 재난 기간 동안 발송된 서신으로부터 연구 노력을 맥락화하는 데 대단히 유용한 자원임을 발견하였다. 우리는 향후 재난 다발 지역에서 연구를 수행하고자 하는 연구자들에게 프로토콜 개발 시 기록 보관의 영속성을 반드시 고려할 것을 권고한다.
-
----
-
-### [단락 55] P
-
-**[EN]**
-As reported earlier, the increases in the number of enumerated family network members were largely due to increases in the number of aunts and uncles enumerated. Our study design largely engaged parents and their adult children; thus, the siblings of our participating parents were the aunts and uncles of our participating adult children. Examination of the enumeration data during the predisaster period showed that adult children left out some of their aunts and uncles in their network enumeration, as ascertained from their parents’ enumeration of siblings. Hurricane Ike likely increased communication ties between parents and their siblings, which in turn influenced the salience of such relationships for their adult children. This may be a particularly relevant point for immigrant families, where younger generations may have limited interaction with their relatives living in older generations’ country of origin (Foner & Dreby, 2011; Treas, 2008).
-
-**[KO]**
-앞서 보고한 바와 같이, 열거된 가족 네트워크 구성원 수의 증가는 주로 열거된 이모/고모/삼촌(aunts and uncles) 수의 증가에 기인하였다. 우리의 연구 설계는 주로 부모와 성인 자녀들을 대상으로 하였으므로, 참여 부모들의 형제자매는 참여 성인 자녀들에게 이모, 고모, 삼촌이 된다. 재난 이전 기간의 열거 데이터를 조사한 결과, 부모들의 형제자매 열거 내역과 비교했을 때 성인 자녀들이 자신의 네트워크 열거에서 이모/고모/삼촌 중 일부를 누락시켰음이 확인되었다. 허리케인 아이크는 부모와 그 형제자매 간의 의사소통 유대를 크게 증가시켰을 가능성이 높으며, 이는 결과적으로 성인 자녀들에게 이러한 관계의 중요성(salience)을 강하게 환기시켰을 것이다. 이는 젊은 세대가 이전 세대의 출신 국가에 살고 있는 친척들과의 교류가 제한적일 수 있는 이민자 가족들에게 특히 중요한 시사점을 던진다(Foner & Dreby, 2011; Treas, 2008).
+## DISCUSSION: FAMILY NETWORKS AND DISASTERS
 
 ---
 
 ### [단락 56] P
 
 **[EN]**
-Additionally, in some cases, the younger participants recruited during the response period may have identified and enumerated their *compadres* as aunts and uncles. *Compadres* play a special role in Mexican heritage families. Typically, they are not blood relatives, but are rather close friends of the parents, who are relied on as if they were members of the family and remain in the lives of children indefinitely (Kana’Iaupuni, Donato, Thompson-Colon, & Stainback, 2005). The relation is akin to godparent in English, but would have been translated as aunt/uncle by our study confederates. Thus, it is plausible that some of the excess in enumerated aunts and uncles during the response period—a time of heightened need and familial salience—reflect such special relationships.
+As reported earlier, the increases in the number of enumerated family network members were largely due to increases in the number of aunts and uncles enumerated. Our study design largely engaged parents and their adult children; thus, the siblings of our participating parents were the aunts and uncles of our participating adult children. Examination of the enumeration data during the predisaster period showed that adult children left out some of their aunts and uncles in their network enumeration, as ascertained from their parents’ enumeration of siblings. Hurricane Ike likely increased communication ties between parents and their siblings, which in turn influenced the salience of such relationships for their adult children. This may be a particularly relevant point for immigrant families, where younger generations may have limited interaction with their relatives living in older generations’ country of origin (Foner & Dreby, 2011; Treas, 2008).
 
 **[KO]**
-이에 더하여, 어떤 경우에는 대응 기간 동안 모집된 젊은 참여자들이 자신의 대부모이자 부모의 절친한 친구인 *콤파드레(compadres)*를 이모나 삼촌으로 식별하여 열거했을 가능성도 있다. *콤파드레*는 멕시코 전통 가족에서 매우 특별한 역할을 수행한다. 일반적으로 그들은 혈연관계가 아니지만 부모의 절친한 친구로서 마치 가족 구성원인 것처럼 신뢰를 받으며 자녀들의 삶에 평생 동안 함께 머문다(Kana’Iaupuni, Donato, Thompson-Colon, & Stainback, 2005). 이 관계는 영어의 대부모(godparent)와 유사하지만, 우리 연구 참여자들에 의해 이모/삼촌으로 번역되었을 수 있다. 따라서 긴급한 지원 요구와 가족적 중요성이 고조되었던 시기인 재난 대응 기간 동안 이모/고모/삼촌의 열거가 과도하게 증가한 현상의 일부는 이러한 특수한 사회적 관계를 반영한 것으로 보는 것이 타당하다.
+허리케인 아이크로 인한 원래 연구 프로젝트—가족 질환 위험 정보를 제공하는 방식이 가족의 건강 접근법에 어떻게 영향을 미치는지—의 중단은 중재 결과에 핵심적인 사회적 메커니즘에 미치는 잠재적 영향을 설명하기 위해 분석 설계를 수정할 필요성을 정당화할 수 있다. 다행스럽게도 우리의 진단 검사에서 허리케인 아이크는 주요 건강 의사소통 결과에 유의미한 왜곡을 일으키지 않은 것으로 나타났으며, 대응 기간 동안 더 큰 네트워크가 획득되었을 때에도 더 많은 의사소통 경로를 제시해 주었다(Dunning, 2012). 더욱이 인간 대상 연구에 관한 현행 미국 연방 지침이 최소 3년간 기록을 보관하도록 요구하는 반면[45 CFR 46.115(b)], 우리는 연구 기록을 디지털 형태로 영구 보관하는 것이 참여자 추적 기록으로부터 정확한 모집 시점을 재구성하고 재난 기간 동안 발송된 서신으로부터 연구 노력을 맥락화하는 데 대단히 유용한 자원임을 발견하였다. 우리는 향후 재난 다발 지역에서 연구를 수행하고자 하는 연구자들에게 프로토콜 개발 시 기록 보관의 영속성을 반드시 고려할 것을 권고한다.
 
 ---
 
 ### [단락 57] P
 
 **[EN]**
-Our results also provide insights into how families respond to natural disasters and the potential psychological implications of that response. Families that live in the Gulf Coast region are in the hurricane zone and many may have developed a certain resilience to storm damage; these families are diverse, however, and have unequal abilities to anticipate, prevent, mitigate, respond to, and recover from disaster (Tobin, Whiteford, Jones, & Murphy, 2007). Tellingly, when considering our results with regard to the exchange of favors, we find that during the recovery period, participants perceived inequality in exchange. There were statistically fewer than expected perceived reciprocal exchanges in favors with an excess in perceived provision of favors. This is in stark contrast to the predisaster period, where reciprocity exceeded expectations, and to the response period, where expectations were met.
+Additionally, in some cases, the younger participants recruited during the response period may have identified and enumerated their *compadres* as aunts and uncles. *Compadres* play a special role in Mexican heritage families. Typically, they are not blood relatives, but are rather close friends of the parents, who are relied on as if they were members of the family and remain in the lives of children indefinitely (Kana’Iaupuni, Donato, Thompson-Colon, & Stainback, 2005). The relation is akin to godparent in English, but would have been translated as aunt/uncle by our study confederates. Thus, it is plausible that some of the excess in enumerated aunts and uncles during the response period—a time of heightened need and familial salience—reflect such special relationships.
 
 **[KO]**
-우리의 분석 결과는 또한 가족들이 자연재해에 어떻게 대응하는지, 그리고 그러한 대응이 갖는 잠재적인 심리적 함의에 대한 통찰을 제공한다. 멕시코만 연안 지역에 거주하는 가족들은 허리케인 위험 지대에 살고 있으며 많은 이들이 폭풍 피해에 대한 일정한 레질리언스를 발달시켰을 수 있다. 그러나 이러한 가족들은 매우 다양하며 재난을 예상, 예방, 완화, 대응 및 복구하는 능력에 있어 불평등을 겪고 있다(Tobin, Whiteford, Jones, & Murphy, 2007). 특히 호의 교환과 관련된 우리의 결과를 고려할 때, 우리는 복구 기간 동안 참여자들이 호의 교환에서 불평등(inequality)을 지각했음을 발견하였다. 통계적으로 상호 호혜적인 호의 교환은 기대치보다 유의미하게 적었던 반면, 호의를 일방적으로 베풀기만 했다는 지각은 초과하여 나타났다. 이는 호혜성이 기대치를 상회했던 재난 이전 기간이나, 기대치에 부합했던 대응 기간의 패턴과 극명한 대조를 이룬다.
+앞서 보고한 바와 같이, 열거된 가족 네트워크 구성원 수의 증가는 주로 열거된 이모/고모/삼촌(aunts and uncles) 수의 증가에 기인하였다. 우리의 연구 설계는 주로 부모와 성인 자녀들을 대상으로 하였으므로, 참여 부모들의 형제자매는 참여 성인 자녀들에게 이모, 고모, 삼촌이 된다. 재난 이전 기간의 열거 데이터를 조사한 결과, 부모들의 형제자매 열거 내역과 비교했을 때 성인 자녀들이 자신의 네트워크 열거에서 이모/고모/삼촌 중 일부를 누락시켰음이 확인되었다. 허리케인 아이크는 부모와 그 형제자매 간의 의사소통 유대를 크게 증가시켰을 가능성이 높으며, 이는 결과적으로 성인 자녀들에게 이러한 관계의 중요성(salience)을 강하게 환기시켰을 것이다. 이는 젊은 세대가 이전 세대의 출신 국가에 살고 있는 친척들과의 교류가 제한적일 수 있는 이민자 가족들에게 특히 중요한 시사점을 던진다(Foner & Dreby, 2011; Treas, 2008).
 
 ---
 
 ### [단락 58] P
 
 **[EN]**
-Research suggests that reciprocal exchange is a social norm that drives cooperation and social organization and is ultimately related to survival (Gouldner, 1960; Molm, 1994). Here, we consider perceptions of social exchanges. What is particularly interesting is the perception of fewer than expected reciprocal ties. Thus, participants recruited during the recovery period did not perceive equity in exchange. From an equity theory perspective (Hatfield, Walster, & Berscheid, 1978), this inequity in the exchange of favors may lead to increased distress and ambiguity in the relationship (Väänänen, Buunk, Kivimäki, Pentti, & Vahtera, 2005). In particular, those who provide more favors than expected without receipt of favors in return—as is the case here—feel frustrated, angry or hurt because they received less than they gave (Väänänen et al., 2005; Whatley, Webster, Smith, & Rhodes, 1999). Future work will evaluate the extent to which absence of reciprocity is associated with having more conflict between actors, and whether this effect holds under the uncertain environs of disaster response.
+Our results also provide insights into how families respond to natural disasters and the potential psychological implications of that response. Families that live in the Gulf Coast region are in the hurricane zone and many may have developed a certain resilience to storm damage; these families are diverse, however, and have unequal abilities to anticipate, prevent, mitigate, respond to, and recover from disaster (Tobin, Whiteford, Jones, & Murphy, 2007). Tellingly, when considering our results with regard to the exchange of favors, we find that during the recovery period, participants perceived inequality in exchange. There were statistically fewer than expected perceived reciprocal exchanges in favors with an excess in perceived provision of favors. This is in stark contrast to the predisaster period, where reciprocity exceeded expectations, and to the response period, where expectations were met.
 
 **[KO]**
-선행 연구들은 호혜적 교환이 협력과 사회 조직을 이끄는 규범이자 궁극적으로 생존과 결부된 사회적 메커니즘임을 시사한다(Gouldner, 1960; Molm, 1994). 본 연구에서 우리는 사회적 교환에 대한 주관적 지각을 다룬다. 특히 흥미로운 점은 기대보다 적은 호혜적 유대에 대한 지각이다. 즉, 복구 기간 동안 모집된 참여자들은 교환에서의 공평성(equity)을 지각하지 못했다. 형평 이론(equity theory; Hatfield, Walster, & Berscheid, 1978) 관점에서 볼 때, 호의 교환에서의 이러한 불평등은 관계 내에서의 고통(distress)과 모호성을 증가시킬 수 있다(Väänänen, Buunk, Kivimäki, Pentti, & Vahtera, 2005). 특히 본 연구의 사례처럼 반대급부로서의 호의를 받지 못한 채 기대보다 더 많은 호의를 일방적으로 제공한 사람들은 자신이 준 것보다 적게 받았기 때문에 좌절감, 분노 또는 상처를 느끼게 된다(Väänänen et al., 2005; Whatley, Webster, Smith, & Rhodes, 1999). 후속 연구는 호혜성의 부재가 행위자 간의 갈등 증대와 어느 정도 관련이 있는지, 그리고 이러한 효과가 재난 대응이라는 불확실한 환경 속에서도 유지되는지를 심층적으로 평가해야 할 것이다.
+이에 더하여, 어떤 경우에는 대응 기간 동안 모집된 젊은 참여자들이 자신의 대부모이자 부모의 절친한 친구인 *콤파드레(compadres)*를 이모나 삼촌으로 식별하여 열거했을 가능성도 있다. *콤파드레*는 멕시코 전통 가족에서 매우 특별한 역할을 수행한다. 일반적으로 그들은 혈연관계가 아니지만 부모의 절친한 친구로서 마치 가족 구성원인 것처럼 신뢰를 받으며 자녀들의 삶에 평생 동안 함께 머문다(Kana’Iaupuni, Donato, Thompson-Colon, & Stainback, 2005). 이 관계는 영어의 대부모(godparent)와 유사하지만, 우리 연구 참여자들에 의해 이모/삼촌으로 번역되었을 수 있다. 따라서 긴급한 지원 요구와 가족적 중요성이 고조되었던 시기인 재난 대응 기간 동안 이모/고모/삼촌의 열거가 과도하게 증가한 현상의 일부는 이러한 특수한 사회적 관계를 반영한 것으로 보는 것이 타당하다.
 
 ---
 
 ### [단락 59] P
 
 **[EN]**
-Another explanation, which is particularly relevant for family systems, suggests that this inequity in exchange may reflect an adaptive psychological response in which willingness to help those close to others, in absence of reciprocal exchange, is an important communal process. This idea builds upon findings that suggest the norm of reciprocity in families is grounded in more generalized exchange processes based on members’ established history—and expected future continuance—of support (Lawrence & Schigelone, 2002; Rook, 1987) especially in Hispanic families during disasters (Kaniasty & Norris, 2000). Thus, the perceived outflow of favors by our participants may reflect a perception of altruistic behavior in supporting their family members through the recovery process, without the expectation of reciprocal exchange; in turn, such altruistic responses can result in increased well-being and more cohesive social relationships (Liang, Krause, & Bennett, 2001). Indeed, there is some evidence to suggest that this type of perceived inequity positively impacts health outcomes, particularly for women (Väänänen et al., 2005). Consistent with this interpretation, Froma Walsh (2007) found evidence that such communal coping in the face of disaster strengthens resilience among families and communities.
+Research suggests that reciprocal exchange is a social norm that drives cooperation and social organization and is ultimately related to survival (Gouldner, 1960; Molm, 1994). Here, we consider perceptions of social exchanges. What is particularly interesting is the perception of fewer than expected reciprocal ties. Thus, participants recruited during the recovery period did not perceive equity in exchange. From an equity theory perspective (Hatfield, Walster, & Berscheid, 1978), this inequity in the exchange of favors may lead to increased distress and ambiguity in the relationship (Väänänen, Buunk, Kivimäki, Pentti, & Vahtera, 2005). In particular, those who provide more favors than expected without receipt of favors in return—as is the case here—feel frustrated, angry or hurt because they received less than they gave (Väänänen et al., 2005; Whatley, Webster, Smith, & Rhodes, 1999). Future work will evaluate the extent to which absence of reciprocity is associated with having more conflict between actors, and whether this effect holds under the uncertain environs of disaster response.
 
 **[KO]**
-가족 시스템에 특히 적합한 또 다른 설명은, 교환에서의 이러한 불평등이 호혜적 반대급부가 없는 상황에서도 가까운 타인을 기꺼이 돕고자 하는 '공동체적 대처 프로세스(communal process)'의 일환인 적응적 심리 반응을 반영할 수 있다는 점이다. 이러한 아이디어는 가족 내 호혜성 규범이 구성원들의 누적된 지원 역사와 미래에 지속될 지원에 대한 신뢰에 기초한 보다 일반화된 교환 프로세스(generalized exchange processes)에 확고히 뿌리를 두고 있다는 발견점들에 기초한다(Lawrence & Schigelone, 2002; Rook, 1987). 특히 재난 기간 동안 히스패닉 가족들에게서 이러한 경향이 두드러진다(Kaniasty & Norris, 2000). 따라서 본 연구 참여자들이 지각한 호의의 일방적 유출은 복구 과정에서 가족 구성원들을 지원하는 과정에서 즉각적인 반대급부를 기대하지 않고 행해진 이타적 행동(altruistic behavior)에 대한 주관적 지각을 반영한 것일 수 있다. 나아가 이러한 이타적 반응은 심리적 안녕감 증진과 더욱 결속력 있는 사회적 관계로 이어질 수 있다(Liang, Krause, & Bennett, 2001). 실제로 이러한 유형의 지각된 불평등이 특히 여성들에게 건강 결과에 긍정적인 영향을 미친다는 증거가 존재한다(Väänänen et al., 2005). 이러한 해석과 일치하게 프롬아 월시(Froma Walsh, 2007)는 재난에 직면한 이러한 공동체적 대처가 가족과 지역사회 전반의 레질리언스를 강화한다는 증거를 제시한 바 있다.
+우리의 분석 결과는 또한 가족들이 자연재해에 어떻게 대응하는지, 그리고 그러한 대응이 갖는 잠재적인 심리적 함의에 대한 통찰을 제공한다. 멕시코만 연안 지역에 거주하는 가족들은 허리케인 위험 지대에 살고 있으며 많은 이들이 폭풍 피해에 대한 일정한 레질리언스를 발달시켰을 수 있다. 그러나 이러한 가족들은 매우 다양하며 재난을 예상, 예방, 완화, 대응 및 복구하는 능력에 있어 불평등을 겪고 있다(Tobin, Whiteford, Jones, & Murphy, 2007). 특히 호의 교환과 관련된 우리의 결과를 고려할 때, 우리는 복구 기간 동안 참여자들이 호의 교환에서 불평등(inequality)을 지각했음을 발견하였다. 통계적으로 상호 호혜적인 호의 교환은 기대치보다 유의미하게 적었던 반면, 호의를 일방적으로 베풀기만 했다는 지각은 초과하여 나타났다. 이는 호혜성이 기대치를 상회했던 재난 이전 기간이나, 기대치에 부합했던 대응 기간의 패턴과 극명한 대조를 이룬다.
 
 ---
 
 ### [단락 60] P
 
 **[EN]**
-This explanation is also consistent with the past behavior of Hispanic families during disasters. During Hurricanes Hugo and Andrew, Jasmin K. Riad and colleagues (1999) found that Hispanic families and those with higher perceived social support were among those most likely to evacuate. While we cannot know for certain where all of the families participating in our study evacuated to, we suspect that some of the increase in family ties we observed during the response period reflects such a family network response. As we discussed, this may be due to younger participants’ heightened awareness of aunts and uncles by observing their parents’ increased communication with their siblings who were not actively engaged in their predisaster lives.
+Another explanation, which is particularly relevant for family systems, suggests that this inequity in exchange may reflect an adaptive psychological response in which willingness to help those close to others, in absence of reciprocal exchange, is an important communal process. This idea builds upon findings that suggest the norm of reciprocity in families is grounded in more generalized exchange processes based on members’ established history—and expected future continuance—of support (Lawrence & Schigelone, 2002; Rook, 1987) especially in Hispanic families during disasters (Kaniasty & Norris, 2000). Thus, the perceived outflow of favors by our participants may reflect a perception of altruistic behavior in supporting their family members through the recovery process, without the expectation of reciprocal exchange; in turn, such altruistic responses can result in increased well-being and more cohesive social relationships (Liang, Krause, & Bennett, 2001). Indeed, there is some evidence to suggest that this type of perceived inequity positively impacts health outcomes, particularly for women (Väänänen et al., 2005). Consistent with this interpretation, Froma Walsh (2007) found evidence that such communal coping in the face of disaster strengthens resilience among families and communities.
 
 **[KO]**
-이러한 설명은 재난 기간 동안 히스패닉 가족들이 보여온 과거의 행동 양식과도 정확히 일치한다. 허리케인 휴고(Hugo)와 앤드루(Andrew) 당시 자스민 리아드 연구진(1999)은 히스패닉 가족들과 지각된 사회적 지원 수준이 높은 이들이 대피할 가능성이 가장 높은 집단에 속함을 발견하였다. 본 연구에 참여한 모든 가족들이 어디로 대피했는지를 우리가 확정적으로 알 수는 없지만, 대응 기간 동안 우리가 관찰한 가족 유대의 증가 중 상당 부분은 이러한 가족 네트워크 대응을 반영한 것으로 추정된다. 앞서 논의했듯이 이는 젊은 참여자들이 재난 이전의 일상에서는 활발하게 교류하지 않던 형제자매들과 부모 간의 빈번한 소통을 목격함으로써 이모와 삼촌의 존재를 강하게 인식하게 된 데 기인할 수 있다.
+선행 연구들은 호혜적 교환이 협력과 사회 조직을 이끄는 규범이자 궁극적으로 생존과 결부된 사회적 메커니즘임을 시사한다(Gouldner, 1960; Molm, 1994). 본 연구에서 우리는 사회적 교환에 대한 주관적 지각을 다룬다. 특히 흥미로운 점은 기대보다 적은 호혜적 유대에 대한 지각이다. 즉, 복구 기간 동안 모집된 참여자들은 교환에서의 공평성(equity)을 지각하지 못했다. 형평 이론(equity theory; Hatfield, Walster, & Berscheid, 1978) 관점에서 볼 때, 호의 교환에서의 이러한 불평등은 관계 내에서의 고통(distress)과 모호성을 증가시킬 수 있다(Väänänen, Buunk, Kivimäki, Pentti, & Vahtera, 2005). 특히 본 연구의 사례처럼 반대급부로서의 호의를 받지 못한 채 기대보다 더 많은 호의를 일방적으로 제공한 사람들은 자신이 준 것보다 적게 받았기 때문에 좌절감, 분노 또는 상처를 느끼게 된다(Väänänen et al., 2005; Whatley, Webster, Smith, & Rhodes, 1999). 후속 연구는 호혜성의 부재가 행위자 간의 갈등 증대와 어느 정도 관련이 있는지, 그리고 이러한 효과가 재난 대응이라는 불확실한 환경 속에서도 유지되는지를 심층적으로 평가해야 할 것이다.
 
 ---
 
 ### [단락 61] P
 
 **[EN]**
+This explanation is also consistent with the past behavior of Hispanic families during disasters. During Hurricanes Hugo and Andrew, Jasmin K. Riad and colleagues (1999) found that Hispanic families and those with higher perceived social support were among those most likely to evacuate. While we cannot know for certain where all of the families participating in our study evacuated to, we suspect that some of the increase in family ties we observed during the response period reflects such a family network response. As we discussed, this may be due to younger participants’ heightened awareness of aunts and uncles by observing their parents’ increased communication with their siblings who were not actively engaged in their predisaster lives.
+
+**[KO]**
+가족 시스템에 특히 적합한 또 다른 설명은, 교환에서의 이러한 불평등이 호혜적 반대급부가 없는 상황에서도 가까운 타인을 기꺼이 돕고자 하는 '공동체적 대처 프로세스(communal process)'의 일환인 적응적 심리 반응을 반영할 수 있다는 점이다. 이러한 아이디어는 가족 내 호혜성 규범이 구성원들의 누적된 지원 역사와 미래에 지속될 지원에 대한 신뢰에 기초한 보다 일반화된 교환 프로세스(generalized exchange processes)에 확고히 뿌리를 두고 있다는 발견점들에 기초한다(Lawrence & Schigelone, 2002; Rook, 1987). 특히 재난 기간 동안 히스패닉 가족들에게서 이러한 경향이 두드러진다(Kaniasty & Norris, 2000). 따라서 본 연구 참여자들이 지각한 호의의 일방적 유출은 복구 과정에서 가족 구성원들을 지원하는 과정에서 즉각적인 반대급부를 기대하지 않고 행해진 이타적 행동(altruistic behavior)에 대한 주관적 지각을 반영한 것일 수 있다. 나아가 이러한 이타적 반응은 심리적 안녕감 증진과 더욱 결속력 있는 사회적 관계로 이어질 수 있다(Liang, Krause, & Bennett, 2001). 실제로 이러한 유형의 지각된 불평등이 특히 여성들에게 건강 결과에 긍정적인 영향을 미친다는 증거가 존재한다(Väänänen et al., 2005). 이러한 해석과 일치하게 프롬아 월시(Froma Walsh, 2007)는 재난에 직면한 이러한 공동체적 대처가 가족과 지역사회 전반의 레질리언스를 강화한다는 증거를 제시한 바 있다.
+
+---
+
+### [단락 62] P
+
+**[EN]**
 In conclusion, our results suggest that individuals in this population activate ties to their extended kin, deactivate friendship ties, and perceive imbalance in the extent to which the favors they send to members in their networks are reciprocated during the long-term disaster recovery. This suggests that the protective role of family extends beyond the nucleus of the home and outward to extended kin, but that exchanges between such members may be unevenly distributed during disaster response. Future disaster planning and response programs might promote extended kin as a well of instrumental and social support on which affected individuals and their immediate families might rely for communally coping with crises.
+
+**[KO]**
+이러한 설명은 재난 기간 동안 히스패닉 가족들이 보여온 과거의 행동 양식과도 정확히 일치한다. 허리케인 휴고(Hugo)와 앤드루(Andrew) 당시 자스민 리아드 연구진(1999)은 히스패닉 가족들과 지각된 사회적 지원 수준이 높은 이들이 대피할 가능성이 가장 높은 집단에 속함을 발견하였다. 본 연구에 참여한 모든 가족들이 어디로 대피했는지를 우리가 확정적으로 알 수는 없지만, 대응 기간 동안 우리가 관찰한 가족 유대의 증가 중 상당 부분은 이러한 가족 네트워크 대응을 반영한 것으로 추정된다. 앞서 논의했듯이 이는 젊은 참여자들이 재난 이전의 일상에서는 활발하게 교류하지 않던 형제자매들과 부모 간의 빈번한 소통을 목격함으로써 이모와 삼촌의 존재를 강하게 인식하게 된 데 기인할 수 있다.
+
+---
+
+### [단락 63] H2
+
+**[EN]**
+## FOOTNOTES
 
 **[KO]**
 결론적으로 우리의 연구 결과는 이 인구 집단의 개인들이 장기적인 재난 복구 과정에서 확대 친족과의 유대를 활성화하고, 친구 유대를 비활성화하며, 네트워크 구성원들에게 베푼 호의가 상호 호혜적으로 돌아오는 정도에 불균형을 지각한다는 점을 시사한다. 이는 가족의 보호적 역할이 가정이라는 핵가족을 넘어 확대 친족으로 확장되지만, 재난 대응 기간 동안 이러한 구성원 간의 교환은 불균등하게 분포될 수 있음을 보여준다. 향후 재난 계획 및 대응 프로그램은 피해 개인과 그 직계 가족이 위기에 공동체적으로 대처하기 위해 의지할 수 있는 도구적·사회적 지원의 핵심 저수지로서 확대 친족을 정책적으로 적극 활용하고 지원해야 할 것이다.
 
 ---
 
-### [단락 62] H2
-
-**[EN]**
-## FOOTNOTES
-
-**[KO]**
-## FOOTNOTES
-
----
-
-### [단락 63] P
+### [단락 64] P
 
 **[EN]**
 [^1]: “Friends” represent the plurality of relationships enumerated in this category, which also included neighbors and coworkers, but there were too few of those latter relations to separate them out.
 
 **[KO]**
-[^1]: '친구'는 이 범주에서 열거된 관계의 다수를 차지하며 이웃과 직장 동료도 포함되었으나, 후자의 관계들은 별도로 분리하여 분석하기에는 표본 수가 너무 적었다.
+## FOOTNOTES
 
 ---
 
-### [단락 64] P
+### [단락 65] P
 
 **[EN]**
 [^2]: Degrees-of-freedom were rounded to the nearest whole number.
 
 **[KO]**
-[^2]: 자유도(degrees-of-freedom)는 가장 가까운 정수로 반올림하여 표기되었다.
+[^1]: '친구'는 이 범주에서 열거된 관계의 다수를 차지하며 이웃과 직장 동료도 포함되었으나, 후자의 관계들은 별도로 분리하여 분석하기에는 표본 수가 너무 적었다.
 
 ---
 
