@@ -43,6 +43,16 @@ window.CHAPTERS_META = [
     id: 9, 
     titleEn: "Chapter 9: The Family's Burden: Perceived Social Network Resources for Individual Disaster Assistance in Hazard-Prone Florida", 
     titleKo: "제9장: 가족의 부담: 재난 취약 지역 플로리다에서 개인 재난 지원을 위한 지각된 사회적 네트워크 자원" 
+  },
+  { 
+    id: 10, 
+    titleEn: "Chapter 10: Interorganizational Network Dynamics in the Wenchuan Earthquake Recovery", 
+    titleKo: "제10장: 원촨 대지진 복구 과정에서의 조직 간 네트워크 동태성" 
+  },
+  { 
+    id: 11, 
+    titleEn: "Chapter 11: Organizational Support Networks and Relational Resilience After the 2010/11 Earthquakes in Canterbury, New Zealand", 
+    titleKo: "제11장: 2010/11년 뉴질랜드 캔터베리 지진 이후 조직 지원 네트워크와 관계적 레질리언스" 
   }
 ];
 window.CHAPTER_DATA = window.CHAPTER_DATA || {};

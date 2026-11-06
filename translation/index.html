@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SNA 원문 1:1 대역(對譯) 리더 | Ch 1~9</title>
+  <title>SNA 원문 1:1 대역(對譯) 리더 | Ch 1~11</title>
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -558,7 +558,7 @@
         <div class="brand-title">
           <span>Social Network Analysis of Disaster Contexts</span>
         </div>
-        <div class="brand-subtitle">원문 100% 대응 좌우 1:1 학술 대역본 (Chapters 1 ~ 9)</div>
+        <div class="brand-subtitle">원문 100% 대응 좌우 1:1 학술 대역본 (Chapters 1 ~ 11)</div>
       </div>
     </div>
 
@@ -645,6 +645,8 @@
   <script src="data/chapter7_data.js"></script>
   <script src="data/chapter8_data.js"></script>
   <script src="data/chapter9_data.js"></script>
+  <script src="data/chapter10_data.js"></script>
+  <script src="data/chapter11_data.js"></script>
 
   <!-- APP LOGIC -->
   <script>
@@ -693,7 +695,7 @@
 
       // Update Nav Buttons
       document.getElementById('prevChapterBtn').disabled = (num <= 1);
-      document.getElementById('nextChapterBtn').disabled = (num >= (window.CHAPTERS_META ? window.CHAPTERS_META.length : 9));
+      document.getElementById('nextChapterBtn').disabled = (num >= (window.CHAPTERS_META ? window.CHAPTERS_META.length : 10));
 
       const chData = window.CHAPTER_DATA && window.CHAPTER_DATA[num];
       const rowsContainer = document.getElementById('rowsContainer');
@@ -929,7 +931,7 @@
       if (currentChapter > 1) loadChapter(currentChapter - 1);
     };
     document.getElementById('nextChapterBtn').onclick = () => {
-      const maxCh = window.CHAPTERS_META ? window.CHAPTERS_META.length : 9;
+      const maxCh = window.CHAPTERS_META ? window.CHAPTERS_META.length : 10;
       if (currentChapter < maxCh) loadChapter(currentChapter + 1);
     };
 

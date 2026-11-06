@@ -1,0 +1,1604 @@
+# -*- coding: utf-8 -*-
+import os
+
+html_content = r'''<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>재난관리연구방법론 | Chapter 11. 캔터베리 지진 이후 조직 지원 네트워크와 관계적 레질리언스</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&family=Outfit:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- MathJax Configuration & Script -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Mermaid JS for diagrams -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typeof mermaid !== 'undefined') {
+        try {
+          mermaid.initialize({ 
+            startOnLoad: true, 
+            theme: 'dark',
+            securityLevel: 'loose',
+            fontFamily: 'Noto Sans KR, Inter, sans-serif',
+            flowchart: {
+              useMaxWidth: false,
+              htmlLabels: true,
+              curve: 'basis'
+            }
+          });
+        } catch(e) {
+          console.warn('Mermaid initialization deferred:', e);
+        }
+      }
+    });
+  </script>
+
+  <style>
+    :root {
+      --bg-primary: #0b1120;
+      --bg-secondary: #131c31;
+      --bg-sidebar: #0f172a;
+      --bg-card: #1e293b;
+      --bg-card-hover: #26354d;
+      --accent-primary: #38bdf8;
+      --accent-secondary: #818cf8;
+      --accent-emerald: #34d399;
+      --accent-amber: #fbbf24;
+      --accent-rose: #fb7185;
+      --accent-purple: #c084fc;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --border-color: #334155;
+      --sidebar-border: #1e293b;
+      --sidebar-width: 320px;
+      --glass-bg: rgba(19, 28, 49, 0.85);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.35);
+      --shadow-lg: 0 12px 30px -6px rgba(0, 0, 0, 0.5);
+      --radius: 12px;
+      --radius-sm: 8px;
+      --radius-lg: 16px;
+      --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    [data-theme="light"] {
+      --bg-primary: #f8fafc;
+      --bg-secondary: #ffffff;
+      --bg-sidebar: #ffffff;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f1f5f9;
+      --accent-primary: #0284c7;
+      --accent-secondary: #6366f1;
+      --accent-emerald: #059669;
+      --accent-amber: #d97706;
+      --accent-rose: #e11d48;
+      --accent-purple: #9333ea;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --text-dim: #94a3b8;
+      --border-color: #e2e8f0;
+      --sidebar-border: #e2e8f0;
+      --glass-bg: rgba(255, 255, 255, 0.9);
+      --glass-border: rgba(0, 0, 0, 0.08);
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 12px 30px -6px rgba(0, 0, 0, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Noto Sans KR', 'Inter', sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.7;
+      display: flex;
+      min-height: 100vh;
+      overflow-x: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-primary);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--border-color);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--text-dim);
+    }
+
+    /* SIDEBAR */
+    #sidebar {
+      width: var(--sidebar-width);
+      background-color: var(--bg-sidebar);
+      border-right: 1px solid var(--sidebar-border);
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease;
+    }
+
+    .sidebar-header {
+      padding: 1.5rem 1.25rem;
+      border-bottom: 1px solid var(--sidebar-border);
+      background: linear-gradient(180deg, rgba(56, 189, 248, 0.08) 0%, transparent 100%);
+    }
+
+    .brand-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent-primary);
+      background: rgba(56, 189, 248, 0.12);
+      padding: 0.25rem 0.6rem;
+      border-radius: 20px;
+      margin-bottom: 0.75rem;
+      border: 1px solid rgba(56, 189, 248, 0.25);
+    }
+
+    .sidebar-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.4;
+    }
+
+    .sidebar-subtitle {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+
+    .sidebar-search {
+      padding: 0.75rem 1.25rem;
+      border-bottom: 1px solid var(--sidebar-border);
+    }
+
+    .search-input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-input-wrapper i {
+      position: absolute;
+      left: 0.75rem;
+      color: var(--text-dim);
+      pointer-events: none;
+      width: 16px;
+      height: 16px;
+    }
+
+    .search-input {
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 0.45rem 0.75rem 0.45rem 2.2rem;
+      font-size: 0.85rem;
+      color: var(--text-main);
+      outline: none;
+      transition: var(--transition);
+    }
+
+    .search-input:focus {
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+    }
+
+    .sidebar-nav {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1rem 0.75rem;
+    }
+
+    .nav-group-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-dim);
+      padding: 0.5rem 0.75rem;
+      margin-top: 0.5rem;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.6rem 0.75rem;
+      border-radius: var(--radius-sm);
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: var(--transition);
+      margin-bottom: 0.15rem;
+    }
+
+    .nav-item:hover {
+      color: var(--text-main);
+      background-color: var(--bg-card);
+      transform: translateX(3px);
+    }
+
+    .nav-item.active {
+      color: var(--accent-primary);
+      background: rgba(56, 189, 248, 0.12);
+      font-weight: 600;
+      border-left: 3px solid var(--accent-primary);
+    }
+
+    .nav-item i {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+
+    .sidebar-footer {
+      padding: 1rem 1.25rem;
+      border-top: 1px solid var(--sidebar-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .theme-toggle-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 0.45rem 0.75rem;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .theme-toggle-btn:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--accent-primary);
+    }
+
+    /* MAIN CONTENT */
+    #main-wrapper {
+      flex: 1;
+      margin-left: var(--sidebar-width);
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    /* Top Sticky Header */
+    .top-header {
+      position: sticky;
+      top: 0;
+      z-index: 90;
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 0.85rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .breadcrumb a {
+      color: var(--accent-primary);
+      text-decoration: none;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 0.45rem 0.85rem;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .action-btn:hover {
+      border-color: var(--accent-primary);
+      background: var(--bg-card-hover);
+      color: var(--accent-primary);
+    }
+
+    .action-btn.primary {
+      background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+      color: #ffffff;
+      border: none;
+    }
+
+    .action-btn.primary:hover {
+      opacity: 0.95;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);
+    }
+
+    /* Reading Progress Bar */
+    .progress-bar-container {
+      position: fixed;
+      top: 0;
+      left: var(--sidebar-width);
+      right: 0;
+      height: 3px;
+      background: transparent;
+      z-index: 101;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+      transition: width 0.1s ease;
+    }
+
+    /* Main Container */
+    .content-container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 3rem 2.5rem 6rem;
+      width: 100%;
+    }
+
+    /* Hero Section */
+    .chapter-hero {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.9) 100%);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      margin-bottom: 3rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+    }
+
+    .chapter-hero::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.25rem 0.65rem;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .tag-chapter {
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent-primary);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    .tag-category {
+      background: rgba(129, 140, 248, 0.15);
+      color: var(--accent-secondary);
+      border: 1px solid rgba(129, 140, 248, 0.3);
+    }
+
+    .tag-academic {
+      background: rgba(52, 211, 153, 0.15);
+      color: var(--accent-emerald);
+      border: 1px solid rgba(52, 211, 153, 0.3);
+    }
+
+    .hero-title-ko {
+      font-family: 'Outfit', 'Noto Sans KR', sans-serif;
+      font-size: 2.1rem;
+      font-weight: 800;
+      color: var(--text-main);
+      line-height: 1.35;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-title-en {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 1.75rem;
+      font-weight: 400;
+    }
+
+    .author-card {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.85rem;
+    }
+
+    .author-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-muted);
+    }
+
+    .author-item strong {
+      color: var(--text-main);
+    }
+
+    /* Section Styling */
+    .content-section {
+      margin-bottom: 4rem;
+      scroll-margin-top: 5rem;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid var(--border-color);
+    }
+
+    .section-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1rem;
+      font-weight: 800;
+      color: #ffffff;
+      background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-sm);
+      box-shadow: 0 2px 6px rgba(56, 189, 248, 0.3);
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -0.01em;
+    }
+
+    .sub-section-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--accent-primary);
+      margin: 2rem 0 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .sub-section-title::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 18px;
+      background: var(--accent-primary);
+      border-radius: 2px;
+    }
+
+    /* Card Panels */
+    .info-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+
+    .info-card:hover {
+      border-color: rgba(56, 189, 248, 0.4);
+      box-shadow: var(--shadow-md);
+    }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Alerts */
+    .alert-box {
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      margin: 1.5rem 0;
+      border-left: 4px solid;
+      background: var(--bg-card);
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .alert-box.info {
+      border-color: var(--accent-primary);
+      background: rgba(56, 189, 248, 0.08);
+    }
+
+    .alert-box.success {
+      border-color: var(--accent-emerald);
+      background: rgba(52, 211, 153, 0.08);
+    }
+
+    .alert-box.warning {
+      border-color: var(--accent-amber);
+      background: rgba(251, 191, 36, 0.08);
+    }
+
+    .alert-box.danger {
+      border-color: var(--accent-rose);
+      background: rgba(251, 113, 133, 0.08);
+    }
+
+    .alert-icon {
+      flex-shrink: 0;
+      margin-top: 0.2rem;
+    }
+
+    .alert-content {
+      font-size: 0.92rem;
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    .alert-content strong {
+      display: block;
+      margin-bottom: 0.25rem;
+      font-size: 0.98rem;
+    }
+
+    /* Tables */
+    .table-container {
+      overflow-x: auto;
+      margin: 1.5rem 0;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      background: var(--bg-card);
+      box-shadow: var(--shadow-sm);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      text-align: left;
+    }
+
+    th {
+      background: rgba(56, 189, 248, 0.1);
+      color: var(--accent-primary);
+      font-weight: 700;
+      padding: 0.85rem 1rem;
+      border-bottom: 2px solid var(--border-color);
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-main);
+      vertical-align: top;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .highlight-cell {
+      background: rgba(56, 189, 248, 0.08);
+      font-weight: 600;
+      color: var(--accent-primary);
+    }
+
+    /* Figures & Images */
+    .figure-container {
+      margin: 2rem 0;
+      text-align: center;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .figure-img {
+      max-width: 100%;
+      height: auto;
+      border-radius: var(--radius-sm);
+      cursor: zoom-in;
+      transition: var(--transition);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    }
+
+    .figure-img:hover {
+      transform: scale(1.01);
+    }
+
+    .figure-caption {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .figure-caption strong {
+      color: var(--text-main);
+    }
+
+    /* Mermaid diagrams */
+    .mermaid-container {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      overflow-x: auto;
+      text-align: center;
+    }
+
+    /* Blockquote / Case Box */
+    .case-box {
+      background: linear-gradient(180deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.95) 100%);
+      border: 1px solid var(--accent-primary);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      margin: 2rem 0;
+      box-shadow: var(--shadow-md);
+      position: relative;
+    }
+
+    .case-box-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--accent-primary);
+      margin-bottom: 1.25rem;
+      border-bottom: 1px dashed var(--border-color);
+      padding-bottom: 0.75rem;
+    }
+
+    .case-item {
+      margin-bottom: 1.25rem;
+      padding-left: 1rem;
+      border-left: 3px solid var(--border-color);
+    }
+
+    .case-item.success {
+      border-left-color: var(--accent-emerald);
+    }
+
+    .case-item.fail {
+      border-left-color: var(--accent-rose);
+    }
+
+    .case-item-title {
+      font-weight: 700;
+      font-size: 0.98rem;
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .case-item-title.success {
+      color: var(--accent-emerald);
+    }
+
+    .case-item-title.fail {
+      color: var(--accent-rose);
+    }
+
+    /* Footnotes */
+    .footnotes-card {
+      background: var(--bg-sidebar);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-top: 3rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .footnotes-card ol {
+      padding-left: 1.5rem;
+    }
+
+    .footnotes-card li {
+      margin-bottom: 0.5rem;
+      line-height: 1.6;
+    }
+
+    /* Modal for Image Zoom */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+    }
+
+    .modal img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: var(--radius);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+      border: 1px solid var(--border-color);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      #sidebar {
+        transform: translateX(-100%);
+      }
+      #sidebar.open {
+        transform: translateX(0);
+      }
+      #main-wrapper {
+        margin-left: 0;
+      }
+      .progress-bar-container {
+        left: 0;
+      }
+      .mobile-menu-btn {
+        display: inline-flex !important;
+      }
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text-main);
+      cursor: pointer;
+      padding: 0.25rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Reading Progress Bar -->
+  <div class="progress-bar-container">
+    <div class="progress-bar" id="progress-bar"></div>
+  </div>
+
+  <!-- SIDEBAR NAVIGATION -->
+  <aside id="sidebar">
+    <div class="sidebar-header">
+      <div class="brand-badge">
+        <i data-lucide="network"></i> SNA Academic Sub-Note
+      </div>
+      <div class="sidebar-title">재난관리연구방법론</div>
+      <div class="sidebar-subtitle">Chapter 11 정밀 학술 분석</div>
+    </div>
+
+    <div class="sidebar-search">
+      <div class="search-input-wrapper">
+        <i data-lucide="search"></i>
+        <input type="text" id="searchInput" class="search-input" placeholder="본문 내용 검색...">
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" id="sidebarNav">
+      <div class="nav-group-title">목차 (Table of Contents)</div>
+      <a href="#sec-01" class="nav-item active"><i data-lucide="book-open"></i> 1. 서론 및 이론적 배경</a>
+      <a href="#sec-02" class="nav-item"><i data-lucide="activity"></i> 2. 캔터베리 지진 및 연구방법</a>
+      <a href="#sec-03" class="nav-item"><i data-lucide="share-2"></i> 3. 실증 분석 결과</a>
+      <a href="#sec-04" class="nav-item"><i data-lucide="compass"></i> 4. 성과 궤적별 네트워킹 행태</a>
+      <a href="#sec-05" class="nav-item"><i data-lucide="award"></i> 5. 종합 고찰 및 결론</a>
+      <a href="#sec-06" class="nav-item"><i data-lucide="file-text"></i> 6. 박사학위 선행연구 9단계</a>
+      <a href="#sec-07" class="nav-item"><i data-lucide="shield-alert"></i> 7. 소방·재난현장 적용 및 KPI</a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button class="theme-toggle-btn" id="theme-toggle">
+        <i data-lucide="moon" id="theme-icon"></i> 테마 전환
+      </button>
+      <a href="../translation/index.html" class="action-btn" title="대역 리더로 이동">
+        <i data-lucide="languages"></i> 대역본
+      </a>
+    </div>
+  </aside>
+
+  <!-- MAIN WRAPPER -->
+  <div id="main-wrapper">
+    <!-- Top Sticky Header -->
+    <header class="top-header">
+      <div style="display:flex; align-items:center; gap:0.75rem;">
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+          <i data-lucide="menu"></i>
+        </button>
+        <div class="breadcrumb">
+          <a href="../translation/index.html">SNA 교재</a>
+          <i data-lucide="chevron-right" style="width:14px;height:14px;"></i>
+          <span>Chapter 11</span>
+          <i data-lucide="chevron-right" style="width:14px;height:14px;"></i>
+          <span style="color:var(--text-main); font-weight:600;">관계적 레질리언스</span>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <a href="chapter10_subnote.html" class="action-btn">
+          <i data-lucide="arrow-left"></i> 이전: Ch.10 원촨
+        </a>
+        <a href="../translation/index.html" class="action-btn primary">
+          <i data-lucide="book-marked"></i> 대역 리더 보기
+        </a>
+      </div>
+    </header>
+
+    <!-- CONTENT CONTAINER -->
+    <div class="content-container">
+
+      <!-- CHAPTER HERO -->
+      <section class="chapter-hero">
+        <div class="hero-meta-row">
+          <span class="hero-tag tag-chapter">Chapter 11</span>
+          <span class="hero-tag tag-category">캔터베리 지진 시퀀스</span>
+          <span class="hero-tag tag-academic">관계적 레질리언스 & 소시오그램</span>
+        </div>
+        <h1 class="hero-title-ko">2010/11년 뉴질랜드 캔터베리 지진 이후 조직 지원 네트워크와 관계적 레질리언스</h1>
+        <div class="hero-title-en">Organizational Support Networks and Relational Resilience After the 2010/11 Earthquakes in Canterbury, New Zealand</div>
+        
+        <div class="author-card">
+          <div class="author-item">
+            <i data-lucide="user"></i>
+            <span><strong>Joanne R. Stevenson</strong> (Resilient Organisations Ltd. / Univ. of Canterbury)</span>
+          </div>
+          <div class="author-item">
+            <i data-lucide="user"></i>
+            <span><strong>David Conradson</strong> (University of Canterbury)</span>
+          </div>
+          <div class="author-item">
+            <i data-lucide="book"></i>
+            <span>Elsevier (2017), pp. 163–182</span>
+          </div>
+          <div class="author-item">
+            <i data-lucide="link"></i>
+            <span>DOI: 10.1016/B978-0-12-805196-2.00011-X</span>
+          </div>
+        </div>
+      </section>
+
+      <main id="mainContent">
+
+        <!-- ========================================== -->
+        <!-- SECTION 1                                  -->
+        <!-- ========================================== -->
+        <section id="sec-01" class="content-section">
+          <div class="section-header">
+            <div class="section-num">01</div>
+            <h2 class="section-title">서론 및 이론적 배경</h2>
+          </div>
+
+          <div class="info-card">
+            <div class="card-title"><i data-lucide="info"></i> 연구 배경 및 핵심 문제의식</div>
+            <p>
+              재난 연구의 전통적 흐름은 주로 소방·군·경찰 등 <strong>공공 대응기관(first responders)</strong>이나 구호단체의 활동에 집중되어 왔습니다. 그러나 생존과 복구의 기로에 서는 주체는 바로 지역 상권을 지탱하는 <strong>민간 비즈니스 조직과 중소상공인</strong>입니다.
+            </p>
+            <p style="margin-top:0.75rem;">
+              본 장은 2010년과 2011년 연속 지진으로 도심 중심지가 2.5년간 전면 통제된 뉴질랜드 캔터베리 지역의 32개 민간 기업을 종단 추적하여, <strong>"외부 지원 네트워크와 관계적 레질리언스(Relational Resilience)"</strong>가 조직의 생사를 어떻게 갈랐는지를 실증적으로 규명합니다.
+            </p>
+          </div>
+
+          <div class="alert-box info">
+            <div class="alert-icon"><i data-lucide="help-circle" style="color:var(--accent-primary);"></i></div>
+            <div class="alert-content">
+              <strong>3대 핵심 연구 질문 (Research Questions)</strong>
+              1. <strong>RQ1:</strong> 재난 이후 조직들은 복구를 돕기 위해 어떤 종류의 지원(kinds of support)을 외부로부터 동원하였는가?<br/>
+              2. <strong>RQ2:</strong> 재난 후 지원 네트워크를 구성하는 관계들(kinds of relationships)은 어떤 지리적·시간적·역할적 속성을 띠는가?<br/>
+              3. <strong>RQ3:</strong> 긍정적 복구 궤적(발전적 변화)을 경험한 조직과 퇴행적 궤적(쇠퇴)을 겪은 조직 간에 네트워킹 행동 양식(networking behaviors)은 어떻게 다른가?
+            </div>
+          </div>
+
+          <h3 class="sub-section-title">이론적 프레임워크: 조직 레질리언스와 사회자본</h3>
+          <div class="info-card">
+            <div class="card-title"><i data-lucide="layers"></i> 핵심 학술 개념 체계</div>
+            <ul style="padding-left:1.25rem; line-height:1.8;">
+              <li><strong>조직 레질리언스의 예술성(Craftsmanship)</strong>: James Kendra와 Tricia Wachtendorf(2003)는 조직 레질리언스를 고정된 정적 자산이 아니라, 예술성(artistry), 지각(perception), 환경 변화 감지력, 그리고 학습을 통해 대응을 끊임없이 조정해 나가는 일종의 <strong>'장인정신(craftsmanship)'</strong>으로 정의함.</li>
+              <li><strong>확장된 자원 기반(Extended Resource Base)</strong>: 중소기업은 내부에 중복 시스템이나 대규모 비축 자원을 유지할 여력이 없음. 따라서 위기 시 필요한 자원과 역량은 조직 외부의 관계망을 통해 조달되어야 함.</li>
+              <li><strong>네트워크 행위주체성(Network Agency)</strong>: 재난 피해 조직은 수동적 수혜자가 아님. 문제를 감지하고(Perception), 상호 보답하며(Reciprocity), 대안을 비판적으로 평가(Evaluation)하는 능동적 주체로서 네트워크를 경영해야 함.</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- SECTION 2                                  -->
+        <!-- ========================================== -->
+        <section id="sec-02" class="content-section">
+          <div class="section-header">
+            <div class="section-num">02</div>
+            <h2 class="section-title">캔터베리 지진 시퀀스 및 연구방법론</h2>
+          </div>
+
+          <div class="info-card">
+            <div class="card-title"><i data-lucide="map-pin"></i> 캔터베리 연속 지진의 충격 (2010~2011)</div>
+            <p>
+              뉴질랜드 남섬 캔터베리는 2010년 9월부터 2011년 12월까지 <strong>6차례의 대형 강진과 수천 회의 여진</strong>이 연속 발생한 다중 재난 지역입니다.
+            </p>
+            <ul style="padding-left:1.25rem; margin-top:0.75rem;">
+              <li><strong>2010년 9월 4일 다필드 지진 (M7.1)</strong>: 극심한 진동과 국지적 액상화 피해 발생. 새벽 시간 발생으로 사망자 0명.</li>
+              <li><strong>2011년 2월 22일 크라이스트처치 지진 (M6.3)</strong>: 도심(CBD) 10km 거리 얕은 심도에서 발생하여 <strong>185명 사망</strong>, 도시 인프라 괴멸, <strong>도심 통제선(CBD Cordon) 2.5년간 유지</strong>.</li>
+              <li><strong>주거지 레드존(Residential Red Zone) 지정</strong>: 7,850채 이상 거주 불합격 판정, 일부 외곽 지역 <strong>인구 63% 유출</strong>에 따른 상권 배후지 붕괴.</li>
+            </ul>
+          </div>
+
+          <div class="figure-container">
+            <img src="image-41.png" alt="Canterbury earthquake sequence 2010/2011" class="figure-img" onclick="openModal(this.src)">
+            <div class="figure-caption">
+              <strong>그림 11.1</strong> 2010/2011 캔터베리 지진 시퀀스 발생 위치 및 타임라인. (출처: GeoNet, 2011)
+            </div>
+          </div>
+
+          <h3 class="sub-section-title">참여자 보조 소시오그램(Participant-aided Sociograms) 기법</h3>
+          <div class="info-card">
+            <div class="card-title"><i data-lucide="git-commit"></i> 혁신적 현장 네트워크 데이터 수집 도구</div>
+            <p>
+              피해 조직 대표자와의 1.5~4시간 심층 인터뷰 중 대형 전지 위에 <strong>4개의 동심원(Concentric Circles)</strong>을 배치하고, 지원자 명칭이 적힌 이동식 태그(Moveable Tags)를 중심으로부터의 거리에 따라 배치하도록 함.
+            </p>
+            <p style="margin-top:0.5rem;">
+              32개 조직이 지목한 <strong>총 457개 지원자</strong> 중 세부 속성(역할, 기간, 위치, 지원 유형, 시점)이 정밀 코딩된 372개 지원자 네트워크 관계를 추출하여 SPSS 19, UCINET, QSR NVivo 9으로 분석함.
+            </p>
+          </div>
+
+          <div class="figure-container">
+            <img src="image-42.png" alt="Schematic diagram of participant-aided sociogram" class="figure-img" onclick="openModal(this.src)">
+            <div class="figure-caption">
+              <strong>그림 11.2</strong> 참여자 보조 소시오그램(Participant-aided Sociogram) 연구 도구 개략도. 4개 동심원(중요도)과 짝 관계(Dyads), 클리크(Cliques) 표기.
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- SECTION 3                                  -->
+        <!-- ========================================== -->
+        <section id="sec-03" class="content-section">
+          <div class="section-header">
+            <div class="section-num">03</div>
+            <h2 class="section-title">실증 분석 결과: 지원 유형 및 관계 속성</h2>
+          </div>
+
+          <h3 class="sub-section-title">1. 복구 지원 유형 (Types of Support)</h3>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>지원 유형 (Type of Support)</th>
+                  <th>구체적 내용 설명 (Description)</th>
+                  <th style="text-align:center;">비율 (%)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>용역, 실무 지원 및 노동</strong></td>
+                  <td>매장 판매 지원, 건물 수리/철거, 세무 대행, 이전 보조, 잔해 청소</td>
+                  <td class="highlight-cell" style="text-align:center;">37%</td>
+                </tr>
+                <tr>
+                  <td><strong>정서적 대처 지원</strong></td>
+                  <td>안부 확인("Checking in"), 공감과 위로, 격려 이메일 및 전화 (만성 스트레스 완충)</td>
+                  <td class="highlight-cell" style="text-align:center;">31%</td>
+                </tr>
+                <tr>
+                  <td><strong>금전적/재정적 지원</strong></td>
+                  <td>대출, 기부금, 정부 지원금, 의도적 제품 구매, 보험금, 임금 보조금, 채무 면제</td>
+                  <td style="text-align:center;">30%</td>
+                </tr>
+                <tr>
+                  <td><strong>비금전적 물적 자원</strong></td>
+                  <td>임시 숙소, 보관 창고, 차량, 업무 장비, 가구/비품, 사무용품, 직원 거주지</td>
+                  <td style="text-align:center;">25%</td>
+                </tr>
+                <tr>
+                  <td><strong>조언 또는 정보</strong></td>
+                  <td>비즈니스 멘토링, 법률·재무 자문, 구호금 신청처 및 절차 안내</td>
+                  <td style="text-align:center;">23%</td>
+                </tr>
+                <tr>
+                  <td><strong>사회적 영향력 및 브로커리지</strong></td>
+                  <td>수평적·수직적 가교(Bridging/Linking), 대체 공급선 중개, 조직 대외 옹호</td>
+                  <td style="text-align:center;">10%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-top:-0.5rem; margin-bottom:1.5rem;">
+            *Table 11.1 분석 데이터: 32개 조직이 보고한 6대 상호 배타적 지원 범주. 각 지원자는 1~6가지 지원을 복합 제공.
+          </p>
+
+          <h3 class="sub-section-title">2. 지원 네트워크 구성 관계 속성 (Table 11.2)</h3>
+          <div class="figure-container">
+            <img src="image-43.png" alt="Table 11.2: Network Relationship Attributes" class="figure-img" onclick="openModal(this.src)">
+            <div class="figure-caption">
+              <strong>표 11.2 (원문 스크린샷)</strong> 네트워크 관계 속성 분포: 위치, 관계 지속 기간, 지원자 역할.
+            </div>
+          </div>
+
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>속성 분류 (Attribute)</th>
+                  <th>세부 속성 구분</th>
+                  <th style="text-align:center;">비율 (%) 및 핵심 통계</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>지원자의 소재지<br/>(Location, n=372)</strong></td>
+                  <td>• 캔터베리 지역 내부 (Within Canterbury)<br/>• 캔터베리 지역 외부 (Outside Canterbury)</td>
+                  <td class="highlight-cell" style="text-align:center;"><strong>> 70%</strong><br/>< 30%</td>
+                </tr>
+                <tr>
+                  <td><strong>관계 지속 기간<br/>(Duration, n=372)</strong></td>
+                  <td>• 10년 이상 장기 관계 (More than 10 years)<br/>• 지진 최소 1년 전 형성 (Formed ≥ 1 yr before)<br/>• 지진 전 교류 없던 신규 관계 (New / No prior interaction)</td>
+                  <td class="highlight-cell" style="text-align:center;"><strong>~47%</strong><br/><strong>> 80%</strong><br/>~17%</td>
+                </tr>
+                <tr>
+                  <td><strong>지원자의 역할<br/>(Role, n=457)</strong></td>
+                  <td>• 재화 및 용역 공급업체 (Suppliers)<br/>• 정부 기관 및 지역사회 단체 (Government & Community)<br/>• 친구 및 가족 구성원 (Friends & Family)</td>
+                  <td class="highlight-cell" style="text-align:center;"><strong>압도적 최다 (Most common)</strong><br/>주요 지원 출처 (Common)<br/>주요 지원 출처 (Common)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- SECTION 4                                  -->
+        <!-- ========================================== -->
+        <section id="sec-04" class="content-section">
+          <div class="section-header">
+            <div class="section-num">04</div>
+            <h2 class="section-title">성과 궤적별 네트워킹 행동 양식</h2>
+          </div>
+
+          <h3 class="sub-section-title">1. 조직 성과 궤적의 3대 분류 (Figure 11.3)</h3>
+          <div class="figure-container">
+            <img src="image-44.png" alt="Representative drawings of organizational financial trajectories" class="figure-img" onclick="openModal(this.src)">
+            <div class="figure-caption">
+              <strong>그림 11.3</strong> 2010/2011 지진 전후 사례 조직 참여자들이 작성한 재무 성과 궤적 대표 도면.<br/>
+              (A) 발전적 변화 (Developmental change, n=8), (B) 회복 (Restoration, n=6), (C) 퇴행적 변화 (Degenerative change, n=18).
+            </div>
+          </div>
+
+          <div class="alert-box danger">
+            <div class="alert-icon"><i data-lucide="alert-triangle" style="color:var(--accent-rose);"></i></div>
+            <div class="alert-content">
+              <strong>충격적 실증 발견: 전통적 성공 예측 변수의 유의성 결여</strong>
+              실증 분석 결과, <strong>조직의 규모(Size), 업력(Age), 사전 재무 건전성, 보험 가입 여부, 산업 부문(Sector)</strong>은 지진 후 긍정적 성과와 통계적으로 유의미한 연관성이 없었습니다. 심지어 <strong>물리적 피해 크기나 영업 중단 일수(Days closed)조차 성과 궤적을 설명하지 못했습니다!</strong><br/>
+              조직의 성패를 가른 유일한 차이는 <strong>"재난 이후 자신을 둘러싼 사회·경제적 네트워크 맥락과 어떻게 상호작용했는가(Networking Behaviors)"</strong>였습니다.
+            </div>
+          </div>
+
+          <!-- CASE COMPARISONS -->
+          <div class="case-box">
+            <div class="case-box-header">
+              <i data-lucide="git-pull-request"></i> BOX 11.1 사례 비교: 환경 감지 센서(Sensors)와 인식(Perception)의 성패
+            </div>
+            <div class="case-item success">
+              <div class="case-item-title success"><i data-lucide="check-circle-2"></i> 성공: 암허스트 리테일 (Amherst Retail) $\rightarrow$ 발전적 변화</div>
+              <p>
+                현지 사정에 밝은 지역 직원 비율이 높았고, 지진 후 상인회 정보 회의와 상권 프로모션에 적극 참여하여 정밀한 '센서망'을 가동함. 경쟁업체들의 폐업 공백을 간파하고 인기 상품군을 신속히 입점시켜 매출 급증. 건물이 붕괴되지 않았음에도 향후 내진 안전성 기준 미달 위험을 센서로 미리 포착하고 안전한 신규 부지로 선제적 이전 단행.
+              </p>
+            </div>
+            <div class="case-item fail">
+              <div class="case-item-title fail"><i data-lucide="x-circle"></i> 실패: 카이아포이 코너스토어 (Kaiapoi Corner Store) $\rightarrow$ 퇴행적 변화</div>
+              <p>
+                2010년 지진으로 경쟁점이 무너지자 일시적 매출 폭증을 경험했으나 2013년 심각한 경영 파탄 직면. 인근 주거지가 '레드존'으로 지정되어 배후 인구의 63%가 유출되었으나 점주는 이 위험을 전혀 지각하지 못함. 상인회 미가입, 관외 친족망에만 의존, 지역 행사 불참으로 '환경 감지 센서'가 완전히 결핍되었기 때문임.
+              </p>
+            </div>
+          </div>
+
+          <div class="case-box">
+            <div class="case-box-header">
+              <i data-lucide="scale"></i> BOX 11.2 사례 비교: 신뢰(Trust)와 의사결정 비판적 평가(Evaluation)의 성패
+            </div>
+            <div class="case-item success">
+              <div class="case-item-title success"><i data-lucide="check-circle-2"></i> 성공: 디 애틱 (The Attic) $\rightarrow$ 완전한 회복 및 성장</div>
+              <p>
+                크라이스트처치 CBD 매장 파괴 후 북섬 웰링턴으로 이전. 영업중단보험 유지로 재정 기반 확보 + 동업 파트너 간 깊은 신뢰를 바탕으로 이전 타당성 공동 평가 + 지진 전부터 친밀했던 동료 사업자 모임에 계획을 공유하고 비판적 피드백을 수용하여 성공적 안착.
+              </p>
+            </div>
+            <div class="case-item fail">
+              <div class="case-item-title fail"><i data-lucide="x-circle"></i> 실패: 엘레강스 (Elegance) $\rightarrow$ 재정적 파산 및 건강 악화</div>
+              <p>
+                크라이스트처치 CBD 매장 파괴 후 오클랜드로 무리하게 이전하여 파산. 영업중단보험 실효로 자금 부족 + 1인 독단 의사결정 + 리커버 캔터베리 전문 멘토의 이전 만류 조언을 "지진 전에는 모르는 사이"라는 이유로 불신하고 묵살함. 비판적 평가 없는 독단적 이전이 파멸을 부름.
+              </p>
+            </div>
+          </div>
+
+          <h3 class="sub-section-title">2. 상호성 관리: 증폭된 상호성(Amplified Reciprocity)의 함정</h3>
+          <div class="figure-container">
+            <img src="image-45.png" alt="Percent of support reciprocated by trajectory group" class="figure-img" onclick="openModal(this.src)">
+            <div class="figure-caption">
+              <strong>그림 11.4</strong> 성과 궤적 그룹별 상호 지원 보답 비율(%) 분포.<br/>
+              발전적 변화 조직은 평균 ~50%의 균형 상호성을 보인 반면, 퇴행적 변화 조직은 7%(고립)와 60% 초과(과부하)로 양극화(Bimodal).
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="card-title"><i data-lucide="repeat"></i> '증폭된 상호성' 메커니즘 분석</div>
+            <p>
+              퇴행적 조직 중 상호성 비율이 60%를 초과한 상위 25%는 <strong>'증폭된 상호성(Amplified Reciprocity)'</strong>의 덫에 걸렸습니다. 지진 후 조직 복구에 실질적으로 도움이 되지 않는 사적 지원(친족·친구)을 의무감에 거절하지 못하고 받아들인 뒤, 이에 보답하느라 한정된 조직 자원을 소진하며 자멸한 것입니다.
+            </p>
+            <p style="margin-top:0.5rem;">
+              반대로 성공 조직들은 <strong>약 50%의 적정 상호성</strong>을 유지하면서, 공식적 무상 지원(정부, 협회)과 비공식적 상호 지원(동종 업계, 동료) 간의 전략적 포트폴리오를 구축하였습니다.
+            </p>
+          </div>
+
+          <h3 class="sub-section-title">3. 책임의 분산: 코디네이터(Coordinators)와 클리크(Cliques)</h3>
+          <div class="info-card">
+            <div class="card-title"><i data-lucide="users"></i> 소통 복잡성을 줄인 2대 구조</div>
+            <ul style="padding-left:1.25rem; line-height:1.8;">
+              <li><strong>지원 코디네이터 (Support Coordinators)</strong>: 중심 조직을 대신하여 외부의 수많은 지원자와 소통을 조율해 주는 단일 창구. (예: <em>테일러 메이드</em> — 상인회가 정보 취합 대행; <em>익스큐티브 스위츠</em> — 점주 가족이 국세청 및 지원기관 접촉 전담 대행).</li>
+              <li><strong>네트워크 클리크 (Cliques)</strong>: 전원이 상호 밀접하게 연결된 집단. (예: <em>카이아포이 소사이어티</em> — 소속 단체 모임과 단체 회의·이메일로 다자간 소통을 일괄 처리하여 중복 소통 비용 획기적 절감).</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- SECTION 5                                  -->
+        <!-- ========================================== -->
+        <section id="sec-05" class="content-section">
+          <div class="section-header">
+            <div class="section-num">05</div>
+            <h2 class="section-title">종합 고찰 및 결론</h2>
+          </div>
+
+          <div class="info-card">
+            <div class="card-title"><i data-lucide="sparkles"></i> 관계적 레질리언스(Relational Resilience)의 정립</div>
+            <p>
+              본 연구는 조직의 레질리언스 잠재력이 조직 내부의 자산에만 국한되지 않고, <strong>조직 외부의 사회적 연결망 속에 배태되어 보관되어 있다</strong>는 '관계적 레질리언스' 패러다임을 확립하였습니다.
+            </p>
+            <p style="margin-top:0.75rem;">
+              특히 전체 지원의 <strong>31%를 차지한 정서적 지지(Emotional Support)</strong>는 재난 후 장기화되는 직원들의 만성 스트레스(chronic stress)를 완충하는 핵심 자본임이 실증되었습니다.
+            </p>
+          </div>
+
+          <div class="footnotes-card">
+            <h4 style="color:var(--text-main); margin-bottom:0.75rem; font-size:0.95rem;"><i data-lucide="bookmark"></i> 원문 각주 정밀 해설 (Footnotes 1~8)</h4>
+            <ol>
+              <li>크라이스트처치 CBD는 두 지진 모두에서 막대한 타격을 받음. 카이아포이는 9월 지진(액상화), 리틀턴은 2월 지진(낙석/진동)에서 심각한 피해 집중.</li>
+              <li>모체 연구(366개 표본 코호트)에 관한 상세 내용은 Kachali et al. (2012), Stevenson et al. (2012), Whitman et al. (2014) 참조.</li>
+              <li>2013년 설문에서 5개년(2008~2012) 재무 자원 규모(5점 척도)와 지진 전 대비 호전/악화 주관적 평가를 복합 산출함.</li>
+              <li>소시오그램상 보고된 '지원'은 2010년 9월부터 2012년 중반 사이 조직의 대응과 복구에 실제로 도움을 준 항목으로 한정함.</li>
+              <li>각 네트워크 구성원은 1~6개의 지원을 제공할 수 있으며, 지원 유형별로 분할표 및 카이제곱($\chi^2$) 독립성 검정을 각각 실시함.</li>
+              <li>연구 참여 조직의 익명성을 보장하기 위해 본문의 모든 기업 명칭은 가명(Pseudonyms)을 적용함.</li>
+              <li>5인 미만 마이크로 기업 및 20인 미만 소기업이 중대형 기업에 비해 지진 후 외부 자문 및 의사결정 지원을 훨씬 더 적극적으로 요청함.</li>
+              <li>네트워크 효율성(Efficiency)은 유효 규모(Effective size)를 실제 규모로 나눈 값임(Hanneman & Riddle, 2005).</li>
+            </ol>
+          </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- SECTION 6                                  -->
+        <!-- ========================================== -->
+        <section id="sec-06" class="content-section">
+          <div class="section-header">
+            <div class="section-num">06</div>
+            <h2 class="section-title">박사학위 논문 선행연구 9단계 종합 정리</h2>
+          </div>
+
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width:70px; text-align:center;">순서</th>
+                  <th style="width:160px;">선행연구 단계</th>
+                  <th>Chapter 11 실증 연구 핵심 내용 매핑</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="text-align:center; font-weight:700;">1</td>
+                  <td><strong>연구배경<br/>(Background)</strong></td>
+                  <td>2010/2011 뉴질랜드 캔터베리 연속 대지진(185명 사망, 도심 2.5년 통제, 외곽 인구 63% 유출). 공공 대응기관 중심을 탈피하여 민간 비즈니스 조직의 복구 네트워크 실증 분석 필요성 대두.</td>
+                </tr>
+                <tr>
+                  <td style="text-align:center; font-weight:700;">2</td>
+                  <td><strong>이론적 개념<br/>(Concepts)</strong></td>
+                  <td><strong>관계적 레질리언스(Relational Resilience)</strong>: 조직 회복력이 외부 연결망에 배태되어 있다는 관점.<br/>사회자본, 확장된 자원 기반, 환경 감지 센서, 신뢰 평가, 상호성 관리, 지원 코디네이터.</td>
+                </tr>
+                <tr>
+                  <td style="text-align:center; font-weight:700;">3</td>
+                  <td><strong>연구목적<br/>(Objectives)</strong></td>
+                  <td>재난 후 조직이 동원한 외부 지원 유형(RQ1) 및 관계 속성(RQ2) 규명.<br/>발전적 변화 조직과 퇴행적 변화 조직 간의 차별적 네트워킹 행동 양식(RQ3) 비교 실증.</td>
+                </tr>
+                <tr>
+                  <td style="text-align:center; font-weight:700;">4</td>
+                  <td><strong>연구방법<br/>(Methodology)</strong></td>
+                  <td>캔터베리 피해 3개 지역 32개 민간 조직 대상 4개 시점 종단 추적(2010~2013).<br/><strong>참여자 보조 소시오그램</strong> 기법(4개 동심원 중요도, 457개 지원자 목록화, 372개 정밀 코딩, 짝/클리크 연결선).</td>
+                </tr>
+                <tr>
+                  <td style="text-align:center; font-weight:700;">5</td>
+                  <td><strong>연구결과<br/>(Results)</strong></td>
+                  <td>• <strong>지원 유형</strong>: 용역·노동(37%), 정서적 지지(31%), 재정(30%), 물적자원(25%), 정보·조언(23%), 브로커리지(10%).<br/>• <strong>관계 속성</strong>: 관내 거주 >70%, 10년 이상 장기 47%, 지진 전 형성 >80%, 공급업체가 최다 출처.<br/>• <strong>궤적 분류</strong>: 발전적 변화 8개(25%), 단순 회복 6개(18.8%), 퇴행적 변화 18개(56.2%).</td>
+                </tr>
+                <tr>
+                  <td style="text-align:center; font-weight:700;">6</td>
+                  <td><strong>핵심 발견<br/>(Key Findings)</strong></td>
+                  <td>• <strong>전통 변수 무력화</strong>: 규모, 업력, 사전 재무건전성, 보험, 산업, 피해 크기는 성과 궤적과 무관.<br/>• <strong>센서망과 신뢰 평가</strong>: 성공 조직은 지역 배태망을 '센서'로 가동하고 신뢰망을 통해 결정을 비판적으로 평가.<br/>• <strong>상호성 함정</strong>: 발전적 조직은 50% 균형 상호성, 쇠퇴 조직은 7%(고립) 또는 60% 초과('증폭된 상호성' 자원 고갈)로 양극화.<br/>• <strong>소통 분산</strong>: 코디네이터와 클리크를 통해 통신 부하를 줄인 조직이 생존.</td>
+                </tr>
+                <tr>
+                  <td style="text-align:center; font-weight:700;">7</td>
+                  <td><strong>연구의 한계<br/>(Limitations)</strong></td>
+                  <td>캔터베리 지역 32개 중소사례에 한정되어 타 문화권 및 대기업 일반화에 주의 필요.<br/>참여자의 회고적 지각(Perception)에 의존한 소시오그램 작성으로 인한 인지적 편향 가능성.</td>
+                </tr>
+                <tr>
+                  <td style="text-align:center; font-weight:700;">8</td>
+                  <td><strong>이론적 시사점<br/>(Implications)</strong></td>
+                  <td>레질리언스가 내부 자산이라는 정적 관점을 깨고 관계적 자산(Relational Capital)이라는 동태적 패러다임 확립.<br/>정서적 지지(31%)가 조직 생존의 핵심 자본임을 규명하고 '증폭된 상호성'의 위험성 이론화.</td>
+                </tr>
+                <tr>
+                  <td style="text-align:center; font-weight:700;">9</td>
+                  <td><strong>후속연구 시사점<br/>(Future Agenda)</strong></td>
+                  <td>공공-민간 협력 거버넌스에서 '지원 코디네이터' 육성 정책 모델 개발.<br/>소방·재난 관서와 민간 상공인 네트워크 간의 환경 센서망 연계 체계 구축 실증 연구.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- SECTION 7                                  -->
+        <!-- ========================================== -->
+        <section id="sec-07" class="content-section">
+          <div class="section-header">
+            <div class="section-num">07</div>
+            <h2 class="section-title">소방·재난현장 적용 방안 및 핵심성과지표 (KPI)</h2>
+          </div>
+
+          <div class="mermaid-container">
+            <div class="mermaid">
+flowchart LR
+    P1["1단계: 예방 (Prevention)<br/>관내 상인회 전수 DB화<br/>환경 감지 센서망 지정"] --> P2["2단계: 대비 (Preparedness)<br/>민관 협력 코디네이터 지정<br/>소방-민간 클리크 합동훈련"]
+    P2 --> P3["3단계: 대응 (Response)<br/>Cordon 통제 시 자산반출 일원화<br/>공급선 붕괴 대체 브로커리지"]
+    P3 --> P4["4단계: 복구 (Recovery)<br/>증폭된 상호성 왜곡 방지<br/>Q방법론 맞춤형 지원 모델"]
+            </div>
+          </div>
+
+          <h3 class="sub-section-title">현장 맞춤형 핵심성과지표 (가중치: 소방 고유 70% / 민관 협업 30%)</h3>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>분류</th>
+                  <th>생애주기</th>
+                  <th>가중치</th>
+                  <th>핵심 성과지표 (KPI)</th>
+                  <th>산출식 및 측정 방법</th>
+                  <th>판단 근거 (서브노트 매핑)</th>
+                  <th>관련 법적 근거</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>소방 고유</strong></td>
+                  <td><strong>예방</strong></td>
+                  <td style="text-align:center;">20%</td>
+                  <td><strong>관내 다중상권 조기경보 센서망 구축률</strong></td>
+                  <td>(센서 지정 상인회·핵심점포 수 / 관내 핵심 상권 수) × 100</td>
+                  <td>Ch.11 Box 11.1 (암허스트 센서 성공 vs 카이아포이 센서 부재)</td>
+                  <td><strong>소방기본법</strong> 제16조<br/>(소방활동 지원 등)</td>
+                </tr>
+                <tr>
+                  <td><strong>소방 고유</strong></td>
+                  <td><strong>대비</strong></td>
+                  <td style="text-align:center;">25%</td>
+                  <td><strong>재난 현장 단일창구 코디네이터 지정률</strong></td>
+                  <td>(지정 완료된 코디네이터 수 / 필요 현장 분과 수) × 100</td>
+                  <td>Ch.11 4.6절 (소통 복잡성을 줄이는 지원 코디네이터)</td>
+                  <td><strong>재난안전법</strong> 제34조<br/>(재난자원 비축·관리)</td>
+                </tr>
+                <tr>
+                  <td><strong>소방 고유</strong></td>
+                  <td><strong>대응</strong></td>
+                  <td style="text-align:center;">25%</td>
+                  <td><strong>통제선(Cordon) 내 핵심자산 반출 적기율</strong></td>
+                  <td>(기한 내 안전 반출 승인 및 동행 건수 / 긴급 요청 건수) × 100</td>
+                  <td>Ch.11 캔터베리 지진 2.5년 Cordon 통제 교훈 및 Table 11.1 브로커리지</td>
+                  <td><strong>재난안전법</strong> 제41조<br/>(위험구역의 설정)</td>
+                </tr>
+                <tr>
+                  <td><strong>민관 협업</strong></td>
+                  <td><strong>복구</strong></td>
+                  <td style="text-align:center;">15%</td>
+                  <td><strong>피해 소상공인 정서·심리지원 연계율</strong></td>
+                  <td>(전문 심리지원 연계 완료 사업자 수 / 고위험 호소 사업자 수) × 100</td>
+                  <td>Ch.11 Table 11.1 정서적 대처 지원(31%) 및 스트레스 완충 이론</td>
+                  <td><strong>재해구호법</strong> 제4조의2<br/>(재난피해자 심리회복)</td>
+                </tr>
+                <tr>
+                  <td><strong>민관 협업</strong></td>
+                  <td><strong>복구</strong></td>
+                  <td style="text-align:center;">15%</td>
+                  <td><strong>상호 호혜성 배분 왜곡(증폭된 상호성) 방지 지수</strong></td>
+                  <td>공적 무상 구호자원과 민간 보답 요구 간의 건전도 평가 (1~5점 척도)</td>
+                  <td>Ch.11 Figure 11.4 50% 균형 상호성 유지 및 증폭된 상호성 억제</td>
+                  <td><strong>소상공인보호법</strong> 제9조<br/>(재해 소상공인 지원)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="sub-section-title">주관성 연구(Q방법론) 실증 확장: Q-진술문 36개 체계</h3>
+          <div class="info-card">
+            <div class="card-title"><i data-lucide="list-ordered"></i> 4대 생애주기별 Q-진술문 (각 9개 진술문)</div>
+            <div style="font-size:0.88rem; line-height:1.7;">
+              <strong style="color:var(--accent-primary);">[A. 예방 및 환경 감지 단계 (Q01~Q09)]</strong><br/>
+              Q01: 관내 상인회나 번영회에 가입해 두는 것이 재난 시 가장 빠른 위험 감지 센서가 된다. /
+              Q02: 소방서는 평소 화재 점검뿐만 아니라 상가 번영회와 정기적인 안전 네트워크를 유지해야 한다. /
+              Q03: 사업장 주변의 위험 요인을 감지하는 데는 본사 지침보다 현지 직원들의 입소문이 훨씬 정확하다. /
+              Q04: 평소 공급업체와의 신뢰 관계가 두터워야 재난 직후에도 물자를 우선 공급받을 수 있다. /
+              Q05: 돌발 위기에 대비한 중복 비축 시스템은 영세 소상공인에게 현실적으로 불가능한 사치다. /
+              Q06: 지자체의 재난 위험 정보 전달 체계는 소상공인의 실무 눈높이에 맞지 않아 비효율적이다. /
+              Q07: 동종 업계 경쟁자라 할지라도 재난 예방을 위해서는 사전에 정보를 공유하는 연합체가 필요하다. /
+              Q08: 영업중단보험 등 민간 재난보험 가입 여부가 사업자의 사전 안전 불감증을 부추길 수 있다. /
+              Q09: 상가 건물의 내진 안전성에 대한 조기 정보 파악이 향후 폐업을 막는 결정적 열쇠다.<br/><br/>
+
+              <strong style="color:var(--accent-primary);">[B. 대비 및 소통 조직화 단계 (Q10~Q18)]</strong><br/>
+              Q10: 재난 발생 시 상공인들의 소통 창구를 일원화해 줄 '지원 코디네이터' 지정이 시급하다. /
+              Q11: 비상시에는 개별 점포가 관공서에 각자 연락하기보다 상인회 클리크를 통해 단체로 대응해야 한다. /
+              Q12: 소방서와 소상공인 연합회 간의 비상 핫라인 구축 훈련이 매년 정례화되어야 한다. /
+              Q13: 평소 모르는 외부 전문가의 자문보다는 오랫동안 알고 지낸 동료 사업자의 조언을 더 신뢰한다. /
+              Q14: 재난 후 대체 사업장을 즉시 확보할 수 있는 공간 공유(임시 셰어) 사전 협약이 필요하다. /
+              Q15: 소상공인은 재난 복구 지원 절차나 자금 신청 방법에 대해 평소 거의 알지 못한다. /
+              Q16: 가족이나 친족 중심의 닫힌 네트워크에만 의존하는 가게는 복합 재난에 취약할 수밖에 없다. /
+              Q17: 지자체는 관내 소상공인 네트워크의 연결 구조를 사전에 맵핑해 두어야 한다. /
+              Q18: 복구 계획 수립 시 현장 상공인들의 비공식적 목소리를 반영할 공식 협의체가 마련되어야 한다.<br/><br/>
+
+              <strong style="color:var(--accent-primary);">[C. 대응 및 자원 중개 단계 (Q19~Q27)]</strong><br/>
+              Q19: 도심 통제선(Cordon) 설정 시 소상공인의 핵심 서류와 자산 반출을 위한 일시 출입이 보장되어야 한다. /
+              Q20: 재난 직후 가장 절실한 것은 당장 잔해를 치우고 청소를 도와줄 물리적 일손 지원이다. /
+              Q21: 지진 후 충격과 상실감에 빠진 사업주와 직원들을 위한 안부 확인 등 정서적 지지가 필수적이다. /
+              Q22: 기존 공급망이 파괴되었을 때 대체 납품처를 연결해 주는 행정관서의 브로커리지 기능이 중요하다. /
+              Q23: 공공기관이 지급하는 임금 보조금과 긴급 경영안정자금은 신청 후 3일 이내에 집행되어야 한다. /
+              Q24: 소방의 긴급 통제로 인해 영업 피해를 입은 상인들에 대한 적절한 보상 체계가 미흡하다. /
+              Q25: 위기 상황에서는 계약서 중심의 공식 거래보다 상호 신뢰에 기반한 외상이나 신용 공여가 빛을 발한다. /
+              Q26: 재난 현장에 투입된 자원봉사 인력이 상권 복구 지원에 전략적으로 재배치되어야 한다. /
+              Q27: 재난 직후 신설되는 임시 지원기구는 관료주의를 탈피하고 현장 중심의 기민성을 발휘해야 한다.<br/><br/>
+
+              <strong style="color:var(--accent-primary);">[D. 복구 및 상호성 균형 단계 (Q28~Q36)]</strong><br/>
+              Q28: 도움을 준 사람들에게 무리하게 은혜를 갚으려다 오히려 가게 재정이 더 파탄 날 수 있다. /
+              Q29: 성공적인 복구를 위해서는 지원자의 절반 정도에게만 적절히 보답하는 '상호성 조절'이 필요하다. /
+              Q30: 공공기관의 무상 지원과 민간 간의 기브앤테이크는 7:3 비율로 공공의 책임이 우선되어야 한다. /
+              Q31: 피해 상권의 인구 유출(공동화)을 막기 위한 지자체 차원의 거주지 재생 정책이 선행되어야 한다. /
+              Q32: 사업장 이전이나 폐업 결정 시 신뢰할 수 있는 동료들과의 비판적 교차 검증이 필수적이다. /
+              Q33: 단순한 현상 복구(Restoration)에 안주하기보다 새로운 비즈니스 모델로의 과감한 피벗이 요구된다. /
+              Q34: 소상공인의 레질리언스는 가게 내부 자산보다 외부 협력 네트워크에 얼마나 연결되어 있는가에 달렸다. /
+              Q35: 재난 극복에 성공한 우수 상공인의 네트워킹 노하우를 공유하는 사례 학습 워크숍이 필요하다. /
+              Q36: 위기 속에서 입증된 민관 협력 관계망은 재난이 끝난 후에도 상시적 상권 거버넌스로 지속되어야 한다.
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="card-title"><i data-lucide="pie-chart"></i> 도출 예상 4대 인식 유형 (Typologies)</div>
+            <div style="font-size:0.88rem; line-height:1.7;">
+              <strong>유형 1: 제도적 보호 및 공공 지원 추구형 (Institutional Protection Seekers)</strong> — 긴급 통제선 출입 보장, 보조금 신속 집행 등 공공의 제도적·재정적 보호를 최우선 가치로 평가.<br/>
+              <strong>유형 2: 지역 배태적 환경 감지형 (Embedded Sensor Champions)</strong> — 상인회, 현지 직원, 단골 고객망을 통해 위험과 기회를 조기 포착하는 센서 역량 강조.<br/>
+              <strong>유형 3: 전략적 호혜 및 코디네이터형 (Strategic Reciprocity & Coordination Pragmatists)</strong> — 소통 부하를 줄이는 코디네이터 활용, 무분별한 보답(증폭된 상호성) 경계, 균형 잡힌 자원 배분 지향.<br/>
+              <strong>유형 4: 관계적 레질리언스 및 피벗형 (Relational Resilience & Agile Adapters)</strong> — 신뢰 기반 의사결정 평가, 정서적 대처 자원 동원, 단순 복구를 넘어선 새로운 시장 개척 지향.
+            </div>
+          </div>
+        </section>
+
+        <!-- FOOTER NAV -->
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:3.5rem; padding-top:2rem; border-top:1px solid var(--border-color); flex-wrap:wrap; gap:1rem;">
+          <a href="chapter10_subnote.html" class="action-btn">
+            <i data-lucide="arrow-left"></i> 이전: Chapter 10 원촨 대지진 복구
+          </a>
+          <a href="../translation/index.html" class="action-btn primary">
+            <i data-lucide="languages"></i> Chapter 11 원문 1:1 대역 리더 보기
+          </a>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Image Modal -->
+  <div id="imageModal" class="modal" onclick="closeModal()">
+    <img id="modalImg" src="" alt="Enlarged view">
+  </div>
+
+  <script>
+    // Lucide Icons Render
+    lucide.createIcons();
+
+    // Reading Progress Bar
+    window.addEventListener('scroll', () => {
+      const winScroll = document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('progress-bar').style.width = scrolled + '%';
+    });
+
+    // Theme Toggle
+    const themeBtn = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    let isLight = false;
+
+    themeBtn.addEventListener('click', () => {
+      isLight = !isLight;
+      if (isLight) {
+        document.documentElement.setAttribute('data-theme', 'light');
+        themeIcon.setAttribute('data-lucide', 'sun');
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+        themeIcon.setAttribute('data-lucide', 'moon');
+      }
+      lucide.createIcons();
+    });
+
+    // Mobile Menu Toggle
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const sidebar = document.getElementById('sidebar');
+    if (mobileBtn && sidebar) {
+      mobileBtn.addEventListener('click', () => {
+        sidebar.classList.toggle('open');
+      });
+    }
+
+    // Modal Image Zoom
+    function openModal(src) {
+      const modal = document.getElementById('imageModal');
+      const modalImg = document.getElementById('modalImg');
+      modal.style.display = 'flex';
+      modalImg.src = src;
+    }
+
+    function closeModal() {
+      document.getElementById('imageModal').style.display = 'none';
+    }
+
+    // TOC Active State on Scroll
+    const sections = document.querySelectorAll('.content-section');
+    const navLinks = document.querySelectorAll('#sidebarNav .nav-item');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 120;
+        if (pageYOffset >= sectionTop) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // Quick Search Filter in Sidebar
+    const searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('input', (e) => {
+      const term = e.target.value.toLowerCase().trim();
+      const content = document.getElementById('mainContent');
+      if (!term) {
+        removeHighlights();
+        return;
+      }
+    });
+
+    function removeHighlights() {
+      // Clean up highlights if any
+    }
+  </script>
+</body>
+</html>
+'''
+
+output_path = '/Users/sg/Project/SNA/subnote/chapter11_subnote.html'
+with open(output_path, 'w', encoding='utf-8') as f:
+    f.write(html_content)
+
+print(f"Generated {output_path} ({len(html_content)} bytes)")

@@ -1,0 +1,546 @@
+CHAPTER
+INTERORGANIZATIONAL
+NETWORK DYNAMICS IN THE
+WENCHUAN EARTHQUAKE
+RECOVERY
+10
+Jia Lu1,2
+1California State University-Los Angeles, Los Angeles, CA, United States; 2University of Southern California, Los
+Angeles, CA, United States
+CHAPTER OUTLINE
+Introduction ������������������������������������������������������������������������������������������������������������������������������������������143
+Civil Society Theory in the Chinese Context ��������������������������������������������������������������������������������������������145
+Social Networks and Disasters��������������������������������������������������������������������������������������������������������������147
+Research Design �����������������������������������������������������������������������������������������������������������������������������������147
+Network Boundary Clarification ��������������������������������������������������������������������������������������������� 147
+Network Content Specification ���������������������������������������������������������������������������������������������� 148
+The Survey Questionnaire Method ����������������������������������������������������������������������������������������� 148
+Data Treatment ������������������������������������������������������������������������������������������������������������������� 148
+Longitudinal Modeling of Network Dynamics Using RSiena ������������������������������������������������������ 149
+Results �������������������������������������������������������������������������������������������������������������������������������������������������151
+Some Descriptives ��������������������������������������������������������������������������������������������������������������� 151
+Dynamics of the Emergency Response Communication Network ����������������������������������������������� 151
+Dynamics of the Disaster Recovery Communication Network ���������������������������������������������������� 156
+Emergence of Structural Resilience�������������������������������������������������������������������������������������������������������157
+Conclusions and Policy Implications ������������������������������������������������������������������������������������������������������158
+INTRODUCTION
+Disaster scholars examine various aspects of interactions within the public sector, the private sector,
+and emergent citizen groups (Stallings & Quarantelli, 1985) at different phases of a disaster cycle, such
+as preparedness, emergency response, recovery, and mitigation (Neal, 1997). More recently, the crosssector interactions, particularly the proactive role of civil society actors during disaster recovery, have
+been cited as critical for areas of risk reduction and long-term development (Arnold, 2006). In her
+examination of World Bank disaster projects implemented in a cross-country context, Margaret Arnold
+(2006) concluded that empowerment and capacity building at the local community level are keys to
+effective risk management when seeking to support economic development. After investigating the
+long-term recovery and redevelopment efforts of eight catastrophic events from the attacks of
+September 11, 2001, in Washington, DC and New York City, to Hurricane Katrina in 2005 and the Haiti
+earthquake in 2010, Jeffrey Garnett and Melinda Moore (2010, p. 1) found that both the bottom-up
+approach involving local people and the top-down approach incorporating a long-term development
+economics vision from the state are all needed for disaster recovery. They cited local empowerment,
+organization, leadership, and sustainability planning as integral aspects of recovery planning and risk
+management. These principles of participation, empowerment, and collaboration were also important
+in disaster recovery at the local community level for countries recovering from the 2004 Indian Ocean
+tsunami (Rowlands & Tan, 2008).
+The sociopolitical conditions under which the responses of civil society occur vary from one country to another. For the case of the Golcuk earthquake in Turkey in 1999, the relationship between society and the state was being renegotiated (Pelling & Dill, 2010) because of a shattered role of the state
+(Ganapati, 2005). The role of civil society—in the form of the emergence of civic networks—arose out
+of the context of a weak state. An active role of civil society in promoting disaster mitigation and prevention strategies was also being noted in the recovery process from Hurricane Mitch in El Salvador in
+1998 (Wisner, 2001). A dogmatic neoliberal state accompanied by a lack of capacity for local municipal governments to rebuild after the disaster was found to serve as the sociopolitical backdrop in the El
+Salvadorian case. Ben Wisner (2001) found that the municipal government’s lack of capacity included
+problems in the areas of planning, program delivery, creating budgets, general management, and litigation. The investigation of Japanese disaster recovery showed another side of the sociopolitical landscape. Archival research reviewing Japanese disaster recovery processes showed greater role of the
+state in building up the physical infrastructures as compared to the cases investigated by Wisner (2001)
+and Nazife Ganapati (2005). While the state government paid less attention to social infrastructure
+reconstruction, civil society was active in bringing residents back into the disaster-damaged cities
+(Aldrich, 2008).
+However, little is known about the institutional processes through which players in civil society
+actively develop their roles while contributing to the social adaptive capacity following perturbances. In other words, there is a lack of studies that adopt a procedural-action approach to understanding the transition from emergency response to long-term recovery from the perspective of
+civil society actors. The case in which I employ this process-oriented approach to understanding
+the action domain of civil society is the recovery of China’s Wenchuan earthquake, which struck
+92 km northwest of the Sichuan provincial capital, Chengdu, on May 12, 2008, with a magnitude
+of M8.0 on the Richter scale (United Nations Development Programme, 2010). It was the strongest
+earthquake to occur since the 1950 Chayu earthquake (M8.5), and the deadliest since the 1976
+Tangshan earthquake (240,000 + deaths).1 The Wenchuan earthquake affected more than 100,000
+square miles and about 30 million people; 69,226 deaths were attributed to the disaster (EERI,
+2008). Shortly after the disaster, large numbers of citizen volunteers flooded into the region to
+assist with the response and recovery activities. Three years after the earthquake, my qualitative
+research shows that the grassroots participation in disaster recovery remained active through both
+formal and informal organizational networks (Lu, 2013). However, the process through which
+such civil society action has evolved and is maintained remains underexplored and will constitute
+the main focus of this study.
+1China’s deadliest quake in Shaanxi (east-central China) in 1556 claimed over 800,000 lives, the most in any known earthquake in human history.
+CIVIL SOCIETY THEORY IN THE CHINESE CONTExt
+CIVIL SOCIETY THEORY IN THE CHINESE CONTEXT
+From a concept that was central to the public sphere (Habermas, 1989) in late seventeenth- and eighteenth-century Europe, to the current debate of its nature given the rise of the market economies, civil
+society has lacked a consensual definition (Edwards & Gaventa, 2001). The term has always been in
+flux with social realities. One approach emphasizes the civil society development process through the
+changes in institutional structures, and thus includes the possibilities of further theoretical adjustments
+to the term itself. From this dynamic perspective, civil society becomes “a sphere of social interaction
+between economy and state, composed above all of the intimate sphere (especially the family), the
+sphere of associations (especially voluntary associations), social movements, and forms of public communication” (Cohen & Arato, 1992, p. ix).
+The concept of civil society was first applied to liberal Western democracies, and there is reason for
+caution in employing the concept for the analysis of organizations and associations in Chinese society.
+Due to important historical and sociopolitical differences, civil society in China is in many ways distinct from civil society in the West (Wang, 2009; Wu & Gong, 2008). From the founding of the People’s
+Republic of China in 1949 through the late 1970s, the boundaries between the state and the society
+were hard to differentiate as the two established a near-unity relationship with one’s functional territory
+almost fully overlapping with the other (Han, 2002; Tang, 1996; Tao, 2009). The market reform and
+opening-up policy implemented in 1978 and onward is a direct driving force that facilitated China’s
+social diversification and the rise of a distinct Chinese civil society (Wang, 2009; Zhang, 2009).
+In contrast to the Western experience, China’s process is originally promoted by the nation-state,
+nurtured by the emergence of a socialist market economy, and thus develops under the interaction
+between the state and the market institutions (Wu & Gong, 2008). When treating civil society as a distinct domain developed alongside the state and the market system, few have systematically explored the
+interactive nature of civil society organizations from a dynamic point of view. By saying dynamic, I
+mean tracing and projecting a set of rules governing the actions of civil society organizations over time.
+Earlier research on Chinese civil society paid significant attention to qualitatively depicting the
+characteristics and functions of nongovernmental organizations in postreform China, especially within
+the context of evolving state–society relations (Lu, 2009). However, no research has looked into the
+patterns of interactions among a set of nongovernmental organizations, given the institutional environment in the Chinese context. Such examination will shed light to understanding the evolution of civil
+society in a sociopolitical context where the state continues to play an important part in social
+development.
+On the one hand, the party-state established a large number of officially controlled governmentorganized nongovernmental organizations, such as the All-China Women’s Federation and the AllChina Federation of Trade Unions. The government also has begun to encourage the development of
+certain types of nongovernmental organizations such as social welfare organizations, trade associations, and the like to shoulder some of the responsibilities for social services since 1978 (Ma, 2006; Yu,
+2009). On the other hand, the party-state has learned a lot about the potential political risks of selfgoverning nongovernmental organizations from the democratic movement in 1989. Thus, it restricts the
+development of self-governing civic organizations in China through policies regulating nongovernmental organizations.
+According to the basic characteristics distinguished by Yu Keping (2009), Chinese civil society
+organizations can be formally divided into nine categories: (1) trade organizations such as those
+professional and management associations connected to various industries; (2) charitable organizations
+such as disaster and poverty relief charities and foundations like the Red Cross and disabled persons’
+federations; (3) academic groups composed of scholars with similar interests; (4) political groups that
+safeguard citizens’ political rights, some of which include the villagers’ committees and neighborhood
+committees; (5) community organizations such as homeowner associations and community welfare
+centers; (6) social service organizations that provide social and public welfare services such as environmental protection, culture, education, and health; (7) citizens’ mutual assistance organizations such as
+rural agricultural associations, and urban and rural mutual assistance associations; (8) common-interest
+organizations based on citizens having common leisure, career, and sports interests; and (9) nonprofit
+consulting service organizations including privately operated noncommercial entities.
+One type of organization that experienced dramatic emergence after the Wenchuan earthquake was
+the social service organization, particularly in Sichuan province. During the emergency response stage,
+Chinese citizens utilized social media such as online messenger tools to virtually connect with each
+other and later meet up in person to organize various kinds of collective support for the earthquakeimpacted areas (Lu, 2013). Groups or organizations would gradually form as more people joined the
+effort to help with disaster recovery. In fact, the adoption of social media technologies not only can
+provide opportunities for public participation (Sutton, Palen, & Shklovski, 2008) but it was also found
+to facilitate communication and collaboration for both local and distributed networks (Sutton, 2010).
+During my interview with some of these group and organizational leaders in 2011, some of the most
+important motivations for them to participate and eventually establish their grassroots organizations
+involve recognizing their social responsibilities, an awakened sense of giving to others, and participating in a larger cause. However, over time, especially starting with the long-term recovery stage, many
+of these grassroots nongovernmental organizations suffered from shortages of funding mainly due to
+difficulties in receiving legal status as a registered organization (Lu, 2013).
+Historically, one major problem for obtaining legal registration status is the difficulty for nongovernmental organizations to get approval from professional supervisory agencies. For the professional
+supervisory agencies, approving a nongovernmental organization means being held responsible for the
+activities of that organization. The political risks that nongovernmental organizations may bring make
+qualified agencies reluctant to serve as the supervisory agencies for nongovernmental organizations. In
+order to overcome the registration barrier, many nongovernmental organizations have to register as forprofit business firms (Ma, 2006). Meanwhile, a lot of nongovernmental organizations operate without
+registration, thus bearing the risks of being illegal organizations. It is estimated that the number of these
+nonregistered nongovernmental organizations is about 10 times that of registered nongovernmental
+organizations in China (Wang, 2007). Wang (2007) also argues that the dual management mechanism
+actually puts nongovernmental organizations into a conflicting relationship vis-à-vis the government
+because the major goal of government agencies is to avoid the risks that nongovernmental organizations may cause, rather than to promote the development of the nongovernmental organizations.
+The other institutional barriers that Chinese nongovernmental organizations face include the minimum
+membership requirements—no less than 50 individuals or 30 legal entities—and the noncompetition requirement that no new nongovernmental organizations can be established if a nongovernmental organization
+already exists in the same administrative field and in the same region (Ma, 2006). These high bars for establishing a nongovernmental organization is one of the most important policy tools for China’s government for
+controlling nongovernmental organizations, particularly at the grass roots (Ma, 2006; Yu, 2009). Though the
+party-state encourages the development of certain types of nongovernmental organizations that are nominally apolitical, it is keenly aware of the potential challenges that nongovernmental organizations may pose
+to its rule if they are strong enough. The massive involvement of citizen-led civil society organizations after
+the 2008 Wenchuan earthquake generated an opportunity to closely examine the development processes of
+self-governing civic organizations. Theoretically speaking, such examination also provides insight into the
+dynamic aspect of civil society within the context of contemporary China.
+SOCIAL NETWORKS AND DISASTERS
+I use social network analysis to understand the role of civil society in disaster response, recovery, and
+mitigation from a process-oriented perspective. Social networks have several advantages investigating
+a process of change. Networks allow investigators to emphasize structural environments that civil society actors enact and that constrain them. Different types of structures, either at the whole network level
+or at the substructure level, reveal variation in cohesiveness vs. disintegratedness of interorganizational
+relations. Basic network structural properties such as reciprocity, transitivity, and clustering can provide the key for examining how actors choose to situate themselves across different time stages of the
+disaster recovery process. For example, a communication network that lacks reciprocity during the
+emergency response stage of a disaster means that actors are not engaged in general information sharing with each other. One’s act of reaching out for information does not lead to responses by the other
+party. This kind of behavior would eventually lead to more isolated actors carrying out duties on their
+own at a time when sharing information about each other’s needs and resources is most important.
+When a communication network is characterized by a pattern of transitivity, it can be expected that if
+actor A directs communication to actor B, and actor B directs communication to actor C, then A also
+directs communication to C or vice versa. During the disaster recovery stage, such structure not only
+enhances information flow to more members of the network but also promotes group formation, clustering, and possibly future collaborations among actors.
+Recent development in network methodology allows theories to be formulated based on tracing the
+rules governing institutional change process, thus exemplifying their predictive power in longitudinal
+models. Through the dynamic network modeling process, both network structural changes and factors
+related to actor attributes can be specified to explain the longitudinal development of civil society organizations. For example, the tendency for organizations to respond to each other’s information requests
+signifies that communication network is more likely to be driven by reciprocal relationships between
+pairs of actors. When organizations have a tendency to only work with those that have similar areas of
+expertise, the network will be more likely to be segregated by different clusters of actors with rare communication lines across clusters. The main research question of this study is designed to have two
+components: (1) What are the dynamics of the interorganizational structures in civil society in the
+disaster recovery context? (2) Are there rules of change that can help explain interorganizational behaviors short term and long term after the disaster?
+RESEARCH DESIGN
+NETWORK BOUNDARY CLARIFICATION
+The level of focus for this study is a whole network. Each civil society organization active in the Wenchuan recovery is referred to as a network actor. With the permission of a key civil society organizational informant, I was able to gain access to a list of the civil society actors with whom the informant
+and their organization had contacts throughout the earthquake response and recovery settings. The
+determining factor for inclusion is that the actors participated in the emergency response stage and
+sustained their actions into the long-term recovery period. Some actors, upon my first contact with them
+through email or phone conversations, confirmed their participation or engagement long term after the
+disaster, and in these instances, the network boundary clarification was an ongoing process throughout
+the data collection stage.
+NETWORK CONTENT SPECIFICATION
+I explore communication content to capture the process of information exchange after the earthquake.
+During both the emergency response and the recovery periods, information seeking and exchange
+became an important activity for Chinese civil society actors. Organizations communicated with each
+other in order to locate the most updated information regarding the types of assistance needed across
+the earthquake-affected region. As local grassroots organizations are better informed of the location
+and of the degree of help needed for the earthquake-damaged areas, they became the key sources of
+information for other out-of-province civil society organizations seeking to provide support. As Edward
+Laumann and David Knoke (1987) noted, “the greater the variety of information and the more diverse
+the sources that a consequential actor can tap, the better situated the actor is to anticipate and respond
+to policy events that can affect its interests” (p. 13).
+THE SURVEY QUESTIONNAIRE METHOD
+I adopted a survey questionnaire technique as part of my data collection procedure. The first section of
+the survey questionnaire was designed to collect the attribute data regarding an actor’s date of establishment as an organization, whether they have been registered as a formal nongovernmental entity with
+the state, and the types of activities the actor engaged during the disaster recovery stage. The second
+section of the survey compiles a roster list of all the actors with whom the respondent interacted in any
+way during response or recovery. The means of communication included emails, phone calls, online
+messengers, and in-person contacts.
+The response formats utilized the binary judgments (Wasserman, Scott, & Carrington, 2005) design
+within which respondents specify whether the organizations that they represented had and/or were having a communication relationship with each actor on the roster. Communication was further defined as
+those activities related to information exchange. The respondents were asked to name their communication activities for the following time phases: (1) before the earthquake, (2) during emergency response
+period, and (3) during the disaster recovery period. The main unit of analysis of this study is at the
+organizational level, while both informal and formal ones were counted. Thus, each respondent represented the organization that they were working for at the time of data collection.
+DATA TREATMENT
+A total of 138 actors comprised the roster list, 136 of which were civil society actors. Among them,
+nonregistered informal social groups constituted 21.3%. Sichuan-based local grassroots groups and
+nongovernmental organizations comprised 75.7%. This category also included the civil society organizations that established long-term field offices for disaster recovery in Sichuan after the 2008 earthquake. The state actor is designed to be one node representing all the state agencies. The market actor
+is another node in the network representing all the private enterprises. The purpose of including these
+two general actors in the study is to take into account the cross-sector institutional environments within
+which the communication networks developed. The survey questionnaires were distributed to a total of
+136 civil society organizational informants. A total of 63 questionnaires were returned—each from a
+different civil society organization. The response rate was 46.32%. The theoretical concern for this
+level of missingness in network data is the loss of information in terms of how organizations connect
+to each other, thus creating problems in fitting models to the data and maybe leading to difficulties in
+reaching good convergence.
+Considering the current available tools in treating the incompleteness of responses of longitudinal
+network analysis, I first ran the categorical core-periphery analysis implemented in UCINET program
+(using CORR algorithm) on all three periods of the communication networks. A total of 70 actors eventually composed the core of communication networks across all three time periods. These 70 actors performed various types of activities during the recovery stage of the Wenchuan earthquake. They engaged
+in housing reconstruction, assisting special groups such as elderly, disabled, women, and children, providing psychological support for people impacted by the disaster and supporting the livelihood development for urban and rural areas. Aside from these six categories, I added one “other” category to account
+for those actors that did not target their services for a particularly group of people or region. Major activities in this category include community service provision and community capacity building.
+I then utilized the composition change function in simulation investigation for empirical network
+analysis (SIENA) to further reduce the impact of nonresponsiveness in the data. This means the entry
+time of each actor into the communication network was being documented through the data coding
+process and also specified a composition change file, which was being modeled as exogenous events in
+the network model. As a result of this nonresponsiveness treatment process, the final percentage of
+missing data is 15.7%, which was in the relatively safe range between 10% and 20% to reach stable
+estimations as specified in the RSiena Manual (Ripley et al., 2012).
+LONGITUDINAL MODELING OF NETWORK DYNAMICS USING RSIENA
+I adopted longitudinal network modeling to investigate the rules governing communication network
+evolution over time. Specifically, this involves stochastic actor-oriented models that analyze network
+dynamics (Snijders, 1996; Snijders, van de Bunt, & Steglich, 2010). The modeling process is based on
+the paradigm of statistical inference implemented via the RSiena package in the statistical software
+language R.2 The dependent variable is the observable communication networks over the specified
+three time waves: before the earthquake, during emergency response period (up to one year after the
+2In this study, I focus on the most basic longitudinal model specification with the objective function depicted as follows.
+L
+fi (β, x)=
+∑
+βkSik (x), the symbol i represents the “ego” or the focal actor in consideration. The weights βk are
+k = 1
+statistical parameters indicating strength of effect sik (x) (linear predictor). fi (β, x) represents the value of the objective
+function for actor depending on the state x of the network, which is a state being perceived from the focal actor’s point of
+view. Such state can be in terms of relationships and in actor covariates. The network effects are all included in the function Ski (x). The objective function thus determines the probabilities of change in the network, given that an actor has the
+opportunity to make a change. It can be depicted as the rules of network behavior as actors make their decisions to make or
+terminate a tie based on their overall evaluation of how they view the current state of the network and the effects of covariates.
+disaster), and during the disaster recovery period (up to five years after the disaster). This research was
+conducted at the three-year mark after the earthquake and thus included retrospective data.
+The network evolution dynamics are functions of four general categories of independent variables:
+(1) basic structural effects (outdegree, reciprocity, and transitivity-related effects); (2) degree-related
+structural effects capturing the trend of popularity of certain actors based on their current tie-building
+activities (indegree popularity, outdegree popularity, outdegree activity); (3) covariates capturing the
+effects of actor attributes and activity types (actor registration status, actor recovery activity type); and
+(4) interaction effects. I include actors’ registration background as the explanatory actor variable to
+investigate whether the formality of actor institutional status has an effect on the formation and evolution of the communication network, controlling for reciprocity and transitivity. The constant covariate
+such as actor registration status is dichotomous with values of 1 and 2. The value 1 indicates a registered organization, and value 2 represents unregistered.
+For recovery period, in particular, the types of activities that the actors engaged in are included
+as explanatory constant dyadic variables. In the original survey, the respondents were asked to
+name the type(s) of disaster recovery activity their groups or organizations had been engaged in
+after the earthquake into the recovery period. The variable activity is created as an aggregate constant dyadic covariate so as to examine its overall effect on communication network evolution. Each
+one of the activity types is also being singled out as constant covariates in order to see their respective effects on the dynamics of the communication network. These constant covariates are dichotomous with a value of 0 meaning not participating in the specified activity and a value of 1 meaning
+confirmed participation. The purpose here is to differentiate the various types of earthquake recovery-related activities and examine their explanatory power in the maintenance of communication
+networks over time.
+I investigate two types of covariate effects: covariate ego and covariate alter. A positive covariate
+ego effect, such as a registration ego effect, means a tendency for actors with higher values (in this
+case, the nonregistered actors) to increase their outdegrees more rapidly. A positive registration alter
+effect implies a tendency for indegrees (i.e., nominations) of actors of higher values (the nonregistered
+actors) to increase more rapidly. A positive housing ego effect implies that those who participated in
+housing reconstruction to have a tendency to develop even more outreach activities. A positive housing
+alter effect means that there is a pattern for those participated in housing reconstruction to attract even
+more connections from others. Similar interpretation follows activity-related covariate ego and alter
+effects: elderly-­ disabled ego and elderly-disabled alter, women-children ego and women-children alter,
+environment ego and environment alter, psychology ego and psychology alter, as well as livelihood ego
+and livelihood alter.
+I examine two types of interaction effects. One is the ego–alter interaction effect, which is
+designed to look at whether actors tend to have greater preference for others with similar traits or
+conducting similar type of activities. Variables that can be placed into this category include: registration ego
+×
+registration alter, housing ego
+×
+housing alter, elderly_disabled ego
+×
+elderly_disabled
+alter, women_children ego
+×
+women_children alter, environment ego
+×
+environment alter, psychology ego
+×
+psychology alter, livelihood ego
+×
+livelihood alter. The other is the interaction effect of
+registration similarity with reciprocity (Int. Registration similarity
+×
+reciprocity) and this is to look
+at the tendency for communication behavior to be reciprocal among organizations with similar registration status. Through the model development process, I particularly focus on the social selection
+(Steglich, Snijders, & Pearson, 2010) in the basic model. This process postulates that actors make
+their choice of ties based on attributes and the network embeddedness of the actor as well as those
+others in the network.
+RESULTS
+SOME DESCRIPTIVES
+Table 10.1 shows some of the basic network descriptive measures for the three periods before and after
+the earthquake. I present the average indegree, reciprocity, and clustering measures here because comparing the changes in these basic network measures before and after the earthquake provides preliminary ideas on the degree of shifts in network building and sustainability.
+From before the earthquake to the emergency response stage, the average indegree for information
+exchange increased from 2.7 to 9.8, representing a dramatic shift in the level of communication activity
+among civil society actors. Figs. 10.1 and 10.2 further demonstrate this change pattern. Note that not
+only were the isolated actors who appeared in the period before the earthquake drawn into the main
+connected network immediately after the disaster, but the network also became more compact and
+dense over time with increased reciprocity and clustering activities.
+The tendency continued through the long-term recovery stage with a slight increase of average
+indegree to 11.1. Both reciprocity and clustering measures experienced further increase from emergency response to recovery stage. The communication network remained to be integrated as shown in
+Fig. 10.3. Observing the change patterns in standard deviation of indegree and outdegree measures, it
+can be concluded that after the earthquake, both the indegrees and the outdegrees of communication
+networks became increasingly variable with the latter higher than the former throughout the three time
+stages. This means that on the one hand, the agency motivations of civil society actors were being activated as prompted by the earthquake and sustained through the long-term recovery. On the other hand,
+the response of the activation may be differentiated.
+DYNAMICS OF THE EMERGENCY RESPONSE COMMUNICATION NETWORK
+With an intention to distinguish the patterns that govern the changes during the emergency response
+stage and the disaster recovery stage, the dynamics of the period from before the earthquake to immediately after event (t1 to t2) was estimated separately from the period between emergency response and
+long-term recovery (t2 to t3). Practically, knowing which structural effects were consistently making
+Table 10.1 Communication Network Descriptive Measures
+Average indegree Standard deviation in/out Reciprocity Clustering Communication t1 2.7 2.9/5.2 0.11 0.17 Communication t2 9.8 6.8/13.5 0.15 0.24 Communication t3
+11.1
+6.9/14.0
+0.17
+0.28
+“Communication t1” represents preearthquake period. “Communication t2” represents emergency response. “Communication t3”
+represents disaster recovery.
+FIGURE 10.1 Preearthquake communication network.
+Lu, J. (2013). The Wenchuan Earthquake Recovery: Civil Society, Institutions, and Planning. Retrieved from ProQuest Digital
+­ Dissertations. (UMI No. 3609950).
+statistically significant contributions to network evolution for these two time periods also allows the
+study to initiate policy implications for both short- and long-term periods after a disaster, thus effectively incorporate the social aspect of constructing resilience by distinguishing characteristics of a
+change process. Table 10.2 shows the model estimation results for the emergency response period and
+the recovery period.
+For the emergency response period, actors started out by contacting others that were also involved
+in the process to seek out further information immediately after the earthquake. The communication
+network at this period of time showed tendencies toward reciprocity (parameter value 0.41). Reciprocated responses were valued positively, and this reveals initial evidence of the emergence of a Chinese
+civil society triggered by the Wenchuan earthquake.
+Aside from reciprocity, the emergency response communication network also showed tendencies
+toward various types of clustering, or network closure, effects. The most prominent one is the transitive
+triplet effect. This effect postulated that more intermediaries will add proportionally to the tendency to
+transitive closure. From Table 10.2, we can see that the transitive triplet effect turns out to be positively
+RESULTS
+FIGURE 10.2 Disaster response communication network.
+Lu, J. (2013). The Wenchuan Earthquake Recovery: Civil Society, Institutions, and Planning. Retrieved from ProQuest Digital
+­ Dissertations. (UMI No. 3609950).
+significant (parameter value 0.11). This means that “friends of friends tend to be friends.” The communication relationship triangle had a tendency to be closed. But it is not reinforced by transitive ties
+effect. The transitive triplet effect is often discussed together with the three-cycle effect, which can be
+interpreted as generalized reciprocity as the opposite of hierarchy. The findings show that the emergency response network did not have a tendency to develop three cycles that would work against the
+hierarchical ordering exemplified by transitive triplet effect.
+In the context of emergency response after the earthquake, this pattern can be interpreted as a sense
+of eagerness for sociability among civil society actors to build up ties with others. Actors on the initiation end of a triadic relationship also tended to close up the transitive circle on their own action, rather
+than waiting for the actor on the other end to reach out.
+Another network closure effect being tested was the balance effect, which measures the tendency for
+a network to have and create ties in such a way that other actors tend to make the same choices as the ego
+(actor i). This effect is significant but negative (parameter value −0.09). This means that there were few
+balanced triadic closures that would reveal a network tendency to have and create ties to other actors who
+FIGURE 10.3 Disaster recovery communication network.
+Lu, J. (2013). The Wenchuan Earthquake Recovery: Civil Society, Institutions, and Planning. Retrieved from ProQuest Digital
+­ Dissertations. (UMI No. 3609950).
+made the same choices as ego. In other words, the role formation of Chinese civil society actors during
+the response period might be at a stage of diversification when considering the ways in which actors reach
+out to others. When looking at the number of outgoing choices and nonchoices that actors had in common,
+few actors can replace the role of the others or have structural equivalence with respect to out ties.
+The indegree popularity effect is positive (parameter value 0.93), indicating actors with higher indegree were more attractive for other actors to send further incoming ties. In other words, high indegrees
+reinforce themselves, and there was a tendency for differentiated actor indegrees in the communication
+network. The outdegree popularity effect is negative (parameter value −0.17), indicating that those
+actors who nominated many others in the communication network were actually less popular when
+considered by others as potential information exchange partners. At this stage of time, even though the
+tendency for proactivity in exchanging information was prevalent in the network, such behavioral pattern had little effect on actors receiving further incoming ties.
+The result also shows a negative effect in terms of the interaction between actors’ reciprocity and
+them having the same registration status (parameter value −1.39). At first glance, this is rather
+Table 10.2 Rules Governing Emergency Response and Recovery Periods Communication
+Network Evolution
+Effect
+Response (t1-t2; From
+Before Disaster to
+Emergency Response)
+Recovery (t2-t3; From
+Emergency Response to
+Recovery)
+Within Network Outdegree Reciprocity Transitive triplets Three cycles Transitive ties Balance Indegree popularity (Sqrt) Outdegree popularity (Sqrt) Outdegree activity (Sqrt) Int. Registration similarity
+×
+reciprocity Registration alter Registration ego Registration ego
+×
+registration alter Activity Housing alter Housing ego Housing ego
+×
+housing alter Elderly_disabled alter Elderly_disabled ego Elderly_disabled ego
+×
+Elderly_disabled
+alter
+Women_children alter Women_children ego Women_children ego
+×
+Women_children
+alter
+Environment alter Environment ego Environment ego
+×
+environment alter Psychology alter Psychology ego Psychology ego
+×
+psychology alter Livelihood alter Livelihood ego Livelihood ego
+×
+livelihood alter (s.e.)
+(0.69)
+(0.17)
+(0.05)
+(0.35)
+(0.01)
+(0.06)
+(0.12)
+(0.13)
+(0.27)
+(0.13)
+(0.12)
+(0.25)
+(0.11)
+(0.12)
+(0.13)
+(0.31)
+(0.11)
+(0.11)
+(0.22)
+(0.15)
+(0.15)
+(0.22)
+(0.11)
+(0.15)
+(0.23)
+(0.13)
+(0.12)
+(0.23)
+(0.12)
+(0.14)
+(0.22)
+Parameter Estimate (s.e.) Parameter Estimate −3.30** (0.18) −4.18** 0.41† (0.23) 0.91** 0.11** (0.04) 0.08* (0.04)
+−0.12 (0.07) 0.01 −0.89** (0.21) 1.01** −0.09** (0.01) −0.01 0.93** (0.07) 0.43** −0.17* (0.08) −0.29* – – 0.15 −1.39** (0.40) −0.48† −0.06 0.41** 0.12 −0.07 0.03 −0.28* 0.84** 0.00 −0.22† 0.14 0.06 0.74** 0.18 −0.10 −0.50** 0.31 −0.16 0.40** 0.33 0.17 −0.02 0.32 †p < .10, *p < .05, **p < .01 (two-sided).
+“s.e.” stands for standard error. Coefficients from standard SIENA (4.0) analysis implemented in the R statistical system of directed
+network matrix. All statistics converged with t-statistic <0.1. The use of dashed lines in certain cells indicates that the variable
+was dropped due to insignificance during the model selection process. For period t1-t2, the blank cells registration ego, registration alter, and interaction of registration ego and registration alter indicate that these effects were dropped due to the significant
+­ instability of model estimation by including them. All the activity-related variables were estimated only during the recovery stage,
+thus their corresponding cells for the emergency response period are blank.
+counterintuitive because, normally, we expect reciprocity based on homophily in actors’ traits. In other
+words, actors with similar characteristics would tend to reciprocate more with each other. For this study
+context, the negative parameter can be interpreted as follows. Tie reciprocation might be easier to form
+if two actors had similar registration status, but doing so won’t bring much benefit or “satisfaction” to
+the actors. When a tie was reciprocated for two actors with different registration status, the other actor
+would develop more appreciation and also a sense of accomplishment in terms of reaching out for those
+that were of different traits.
+Overall, the civil society communication network immediately after the Wenchuan earthquake
+showed the following evolutionary characteristics. There was a relatively strong tendency for reciprocity as demonstrated by the significant reciprocity parameter. Evidence for transitive closure was found
+as seen in the significant effects of transitive triplets. The positive sign of this parameter shows that
+there was a tendency for civil society actors to develop their proactivity immediately after the crisis
+event. The examination of network closure effects also reveals that few structural equivalences tended
+to develop with respect to outgoing ties, as demonstrated by negative balance effect. The tendencies
+toward closure were not completely egalitarian and showed some evidence for local hierarchical formation, as seen in significant positive indegree popularity effect and negative outdegree popularity effect.
+In addition, the emergency period did not show evidence of tendency to reciprocation being segregated
+by registration status.
+DYNAMICS OF THE DISASTER RECOVERY COMMUNICATION NETWORK
+The parameter values for the disaster recovery network model are shown in the third column of Table
+10.2. When compared to its emergency response stage counterpart, the recovery period network had a
+stronger tendency for reciprocation (parameter value 0.91). This provides evidence that the initiation
+for communication ties immediately after the earthquake was not just impulsive acting on the civil
+society part. The persistence of such proactivity is a sign of commitment and sustainability into the
+longer term. The recovery network also had stronger tendencies for transitive closure, demonstrated by
+positively significant transitive triplets (parameter value 0.08) as well as transitive ties effects (parameter value 1.01). The balance effect turned out to be insignificant during the recovery period. This
+shows that the communication network might start to stabilize over time. At the same time, the tendency for local hierarchicalization continued to be evidenced by a positive indegree popularity effect
+(parameter value 0.43) with negative outdegree popularity effect (parameter value −0.29). This means
+that over the long term, active civil society actors with higher outdegrees were still less likely to be
+chosen as information exchange partners, demonstrating some kind of status effect in both the emergency response and recovery network dynamics.
+The tendency to reciprocate among actors with diverse registration status sustained during the
+recovery stage. In the Chinese context, the nonregistered actors also tended to be those that were most
+grass roots and domestically originated after the Wenchuan earthquake. These actors had relatively
+fewer resources and smaller networks compared to the formally established registered actors (Lu,
+2013). Thus, the maintenance of a strong tendency to reciprocate among actors with differentiated
+registration status during recovery means that civil society actors began to develop a general nurturing
+environment to help the growth of nonregistered social groups. Despite the fact that China is known for
+its harsh institutional environment for newly formed social groups to establish at the time when this
+research was conducted, particularly after the government established a three-year time limit for
+EMERGENCE of STRUCTURAL RESILIENCE
+earthquake recovery, civil society actors showed sustainability for cross-registration status ties. As a
+result, the communication network was less likely to be segregated by registration status and there was
+a sense of reaching toward a common goal of disaster recovery.
+The registration ego effect (parameter value 0.41) is found to be positively significant for the recovery model. Since higher values of registration status represented nonregistered actors, the result infers
+that informal social groups tended to engage in building and initiating more communication and information-sharing relationships. This is a distinct feature that pertains only to the disaster recovery period.
+The result demonstrates that over the long term, the nonregistered grassroots actors started to become
+the driving force in the development of communication networks. These actors, despite their informal
+institutional status, became the backdrop for information outreach.
+When testing for the significance of a variety of types of actor activities during the long-term recovery period, the following results can be concluded. Civil society actors who participated in the activities
+of housing recovery (parameter value −0.28), caring for the elders and disabled population (parameter
+value –0.22), and environmental protection (parameter value −0.50) tended to communicate less with
+others in the network. On the other hand, the outreach tendency of the recovery network seems to be
+driven by those who participated in the social work areas such as caring for women and children
+(parameter value 0.74) and psychological counseling (parameter value 0.40). Furthermore, actors who
+engaged in housing recovery activities also tended to have greater communication preference for other
+actors who also were practicing in the same field. This homophily effect (parameter value 0.84) only
+existed for the area of housing and not with any other types of activities. This indicates that housing
+recovery may be a sector that requires more sharing of information among actors long term after the
+earthquake when compared to other types of activities.
+EMERGENCE OF STRUCTURAL RESILIENCE
+The dynamics of civil society—investigated through the process by which Chinese nongovernmental
+organizations responded to a catastrophic disaster—demonstrated Chinese civil society’s active role in
+building sustainable interorganizational communication relationships. Despite the registration barriers
+at the time of this study, locally grown citizen-led informal groups played a significant part in establishing and maintaining communication ties among network actors. As soon as the joining and inclusion
+processes took place after the earthquake, the communication network was activated toward a high
+level of structural cohesiveness. This is demonstrated by the immediate structural integration during the
+emergency response stage.
+The dynamics of the recovery process proceeded with signs of action persistence from actors with
+informal institutional status, thus demonstrating the source of commitment long after the disaster event.
+Patterns of interaction such as reciprocity and transitivity persisted throughout the recovery stage. The
+actors that established a high level of indegree communication ties during emergency response continued to occupy their favored position in attracting more communication ties from others. The tendency
+for heterogeneity in actor institutional statuses is a strong predictor in whether a communication tie was
+being reciprocated or not.
+Civil society actors appeared to prefer to choose information exchange partners that were of different registration status from themselves. This willingness to engage in diversity building over the long
+run supported people’s ability to withstand catastrophic change in the Chinese disaster recovery
+context. Thus, although the institutional environment in China did create obstacles for nongovernmental organizations to gain formal status, it did not inhibit the development of communicative interaction
+among organizations. In the Chinese case, the structural dynamics of civil society continued to evolve
+while the state continued to play a role in both the institutional and the network environments.
+Facing a catastrophic disaster, Chinese civil society experienced a dramatic increase in outreach
+activity concentration. One of the most distinguished network development features was the strengthening of the resilient structure during the recovery stage, which essentially involved three factors. One
+is the sustainability of the dyadic and triadic structures in explaining the persistence of communication
+network cohesion. Not only did the tendency for tie reciprocation continue to exert its impact on recovery network evolution but this type of reciprocation was accompanied by actors seeking institutional
+status diversity. This type of recovery trend facilitated the proactivity of informal civil society organizations and helped them to be further integrated into the long-term communication network. Second,
+there was a strong behavioral tendency for actors to exchange information with those already having
+high indegrees. This shows that in the long run actors sought information exchange partners that had
+already gained popularity among others. Third, the varying degrees of significance in how recovery
+activities affect communication network development demonstrate that the chosen types of activities do
+make a difference in building resilient social structures.
+CONCLUSIONS AND POLICY IMPLICATIONS
+Actions of relationship building and their patterns of maintenance in the long term might reasonably be
+conceived as supporting a general resilience. A dynamic perspective is not only important for tracing
+the emergence and growth process of social resilience but also the analysis procedures of this study
+demonstrated that it can also be evaluated through observable measures for possible policy implementations. The process starts with actions taken on the part of civil society actors as the source of power
+to reconstruct the social structural conditions despite the distresses brought by the happening of the
+disaster. Civil society actors became more engaged when transitioning to the long-term social recovery
+stage and started seeking a communication environment that can strengthen the bonds established short
+term after the disaster event. Because the change process is partially motivated by the civil society
+actors’ drive to bring about action, the continued growth and strengthening of such a structure is dependent on the collective awareness of actors recognizing each other’s roles and positions, and consciously
+acting to expand the overall capacity of the structure.
+One significant policy implication of this study derives from the ability of the model to identify the
+trends of activity types through distinct periods after a disaster, particularly the recovery period for this
+research study. The tendency for Chinese civil society actors engaged in assistance to women and children and psychological counseling services to initiate more communication ties may send a signal to
+policy makers that these are emerging sectors for further social assistance. In this case, the public agencies may need to plan for more engaged actions to partner or collaborate with civil society organizations practicing these types of earthquake recovery assistance. More relaxed institutional constraint
+such as the ease for registration may need to be implemented so that these organizations can grow to
+survive financially in the longer term. The tendency for civil society actors in the housing recovery to
+seek out each other for information exchange can be interpreted as another signal of the greater need in
+facilitating the coordination among organizations in this sector.
+CONCLUSIONS AND POLICY IMPLICATIONS
+Overall, future research needs to further engage in the structural and the dynamic theoretical formulations of network development in the context of an extreme event. Detailed specifications that can
+translate theories into practices require more longitudinal modeling studies to discover significant
+behavioral trends of civil society actors to enhance the capacity of the coordinated disaster response,
+recovery, mitigation, and preparedness. Expansive cross-cultural examinations may deem it fruitful to
+develop network theories in particular relevancy to disaster recovery policy making, planning, and risk
+management.

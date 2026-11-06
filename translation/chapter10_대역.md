@@ -1,0 +1,765 @@
+# Chapter 10 대역본 (Original & Korean 1:1 Parallel Translation) - 100% 완전 전수 완역본
+
+> **서지정보:** Lu, J. (2017). Chapter 10: Interorganizational Network Dynamics in the Wenchuan Earthquake Recovery. In *Social Network Analysis of Disaster Response, Recovery, and Adaptation* (pp. 143–161). Elsevier.
+
+---
+
+### [단락 1] TITLE
+
+**[EN]**
+# CHAPTER 10. INTERORGANIZATIONAL NETWORK DYNAMICS IN THE WENCHUAN EARTHQUAKE RECOVERY
+
+**[KO]**
+# 제10장: 원촨 대지진 복구 과정에서의 조직 간 네트워크 동태성
+
+---
+
+### [단락 2] META
+
+**[EN]**
+**Jia Lu**<sup>1,2</sup>  
+<sup>1</sup> *California State University-Los Angeles, Los Angeles, CA, United States*  
+<sup>2</sup> *University of Southern California, Los Angeles, CA, United States*
+
+**[KO]**
+**Jia Lu**<sup>1,2</sup>  
+<sup>1</sup> *캘리포니아 주립대학교 로스앤젤레스(California State University-Los Angeles), 로스앤젤레스, 캘리포니아주, 미국*  
+<sup>2</sup> *서던 캘리포니아 대학교(University of Southern California), 로스앤젤레스, 캘리포니아주, 미국*
+
+---
+
+### [단락 3] META
+
+**[EN]**
+*Social Network Analysis of Disaster Response, Recovery, and Adaptation.* http://dx.doi.org/10.1016/B978-0-12-805196-2.00010-8  
+Copyright © 2017 Elsevier Inc. All rights reserved.
+
+**[KO]**
+*Social Network Analysis of Disaster Response, Recovery, and Adaptation.* http://dx.doi.org/10.1016/B978-0-12-805196-2.00010-8  
+Copyright © 2017 Elsevier Inc. All rights reserved.
+
+---
+
+### [단락 4] H2
+
+**[EN]**
+## CHAPTER OUTLINE
+
+**[KO]**
+## CHAPTER OUTLINE (장 목차)
+
+---
+
+### [단락 5] P
+
+**[EN]**
+- **Introduction**
+- **Civil Society Theory in the Chinese Context**
+- **Social Networks and Disasters**
+- **Research Design**
+  - Network Boundary Clarification
+  - Network Content Specification
+  - The Survey Questionnaire Method
+  - Data Treatment
+  - Longitudinal Modeling of Network Dynamics Using RSiena
+- **Results**
+  - Some Descriptives
+  - Dynamics of the Emergency Response Communication Network
+  - Dynamics of the Disaster Recovery Communication Network
+- **Emergence of Structural Resilience**
+- **Conclusions and Policy Implications**
+
+**[KO]**
+- **서론 (Introduction)**
+- **중국적 맥락에서의 시민사회 이론 (Civil Society Theory in the Chinese Context)**
+- **사회연결망과 재난 연구 (Social Networks and Disasters)**
+- **연구 설계 (Research Design)**
+  - 네트워크 경계 설정 (Network Boundary Clarification)
+  - 네트워크 내용 규정 (Network Content Specification)
+  - 설문조사 기법 (The Survey Questionnaire Method)
+  - 데이터 정제 및 결측치 처리 (Data Treatment)
+  - RSiena를 활용한 동태적 종단 모델링 (Longitudinal Modeling of Network Dynamics Using RSiena)
+- **실증 분석 결과 (Results)**
+  - 기술통계 분석 (Some Descriptives)
+  - 긴급대응기 소통망 동태성 (Dynamics of the Emergency Response Communication Network)
+  - 장기복구기 소통망 동태성 (Dynamics of the Disaster Recovery Communication Network)
+- **구조적 레질리언스의 발현 (Emergence of Structural Resilience)**
+- **결론 및 정책적 시사점 (Conclusions and Policy Implications)**
+
+---
+
+### [단락 6] H2
+
+**[EN]**
+## INTRODUCTION
+
+**[KO]**
+## INTRODUCTION (서론)
+
+---
+
+### [단락 7] P
+
+**[EN]**
+Disaster scholars examine various aspects of interactions within the public sector, the private sector, and emergent citizen groups (Stallings & Quarantelli, 1985) at different phases of a disaster cycle, such as preparedness, emergency response, recovery, and mitigation (Neal, 1997). More recently, the crosssector interactions, particularly the proactive role of civil society actors during disaster recovery, have been cited as critical for areas of risk reduction and long-term development (Arnold, 2006). In her examination of World Bank disaster projects implemented in a cross-country context, Margaret Arnold (2006) concluded that empowerment and capacity building at the local community level are keys to effective risk management when seeking to support economic development. After investigating the long-term recovery and redevelopment efforts of eight catastrophic events from the attacks of September 11, 2001, in Washington, DC and New York City, to Hurricane Katrina in 2005 and the Haiti earthquake in 2010, Jeffrey Garnett and Melinda Moore (2010, p. 1) found that both the bottom-up approach involving local people and the top-down approach incorporating a long-term development economics vision from the state are all needed for disaster recovery. They cited local empowerment, organization, leadership, and sustainability planning as integral aspects of recovery planning and risk management. These principles of participation, empowerment, and collaboration were also important in disaster recovery at the local community level for countries recovering from the 2004 Indian Ocean tsunami (Rowlands & Tan, 2008).
+
+**[KO]**
+재난 연구자들은 대비(preparedness), 긴급 대응(emergency response), 복구(recovery), 완화(mitigation)와 같은 재난 주기의 다양한 단계에서 공공 부문, 민간 부문, 그리고 자생적 시민 집단(emergent citizen groups) 내의 상호작용의 다양한 측면을 연구한다(Stallings & Quarantelli, 1985; Neal, 1997). 최근 들어 부문 간 교차 상호작용(cross-sector interactions), 특히 재난 복구 과정에서 시민사회 행위자들의 선제적 역할은 위험 경감 및 장기적 개발 분야에서 매우 중대한 요소로 언급되고 있다(Arnold, 2006). 마가렛 아놀드(Margaret Arnold, 2006)는 다국적 맥락에서 시행된 세계은행(World Bank)의 재난 프로젝트를 조사하면서, 경제 발전을 지원하고자 할 때 지역사회 차원에서의 권한 부여(empowerment)와 역량 구축(capacity building)이 효과적인 위험 관리의 핵심이라고 결론지었다. 2001년 9·11 테러(워싱턴 DC 및 뉴욕시)부터 2005년 허리케인 카트리나, 2010년 아이티 지진에 이르는 8대 재앙적 사건의 장기 복구 및 재개발 노력을 조사한 후, 제프리 가넷과 멜린다 무어(Jeffrey Garnett & Melinda Moore, 2010, p. 1)는 지역 주민이 참여하는 상향식 접근법(bottom-up approach)과 국가 차원의 장기 개발 경제 비전을 접목한 하향식 접근법(top-down approach)이 모두 재난 복구에 필요함을 밝혀냈다. 그들은 지역 권한 부여, 조직화, 리더십, 지속가능성 기획을 복구 계획 수립과 위험 관리의 필수적 요소로 지목하였다. 이러한 참여, 권한 부여, 협력의 원칙은 2004년 인도양 쓰나미로부터 회복 중인 국가들의 지역사회 차원 재난 복구에서도 동일하게 중요하였다(Rowlands & Tan, 2008).
+
+---
+
+### [단락 8] P
+
+**[EN]**
+The sociopolitical conditions under which the responses of civil society occur vary from one country to another. For the case of the Golcuk earthquake in Turkey in 1999, the relationship between society and the state was being renegotiated (Pelling & Dill, 2010) because of a shattered role of the state (Ganapati, 2005). The role of civil society—in the form of the emergence of civic networks—arose out of the context of a weak state. An active role of civil society in promoting disaster mitigation and prevention strategies was also being noted in the recovery process from Hurricane Mitch in El Salvador in 1998 (Wisner, 2001). A dogmatic neoliberal state accompanied by a lack of capacity for local municipal governments to rebuild after the disaster was found to serve as the sociopolitical backdrop in the El Salvadorian case. Ben Wisner (2001) found that the municipal government’s lack of capacity included problems in the areas of planning, program delivery, creating budgets, general management, and litigation. The investigation of Japanese disaster recovery showed another side of the sociopolitical landscape. Archival research reviewing Japanese disaster recovery processes showed greater role of the state in building up the physical infrastructures as compared to the cases investigated by Wisner (2001) and Nazife Ganapati (2005). While the state government paid less attention to social infrastructure reconstruction, civil society was active in bringing residents back into the disaster-damaged cities (Aldrich, 2008).
+
+**[KO]**
+시민사회의 대응이 발생하는 정치사회적 조건(sociopolitical conditions)은 국가마다 상이하다. 1999년 터키 골축(Golcuk) 지진의 경우, 국가의 역할이 붕괴됨으로 인해(Ganapati, 2005) 사회와 국가 간의 관계가 재협상되었다(Pelling & Dill, 2010). 시민 네트워크의 출현이라는 형태의 시민사회 역할은 '취약한 국가(weak state)'라는 맥락 속에서 대두되었다. 재난 완화 및 예방 전략을 촉진하는 데 있어 시민사회의 적극적 역할은 1998년 엘살바도르의 허리케인 미치(Mitch) 복구 과정에서도 주목되었다(Wisner, 2001). 재난 이후 재건을 수행할 지방 자치단체의 역량 결핍을 수반한 교조적 신자유주의 국가는 엘살바도르 사례의 정치사회적 배경으로 작용하는 것으로 나타났다. 벤 위즈너(Ben Wisner, 2001)는 지방자치단체의 역량 부족이 기획, 프로그램 집행, 예산 편성, 전반적 관리 및 소송 분야의 문제를 포함하고 있음을 발견하였다. 일본의 재난 복구에 관한 조사는 정치사회적 환경의 또 다른 측면을 보여주었다. 일본의 재난 복구 과정을 검토한 기록 연구는 위즈너(2001)와 나지페 가나파티(Nazife Ganapati, 2005)가 조사한 사례들에 비해 물리적 인프라 구축에서 국가가 훨씬 더 큰 역할을 담당했음을 보여주었다. 국가 정부가 사회적 인프라 재건에는 덜 주의를 기울인 반면, 시민사회는 이재민들을 재난 피해 도시로 복귀시키는 데 적극적으로 활동하였다(Aldrich, 2008).
+
+---
+
+### [단락 9] P
+
+**[EN]**
+However, little is known about the institutional processes through which players in civil society actively develop their roles while contributing to the social adaptive capacity following perturbances. In other words, there is a lack of studies that adopt a procedural-action approach to understanding the transition from emergency response to long-term recovery from the perspective of civil society actors. The case in which I employ this process-oriented approach to understanding the action domain of civil society is the recovery of China’s Wenchuan earthquake, which struck 92 km northwest of the Sichuan provincial capital, Chengdu, on May 12, 2008, with a magnitude of M8.0 on the Richter scale (United Nations Development Programme, 2010). It was the strongest earthquake to occur since the 1950 Chayu earthquake (M8.5), and the deadliest since the 1976 Tangshan earthquake (240,000+ deaths).[^1] The Wenchuan earthquake affected more than 100,000 square miles and about 30 million people; 69,226 deaths were attributed to the disaster (EERI, 2008). Shortly after the disaster, large numbers of citizen volunteers flooded into the region to assist with the response and recovery activities. Three years after the earthquake, my qualitative research shows that the grassroots participation in disaster recovery remained active through both formal and informal organizational networks (Lu, 2013). However, the process through which such civil society action has evolved and is maintained remains underexplored and will constitute the main focus of this study.
+
+**[KO]**
+그러나 시민사회의 주체들이 외생적 교란(perturbances) 이후 사회적 적응 역량(social adaptive capacity)에 기여하면서 자신의 역할을 적극적으로 발전시켜 나가는 '제도적 과정(institutional processes)'에 대해서는 거의 알려져 있지 않다. 다시 말해, 시민사회 행위자의 관점에서 긴급 대응에서 장기 복구로의 전환을 이해하기 위해 '절차적-행위 접근법(procedural-action approach)'을 채택한 연구는 크게 부족한 실정이다. 필자가 시민사회의 행위 영역을 이해하기 위해 이러한 과정 지향적 접근법을 적용하는 사례는 바로 중국의 원촨(汶川) 대지진 복구이다. 이 지진은 2008년 5월 12일 쓰촨성의 성도인 청두(成都)에서 북서쪽으로 92km 떨어진 지점을 리히터 규모 M8.0으로 강타하였다(United Nations Development Programme, 2010). 이는 1950년 차위(Chayu) 지진(M8.5) 이후 발생한 가장 강력한 지진이자, 1976년 탕산(唐山) 지진(24만 명 이상 사망) 이후 가장 치명적인 지진이었다.[^1] 원촨 지진은 10만 평방마일 이상과 약 3,000만 명의 사람들에게 피해를 입혔으며, 69,226명의 사망자가 발생하였다(EERI, 2008). 재난 직후 수많은 시민 자원봉사자들이 대응 및 복구 활동을 돕기 위해 해당 지역으로 쇄도하였다. 지진 발생 3년 후 필자의 질적 연구에 따르면, 공식 및 비공식 조직 네트워크를 통한 재난 복구의 풀뿌리 참여가 여전히 활발하게 유지되고 있음을 보여주었다(Lu, 2013). 그러나 이러한 시민사회 활동이 진화하고 유지되는 구체적인 과정은 여전히 미개척 영역으로 남아 있으며, 이것이 바로 본 연구의 핵심 초점을 구성한다.
+
+---
+
+### [단락 10] P
+
+**[EN]**
+[^1]: China’s deadliest quake in Shaanxi (east-central China) in 1556 claimed over 800,000 lives, the most in any known earthquake in human history.
+
+**[KO]**
+[^1]: 1556년 중국 산시성(Shaanxi, 중국 중동부)에서 발생한 최악의 지진은 80만 명 이상의 목숨을 앗아갔으며, 이는 인류 역사상 알려진 모든 지진 중 가장 많은 사망자 수이다.
+
+---
+
+### [단락 11] H2
+
+**[EN]**
+## CIVIL SOCIETY THEORY IN THE CHINESE CONTEXT
+
+**[KO]**
+## CIVIL SOCIETY THEORY IN THE CHINESE CONTEXT (중국적 맥락에서의 시민사회 이론)
+
+---
+
+### [단락 12] P
+
+**[EN]**
+From a concept that was central to the public sphere (Habermas, 1989) in late seventeenth- and eighteenth-century Europe, to the current debate of its nature given the rise of the market economies, civil society has lacked a consensual definition (Edwards & Gaventa, 2001). The term has always been in flux with social realities. One approach emphasizes the civil society development process through the changes in institutional structures, and thus includes the possibilities of further theoretical adjustments to the term itself. From this dynamic perspective, civil society becomes “a sphere of social interaction between economy and state, composed above all of the intimate sphere (especially the family), the sphere of associations (especially voluntary associations), social movements, and forms of public communication” (Cohen & Arato, 1992, p. ix). The concept of civil society was first applied to liberal Western democracies, and there is reason for caution in employing the concept for the analysis of organizations and associations in Chinese society. Due to important historical and sociopolitical differences, civil society in China is in many ways distinct from civil society in the West (Wang, 2009; Wu & Gong, 2008). From the founding of the People’s Republic of China in 1949 through the late 1970s, the boundaries between the state and the society were hard to differentiate as the two established a near-unity relationship with one’s functional territory almost fully overlapping with the other (Han, 2002; Tang, 1996; Tao, 2009). The market reform and opening-up policy implemented in 1978 and onward is a direct driving force that facilitated China’s social diversification and the rise of a distinct Chinese civil society (Wang, 2009; Zhang, 2009). In contrast to the Western experience, China’s process is originally promoted by the nation-state, nurtured by the emergence of a socialist market economy, and thus develops under the interaction between the state and the market institutions (Wu & Gong, 2008). When treating civil society as a distinct domain developed alongside the state and the market system, few have systematically explored the interactive nature of civil society organizations from a dynamic point of view. By saying dynamic, I mean tracing and projecting a set of rules governing the actions of civil society organizations over time. Earlier research on Chinese civil society paid significant attention to qualitatively depicting the characteristics and functions of nongovernmental organizations in postreform China, especially within the context of evolving state–society relations (Lu, 2009). However, no research has looked into the patterns of interactions among a set of nongovernmental organizations, given the institutional environment in the Chinese context. Such examination will shed light to understanding the evolution of civil society in a sociopolitical context where the state continues to play an important part in social development.
+
+**[KO]**
+17세기 후반 및 18세기 유럽의 공론장(public sphere; Habermas, 1989)의 핵심이었던 개념으로부터 시장경제의 발흥에 따른 그 본질에 관한 현재의 논쟁에 이르기까지, 시민사회는 합의된 단일 정의가 부재해 왔다(Edwards & Gaventa, 2001). 이 용어는 사회적 현실과 함께 끊임없이 유동적이었다. 한 가지 접근법은 제도적 구조의 변화를 통해 시민사회의 발전 과정을 강조하며, 따라서 용어 자체에 대한 추가적인 이론적 수정의 가능성을 내포한다. 이러한 동태적 관점에서 시민사회는 “경제와 국가 사이의 사회적 상호작용의 영역으로서, 무엇보다도 친밀 영역(특히 가족), 결사체 영역(특히 자발적 결사체), 사회운동 및 공공 커뮤니케이션의 형태로 구성되는 영역”이 된다(Cohen & Arato, 1992, p. ix). 시민사회라는 개념은 원래 자유주의적 서구 민주주의에 처음 적용되었으며, 중국 사회의 조직과 결사체를 분석하기 위해 이 개념을 차용하는 데에는 각별한 주의가 요구된다. 중요한 역사적, 정치사회적 차이로 인해 중국의 시민사회는 여러 면에서 서구의 시민사회와 구별된다(Wang, 2009; Wu & Gong, 2008). 1949년 중화인민공화국 건국부터 1970년대 후반까지 국가와 사회 간의 경계는 거의 구별하기 어려웠는데, 양자가 한쪽의 기능적 영역이 다른 쪽과 거의 완전히 중첩되는 '일체에 가까운 관계(near-unity relationship)'를 형성했기 때문이다(Han, 2002; Tang, 1996; Tao, 2009). 1978년 이후 시행된 시장 개혁 및 개방 정책은 중국의 사회적 다원화와 독특한 중국형 시민사회의 부상을 촉진한 직접적인 원동력이다(Wang, 2009; Zhang, 2009). 서구의 경험과 달리, 중국의 과정은 원래 국민국가에 의해 촉진되고 사회주의 시장경제의 등장으로 육성되었으며, 따라서 국가와 시장 제도 간의 상호작용 속에서 발전한다(Wu & Gong, 2008). 시민사회를 국가 및 시장 시스템과 나란히 발전한 별개의 영역으로 다룰 때, 동태적 관점에서 시민사회 조직들의 상호작용적 본질을 체계적으로 탐구한 연구는 거의 없었다. 여기서 '동태적(dynamic)'이라는 것은 시간에 따라 시민사회 조직들의 행동을 지배하는 일련의 규칙을 추적하고 예측하는 것을 의미한다. 중국 시민사회에 관한 선행 연구들은 특히 진화하는 국가-사회 관계의 맥락 속에서 개혁개방 이후 중국 비정부기구(NGO)의 특성과 기능을 질적으로 기술하는 데 상당한 주의를 기울였다(Lu, 2009). 그러나 중국적 맥락의 제도적 환경을 고려할 때, 일련의 비정부기구들 간의 상호작용 패턴을 면밀히 살펴본 연구는 전무했다. 이러한 탐색은 국가가 사회 발전에 여전히 중요한 역할을 수행하는 정치사회적 맥락에서 시민사회의 진화를 이해하는 데 중요한 통찰을 제공할 것이다.
+
+---
+
+### [단락 13] P
+
+**[EN]**
+On the one hand, the party-state established a large number of officially controlled governmentorganized nongovernmental organizations, such as the All-China Women’s Federation and the AllChina Federation of Trade Unions. The government also has begun to encourage the development of certain types of nongovernmental organizations such as social welfare organizations, trade associations, and the like to shoulder some of the responsibilities for social services since 1978 (Ma, 2006; Yu, 2009). On the other hand, the party-state has learned a lot about the potential political risks of selfgoverning nongovernmental organizations from the democratic movement in 1989. Thus, it restricts the development of self-governing civic organizations in China through policies regulating nongovernmental organizations. According to the basic characteristics distinguished by Yu Keping (2009), Chinese civil society organizations can be formally divided into nine categories: (1) trade organizations such as those professional and management associations connected to various industries; (2) charitable organizations such as disaster and poverty relief charities and foundations like the Red Cross and disabled persons’ federations; (3) academic groups composed of scholars with similar interests; (4) political groups that safeguard citizens’ political rights, some of which include the villagers’ committees and neighborhood committees; (5) community organizations such as homeowner associations and community welfare centers; (6) social service organizations that provide social and public welfare services such as environmental protection, culture, education, and health; (7) citizens’ mutual assistance organizations such as rural agricultural associations, and urban and rural mutual assistance associations; (8) common-interest organizations based on citizens having common leisure, career, and sports interests; and (9) nonprofit consulting service organizations including privately operated noncommercial entities. One type of organization that experienced dramatic emergence after the Wenchuan earthquake was the social service organization, particularly in Sichuan province. During the emergency response stage, Chinese citizens utilized social media such as online messenger tools to virtually connect with each other and later meet up in person to organize various kinds of collective support for the earthquakeimpacted areas (Lu, 2013). Groups or organizations would gradually form as more people joined the effort to help with disaster recovery. In fact, the adoption of social media technologies not only can provide opportunities for public participation (Sutton, Palen, & Shklovski, 2008) but it was also found to facilitate communication and collaboration for both local and distributed networks (Sutton, 2010). During my interview with some of these group and organizational leaders in 2011, some of the most important motivations for them to participate and eventually establish their grassroots organizations involve recognizing their social responsibilities, an awakened sense of giving to others, and participating in a larger cause. However, over time, especially starting with the long-term recovery stage, many of these grassroots nongovernmental organizations suffered from shortages of funding mainly due to difficulties in receiving legal status as a registered organization (Lu, 2013).
+
+**[KO]**
+한편으로 당-국가(party-state)는 중화전국부녀연합회, 중화전국총공회와 같이 공식적으로 통제되는 관변 민간단체(GONGO: Government-Organized NGOs)를 다수 설립하였다. 정부는 또한 1978년 이후 사회복지조직, 업종협회 등 특정 유형의 비정부기구들이 사회서비스의 일부 책임을 분담하도록 그 발전을 장려하기 시작했다(Ma, 2006; Yu, 2009). 다른 한편으로, 당-국가는 1989년 민주화 운동을 통해 자율적 비정부기구가 가져올 수 있는 잠재적 정치적 위험에 대해 깊이 인식하게 되었다. 따라서 비정부기구를 규제하는 정책을 통해 중국 내 자율적 시민단체의 발전을 제한하고 있다. 유커핑(Yu Keping, 2009)이 구분한 기본 특성에 따르면, 중국의 시민사회 조직은 공식적으로 9개 범주로 나뉜다: (1) 다양한 산업과 연결된 전문 및 관리 협회와 같은 업종조직(trade organizations); (2) 적십자사 및 장애인연합회와 같은 재난 및 빈곤 구호 자선단체와 재단 등의 자선조직(charitable organizations); (3) 유사한 관심사를 가진 학자들로 구성된 학술단체(academic groups); (4) 촌민위원회와 주민위원회를 일부 포함하여 시민의 정치적 권리를 수호하는 정치단체(political groups); (5) 주택소유자협회 및 지역사회 복지관과 같은 지역사회조직(community organizations); (6) 환경 보호, 문화, 교육, 보건 등 사회 및 공공복지 서비스를 제공하는 사회서비스조직(social service organizations); (7) 농촌 농업협회, 도시 및 농촌 상부상조협회와 같은 시민 상부상조조직(citizens’ mutual assistance organizations); (8) 공통의 여가, 직업, 스포츠 관심사를 가진 시민들을 기반으로 하는 공동이익조직(common-interest organizations); 그리고 (9) 민간 운영 비영리 단체를 포함한 비영리 컨설팅 서비스 조직(nonprofit consulting service organizations). 원촨 대지진 이후 비약적인 출현을 경험한 대표적인 조직 유형은 바로 사회서비스조직이었으며, 특히 쓰촨성에서 그러했다. 긴급대응 단계 동안 중국 시민들은 온라인 메신저와 같은 소셜미디어를 활용하여 가상으로 서로 연결되었고, 이후 오프라인 현장에서 직접 만나 지진 피해 지역을 위한 다양한 집단적 지원을 조직하였다(Lu, 2013). 재난 복구를 돕기 위한 노력에 더 많은 사람들이 합류함에 따라 집단이나 조직이 점진적으로 형성되었다. 실제로 소셜미디어 기술의 도입은 대중 참여의 기회를 제공할 뿐만 아니라(Sutton, Palen, & Shklovski, 2008), 로컬 및 분산된 네트워크 모두에서 소통과 협업을 촉진하는 것으로 밝혀졌다(Sutton, 2010). 2011년 필자가 이들 집단 및 조직 리더들과 진행한 인터뷰에 따르면, 그들이 참여하여 마침내 풀뿌리 조직을 설립하게 된 가장 중요한 동기 중 일부는 사회적 책임의 인식, 타인에 대한 나눔 의식의 각성, 그리고 더 큰 대의에의 동참이었다. 그러나 시간이 흐르면서, 특히 장기 복구 단계가 시작되면서, 이러한 풀뿌리 비정부기구들 중 다수는 주로 등록 조직으로서의 법적 지위(legal status)를 획득하는 데 따르는 어려움으로 인해 심각한 자금 부족에 시달리게 되었다(Lu, 2013).
+
+---
+
+### [단락 14] P
+
+**[EN]**
+Historically, one major problem for obtaining legal registration status is the difficulty for nongovernmental organizations to get approval from professional supervisory agencies. For the professional supervisory agencies, approving a nongovernmental organization means being held responsible for the activities of that organization. The political risks that nongovernmental organizations may bring make qualified agencies reluctant to serve as the supervisory agencies for nongovernmental organizations. In order to overcome the registration barrier, many nongovernmental organizations have to register as forprofit business firms (Ma, 2006). Meanwhile, a lot of nongovernmental organizations operate without registration, thus bearing the risks of being illegal organizations. It is estimated that the number of these nonregistered nongovernmental organizations is about 10 times that of registered nongovernmental organizations in China (Wang, 2007). Wang (2007) also argues that the dual management mechanism actually puts nongovernmental organizations into a conflicting relationship vis-à-vis the government because the major goal of government agencies is to avoid the risks that nongovernmental organizations may cause, rather than to promote the development of the nongovernmental organizations. The other institutional barriers that Chinese nongovernmental organizations face include the minimum membership requirements—no less than 50 individuals or 30 legal entities—and the noncompetition requirement that no new nongovernmental organizations can be established if a nongovernmental organization already exists in the same administrative field and in the same region (Ma, 2006). These high bars for establishing a nongovernmental organization is one of the most important policy tools for China’s government for controlling nongovernmental organizations, particularly at the grass roots (Ma, 2006; Yu, 2009). Though the party-state encourages the development of certain types of nongovernmental organizations that are nominally apolitical, it is keenly aware of the potential challenges that nongovernmental organizations may pose to its rule if they are strong enough. The massive involvement of citizen-led civil society organizations after the 2008 Wenchuan earthquake generated an opportunity to closely examine the development processes of self-governing civic organizations. Theoretically speaking, such examination also provides insight into the dynamic aspect of civil society within the context of contemporary China.
+
+**[KO]**
+역사적으로 합법적 등록 지위를 획득하는 데 있어 가장 중대한 문제 중 하나는 비정부기구가 업무주관단위(professional supervisory agencies, 주무관청)로부터 승인을 얻기가 극히 어렵다는 점이다. 업무주관단위 입장에서 비정부기구를 승인한다는 것은 해당 조직의 활동에 대해 연대 책임을 지게 됨을 의미한다. 비정부기구가 초래할 수 있는 정치적 위험으로 인해, 자격을 갖춘 관청들은 비정부기구의 주관기관 역할을 맡기를 꺼린다. 이러한 등록 장벽을 극복하기 위해 많은 비정부기구들은 영리 기업으로 등록해야만 한다(Ma, 2006). 한편, 수많은 비정부기구들이 미등록 상태로 활동하며 불법 단체라는 위험을 감수하고 있다. 중국 내 이러한 미등록 비정부기구의 수는 정식 등록된 비정부기구 수의 약 10배에 달하는 것으로 추정된다(Wang, 2007). 왕(Wang, 2007)은 또한 '이중 관리 메커니즘(dual management mechanism)'이 정부 기관의 주된 목표가 비정부기구의 발전을 촉진하기보다는 비정부기구가 야기할 수 있는 위험을 회피하는 데 있기 때문에, 실제로는 비정부기구를 정부와 갈등적 관계에 놓이게 만든다고 주장한다. 중국 비정부기구가 직면한 또 다른 제도적 장벽으로는 최소 회원 수 요건(개인 50인 이상 또는 법인 30개 이상)과, 동일한 행정 분야 및 동일 지역 내에 기존 비정부기구가 이미 존재할 경우 새로운 비정부기구를 설립할 수 없도록 하는 비경쟁 요건(noncompetition requirement)이 있다(Ma, 2006). 비정부기구 설립을 위한 이러한 높은 진입 장벽은 중국 정부가 특히 풀뿌리 차원의 비정부기구를 통제하기 위한 가장 중요한 정책 도구 중 하나이다(Ma, 2006; Yu, 2009). 당-국가는 명목상 탈정치적인 특정 유형의 비정부기구 발전을 장려하지만, 비정부기구가 충분히 강력해질 경우 자신의 통치에 제기할 수 있는 잠재적 도전에 대해 매우 예리하게 경계하고 있다. 2008년 원촨 대지진 이후 시민 주도 시민사회 조직의 대규모 참여는 자율적 시민단체의 발전 과정을 면밀히 검토할 수 있는 귀중한 기회를 제공하였다. 이론적으로 볼 때, 이러한 탐색은 현대 중국의 맥락 속에서 시민사회의 동태적 측면에 대한 심도 있는 통찰을 제공한다.
+
+---
+
+### [단락 15] H2
+
+**[EN]**
+## SOCIAL NETWORKS AND DISASTERS
+
+**[KO]**
+## SOCIAL NETWORKS AND DISASTERS (사회연결망과 재난 연구)
+
+---
+
+### [단락 16] P
+
+**[EN]**
+I use social network analysis to understand the role of civil society in disaster response, recovery, and mitigation from a process-oriented perspective. Social networks have several advantages investigating a process of change. Networks allow investigators to emphasize structural environments that civil society actors enact and that constrain them. Different types of structures, either at the whole network level or at the substructure level, reveal variation in cohesiveness vs. disintegratedness of interorganizational relations. Basic network structural properties such as reciprocity, transitivity, and clustering can provide the key for examining how actors choose to situate themselves across different time stages of the disaster recovery process. For example, a communication network that lacks reciprocity during the emergency response stage of a disaster means that actors are not engaged in general information sharing with each other. One’s act of reaching out for information does not lead to responses by the other party. This kind of behavior would eventually lead to more isolated actors carrying out duties on their own at a time when sharing information about each other’s needs and resources is most important. When a communication network is characterized by a pattern of transitivity, it can be expected that if actor A directs communication to actor B, and actor B directs communication to actor C, then A also directs communication to C or vice versa. During the disaster recovery stage, such structure not only enhances information flow to more members of the network but also promotes group formation, clustering, and possibly future collaborations among actors. Recent development in network methodology allows theories to be formulated based on tracing the rules governing institutional change process, thus exemplifying their predictive power in longitudinal models. Through the dynamic network modeling process, both network structural changes and factors related to actor attributes can be specified to explain the longitudinal development of civil society organizations. For example, the tendency for organizations to respond to each other’s information requests signifies that communication network is more likely to be driven by reciprocal relationships between pairs of actors. When organizations have a tendency to only work with those that have similar areas of expertise, the network will be more likely to be segregated by different clusters of actors with rare communication lines across clusters. The main research question of this study is designed to have two components: (1) What are the dynamics of the interorganizational structures in civil society in the disaster recovery context? (2) Are there rules of change that can help explain interorganizational behaviors short term and long term after the disaster?
+
+**[KO]**
+필자는 과정 지향적 관점(process-oriented perspective)에서 재난 대응, 복구 및 완화における 시민사회의 역할을 이해하기 위해 사회연결망 분석(SNA)을 활용한다. 사회연결망은 변화의 과정을 규명하는 데 여러 장점을 지닌다. 네트워크는 연구자로 하여금 시민사회 행위자들이 스스로 구축하고 또 그들을 제약하는 구조적 환경을 강조할 수 있게 해준다. 전체 네트워크 수준에서든 하위 구조 수준에서든 서로 다른 유형의 구조는 조직 간 관계의 응집성(cohesiveness) 대 분절성(disintegratedness)의 차이를 드러낸다. 상호성(reciprocity), 전이성(transitivity), 군집화(clustering)와 같은 기본적인 네트워크 구조적 속성은 재난 복구 과정의 상이한 시간 단계에 걸쳐 행위자들이 스스로를 어떻게 위치시키는지 검토하는 핵심 열쇠를 제공한다. 예를 들어, 재난 긴급대응 단계에서 상호성이 결여된 소통망은 행위자들이 상호 간에 일반적인 정보 공유에 참여하지 않고 있음을 의미한다. 정보를 얻기 위한 한 행위자의 접근 행위가 상대방의 응답으로 이어지지 않는 것이다. 이러한 행동은 서로의 필요와 자원에 관한 정보를 공유하는 것이 가장 중요한 시점에, 결국 더 많은 고립된 행위자들이 각자 알아서 임무를 수행하게 만드는 결과를 초래한다. 소통 네트워크가 전이성 패턴을 띨 경우, 행위자 A가 행위자 B에게 소통을 지향하고 B가 C에게 소통을 지향한다면, A 역시 C에게 소통을 지향하거나 그 반대가 될 것으로 기대할 수 있다. 재난 복구 단계에서 이러한 구조는 네트워크의 더 많은 구성원에게 정보 흐름을 향상시킬 뿐만 아니라, 집단 형성, 군집화 및 향후 행위자 간 협업 가능성을 촉진한다. 네트워크 방법론의 최근 발전은 제도적 변화 과정을 지배하는 규칙을 추적함으로써 이론을 정립할 수 있게 해주며, 종단 모델에서 그 예측력을 입증하고 있다. 동태적 네트워크 모델링 과정을 통해, 네트워크 구조적 변화와 행위자 속성과 관련된 요인을 모두 명시하여 시민사회 조직의 종단적 발전을 설명할 수 있다. 예컨대 조직들이 서로의 정보 요청에 응답하는 경향은 소통망이 행위자 쌍 간의 상호적 관계에 의해 구동될 가능성이 높음을 나타낸다. 조직들이 유사한 전문성 분야를 가진 조직들과만 협력하는 경향이 있을 때, 네트워크는 클러스터 간 소통 라인이 거의 없이 서로 다른 행위자 클러스터별로 격리될 가능성이 높아진다. 본 연구의 핵심 연구 질문은 두 가지 구성 요소로 설계되었다: (1) 재난 복구 맥락에서 시민사회의 조직 간 구조의 동태성은 어떠한가? (2) 재난 발생 후 단기 및 장기적으로 조직 간 행동을 설명하는 데 도움이 되는 '변화의 규칙(rules of change)'이 존재하는가?
+
+---
+
+### [단락 17] H2
+
+**[EN]**
+## RESEARCH DESIGN
+
+**[KO]**
+## RESEARCH DESIGN (연구 설계)
+
+---
+
+### [단락 18] H3
+
+**[EN]**
+### Network Boundary Clarification
+
+**[KO]**
+### Network Boundary Clarification (네트워크 경계 설정)
+
+---
+
+### [단락 19] P
+
+**[EN]**
+The level of focus for this study is a whole network. Each civil society organization active in the Wenchuan recovery is referred to as a network actor. With the permission of a key civil society organizational informant, I was able to gain access to a list of the civil society actors with whom the informant and their organization had contacts throughout the earthquake response and recovery settings. The determining factor for inclusion is that the actors participated in the emergency response stage and sustained their actions into the long-term recovery period. Some actors, upon my first contact with them through email or phone conversations, confirmed their participation or engagement long term after the disaster, and in these instances, the network boundary clarification was an ongoing process throughout the data collection stage.
+
+**[KO]**
+본 연구의 초점 수준은 전체 네트워크(whole network)이다. 원촨 지진 복구에서 활동한 각 시민사회 조직을 네트워크 행위자(노드)로 지칭한다. 핵심 시민사회 조직 제보자의 승인을 얻어, 필자는 지진 대응 및 복구 현장 전반에 걸쳐 해당 제보자와 그들의 조직이 접촉했던 시민사회 행위자 리스트에 접근할 수 있었다. 표본 포함의 결정적 요인은 해당 행위자들이 긴급대응 단계에 참여하였고 그 활동을 장기 복구 단계까지 지속적으로 유지했는가 여부이다. 일부 행위자들은 이메일이나 전화 통화를 통한 필자의 최초 접촉 시 재난 후 장기적인 참여 및 활동을 확인해 주었으며, 이러한 사례들에서 네트워크 경계 설정은 자료 수집 단계 전반에 걸쳐 지속적으로 이루어지는 진행형 과정이었다.
+
+---
+
+### [단락 20] H3
+
+**[EN]**
+### Network Content Specification
+
+**[KO]**
+### Network Content Specification (네트워크 내용 규정)
+
+---
+
+### [단락 21] P
+
+**[EN]**
+I explore communication content to capture the process of information exchange after the earthquake. During both the emergency response and the recovery periods, information seeking and exchange became an important activity for Chinese civil society actors. Organizations communicated with each other in order to locate the most updated information regarding the types of assistance needed across the earthquake-affected region. As local grassroots organizations are better informed of the location and of the degree of help needed for the earthquake-damaged areas, they became the key sources of information for other out-of-province civil society organizations seeking to provide support. As Edward Laumann and David Knoke (1987) noted, “the greater the variety of information and the more diverse the sources that a consequential actor can tap, the better situated the actor is to anticipate and respond to policy events that can affect its interests” (p. 13).
+
+**[KO]**
+필자는 지진 이후의 정보 교환 과정을 포착하기 위해 '커뮤니케이션(소통) 내용'을 탐구한다. 긴급대응과 복구 단계 모두에서 정보 탐색과 교환은 중국 시민사회 행위자들에게 핵심적인 활동이 되었다. 조직들은 지진 피해 지역 전역에서 필요로 하는 지원의 유형에 관한 가장 최신의 정보를 파악하기 위해 서로 소통하였다. 현지 로컬 풀뿌리 조직들이 지진 피해 지역의 위치와 필요한 지원의 정도에 대해 더 잘 알고 있었기 때문에, 그들은 지원을 제공하고자 하는 타 성(省) 외지 시민사회 조직들에게 핵심적인 정보의 원천이 되었다. 에드워드 라우만과 데이비드 노크(Edward Laumann & David Knoke, 1987)가 지적했듯이, “중요한 행위자가 활용할 수 있는 정보의 다양성이 크고 원천이 다양할수록, 그 행위자는 자신의 이해관계에 영향을 미칠 수 있는 정책적 사건을 예측하고 대응하기에 더 유리한 위치에 놓이게 된다”(p. 13).
+
+---
+
+### [단락 22] H3
+
+**[EN]**
+### The Survey Questionnaire Method
+
+**[KO]**
+### The Survey Questionnaire Method (설문조사 기법)
+
+---
+
+### [단락 23] P
+
+**[EN]**
+I adopted a survey questionnaire technique as part of my data collection procedure. The first section of the survey questionnaire was designed to collect the attribute data regarding an actor’s date of establishment as an organization, whether they have been registered as a formal nongovernmental entity with the state, and the types of activities the actor engaged during the disaster recovery stage. The second section of the survey compiles a roster list of all the actors with whom the respondent interacted in any way during response or recovery. The means of communication included emails, phone calls, online messengers, and in-person contacts.
+
+**[KO]**
+필자는 자료 수집 절차의 일환으로 설문조사 기법을 채택하였다. 설문지의 제1부는 조직으로서의 설립 연도, 국가에 공식 비정부기구 실체로 등록되었는지 여부, 재난 복구 단계 동안 수행한 활동 유형에 관한 행위자 속성 데이터를 수집하도록 설계되었다. 설문지의 제2부는 응답자가 대응 또는 복구 기간 동안 어떤 방식으로든 상호작용한 모든 행위자들의 명부(roster list)를 작성하도록 구성되었다. 소통 수단에는 이메일, 전화 통화, 온라인 메신저, 대면 접촉 등이 포함되었다.
+
+---
+
+### [단락 24] P
+
+**[EN]**
+The response formats utilized the binary judgments (Wasserman, Scott, & Carrington, 2005) design within which respondents specify whether the organizations that they represented had and/or were having a communication relationship with each actor on the roster. Communication was further defined as those activities related to information exchange. The respondents were asked to name their communication activities for the following time phases: (1) before the earthquake, (2) during emergency response period, and (3) during the disaster recovery period. The main unit of analysis of this study is at the organizational level, while both informal and formal ones were counted. Thus, each respondent represented the organization that they were working for at the time of data collection.
+
+**[KO]**
+응답 형식은 응답자가 자신이 대표하는 조직이 명부 상의 각 행위자와 소통 관계를 맺었었는지 및/또는 맺고 있는지를 명시하는 이진 판단(binary judgments; Wasserman, Scott, & Carrington, 2005) 설계를 활용하였다. 커뮤니케이션은 정보 교환과 관련된 활동으로 추가 정의되었다. 응답자들은 다음 3개 시점에 대해 자신들의 소통 활동 여부를 표기하도록 요청받았다: (1) 지진 발생 전, (2) 긴급대응기, (3) 재난복구기. 본 연구의 주된 분석 단위는 조직 수준이며, 비공식 조직과 공식 조직이 모두 포함되었다. 따라서 각 응답자는 자료 수집 시점에 자신이 근무하고 있던 조직을 대표하였다.
+
+---
+
+### [단락 25] H3
+
+**[EN]**
+### Data Treatment
+
+**[KO]**
+### Data Treatment (데이터 정제 및 결측치 처리)
+
+---
+
+### [단락 26] P
+
+**[EN]**
+A total of 138 actors comprised the roster list, 136 of which were civil society actors. Among them, nonregistered informal social groups constituted 21.3%. Sichuan-based local grassroots groups and nongovernmental organizations comprised 75.7%. This category also included the civil society organizations that established long-term field offices for disaster recovery in Sichuan after the 2008 earthquake. The state actor is designed to be one node representing all the state agencies. The market actor is another node in the network representing all the private enterprises. The purpose of including these two general actors in the study is to take into account the cross-sector institutional environments within which the communication networks developed. The survey questionnaires were distributed to a total of 136 civil society organizational informants. A total of 63 questionnaires were returned—each from a different civil society organization. The response rate was 46.32%. The theoretical concern for this level of missingness in network data is the loss of information in terms of how organizations connect to each other, thus creating problems in fitting models to the data and maybe leading to difficulties in reaching good convergence.
+
+**[KO]**
+총 138개의 행위자가 명부를 구성하였으며, 그중 136개가 시민사회 행위자였다. 이들 중 미등록 비공식 사회단체가 21.3%를 차지하였다. 쓰촨성 현지 로컬 풀뿌리 단체 및 비정부기구가 75.7%를 구성하였다. 이 범주에는 2008년 지진 이후 쓰촨에 재난 복구를 위한 장기 현장 사무소를 설립한 시민사회 조직들도 포함되었다. 국가 행위자는 모든 국가 기관을 대표하는 단일 노드로 설계되었다. 시장 행위자는 모든 민간 기업을 대표하는 네트워크 내 또 다른 단일 노드로 설정되었다. 이 두 개의 일반 행위자를 연구에 포함시킨 목적은 소통 네트워크가 발전한 부문 간 제도적 환경을 고려하기 위함이다. 설문지는 총 136개 시민사회 조직 정보제공자에게 배포되었다. 총 63개의 설문지가 회수되었으며, 각각 서로 다른 시민사회 조직으로부터 작성되었다. 응답률은 46.32%였다. 네트워크 데이터에서 이러한 수준의 결측에 대한 이론적 우려는 조직들이 서로 어떻게 연결되는지에 대한 정보 손실이며, 이는 모델을 데이터에 적합시키는 데 문제를 일으키고 양호한 수렴(convergence)에 도달하는 데 어려움을 초래할 수 있다.
+
+---
+
+### [단락 27] P
+
+**[EN]**
+Considering the current available tools in treating the incompleteness of responses of longitudinal network analysis, I first ran the categorical core-periphery analysis implemented in UCINET program (using CORR algorithm) on all three periods of the communication networks. A total of 70 actors eventually composed the core of communication networks across all three time periods. These 70 actors performed various types of activities during the recovery stage of the Wenchuan earthquake. They engaged in housing reconstruction, assisting special groups such as elderly, disabled, women, and children, providing psychological support for people impacted by the disaster and supporting the livelihood development for urban and rural areas. Aside from these six categories, I added one “other” category to account for those actors that did not target their services for a particularly group of people or region. Major activities in this category include community service provision and community capacity building. I then utilized the composition change function in simulation investigation for empirical network analysis (SIENA) to further reduce the impact of nonresponsiveness in the data. This means the entry time of each actor into the communication network was being documented through the data coding process and also specified a composition change file, which was being modeled as exogenous events in the network model. As a result of this nonresponsiveness treatment process, the final percentage of missing data is 15.7%, which was in the relatively safe range between 10% and 20% to reach stable estimations as specified in the RSiena Manual (Ripley et al., 2012).
+
+**[KO]**
+종단 네트워크 분석의 응답 불완전성을 처리하기 위해 가용한 현재의 도구들을 고려하여, 필자는 먼저 소통 네트워크의 3개 기간 모두에 대해 UCINET 프로그램에 구현된 범주형 핵심-주변부 분석(CORR 알고리즘 사용)을 실행하였다. 최종적으로 총 70개의 행위자가 3개 시간 기간 전반에 걸쳐 소통 네트워크의 '핵심(core)'을 구성하였다. 이 70개의 행위자는 원촨 지진의 복구 단계 동안 다양한 유형의 활동을 수행하였다. 그들은 주택 재건, 노인·장애인·여성·아동 등 특별 집단 지원, 지진 피해 주민들을 위한 심리적 지원 제공, 도시 및 농촌 지역의 생계 발전 지원 등에 참여하였다. 이들 6개 범주 외에도, 특정 집단이나 지역을 목표로 서비스를 제공하지 않은 행위자들을 설명하기 위해 '기타' 범주 하나를 추가하였다. 이 범주의 주요 활동에는 지역사회 서비스 제공 및 지역사회 역량 구축이 포함된다. 그런 다음 필자는 실증적 네트워크 분석을 위한 시뮬레이션 조사(SIENA) 프로그램의 '구성 변화(composition change)' 기능을 활용하여 데이터의 무응답 영향을 더욱 줄였다. 이는 각 행위자의 소통 네트워크 진입 시점이 데이터 코딩 과정을 통해 기록되었음을 의미하며, 네트워크 모델에서 외생적 사건(exogenous events)으로 모델링되는 구성 변화 파일에 명시되었다. 이러한 무응답 처리 과정의 결과로 최종 결측 데이터 비율은 15.7%가 되었으며, 이는 RSiena 매뉴얼(Ripley et al., 2012)에 명시된 안정적인 추정치에 도달하기 위한 비교적 안전한 범위인 10%에서 20% 사이에 해당한다.
+
+---
+
+### [단락 28] H3
+
+**[EN]**
+### Longitudinal Modeling of Network Dynamics Using RSiena
+
+**[KO]**
+### Longitudinal Modeling of Network Dynamics Using RSiena (RSiena를 활용한 동태적 종단 모델링)
+
+---
+
+### [단락 29] P
+
+**[EN]**
+I adopted longitudinal network modeling to investigate the rules governing communication network evolution over time. Specifically, this involves stochastic actor-oriented models that analyze network dynamics (Snijders, 1996; Snijders, van de Bunt, & Steglich, 2010). The modeling process is based on the paradigm of statistical inference implemented via the RSiena package in the statistical software language R.[^2] The dependent variable is the observable communication networks over the specified three time waves: before the earthquake, during emergency response period (up to one year after the disaster), and during the disaster recovery period (up to five years after the disaster). This research was conducted at the three-year mark after the earthquake and thus included retrospective data. The network evolution dynamics are functions of four general categories of independent variables: (1) basic structural effects (outdegree, reciprocity, and transitivity-related effects); (2) degree-related structural effects capturing the trend of popularity of certain actors based on their current tie-building activities (indegree popularity, outdegree popularity, outdegree activity); (3) covariates capturing the effects of actor attributes and activity types (actor registration status, actor recovery activity type); and (4) interaction effects. I include actors’ registration background as the explanatory actor variable to investigate whether the formality of actor institutional status has an effect on the formation and evolution of the communication network, controlling for reciprocity and transitivity. The constant covariate such as actor registration status is dichotomous with values of 1 and 2. The value 1 indicates a registered organization, and value 2 represents unregistered. For recovery period, in particular, the types of activities that the actors engaged in are included as explanatory constant dyadic variables. In the original survey, the respondents were asked to name the type(s) of disaster recovery activity their groups or organizations had been engaged in after the earthquake into the recovery period. The variable activity is created as an aggregate constant dyadic covariate so as to examine its overall effect on communication network evolution. Each one of the activity types is also being singled out as constant covariates in order to see their respective effects on the dynamics of the communication network. These constant covariates are dichotomous with a value of 0 meaning not participating in the specified activity and a value of 1 meaning confirmed participation. The purpose here is to differentiate the various types of earthquake recovery-related activities and examine their explanatory power in the maintenance of communication networks over time.
+
+**[KO]**
+필자는 시간에 따른 소통 네트워크 진화를 지배하는 규칙을 규명하기 위해 종단적 네트워크 모델링을 채택하였다. 구체적으로 이는 네트워크 동태성을 분석하는 '확률적 행위자 지향 모델(stochastic actor-oriented models; Snijders, 1996; Snijders, van de Bunt, & Steglich, 2010)'을 포함한다. 모델링 과정은 통계 소프트웨어 언어 R의 RSiena 패키지를 통해 구현된 통계적 추론 패러다임에 기반한다.[^2] 종속변수는 지정된 3개 시점(wave)에 걸쳐 관측 가능한 소통 네트워크이다: 지진 전, 긴급대응기(지진 후 최대 1년까지), 재난복구기(지진 후 최대 5년까지). 본 조사는 지진 발생 3년 시점에 수행되었으므로 후향적 회상 데이터를 포함한다. 네트워크 진화 동태성은 다음 4대 범주의 독립변수 군의 함수이다: (1) 기본 구조 효과(외향차수, 상호성, 전이성 관련 효과); (2) 현재의 연계 구축 활동을 바탕으로 특정 행위자의 인기 추세를 포착하는 차수 관련 구조 효과(내향차수 인기, 외향차수 인기, 외향차수 활동성); (3) 행위자 속성 및 활동 유형의 효과를 포착하는 공변량(행위자 등록 지위, 복구 활동 유형); 그리고 (4) 상호작용 효과. 필자는 상호성과 전이성을 통제한 상태에서 행위자의 제도적 지위의 공식성이 소통 네트워크의 형성과 진화에 영향을 미치는지 규명하기 위해 행위자의 등록 배경을 설명 변수로 포함하였다. 행위자 등록 지위와 같은 상수 공변량은 1과 2의 값을 갖는 이분형 변수이다. 값 1은 등록 조직을, 값 2는 미등록 조직을 나타낸다. 특히 복구 단계의 경우, 행위자들이 참여한 활동 유형들이 설명용 쌍체(dyadic) 공변량으로 포함된다. 원 설문에서 응답자들은 지진 후 복구기에 걸쳐 자신의 집단이나 조직이 참여했던 재난 복구 활동 유형을 표기하도록 요청받았다. 변수 activity는 소통망 진화에 미치는 전반적 효과를 살펴보기 위해 종합 상수 쌍체 공변량으로 생성되었다. 또한 각 활동 유형이 소통 네트워크의 동태성에 미치는 개별적 효과를 확인하기 위해 각각이 상수 공변량으로 분리되었다. 이들 상수 공변량은 지정된 활동에 참여하지 않음을 뜻하는 0과 확인된 참여를 뜻하는 1의 값을 갖는 이분형이다. 여기서의 목적은 다양한 유형의 지진 복구 활동을 차별화하고, 시간의 경과에 따른 소통 네트워크 유지에 있어 그 설명력을 검증하는 것이다.
+
+---
+
+### [단락 30] P
+
+**[EN]**
+[^2]: In this study, I focus on the most basic longitudinal model specification with the objective function depicted as follows: $f_i(\beta, x) = \sum_{k=1}^L \beta_k s_{ik}(x)$, where the symbol $i$ represents the “ego” or the focal actor in consideration. The weights $\beta_k$ are statistical parameters indicating strength of effect $s_{ik}(x)$ (linear predictor). $f_i(\beta, x)$ represents the value of the objective function for actor depending on the state $x$ of the network, which is a state being perceived from the focal actor’s point of view. Such state can be in terms of relationships and in actor covariates. The network effects are all included in the function $s_{ki}(x)$. The objective function thus determines the probabilities of change in the network, given that an actor has the opportunity to make a change. It can be depicted as the rules of network behavior as actors make their decisions to make or terminate a tie based on their overall evaluation of how they view the current state of the network and the effects of covariates.
+
+**[KO]**
+[^2]: 본 연구에서 필자는 다음과 같이 묘사되는 목적 함수를 갖는 가장 기본적인 종단 모델 명세에 초점을 맞춘다: $f_i(\beta, x) = \sum_{k=1}^L \beta_k s_{ik}(x)$. 여기서 기호 $i$는 고려 대상인 '자아(ego)' 또는 초점 행위자를 나타낸다. 가중치 $\beta_k$는 효과 $s_{ik}(x)$(선형 예측인자)의 강도를 나타내는 통계적 모수이다. $f_i(\beta, x)$는 네트워크의 상태 $x$에 의존하는 행위자의 목적 함수 값을 나타내며, 이는 초점 행위자의 관점에서 지각(perceived)되는 상태이다. 이러한 상태는 관계의 측면 및 행위자 공변량의 측면일 수 있다. 네트워크 효과는 모두 함수 $s_{ik}(x)$에 포함된다. 따라서 목적 함수는 행위자에게 변화를 일으킬 기회가 주어졌을 때 네트워크의 변화 확률을 결정한다. 이는 행위자가 네트워크의 현재 상태에 대한 전반적인 평가와 공변량의 효과를 바탕으로 연계를 형성하거나 종료하려는 결정을 내리는 네트워크 행동의 규칙으로 묘사될 수 있다.
+
+---
+
+### [단락 31] P
+
+**[EN]**
+I investigate two types of covariate effects: covariate ego and covariate alter. A positive covariate ego effect, such as a registration ego effect, means a tendency for actors with higher values (in this case, the nonregistered actors) to increase their outdegrees more rapidly. A positive registration alter effect implies a tendency for indegrees (i.e., nominations) of actors of higher values (the nonregistered actors) to increase more rapidly. A positive housing ego effect implies that those who participated in housing reconstruction to have a tendency to develop even more outreach activities. A positive housing alter effect means that there is a pattern for those participated in housing reconstruction to attract even more connections from others. Similar interpretation follows activity-related covariate ego and alter effects: elderly-disabled ego and elderly-disabled alter, women-children ego and women-children alter, environment ego and environment alter, psychology ego and psychology alter, as well as livelihood ego and livelihood alter.
+
+**[KO]**
+필자는 두 가지 유형의 공변량 효과를 조사한다: 공변량 자아(covariate ego)와 공변량 타자(covariate alter). 등록 자아 효과(registration ego effect)와 같은 정(+)의 공변량 자아 효과는 더 높은 값을 가진 행위자들(이 경우 미등록 행위자들)이 자신의 외향차수(outdegrees)를 더 빠르게 증가시키는 경향을 의미한다. 정(+)의 등록 타자 효과는 더 높은 값을 가진 행위자들(미등록 행위자들)의 내향차수(즉, 타자로부터의 지명 수)가 더 빠르게 증가하는 경향을 함의한다. 정(+)의 주택 자아 효과는 주택 재건에 참여한 조직들이 훨씬 더 많은 대외 발신 활동을 전개하는 경향이 있음을 뜻한다. 정(+)의 주택 타자 효과는 주택 재건에 참여한 조직들이 타자들로부터 더 많은 연결을 유치하는 패턴이 있음을 의미한다. 활동 관련 공변량 자아 및 타자 효과에도 유사한 해석이 적용된다: 노인·장애인 자아 및 노인·장애인 타자, 여성·아동 자아 및 여성·아동 타자, 환경 자아 및 환경 타자, 심리 자아 및 심리 타자, 생계 자아 및 생계 타자.
+
+---
+
+### [단락 32] P
+
+**[EN]**
+I examine two types of interaction effects. One is the ego–alter interaction effect, which is designed to look at whether actors tend to have greater preference for others with similar traits or conducting similar type of activities. Variables that can be placed into this category include: registration ego × registration alter, housing ego × housing alter, elderly_disabled ego × elderly_disabled alter, women_children ego × women_children alter, environment ego × environment alter, psychology ego × psychology alter, livelihood ego × livelihood alter. The other is the interaction effect of registration similarity with reciprocity (Int. Registration similarity × reciprocity) and this is to look at the tendency for communication behavior to be reciprocal among organizations with similar registration status. Through the model development process, I particularly focus on the social selection (Steglich, Snijders, & Pearson, 2010) in the basic model. This process postulates that actors make their choice of ties based on attributes and the network embeddedness of the actor as well as those others in the network.
+
+**[KO]**
+필자는 두 가지 유형의 상호작용 효과를 검토한다. 하나는 행위자들이 유사한 특성을 갖거나 유사한 유형의 활동을 수행하는 타자에 대해 더 큰 선호를 갖는 경향이 있는지를 살펴보기 위해 설계된 자아-타자 상호작용 효과(ego–alter interaction effect)이다. 이 범주에 포함될 수 있는 변수로는 등록 자아 × 등록 타자, 주택 자아 × 주택 타자, 노인·장애인 자아 × 노인·장애인 타자, 여성·아동 자아 × 여성·아동 타자, 환경 자아 × 환경 타자, 심리 자아 × 심리 타자, 생계 자아 × 생계 타자 등이 있다. 다른 하나는 등록 유사성과 상호성의 상호작용 효과(Int. Registration similarity × reciprocity)이며, 이는 유사한 등록 지위를 가진 조직들 사이에서 소통 행동이 상호적일 경향성을 살펴보기 위한 것이다. 모델 개발 과정을 통해 필자는 기본 모델에서 특히 '사회적 선택(social selection; Steglich, Snijders, & Pearson, 2010)'에 초점을 맞춘다. 이 과정은 행위자가 속성과 네트워크 내 자신 및 타자들의 네트워크 배태성(embeddedness)을 기반으로 연계 선택을 내린다고 상정한다.
+
+---
+
+### [단락 33] H2
+
+**[EN]**
+## RESULTS
+
+**[KO]**
+## RESULTS (실증 분석 결과)
+
+---
+
+### [단락 34] H3
+
+**[EN]**
+### Some Descriptives
+
+**[KO]**
+### Some Descriptives (기술통계 분석)
+
+---
+
+### [단락 35] P
+
+**[EN]**
+Table 10.1 shows some of the basic network descriptive measures for the three periods before and after the earthquake. I present the average indegree, reciprocity, and clustering measures here because comparing the changes in these basic network measures before and after the earthquake provides preliminary ideas on the degree of shifts in network building and sustainability. From before the earthquake to the emergency response stage, the average indegree for information exchange increased from 2.7 to 9.8, representing a dramatic shift in the level of communication activity among civil society actors. Figs. 10.1 and 10.2 further demonstrate this change pattern. Note that not only were the isolated actors who appeared in the period before the earthquake drawn into the main connected network immediately after the disaster, but the network also became more compact and dense over time with increased reciprocity and clustering activities.
+
+**[KO]**
+표 10.1은 지진 전후 3개 기간에 대한 기본적인 네트워크 기술통계 지표 일부를 보여준다. 필자는 지진 전후 이러한 기본 네트워크 측정치의 변화를 비교하는 것이 네트워크 구축과 지속가능성의 전환 정도에 관한 기초적인 아이디어를 제공하기 때문에, 여기서 평균 내향차수, 상호성, 군집화 측정치를 제시한다. 지진 이전부터 긴급대응 단계에 이르기까지 정보 교환을 위한 평균 내향차수는 2.7에서 9.8로 증가하였으며, 이는 시민사회 행위자들 사이의 소통 활동 수준에서 극적인 변화를 나타낸다. 그림 10.1과 그림 10.2는 이러한 변화 패턴을 더욱 명확히 입증한다. 지진 이전 기간에 나타났던 고립된 행위자(isolated actors)들이 재난 직후 메인 연결 네트워크로 흡수되었을 뿐만 아니라, 상호성과 군집화 활동의 증가와 함께 시간이 지남에 따라 네트워크가 더욱 조밀하고 밀도 있게 변모하였음에 주목할 필요가 있다.
+
+---
+
+### [단락 36] P
+
+**[EN]**
+The tendency continued through the long-term recovery stage with a slight increase of average indegree to 11.1. Both reciprocity and clustering measures experienced further increase from emergency response to recovery stage. The communication network remained to be integrated as shown in Fig. 10.3. Observing the change patterns in standard deviation of indegree and outdegree measures, it can be concluded that after the earthquake, both the indegrees and the outdegrees of communication networks became increasingly variable with the latter higher than the former throughout the three time stages. This means that on the one hand, the agency motivations of civil society actors were being activated as prompted by the earthquake and sustained through the long-term recovery. On the other hand, the response of the activation may be differentiated.
+
+**[KO]**
+이러한 추세는 평균 내향차수가 11.1로 소폭 증가하면서 장기 복구 단계에 이르기까지 지속되었다. 상호성과 군집화 측정치 모두 긴급대응에서 복구 단계로 넘어가면서 추가적인 증가를 경험하였다. 소통 네트워크는 그림 10.3에 나타난 바와 같이 계속해서 통합된 상태를 유지하였다. 내향차수 및 외향차수 측정치의 표준편차 변화 패턴을 관찰해 보면, 지진 이후 소통 네트워크의 내향차수와 외향차수 모두 점점 더 가변적이 되었으며, 3개 시점 단계 전반에 걸쳐 후자(외향차수 표준편차)가 전자보다 더 높았다는 결론을 내릴 수 있다. 이는 한편으로는 시민사회 행위자들의 행위 주도성 동기(agency motivations)가 지진을 계기로 촉발되어 장기 복구에 이르기까지 지속되었음을 의미한다. 다른 한편으로는, 그 활성화에 대한 반응이 조직별로 차별화되었을 수 있음을 의미한다.
+
+---
+
+### [단락 37] TABLE
+
+**[EN]**
+### Table 10.1 Communication Network Descriptive Measures
+
+| Period | Average Indegree | Standard Deviation (in/out) | Reciprocity | Clustering |
+| :--- | :---: | :---: | :---: | :---: |
+| **Communication t1** *(Preearthquake)* | 2.7 | 2.9 / 5.2 | 0.11 | 0.17 |
+| **Communication t2** *(Emergency Response)* | 9.8 | 6.8 / 13.5 | 0.15 | 0.24 |
+| **Communication t3** *(Disaster Recovery)* | 11.1 | 6.9 / 14.0 | 0.17 | 0.28 |
+
+*“Communication t1” represents preearthquake period. “Communication t2” represents emergency response. “Communication t3” represents disaster recovery.*
+
+**[KO]**
+### 표 10.1 소통 네트워크 기술통계 지표 (Table 10.1)
+
+| 시점 구분 (Period) | 평균 내향차수 (Average Indegree) | 표준편차 (내향 / 외향) | 상호성 (Reciprocity) | 군집화 계수 (Clustering) |
+| :--- | :---: | :---: | :---: | :---: |
+| **소통 시점 1 (t1: 지진 이전)** | 2.7 | 2.9 / 5.2 | 0.11 | 0.17 |
+| **소통 시점 2 (t2: 긴급대응기)** | 9.8 | 6.8 / 13.5 | 0.15 | 0.24 |
+| **소통 시점 3 (t3: 장기복구기)** | 11.1 | 6.9 / 14.0 | 0.17 | 0.28 |
+
+*“Communication t1”은 지진 전 시점을 나타냄. “Communication t2”는 긴급대응기를 나타냄. “Communication t3”은 재난복구기를 나타냄.*
+
+---
+
+### [단락 38] IMAGE
+
+**[EN]**
+![FIGURE 10.1: Preearthquake communication network](image-38.png)
+*FIGURE 10.1 Preearthquake communication network.*
+*(Source: Lu, J., 2013. The Wenchuan Earthquake Recovery: Civil Society, Institutions, and Planning. ProQuest Digital Dissertations, UMI No. 3609950)*
+
+**[KO]**
+![그림 10.1: 지진 이전 소통 네트워크](image-38.png)
+*그림 10.1 지진 이전 소통 네트워크 (Preearthquake communication network).*
+*(출처: Lu, J., 2013. The Wenchuan Earthquake Recovery. ProQuest Dissertations, UMI No. 3609950)*
+
+---
+
+### [단락 39] H3
+
+**[EN]**
+### Dynamics of the Emergency Response Communication Network
+
+**[KO]**
+### Dynamics of the Emergency Response Communication Network (긴급대응기 소통 네트워크 동태성)
+
+---
+
+### [단락 40] P
+
+**[EN]**
+With an intention to distinguish the patterns that govern the changes during the emergency response stage and the disaster recovery stage, the dynamics of the period from before the earthquake to immediately after event (t1 to t2) was estimated separately from the period between emergency response and long-term recovery (t2 to t3). Practically, knowing which structural effects were consistently making statistically significant contributions to network evolution for these two time periods also allows the study to initiate policy implications for both short- and long-term periods after a disaster, thus effectively incorporate the social aspect of constructing resilience by distinguishing characteristics of a change process. Table 10.2 shows the model estimation results for the emergency response period and the recovery period.
+
+**[KO]**
+긴급대응 단계와 재난복구 단계 동안의 변화를 지배하는 패턴을 구별하려는 의도에서, 지진 이전부터 사건 직후까지의 기간(t1에서 t2)의 동태성을 긴급대응과 장기복구 사이의 기간(t2에서 t3)과 분리하여 추정하였다. 실무적으로, 이 두 시기에 걸쳐 어떤 구조적 효과가 네트워크 진화에 통계적으로 유의미한 기여를 일관되게 미치고 있는지를 아는 것은 재난 이후 단기 및 장기 모두에 대한 정책적 시사점을 도출할 수 있게 해주며, 따라서 변화 과정의 고유한 특성을 구별함으로써 레질리언스 구축의 사회적 측면을 효과적으로 통합할 수 있게 한다. 표 10.2는 긴급대응 기간과 복구 기간에 대한 모델 추정 결과를 보여준다.
+
+---
+
+### [단락 41] IMAGE
+
+**[EN]**
+![FIGURE 10.2: Disaster response communication network](image-39.png)
+*FIGURE 10.2 Disaster response communication network.*
+*(Source: Lu, J., 2013. The Wenchuan Earthquake Recovery: Civil Society, Institutions, and Planning. ProQuest Digital Dissertations, UMI No. 3609950)*
+
+**[KO]**
+![그림 10.2: 지진 긴급대응기 소통 네트워크](image-39.png)
+*그림 10.2 지진 긴급대응기 소통 네트워크 (Disaster response communication network).*
+*(출처: Lu, J., 2013. The Wenchuan Earthquake Recovery. ProQuest Dissertations, UMI No. 3609950)*
+
+---
+
+### [단락 42] P
+
+**[EN]**
+For the emergency response period, actors started out by contacting others that were also involved in the process to seek out further information immediately after the earthquake. The communication network at this period of time showed tendencies toward reciprocity (parameter value 0.41). Reciprocated responses were valued positively, and this reveals initial evidence of the emergence of a Chinese civil society triggered by the Wenchuan earthquake.
+
+**[KO]**
+긴급대응 기간 동안, 행위자들은 지진 직후 추가적인 정보를 탐색하기 위해 그 과정에 마찬가지로 관여하고 있던 타자들과 접촉함으로써 활동을 시작하였다. 이 시기의 소통 네트워크는 상호성(reciprocity)을 향한 경향을 보여주었다(모수 추정치 0.41). 상호적인 응답은 긍정적으로 평가되었으며, 이는 원촨 대지진에 의해 촉발된 중국 시민사회의 출현에 관한 초기 증거를 드러낸다.
+
+---
+
+### [단락 43] P
+
+**[EN]**
+Aside from reciprocity, the emergency response communication network also showed tendencies toward various types of clustering, or network closure, effects. The most prominent one is the transitive triplet effect. This effect postulated that more intermediaries will add proportionally to the tendency to transitive closure. From Table 10.2, we can see that the transitive triplet effect turns out to be positively significant (parameter value 0.11). This means that “friends of friends tend to be friends.” The communication relationship triangle had a tendency to be closed. But it is not reinforced by transitive ties effect. The transitive triplet effect is often discussed together with the three-cycle effect, which can be interpreted as generalized reciprocity as the opposite of hierarchy. The findings show that the emergency response network did not have a tendency to develop three cycles that would work against the hierarchical ordering exemplified by transitive triplet effect.
+
+**[KO]**
+상호성 외에도 긴급대응 소통 네트워크는 다양한 유형의 군집화, 즉 네트워크 폐쇄(network closure) 효과를 향한 경향을 보여주었다. 가장 두드러진 것은 전이적 삼원소군 효과(transitive triplet effect)이다. 이 효과는 더 많은 매개자(intermediaries)가 존재할수록 전이적 폐쇄 경향에 비례하여 기여한다는 점을 상정한다. 표 10.2에서 볼 수 있듯이, 전이적 삼원소군 효과는 정(+)의 방향으로 유의한 것으로 나타났다(모수 추정치 0.11). 이는 “친구의 친구는 친구가 되는 경향이 있다”는 것을 의미한다. 소통 관계의 삼각형은 폐쇄되는 경향을 보였다. 그러나 이것이 전이적 연계(transitive ties) 효과에 의해 강화되지는 않았다. 전이적 삼원소군 효과는 흔히 위계(hierarchy)의 반대 개념인 일반화된 상호성으로 해석될 수 있는 3-순환(three-cycle) 효과와 함께 논의된다. 실증 분석 결과는 긴급대응 네트워크가 전이적 삼원소군 효과로 예시되는 위계적 질서에 반하는 3-순환을 발전시키는 경향을 보이지 않았음을 나타낸다.
+
+---
+
+### [단락 44] P
+
+**[EN]**
+In the context of emergency response after the earthquake, this pattern can be interpreted as a sense of eagerness for sociability among civil society actors to build up ties with others. Actors on the initiation end of a triadic relationship also tended to close up the transitive circle on their own action, rather than waiting for the actor on the other end to reach out.
+
+**[KO]**
+지진 후 긴급대응의 맥락에서 이러한 패턴은 타인과 연계를 구축하고자 하는 시민사회 행위자들 사이의 '사회성에 대한 열망'으로 해석될 수 있다. 삼자 관계의 시작점에 있는 행위자들은 다른 쪽 끝에 있는 행위자가 먼저 다가오기를 기다리기보다는, 자신의 행동을 통해 전이적 고리를 직접 폐쇄하려는 경향을 보였다.
+
+---
+
+### [단락 45] P
+
+**[EN]**
+Another network closure effect being tested was the balance effect, which measures the tendency for a network to have and create ties in such a way that other actors tend to make the same choices as the ego (actor i). This effect is significant but negative (parameter value −0.09). This means that there were few balanced triadic closures that would reveal a network tendency to have and create ties to other actors who made the same choices as ego. In other words, the role formation of Chinese civil society actors during the response period might be at a stage of diversification when considering the ways in which actors reach out to others. When looking at the number of outgoing choices and nonchoices that actors had in common, few actors can replace the role of the others or have structural equivalence with respect to out ties.
+
+**[KO]**
+검증된 또 다른 네트워크 폐쇄 효과는 균형 효과(balance effect)였는데, 이는 다른 행위자들이 자아(행위자 i)와 동일한 선택을 하는 방식으로 네트워크가 연계를 형성하고 유지하려는 경향을 측정한다. 이 효과는 유의하지만 음(-)의 값을 보였다(모수 추정치 −0.09). 이는 자아와 동일한 선택을 한 타 행위자들에게 연계를 맺고 유지하려는 네트워크 경향을 드러내는 균형 잡힌 삼자 폐쇄가 거의 없었음을 의미한다. 다시 말해, 행위자들이 타자에게 다가가는 방식을 고려할 때, 대응 단계 동안 중국 시민사회 행위자들의 역할 형성은 '다변화(diversification)' 단계에 있었을 수 있다. 행위자들이 공통으로 가졌던 외향적 선택과 비선택의 수를 살펴볼 때, 타자의 역할을 대체하거나 외향 연계에 관해 구조적 등위성(structural equivalence)을 가질 수 있는 행위자는 거의 없었다.
+
+---
+
+### [단락 46] P
+
+**[EN]**
+The indegree popularity effect is positive (parameter value 0.93), indicating actors with higher indegree were more attractive for other actors to send further incoming ties. In other words, high indegrees reinforce themselves, and there was a tendency for differentiated actor indegrees in the communication network. The outdegree popularity effect is negative (parameter value −0.17), indicating that those actors who nominated many others in the communication network were actually less popular when considered by others as potential information exchange partners. At this stage of time, even though the tendency for proactivity in exchanging information was prevalent in the network, such behavioral pattern had little effect on actors receiving further incoming ties.
+
+**[KO]**
+내향차수 인기 효과(indegree popularity effect)는 정(+)의 값(모수 추정치 0.93)을 나타냈으며, 이는 내향차수가 더 높은 행위자일수록 다른 행위자들로부터 추가적인 유입 연계를 받기에 더 매력적이었음을 나타낸다. 즉, 높은 내향차수는 스스로를 강화하며, 소통망 내에서 차별화된 행위자 내향차수가 형성되는 경향이 있었다. 반면 외향차수 인기 효과(outdegree popularity effect)는 음(-)의 값(모수 추정치 −0.17)을 나타내어, 소통망 내에서 다른 조직을 많이 지명한 행위자일수록 타자들로부터 잠재적 정보 교환 파트너로 고려될 때 실제로는 인기가 덜했음을 나타낸다. 이 시기에는 비록 정보 교환에 대한 주도적 성향이 네트워크 전반에 널리 퍼져 있었음에도 불구하고, 그러한 행동 패턴은 행위자가 추가적인 유입 연계를 받는 데에는 거의 영향을 미치지 못했다.
+
+---
+
+### [단락 47] P
+
+**[EN]**
+The result also shows a negative effect in terms of the interaction between actors’ reciprocity and them having the same registration status (parameter value −1.39). At first glance, this is rather counterintuitive because, normally, we expect reciprocity based on homophily in actors’ traits. In other words, actors with similar characteristics would tend to reciprocate more with each other. For this study context, the negative parameter can be interpreted as follows. Tie reciprocation might be easier to form if two actors had similar registration status, but doing so won’t bring much benefit or “satisfaction” to the actors. When a tie was reciprocated for two actors with different registration status, the other actor would develop more appreciation and also a sense of accomplishment in terms of reaching out for those that were of different traits.
+
+**[KO]**
+분석 결과는 또한 행위자들의 상호성과 동일한 등록 지위를 갖는 것 사이의 상호작용 측면에서 음(-)의 효과를 보여준다(모수 추정치 −1.39). 언뜻 보기에 이는 다소 직관에 반하는 것인데, 통상적으로 우리는 행위자 특성의 동류성(homophily)에 기반한 상호성을 기대하기 때문이다. 다시 말해, 유사한 특성을 가진 행위자들끼리 서로 더 많이 화답할 것으로 예상된다. 본 연구 맥락에서 이 음(-)의 모수는 다음과 같이 해석될 수 있다. 두 행위자가 유사한 등록 지위를 가질 경우 연계 상호작용을 형성하기가 더 쉬울 수는 있으나, 그렇게 하는 것이 행위자들에게 많은 혜택이나 '만족감'을 가져다주지는 못한다. 서로 다른 등록 지위를 가진 두 행위자 간에 연계가 상호적으로 성립되었을 때, 상대방 행위자는 다른 특성을 가진 조직에 다가갔다는 점에서 더 큰 감사와 함께 성취감을 느끼게 되었던 것이다.
+
+---
+
+### [단락 48] TABLE
+
+**[EN]**
+### Table 10.2 Rules Governing Emergency Response and Recovery Periods Communication Network Evolution
+
+| Effect | Response (t1–t2: Pre-Disaster to Response)<br/>Parameter Estimate (s.e.) | Recovery (t2–t3: Response to Recovery)<br/>Parameter Estimate (s.e.) |
+| :--- | :---: | :---: |
+| **Within Network** | | |
+| - Outdegree | −3.30** (0.18) | −4.18** (0.69) |
+| - Reciprocity | 0.41† (0.23) | 0.91** (0.17) |
+| - Transitive triplets | 0.11** (0.04) | 0.08* (0.05) |
+| - Three cycles | −0.12 (0.07) | 0.01 (0.35) |
+| - Transitive ties | −0.89** (0.21) | 1.01** (0.01) |
+| - Balance | −0.09** (0.01) | −0.01 (0.06) |
+| - Indegree popularity (Sqrt) | 0.93** (0.07) | 0.43** (0.12) |
+| - Outdegree popularity (Sqrt) | −0.17* (0.08) | −0.29* (0.13) |
+| - Outdegree activity (Sqrt) | – (–) | 0.15 (0.27) |
+| **Registration** | | |
+| - Int. Registration similarity × reciprocity | −1.39** (0.40) | −0.48† (0.13) |
+| - Registration alter | – (–) | −0.06 (0.12) |
+| - Registration ego | – (–) | 0.41** (0.25) |
+| - Registration ego × registration alter | – (–) | 0.12 (0.11) |
+| **Activity** | | |
+| - Housing alter | – (–) | −0.07 (0.12) |
+| - Housing ego | – (–) | 0.03 (0.13) |
+| - Housing ego × housing alter | – (–) | −0.28* (0.31) |
+| - Elderly_disabled alter | – (–) | 0.84** (0.11) |
+| - Elderly_disabled ego | – (–) | 0.00 (0.11) |
+| - Elderly_disabled ego × Elderly_disabled alter | – (–) | −0.22† (0.22) |
+| - Women_children alter | – (–) | 0.14 (0.15) |
+| - Women_children ego | – (–) | 0.06 (0.15) |
+| - Women_children ego × Women_children alter | – (–) | 0.74** (0.22) |
+| - Environment alter | – (–) | 0.18 (0.11) |
+| - Environment ego | – (–) | −0.10 (0.15) |
+| - Environment ego × environment alter | – (–) | −0.50** (0.23) |
+| - Psychology alter | – (–) | 0.31 (0.13) |
+| - Psychology ego | – (–) | −0.16 (0.12) |
+| - Psychology ego × psychology alter | – (–) | 0.40** (0.23) |
+| - Livelihood alter | – (–) | 0.33 (0.12) |
+| - Livelihood ego | – (–) | 0.17 (0.14) |
+| - Livelihood ego × livelihood alter | – (–) | −0.02 (0.22) |
+
+*†p < .10, \*p < .05, \*\*p < .01 (two-sided). “s.e.” stands for standard error. Coefficients from standard SIENA (4.0) analysis implemented in the R statistical system of directed network matrix. All statistics converged with t-statistic < 0.1. The use of dashed lines in certain cells indicates that the variable was dropped due to insignificance during the model selection process.*
+
+**[KO]**
+### 표 10.2 긴급대응기 및 복구기 소통 네트워크 진화 지배 규칙 (Table 10.2)
+
+| 모형 효과 (Effect) | 긴급대응기 (t1–t2: 지진 전 ~ 대응기)<br/>모수 추정치 (표준오차) | 장기복구기 (t2–t3: 대응기 ~ 복구기)<br/>모수 추정치 (표준오차) |
+| :--- | :---: | :---: |
+| **[네트워크 내적 구조 효과]** | | |
+| - 외향차수 (Outdegree, 밀도) | −3.30** (0.18) | −4.18** (0.69) |
+| - 상호성 (Reciprocity) | 0.41† (0.23) | 0.91** (0.17) |
+| - 전이적 삼원소군 (Transitive triplets) | 0.11** (0.04) | 0.08* (0.05) |
+| - 3-순환 (Three cycles) | −0.12 (0.07) | 0.01 (0.35) |
+| - 전이적 연계 (Transitive ties) | −0.89** (0.21) | 1.01** (0.01) |
+| - 균형 효과 (Balance) | −0.09** (0.01) | −0.01 (0.06) |
+| - 내향차수 인기 (Indegree popularity, 제곱근) | 0.93** (0.07) | 0.43** (0.12) |
+| - 외향차수 인기 (Outdegree popularity, 제곱근) | −0.17* (0.08) | −0.29* (0.13) |
+| - 외향차수 활동성 (Outdegree activity, 제곱근) | – (–) | 0.15 (0.27) |
+| **[등록 지위 효과]** | | |
+| - 등록 유사성 × 상호성 상호작용 | −1.39** (0.40) | −0.48† (0.13) |
+| - 등록 타자 (Registration alter) | – (–) | −0.06 (0.12) |
+| - 등록 자아 (Registration ego) | – (–) | 0.41** (0.25) |
+| - 등록 자아 × 등록 타자 | – (–) | 0.12 (0.11) |
+| **[복구 활동 분야 효과]** | | |
+| - 주택 타자 (Housing alter) | – (–) | −0.07 (0.12) |
+| - 주택 자아 (Housing ego) | – (–) | 0.03 (0.13) |
+| - 주택 자아 × 주택 타자 (동류성) | – (–) | −0.28* (0.31) |
+| - 노인·장애인 타자 (수신 인기) | – (–) | 0.84** (0.11) |
+| - 노인·장애인 자아 | – (–) | 0.00 (0.11) |
+| - 노인·장애인 자아 × 노인·장애인 타자 | – (–) | −0.22† (0.22) |
+| - 여성·아동 타자 | – (–) | 0.14 (0.15) |
+| - 여성·아동 자아 | – (–) | 0.06 (0.15) |
+| - 여성·아동 자아 × 여성·아동 타자 | – (–) | 0.74** (0.22) |
+| - 환경 타자 | – (–) | 0.18 (0.11) |
+| - 환경 자아 | – (–) | −0.10 (0.15) |
+| - 환경 자아 × 환경 타자 | – (–) | −0.50** (0.23) |
+| - 심리 타자 | – (–) | 0.31 (0.13) |
+| - 심리 자아 | – (–) | −0.16 (0.12) |
+| - 심리 자아 × 심리 타자 | – (–) | 0.40** (0.23) |
+| - 생계 타자 | – (–) | 0.33 (0.12) |
+| - 생계 자아 | – (–) | 0.17 (0.14) |
+| - 생계 자아 × 생계 타자 | – (–) | −0.02 (0.22) |
+
+*†p < .10, \*p < .05, \*\*p < .01 (양측 검정). “s.e.”는 표준오차. R 통계 시스템에서 방향성 네트워크 행렬로 구현된 표준 SIENA (4.0) 분석 계수. 모든 통계량은 t-통계량 < 0.1로 수렴됨. 특정 셀의 대시선(–) 표기는 모델 선택 과정에서 비유의성으로 인해 변수가 제외되었음을 나타냄.*
+
+---
+
+### [단락 49] P
+
+**[EN]**
+Overall, the civil society communication network immediately after the Wenchuan earthquake showed the following evolutionary characteristics. There was a relatively strong tendency for reciprocity as demonstrated by the significant reciprocity parameter. Evidence for transitive closure was found as seen in the significant effects of transitive triplets. The positive sign of this parameter shows that there was a tendency for civil society actors to develop their proactivity immediately after the crisis event. The examination of network closure effects also reveals that few structural equivalences tended to develop with respect to outgoing ties, as demonstrated by negative balance effect. The tendencies toward closure were not completely egalitarian and showed some evidence for local hierarchical formation, as seen in significant positive indegree popularity effect and negative outdegree popularity effect. In addition, the emergency period did not show evidence of tendency to reciprocation being segregated by registration status.
+
+**[KO]**
+종합적으로, 원촨 대지진 직후 시민사회 소통 네트워크는 다음과 같은 진화적 특성을 나타냈다. 유의한 상호성 모수에서 입증되듯이 상호성을 향한 비교적 강한 경향이 존재하였다. 전이적 삼원소군의 유의한 효과에서 볼 수 있듯이 전이적 폐쇄에 대한 증거가 발견되었다. 이 모수의 정(+)의 부호는 위기 사건 직후 시민사회 행위자들이 주도성을 발전시키는 경향이 있었음을 보여준다. 네트워크 폐쇄 효과에 관한 검토는 또한 음(-)의 균형 효과에서 입증되듯이 외향 연계에 관해 구조적 등위성이 거의 형성되지 않는 경향이 있었음을 밝혀준다. 폐쇄를 향한 경향은 완전히 평등주의적이지는 않았으며, 유의한 정(+)의 내향차수 인기 효과와 음(-)의 외향차수 인기 효과에서 볼 수 있듯이 국지적 위계 형성의 증거를 보여주었다. 아울러 긴급대응기에는 상호작용 경향이 등록 지위에 의해 분리·격리된다는 증거가 나타나지 않았다.
+
+---
+
+### [단락 50] H3
+
+**[EN]**
+### Dynamics of the Disaster Recovery Communication Network
+
+**[KO]**
+### Dynamics of the Disaster Recovery Communication Network (장기복구기 소통 네트워크 동태성)
+
+---
+
+### [단락 51] P
+
+**[EN]**
+The parameter values for the disaster recovery network model are shown in the third column of Table 10.2. When compared to its emergency response stage counterpart, the recovery period network had a stronger tendency for reciprocation (parameter value 0.91). This provides evidence that the initiation for communication ties immediately after the earthquake was not just impulsive acting on the civil society part. The persistence of such proactivity is a sign of commitment and sustainability into the longer term. The recovery network also had stronger tendencies for transitive closure, demonstrated by positively significant transitive triplets (parameter value 0.08) as well as transitive ties effects (parameter value 1.01). The balance effect turned out to be insignificant during the recovery period. This shows that the communication network might start to stabilize over time. At the same time, the tendency for local hierarchicalization continued to be evidenced by a positive indegree popularity effect (parameter value 0.43) with negative outdegree popularity effect (parameter value −0.29). This means that over the long term, active civil society actors with higher outdegrees were still less likely to be chosen as information exchange partners, demonstrating some kind of status effect in both the emergency response and recovery network dynamics. The tendency to reciprocate among actors with diverse registration status sustained during the recovery stage. In the Chinese context, the nonregistered actors also tended to be those that were most grass roots and domestically originated after the Wenchuan earthquake. These actors had relatively fewer resources and smaller networks compared to the formally established registered actors (Lu, 2013). Thus, the maintenance of a strong tendency to reciprocate among actors with differentiated registration status during recovery means that civil society actors began to develop a general nurturing environment to help the growth of nonregistered social groups. Despite the fact that China is known for its harsh institutional environment for newly formed social groups to establish at the time when this research was conducted, particularly after the government established a three-year time limit for earthquake recovery, civil society actors showed sustainability for cross-registration status ties. As a result, the communication network was less likely to be segregated by registration status and there was a sense of reaching toward a common goal of disaster recovery.
+
+**[KO]**
+재난복구 네트워크 모델의 모수 값은 표 10.2의 세 번째 열에 제시되어 있다. 긴급대응 단계의 결과와 비교할 때, 복구 단계 네트워크는 상호성에 대해 훨씬 더 강한 경향을 보였다(모수 추정치 0.91). 이는 지진 직후 소통 연계를 시작한 것이 시민사회 측의 일시적인 충동적 행동에 그치지 않았음을 입증하는 증거이다. 이러한 주도성의 지속은 장기적인 헌신과 지속가능성의 신호이다. 복구 네트워크는 또한 정(+)으로 유의한 전이적 삼원소군(모수 추정치 0.08)과 전이적 연계 효과(모수 추정치 1.01)에 의해 입증되듯이 전이적 폐쇄에 대한 더 강한 경향을 보였다. 균형 효과는 복구 기간 동안 비유의한 것으로 나타났다. 이는 소통 네트워크가 시간이 지남에 따라 안정화되기 시작했을 수 있음을 보여준다. 동시에, 정(+)의 내향차수 인기 효과(모수 추정치 0.43)와 음(-)의 외향차수 인기 효과(모수 추정치 −0.29)에 의해 국지적 위계화 경향이 지속적으로 입증되었다. 이는 장기적으로 외향차수가 더 높은 활동적인 시민사회 행위자일수록 정보 교환 파트너로 선택될 가능성이 여전히 낮았음을 의미하며, 긴급대응과 복구 네트워크 동태성 모두에서 일종의 '지위 효과(status effect)'를 보여준다. 다양한 등록 지위를 가진 행위자들 사이에서 상호 화답하려는 경향은 복구 단계에서도 유지되었다. 중국적 맥락에서 미등록 행위자들은 원촨 대지진 이후 가장 풀뿌리적이고 국내에서 자생한 조직들인 경향이 있었다. 이들 행위자는 공식적으로 설립된 등록 행위자들에 비해 상대적으로 적은 자원과 더 작은 네트워크를 보유하고 있었다(Lu, 2013). 따라서 복구 기간 동안 차별화된 등록 지위를 가진 행위자들 사이에서 강한 상호성 경향이 유지되었다는 것은, 시민사회 행위자들이 미등록 사회단체의 성장을 돕는 전반적인 '육성 환경(nurturing environment)'을 발전시키기 시작했음을 의미한다. 본 조사가 수행될 당시 신생 사회단체의 설립에 있어 중국의 제도적 환경이 가혹하기로 유명했고, 특히 정부가 지진 복구를 위해 3년의 기한을 설정한 이후였음에도 불구하고, 시민사회 행위자들은 등록 지위를 초월한 연계에 대해 지속가능성을 보여주었다. 그 결과, 소통 네트워크는 등록 지위에 의해 분리될 가능성이 낮아졌으며, 재난 복구라는 공동의 목표를 향해 나아간다는 연대 의식이 형성되었다.
+
+---
+
+### [단락 52] P
+
+**[EN]**
+The registration ego effect (parameter value 0.41) is found to be positively significant for the recovery model. Since higher values of registration status represented nonregistered actors, the result infers that informal social groups tended to engage in building and initiating more communication and information-sharing relationships. This is a distinct feature that pertains only to the disaster recovery period. The result demonstrates that over the long term, the nonregistered grassroots actors started to become the driving force in the development of communication networks. These actors, despite their informal institutional status, became the backdrop for information outreach.
+
+**[KO]**
+등록 자아 효과(registration ego effect, 모수 추정치 0.41)는 복구 모델에서 정(+)으로 유의한 것으로 나타났다. 등록 지위의 더 높은 값이 미등록 행위자를 나타내었으므로, 이 결과는 비공식 사회단체들이 더 많은 소통 및 정보 공유 관계를 구축하고 시작하는 데 참여하는 경향이 있었음을 추론하게 한다. 이는 오직 재난복구 기간에만 귀속되는 뚜렷한 특징이다. 이 결과는 장기적으로 미등록 풀뿌리 행위자들이 소통 네트워크 발전의 '원동력(driving force)'이 되기 시작했음을 실증한다. 이들 행위자는 비공식적인 제도적 지위에도 불구하고 정보 확산의 든든한 배경이 되었다.
+
+---
+
+### [단락 53] P
+
+**[EN]**
+When testing for the significance of a variety of types of actor activities during the long-term recovery period, the following results can be concluded. Civil society actors who participated in the activities of housing recovery (parameter value −0.28), caring for the elders and disabled population (parameter value –0.22), and environmental protection (parameter value −0.50) tended to communicate less with others in the network. On the other hand, the outreach tendency of the recovery network seems to be driven by those who participated in the social work areas such as caring for women and children (parameter value 0.74) and psychological counseling (parameter value 0.40). Furthermore, actors who engaged in housing recovery activities also tended to have greater communication preference for other actors who also were practicing in the same field. This homophily effect (parameter value 0.84) only existed for the area of housing and not with any other types of activities. This indicates that housing recovery may be a sector that requires more sharing of information among actors long term after the earthquake when compared to other types of activities.
+
+**[KO]**
+장기 복구 기간 동안 다양한 유형의 행위자 활동의 유의성을 검증했을 때, 다음과 같은 결론을 도출할 수 있다. 주택 복구 활동(모수 추정치 −0.28), 노인 및 장애인 돌봄(모수 추정치 −0.22), 환경 보호(모수 추정치 −0.50) 활동에 참여한 시민사회 행위자들은 네트워크 내 다른 행위자들과 소통을 덜 하는 경향을 보였다. 반면, 복구 네트워크의 대외 발신 경향은 여성 및 아동 돌봄(모수 추정치 0.74)과 심리상담(모수 추정치 0.40)과 같은 사회복지 영역에 참여한 행위자들에 의해 주도된 것으로 나타났다. 나아가 주택 복구 활동에 참여한 행위자들은 동일한 분야에서 활동하고 있는 다른 행위자들에 대해 더 큰 소통 선호도를 갖는 경향을 보였다. 이러한 동류성 효과(homophily effect, 모수 추정치 0.84)는 주택 분야에서만 유일하게 존재하였으며 다른 어떤 활동 유형에서도 나타나지 않았다. 이는 다른 유형의 활동과 비교할 때 주택 복구가 지진 후 장기적으로 행위자들 사이에서 더 많은 정보 공유를 필요로 하는 부문일 수 있음을 시사한다.
+
+---
+
+### [단락 54] IMAGE
+
+**[EN]**
+![FIGURE 10.3: Disaster recovery communication network](image-40.png)
+*FIGURE 10.3 Disaster recovery communication network.*
+*(Source: Lu, J., 2013. The Wenchuan Earthquake Recovery: Civil Society, Institutions, and Planning. ProQuest Digital Dissertations, UMI No. 3609950)*
+
+**[KO]**
+![그림 10.3: 지진 장기복구기 소통 네트워크](image-40.png)
+*그림 10.3 지진 장기복구기 소통 네트워크 (Disaster recovery communication network).*
+*(출처: Lu, J., 2013. The Wenchuan Earthquake Recovery. ProQuest Dissertations, UMI No. 3609950)*
+
+---
+
+### [단락 55] H2
+
+**[EN]**
+## EMERGENCE OF STRUCTURAL RESILIENCE
+
+**[KO]**
+## EMERGENCE OF STRUCTURAL RESILIENCE (구조적 레질리언스의 발현)
+
+---
+
+### [단락 56] P
+
+**[EN]**
+The dynamics of civil society—investigated through the process by which Chinese nongovernmental organizations responded to a catastrophic disaster—demonstrated Chinese civil society’s active role in building sustainable interorganizational communication relationships. Despite the registration barriers at the time of this study, locally grown citizen-led informal groups played a significant part in establishing and maintaining communication ties among network actors. As soon as the joining and inclusion processes took place after the earthquake, the communication network was activated toward a high level of structural cohesiveness. This is demonstrated by the immediate structural integration during the emergency response stage.
+
+**[KO]**
+중국 비정부기구들이 파국적 재난에 대응하는 과정을 통해 조사된 시민사회의 동태성은, 지속가능한 조직 간 소통 관계를 구축하는 데 있어 중국 시민사회의 능동적인 역할을 입증하였다. 본 연구 당시의 등록 장벽에도 불구하고, 현지에서 자생한 시민 주도 비공식 집단들은 네트워크 행위자들 간의 소통 연계를 구축하고 유지하는 데 중대한 역할을 수행하였다. 지진 발생 후 참여와 포섭(inclusion)의 과정이 일어나자마자, 소통 네트워크는 높은 수준의 구조적 응집성을 향해 활성화되었다. 이는 긴급대응 단계 동안의 즉각적인 구조적 통합에 의해 잘 입증된다.
+
+---
+
+### [단락 57] P
+
+**[EN]**
+The dynamics of the recovery process proceeded with signs of action persistence from actors with informal institutional status, thus demonstrating the source of commitment long after the disaster event. Patterns of interaction such as reciprocity and transitivity persisted throughout the recovery stage. The actors that established a high level of indegree communication ties during emergency response continued to occupy their favored position in attracting more communication ties from others. The tendency for heterogeneity in actor institutional statuses is a strong predictor in whether a communication tie was being reciprocated or not.
+
+**[KO]**
+복구 과정의 동태성은 비공식적인 제도적 지위를 가진 행위자들로부터 행동의 지속성(action persistence)이라는 징후와 함께 전개되었으며, 따라서 재난 사건 발생 후 오랜 시간이 지난 뒤에도 헌신의 원천을 입증해 주었다. 상호성과 전이성과 같은 상호작용 패턴은 복구 단계 전반에 걸쳐 지속되었다. 긴급대응 기간 동안 높은 수준의 내향차수 소통 연계를 확립한 행위자들은 타자들로부터 더 많은 소통 연계를 끌어들이는 데 있어 유리한 위치를 계속해서 점유하였다. 행위자의 제도적 지위에서의 이질성(heterogeneity) 경향은 소통 연계가 상호적으로 화답되는지 여부를 예측하는 강력한 예측인자였다.
+
+---
+
+### [단락 58] P
+
+**[EN]**
+Civil society actors appeared to prefer to choose information exchange partners that were of different registration status from themselves. This willingness to engage in diversity building over the long run supported people’s ability to withstand catastrophic change in the Chinese disaster recovery context. Thus, although the institutional environment in China did create obstacles for nongovernmental organizations to gain formal status, it did not inhibit the development of communicative interaction among organizations. In the Chinese case, the structural dynamics of civil society continued to evolve while the state continued to play a role in both the institutional and the network environments. Facing a catastrophic disaster, Chinese civil society experienced a dramatic increase in outreach activity concentration. One of the most distinguished network development features was the strengthening of the resilient structure during the recovery stage, which essentially involved three factors. One is the sustainability of the dyadic and triadic structures in explaining the persistence of communication network cohesion. Not only did the tendency for tie reciprocation continue to exert its impact on recovery network evolution but this type of reciprocation was accompanied by actors seeking institutional status diversity. This type of recovery trend facilitated the proactivity of informal civil society organizations and helped them to be further integrated into the long-term communication network. Second, there was a strong behavioral tendency for actors to exchange information with those already having high indegrees. This shows that in the long run actors sought information exchange partners that had already gained popularity among others. Third, the varying degrees of significance in how recovery activities affect communication network development demonstrate that the chosen types of activities do make a difference in building resilient social structures.
+
+**[KO]**
+시민사회 행위자들은 자신과 다른 등록 지위를 가진 정보 교환 파트너를 선택하는 것을 더 선호하는 것으로 나타났다. 장기적으로 다양성 구축에 참여하려는 이러한 의지는 중국의 재난 복구 맥락에서 파국적 변화를 견뎌내는 사람들의 능력을 뒷받침해 주었다. 따라서 중국의 제도적 환경이 비정부기구로 하여금 공식적인 지위를 얻는 데 장애물을 만들어낸 것은 사실이지만, 그것이 조직들 간의 소통적 상호작용의 발전을 가로막지는 못했다. 중국의 사례에서, 국가가 제도적 및 네트워크 환경 모두에서 지속적으로 역할을 수행하는 동안에도 시민사회의 구조적 동태성은 끊임없이 진화하였다. 파국적인 재난에 직면하여 중국 시민사회는 대외 활동 집중도에서 극적인 증가를 경험하였다. 가장 두드러진 네트워크 발전 특징 중 하나는 복구 단계 동안 회복력 있는 구조(resilient structure)가 강화되었다는 점이며, 이는 본질적으로 세 가지 요인을 포함하고 있었다. 첫째는 소통 네트워크 응집성의 지속성을 설명하는 이원체(dyadic) 및 삼원체(triadic) 구조의 지속가능성이다. 연계 상호성의 경향이 복구 네트워크 진화에 지속적으로 영향을 미쳤을 뿐만 아니라, 이러한 유형의 상호성은 제도적 지위의 다양성을 추구하는 행위자들을 수반하였다. 이러한 복구 추세는 비공식 시민사회 조직들의 주도성을 촉진하였고 그들이 장기적인 소통 네트워크로 더욱 통합될 수 있도록 도왔다. 둘째, 이미 높은 내향차수를 가진 조직들과 정보를 교환하려는 행위자들의 강한 행동적 경향이 존재했다. 이는 장기적으로 행위자들이 이미 타자들 사이에서 인기를 얻은 정보 교환 파트너를 모색했음을 보여준다. 셋째, 복구 활동이 소통 네트워크 발전에 미치는 영향의 다양한 유의성 정도는, 선택된 활동의 유형이 회복력 있는 사회구조를 구축하는 데 실질적인 차이를 만들어낸다는 사실을 입증한다.
+
+---
+
+### [단락 59] H2
+
+**[EN]**
+## CONCLUSIONS AND POLICY IMPLICATIONS
+
+**[KO]**
+## CONCLUSIONS AND POLICY IMPLICATIONS (결론 및 정책적 시사점)
+
+---
+
+### [단락 60] P
+
+**[EN]**
+Actions of relationship building and their patterns of maintenance in the long term might reasonably be conceived as supporting a general resilience. A dynamic perspective is not only important for tracing the emergence and growth process of social resilience but also the analysis procedures of this study demonstrated that it can also be evaluated through observable measures for possible policy implementations. The process starts with actions taken on the part of civil society actors as the source of power to reconstruct the social structural conditions despite the distresses brought by the happening of the disaster. Civil society actors became more engaged when transitioning to the long-term social recovery stage and started seeking a communication environment that can strengthen the bonds established short term after the disaster event. Because the change process is partially motivated by the civil society actors’ drive to bring about action, the continued growth and strengthening of such a structure is dependent on the collective awareness of actors recognizing each other’s roles and positions, and consciously acting to expand the overall capacity of the structure.
+
+**[KO]**
+장기적으로 관계를 구축하고 유지하는 행동과 그 패턴은 일반적인 레질리언스(general resilience)를 지원하는 것으로 타당하게 이해될 수 있다. 동태적 관점은 사회적 레질리언스의 출현과 성장 과정을 추적하는 데 중요할 뿐만 아니라, 본 연구의 분석 절차는 가능한 정책적 실행을 위해 관측 가능한 측정치를 통해 레질리언스가 평가될 수도 있음을 입증하였다. 이 과정은 재난의 발생으로 초래된 고통에도 불구하고 사회구조적 조건을 재건하기 위한 원동력으로서 시민사회 행위자 측에서 취해진 행동으로부터 시작된다. 시민사회 행위자들은 장기적인 사회 복구 단계로 전환되면서 더욱 적극적으로 관여하게 되었고, 재난 사건 직후 단기적으로 확립된 유대를 강화할 수 있는 소통 환경을 모색하기 시작했다. 변화의 과정이 부분적으로는 행동을 유발하려는 시민사회 행위자들의 추진력에 의해 동기부여되기 때문에, 그러한 구조의 지속적인 성장과 강화는 서로의 역할과 위치를 인정하고 구조의 전반적인 역량을 확장하기 위해 의식적으로 행동하는 행위자들의 '집단적 인식(collective awareness)'에 달려 있다.
+
+---
+
+### [단락 61] P
+
+**[EN]**
+One significant policy implication of this study derives from the ability of the model to identify the trends of activity types through distinct periods after a disaster, particularly the recovery period for this research study. The tendency for Chinese civil society actors engaged in assistance to women and children and psychological counseling services to initiate more communication ties may send a signal to policy makers that these are emerging sectors for further social assistance. In this case, the public agencies may need to plan for more engaged actions to partner or collaborate with civil society organizations practicing these types of earthquake recovery assistance. More relaxed institutional constraint such as the ease for registration may need to be implemented so that these organizations can grow to survive financially in the longer term. The tendency for civil society actors in the housing recovery to seek out each other for information exchange can be interpreted as another signal of the greater need in facilitating the coordination among organizations in this sector.
+
+**[KO]**
+본 연구의 중요한 정책적 시사점 중 하나는 재난 후 뚜렷이 구별되는 기간들, 특히 본 연구의 복구 기간에 걸쳐 활동 유형의 추세를 식별할 수 있는 모델의 능력에서 비롯된다. 여성 및 아동 지원과 심리상담 서비스에 종사하는 중국 시민사회 행위자들이 더 많은 소통 연계를 개시하는 경향은, 이들이 향후 추가적인 사회적 지원이 필요한 '신흥 부문(emerging sectors)'이라는 신호를 정책 입안자들에게 보낼 수 있다. 이 경우, 공공 기관은 이러한 유형의 지진 복구 지원을 수행하는 시민사회 조직들과 파트너십을 맺거나 협력하기 위해 보다 적극적인 참여 조치를 기획할 필요가 있다. 이러한 조직들이 장기적으로 재정적으로 생존하고 성장할 수 있도록 등록 요건의 완화와 같은 더 완화된 제도적 제약이 시행될 필요가 있다. 주택 복구 분야의 시민사회 행위자들이 정보 교환을 위해 서로를 모색하는 경향은, 이 부문에서 조직들 간의 조정을 촉진할 필요성이 더욱 크다는 또 다른 신호로 해석될 수 있다.
+
+---
+
+### [단락 62] P
+
+**[EN]**
+Overall, future research needs to further engage in the structural and the dynamic theoretical formulations of network development in the context of an extreme event. Detailed specifications that can translate theories into practices require more longitudinal modeling studies to discover significant behavioral trends of civil society actors to enhance the capacity of the coordinated disaster response, recovery, mitigation, and preparedness. Expansive cross-cultural examinations may deem it fruitful to develop network theories in particular relevancy to disaster recovery policy making, planning, and risk management.
+
+**[KO]**
+전반적으로 향후 연구는 극한 사건의 맥락에서 네트워크 발전의 구조적 및 동태적 이론 정립에 더욱 깊이 관여할 필요가 있다. 이론을 실무로 전환할 수 있는 구체적인 명세화는 조정된 재난 대응, 복구, 완화 및 대비의 역량을 강화하기 위해 시민사회 행위자들의 유의미한 행동 추세를 발견하는 더 많은 종단적 모델링 연구를 필요로 한다. 광범위한 비교문화적 검토는 재난 복구 정책 입안, 기획 및 위험 관리에 특히 밀접한 관련성을 갖는 네트워크 이론을 발전시키는 데 매우 결실 있는 기여를 할 것으로 기대된다.
+
+---

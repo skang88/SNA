@@ -1,0 +1,1547 @@
+# -*- coding: utf-8 -*-
+import os
+
+html_content = r'''<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>재난관리연구방법론 | Chapter 10. 원촨 대지진 복구 과정의 조직 간 네트워크 동태성</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&family=Outfit:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- MathJax Configuration & Script -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Mermaid JS for diagrams -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typeof mermaid !== 'undefined') {
+        try {
+          mermaid.initialize({ 
+            startOnLoad: true, 
+            theme: 'dark',
+            securityLevel: 'loose',
+            fontFamily: 'Noto Sans KR, Inter, sans-serif',
+            flowchart: {
+              useMaxWidth: false,
+              htmlLabels: true,
+              curve: 'basis'
+            }
+          });
+        } catch(e) {
+          console.warn('Mermaid initialization deferred:', e);
+        }
+      }
+    });
+  </script>
+
+  <style>
+    :root {
+      --bg-primary: #0b1120;
+      --bg-secondary: #131c31;
+      --bg-sidebar: #0f172a;
+      --bg-card: #1e293b;
+      --bg-card-hover: #26354d;
+      --accent-primary: #38bdf8;
+      --accent-secondary: #818cf8;
+      --accent-emerald: #34d399;
+      --accent-amber: #fbbf24;
+      --accent-rose: #fb7185;
+      --accent-purple: #c084fc;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --border-color: #334155;
+      --sidebar-border: #1e293b;
+      --sidebar-width: 320px;
+      --glass-bg: rgba(19, 28, 49, 0.85);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.35);
+      --shadow-lg: 0 12px 30px -6px rgba(0, 0, 0, 0.5);
+      --radius: 12px;
+      --radius-sm: 8px;
+      --radius-lg: 16px;
+      --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    [data-theme="light"] {
+      --bg-primary: #f8fafc;
+      --bg-secondary: #ffffff;
+      --bg-sidebar: #ffffff;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f1f5f9;
+      --accent-primary: #0284c7;
+      --accent-secondary: #6366f1;
+      --accent-emerald: #059669;
+      --accent-amber: #d97706;
+      --accent-rose: #e11d48;
+      --accent-purple: #9333ea;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --text-dim: #94a3b8;
+      --border-color: #e2e8f0;
+      --sidebar-border: #e2e8f0;
+      --glass-bg: rgba(255, 255, 255, 0.9);
+      --glass-border: rgba(0, 0, 0, 0.08);
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 12px 30px -6px rgba(0, 0, 0, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Noto Sans KR', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.85;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      min-height: 100vh;
+    }
+
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-primary), var(--accent-emerald), var(--accent-amber));
+      width: 0%;
+      z-index: 1000;
+      transition: width 0.1s ease-out;
+    }
+
+    .app-layout {
+      display: flex;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* LEFT SIDEBAR */
+    .sidebar {
+      width: var(--sidebar-width);
+      flex-shrink: 0;
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      background: var(--bg-sidebar);
+      border-right: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      z-index: 100;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .sidebar-header {
+      padding: 1.5rem 1.25rem 1rem 1.25rem;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .sidebar-brand {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand-badge {
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-emerald));
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 0.75rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    .theme-toggle-btn {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 0.45rem;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      width: 34px;
+      height: 34px;
+    }
+
+    .theme-toggle-btn:hover {
+      background: var(--bg-card-hover);
+      color: var(--accent-primary);
+      transform: rotate(15deg);
+    }
+
+    .sidebar-title {
+      font-family: 'Outfit', 'Noto Sans KR', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.35;
+    }
+
+    .sidebar-subtitle {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .sidebar-search {
+      position: relative;
+      margin-top: 0.25rem;
+    }
+
+    .sidebar-search input {
+      width: 100%;
+      padding: 0.5rem 0.75rem 0.5rem 2.2rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+      background: var(--bg-secondary);
+      color: var(--text-main);
+      font-size: 0.85rem;
+      outline: none;
+      transition: var(--transition);
+    }
+
+    .sidebar-search input:focus {
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+    }
+
+    .sidebar-search i {
+      position: absolute;
+      left: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-dim);
+      width: 16px;
+      height: 16px;
+    }
+
+    .sidebar-nav {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1rem 0.75rem;
+    }
+
+    .toc-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .toc-item a {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      padding: 0.55rem 0.75rem;
+      border-radius: var(--radius-sm);
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: var(--transition);
+      line-height: 1.4;
+    }
+
+    .toc-item a i {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+
+    .toc-item a:hover {
+      background: var(--bg-card);
+      color: var(--accent-primary);
+      transform: translateX(4px);
+    }
+
+    .toc-item.active a {
+      background: rgba(56, 189, 248, 0.12);
+      color: var(--accent-primary);
+      font-weight: 600;
+      border-left: 3px solid var(--accent-primary);
+    }
+
+    .sidebar-footer {
+      padding: 1rem 1.25rem;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+
+    .sidebar-footer a {
+      color: var(--accent-primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    /* MAIN CONTENT */
+    .main-wrapper {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .content-container {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 3rem 2.5rem 5rem 2.5rem;
+      width: 100%;
+    }
+
+    /* HERO HEADER */
+    .chapter-hero {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95));
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 2.75rem;
+      margin-bottom: 2.5rem;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .chapter-hero::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      right: -120px;
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-meta-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .meta-badge {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.3rem 0.75rem;
+      border-radius: 9999px;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .badge-cyan { background: rgba(56, 189, 248, 0.15); color: var(--accent-primary); border: 1px solid rgba(56, 189, 248, 0.3); }
+    .badge-indigo { background: rgba(129, 140, 248, 0.15); color: var(--accent-secondary); border: 1px solid rgba(129, 140, 248, 0.3); }
+    .badge-emerald { background: rgba(52, 211, 153, 0.15); color: var(--accent-emerald); border: 1px solid rgba(52, 211, 153, 0.3); }
+    .badge-amber { background: rgba(251, 191, 36, 0.15); color: var(--accent-amber); border: 1px solid rgba(251, 191, 36, 0.3); }
+
+    .hero-title {
+      font-family: 'Outfit', 'Noto Sans KR', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      line-height: 1.3;
+      margin-bottom: 1rem;
+      color: var(--text-main);
+      letter-spacing: -0.5px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      margin-bottom: 1.75rem;
+      line-height: 1.6;
+    }
+
+    .hero-author-box {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-color);
+      flex-wrap: wrap;
+    }
+
+    .author-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.15rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .author-info h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .author-info p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* SECTION STYLING */
+    .section-block {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      margin-bottom: 2.5rem;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+
+    .section-block:hover {
+      box-shadow: var(--shadow-md);
+      border-color: rgba(56, 189, 248, 0.3);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      margin-bottom: 1.75rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .section-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .icon-cyan { background: linear-gradient(135deg, var(--accent-primary), #0284c7); }
+    .icon-indigo { background: linear-gradient(135deg, var(--accent-secondary), #4f46e5); }
+    .icon-emerald { background: linear-gradient(135deg, var(--accent-emerald), #059669); }
+    .icon-amber { background: linear-gradient(135deg, var(--accent-amber), #d97706); }
+    .icon-purple { background: linear-gradient(135deg, var(--accent-purple), #7e22ce); }
+
+    .section-title-wrap h2 {
+      font-family: 'Outfit', 'Noto Sans KR', sans-serif;
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .section-title-wrap span {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* TYPOGRAPHY & CARDS */
+    h3.sub-title {
+      font-size: 1.18rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin: 1.75rem 0 1rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    h3.sub-title::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 1.1rem;
+      background: var(--accent-primary);
+      border-radius: 2px;
+    }
+
+    p {
+      margin-bottom: 1.25rem;
+      color: var(--text-main);
+      font-size: 0.96rem;
+      text-align: justify;
+    }
+
+    ul, ol {
+      margin: 0.75rem 0 1.25rem 1.5rem;
+      color: var(--text-main);
+      font-size: 0.95rem;
+    }
+
+    li {
+      margin-bottom: 0.45rem;
+    }
+
+    strong {
+      color: var(--accent-primary);
+      font-weight: 600;
+    }
+
+    /* CALLOUT BOXES */
+    .callout-box {
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      margin: 1.5rem 0;
+      border-left: 4px solid;
+      background: var(--bg-card);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .callout-box.info {
+      border-color: var(--accent-primary);
+      background: rgba(56, 189, 248, 0.08);
+    }
+
+    .callout-box.emerald {
+      border-color: var(--accent-emerald);
+      background: rgba(52, 211, 153, 0.08);
+    }
+
+    .callout-box.amber {
+      border-color: var(--accent-amber);
+      background: rgba(251, 191, 36, 0.08);
+    }
+
+    .callout-box.purple {
+      border-color: var(--accent-purple);
+      background: rgba(192, 132, 252, 0.08);
+    }
+
+    .callout-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 0.45rem;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .callout-content {
+      font-size: 0.91rem;
+      color: var(--text-main);
+      line-height: 1.7;
+    }
+
+    /* CARD GRIDS */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+      margin: 1.5rem 0;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin: 1.5rem 0;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    @media (max-width: 900px) {
+      .grid-2, .grid-3, .grid-4 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .feature-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.35rem;
+      transition: var(--transition);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--accent-primary);
+    }
+
+    .feature-card h4 {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .feature-card p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 0;
+      line-height: 1.6;
+    }
+
+    /* TABLE STYLING */
+    .table-container {
+      overflow-x: auto;
+      margin: 1.75rem 0;
+      border-radius: var(--radius);
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      box-shadow: var(--shadow-sm);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.89rem;
+      text-align: left;
+    }
+
+    thead th {
+      background: rgba(15, 23, 42, 0.7);
+      color: var(--text-main);
+      font-weight: 700;
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--border-color);
+      white-space: nowrap;
+    }
+
+    tbody td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-main);
+      vertical-align: middle;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    tbody tr:hover {
+      background: var(--bg-card-hover);
+    }
+
+    .text-center { text-align: center; }
+    .text-right { text-align: right; }
+
+    /* FIGURE CARDS */
+    .figure-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin: 2rem 0;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .figure-card img {
+      max-width: 100%;
+      height: auto;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+      background: #ffffff;
+      box-shadow: var(--shadow-md);
+      transition: var(--transition);
+    }
+
+    .figure-card img:hover {
+      transform: scale(1.01);
+    }
+
+    .figure-caption {
+      margin-top: 1rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .figure-source {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      margin-top: 0.25rem;
+    }
+
+    /* ACTION BUTTONS */
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.25rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition);
+      cursor: pointer;
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      color: var(--text-main);
+    }
+
+    .action-btn:hover {
+      background: var(--bg-card-hover);
+      color: var(--accent-primary);
+      border-color: var(--accent-primary);
+    }
+
+    .action-btn.primary {
+      background: linear-gradient(135deg, var(--accent-primary), #0284c7);
+      border: none;
+      color: #fff;
+    }
+
+    .action-btn.primary:hover {
+      filter: brightness(1.1);
+      box-shadow: 0 4px 12px rgba(56, 189, 248, 0.35);
+    }
+
+    /* MERMAID WRAPPER */
+    .mermaid-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin: 1.75rem 0;
+      display: flex;
+      justify-content: center;
+      overflow-x: auto;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        display: none;
+      }
+      .content-container {
+        padding: 1.5rem 1rem;
+      }
+      .chapter-hero {
+        padding: 1.75rem 1.25rem;
+      }
+      .hero-title {
+        font-size: 1.6rem;
+      }
+      .section-block {
+        padding: 1.5rem 1.25rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="progress-bar"></div>
+
+  <div class="app-layout">
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-brand">
+          <span class="brand-badge">SNA DISASTER LECTURE</span>
+          <button id="theme-toggle" class="theme-toggle-btn" title="테마 전환">
+            <i data-lucide="moon" id="theme-icon"></i>
+          </button>
+        </div>
+        <div>
+          <div class="sidebar-title">제10장 원촨 대지진 복구 네트워크</div>
+          <div class="sidebar-subtitle">Jia Lu (2017) | 종단적 RSiena 분석</div>
+        </div>
+        <div class="sidebar-search">
+          <i data-lucide="search"></i>
+          <input type="text" id="search-input" placeholder="목차 및 키워드 검색...">
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <ul class="toc-list" id="toc-list">
+          <li class="toc-item active"><a href="#sec-overview"><i data-lucide="book-open"></i> 연구 개요 및 목차</a></li>
+          <li class="toc-item"><a href="#sec-intro"><i data-lucide="info"></i> 1. 서론: 시민사회와 원촨 지진</a></li>
+          <li class="toc-item"><a href="#sec-theory"><i data-lucide="layers"></i> 2. 중국적 맥락의 시민사회 이론</a></li>
+          <li class="toc-item"><a href="#sec-methods"><i data-lucide="cpu"></i> 3. 연구 설계: SAOMs & RSiena</a></li>
+          <li class="toc-item"><a href="#sec-table101"><i data-lucide="table"></i> 4. Table 10.1 & 기술통계</a></li>
+          <li class="toc-item"><a href="#sec-results-response"><i data-lucide="activity"></i> 5. 긴급대응기 동태성 (Fig 10.2)</a></li>
+          <li class="toc-item"><a href="#sec-table102"><i data-lucide="git-pull-request"></i> 6. Table 10.2 & 복구기 동태성</a></li>
+          <li class="toc-item"><a href="#sec-resilience"><i data-lucide="shield-check"></i> 7. 구조적 레질리언스의 발현</a></li>
+          <li class="toc-item"><a href="#sec-synthesis9"><i data-lucide="check-square"></i> 8. 선행연구 9단계 종합 정리</a></li>
+          <li class="toc-item"><a href="#sec-fire-kpi"><i data-lucide="flame"></i> 9. 소방·현장 민관 협업 KPI (7:3)</a></li>
+          <li class="toc-item"><a href="#sec-q-method"><i data-lucide="users"></i> 10. Q방법론 확장: Q진술문 36선</a></li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <span>© 2017 Elsevier Inc.</span>
+        <a href="index.html"><i data-lucide="arrow-left"></i> 통합 포털</a>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT WRAPPER -->
+    <div class="main-wrapper">
+      <main class="content-container">
+
+        <!-- CHAPTER HERO -->
+        <section class="chapter-hero" id="sec-overview">
+          <div class="hero-meta-badges">
+            <span class="meta-badge badge-cyan"><i data-lucide="hash"></i> Chapter 10</span>
+            <span class="meta-badge badge-indigo"><i data-lucide="globe"></i> Wenchuan Earthquake 2008</span>
+            <span class="meta-badge badge-emerald"><i data-lucide="activity"></i> Stochastic Actor-Oriented Models</span>
+            <span class="meta-badge badge-amber"><i data-lucide="code"></i> RSiena 4.0</span>
+          </div>
+          <h1 class="hero-title">원촨 대지진 복구 과정에서의 조직 간 네트워크 동태성: 쓰촨성 시민사회 조직망의 종단적 진화</h1>
+          <p class="hero-subtitle">
+            Interorganizational Network Dynamics in the Wenchuan Earthquake Recovery: 
+            Longitudinal Modeling of Civil Society Organizational Networks
+          </p>
+          <div class="hero-author-box">
+            <div class="author-avatar">JL</div>
+            <div class="author-info">
+              <h4>Jia Lu (루지아 박사)</h4>
+              <p>California State University-Los Angeles & University of Southern California, United States</p>
+            </div>
+            <div style="margin-left:auto; display:flex; gap:0.5rem; flex-wrap:wrap;">
+              <a href="https://doi.org/10.1016/B978-0-12-805196-2.00010-8" target="_blank" class="action-btn">
+                <i data-lucide="external-link"></i> DOI 원문
+              </a>
+              <a href="chapter10-원문.md" class="action-btn primary">
+                <i data-lucide="file-text"></i> 마크다운 원문 보기
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 1: INTRODUCTION -->
+        <section class="section-block" id="sec-intro">
+          <div class="section-header">
+            <div class="section-icon icon-cyan"><i data-lucide="info"></i></div>
+            <div class="section-title-wrap">
+              <h2>1. 서론 및 문제의식 (Introduction)</h2>
+              <span>재난 주기 전반에서의 시민사회 역할과 절차적-행위 접근법</span>
+            </div>
+          </div>
+
+          <p>
+            재난 연구자들은 대비(preparedness), 긴급 대응(emergency response), 복구(recovery), 완화(mitigation) 등 재난 생애주기의 각 단계에서 공공 부문, 민간 부문, 그리고 자생적 시민 집단(emergent citizen groups) 간의 다차원적 상호작용을 연구해 왔습니다(Stallings & Quarantelli, 1985; Neal, 1997). 최근에는 부문 간 교차 상호작용(cross-sector interactions), 특히 재난 복구 과정에서 시민사회 행위자(civil society actors)의 능동적이고 선제적인 역할이 위험 경감과 장기적 지속가능 발전에 필수적인 요소로 강조되고 있습니다(Arnold, 2006).
+          </p>
+
+          <div class="grid-3">
+            <div class="feature-card">
+              <h4><i data-lucide="landmark"></i> 터키 골축 지진 (1999)</h4>
+              <p>국가의 부실 대응과 공백 속에서 시민 네트워크가 급속히 부상하며 국가-사회 관계가 재협상됨(Ganapati, 2005; Pelling & Dill, 2010).</p>
+            </div>
+            <div class="feature-card">
+              <h4><i data-lucide="alert-triangle"></i> 엘살바도르 미치 (1998)</h4>
+              <p>신자유주의 국가 정책과 지방자치단체의 기획·재건 역량 결핍으로 시민사회가 예방 및 완화를 주도함(Wisner, 2001).</p>
+            </div>
+            <div class="feature-card">
+              <h4><i data-lucide="home"></i> 일본 고베 대지진 (1995)</h4>
+              <p>국가는 물리적 인프라 재건에 집중한 반면, 시민사회는 사회적 인프라와 이재민 재정착을 주도하는 상호보완적 역할을 수행함(Aldrich, 2008).</p>
+            </div>
+          </div>
+
+          <div class="callout-box info">
+            <div class="callout-title" style="color:var(--accent-primary);"><i data-lucide="help-circle"></i> 연구의 학술적 공백 및 원촨 대지진의 독보적 위상</div>
+            <div class="callout-content">
+              <strong>절차적-행위 접근법(procedural-action approach)의 필요성</strong>: 교란(perturbances) 이후 시민사회의 행위자들이 사회적 적응 역량을 구축하면서 자신들의 역할을 어떻게 제도적으로 발전시키는지, 즉 긴급 대응에서 장기 복구로 전환되는 과정에 대한 종단적 연구는 전무했습니다.<br/>
+              <strong>2008년 중국 원촨 대지진(M8.0, 69,226명 사망)</strong>은 강력한 권위주의 국가 통제 하에서 유례없는 대규모 시민 자원봉사자와 풀뿌리 단체가 현장으로 쇄도한 사건으로, 자생적 시민사회의 발흥과 네트워크 진화 법칙을 규명할 수 있는 독보적인 자연실험 환경을 제공합니다.
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 2: THEORY -->
+        <section class="section-block" id="sec-theory">
+          <div class="section-header">
+            <div class="section-icon icon-indigo"><i data-lucide="layers"></i></div>
+            <div class="section-title-wrap">
+              <h2>2. 중국적 맥락에서의 시민사회 이론 (Civil Society Theory)</h2>
+              <span>이중 관리 체제(Dual Management)와 등록 장벽 속의 풀뿌리 다원화</span>
+            </div>
+          </div>
+
+          <p>
+            서구 자유민주주의 국가와 달리 중국은 1949년 신중국 건국 이후 1970년대 말까지 국가와 사회가 완전히 일체화(near-unity)되어 기능적 영역이 거의 중첩되었습니다(Han, 2002; Tang, 1996; Tao, 2009). 1978년 개혁개방은 사회적 다원화와 중국형 시민사회의 출현을 촉진한 직접적 동인입니다. 중국의 시민사회는 서구처럼 국가에 대항하여 자생한 것이 아니라, <strong>국가에 의해 촉진되고 사회주의 시장경제의 등장으로 육성되어 국가-시장 제도 간의 상호작용 속에서 형성</strong>되었습니다(Wu & Gong, 2008).
+          </p>
+
+          <div class="grid-2">
+            <div class="feature-card">
+              <h4><i data-lucide="building"></i> 관변 민간단체 (GONGOs)</h4>
+              <p>공산당-국가는 중화전국부녀연합회, 중화전국총공회 등 국가 통제 하의 관변단체를 운영하는 한편, 복합 사회서비스를 분담시키기 위해 사회복지단체와 업종협회를 전략적으로 육성함(Ma, 2006; Yu, 2009).</p>
+            </div>
+            <div class="feature-card">
+              <h4><i data-lucide="shield-alert"></i> 엄격한 설립 장벽 및 이중 관리 체제</h4>
+              <p>업무주관단위(주무관청)의 사전 승인 기피, 회원 50인 이상 요건, 동일 행정구역 내 동일 분야 중복 설립 금지(비경쟁 원칙) 등으로 인해 미등록 비공식 단체 수가 등록 단체의 10배에 달함(Wang, 2007).</p>
+            </div>
+          </div>
+
+          <div class="callout-box amber">
+            <div class="callout-title" style="color:var(--accent-amber);"><i data-lucide="alert-octagon"></i> 유커핑(Yu Keping, 2009)의 9대 시민사회 분류 중 '사회서비스조직'의 폭발</div>
+            <div class="callout-content">
+              원촨 대지진 직후 환경, 문화, 교육, 보건, 복지 등을 제공하는 <strong>사회서비스조직(Social service organizations)</strong>이 소셜미디어와 온라인 메신저를 통해 자생적으로 급증했습니다. 그러나 장기 복구 단계로 접어들며 합법적 등록 지위 부재로 인한 심각한 자금난과 행정적 한계에 부딪히게 되었습니다(Lu, 2013).
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 3: METHODS -->
+        <section class="section-block" id="sec-methods">
+          <div class="section-header">
+            <div class="section-icon icon-emerald"><i data-lucide="cpu"></i></div>
+            <div class="section-title-wrap">
+              <h2>3. 연구 설계 및 분석 방법론 (Research Design)</h2>
+              <span>SAOMs (확률적 행위자 지향 모델) 및 RSiena 종단 분석</span>
+            </div>
+          </div>
+
+          <h3 class="sub-title">1) 네트워크 경계 및 소통 내용 규정</h3>
+          <p>
+            본 연구는 전체 네트워크(Whole network)를 분석 단위로 삼으며, 긴급대응기($t_2$)에 참여하여 장기복구기($t_3$)까지 지속적으로 활동한 136개 시민사회 조직과 정부 통합 노드 1개, 시장 기업 통합 노드 1개 등 총 138개 행위자를 표본으로 설정했습니다. 정보 탐색 및 교환(Information exchange)을 소통 네트워크의 핵심 내용으로 규정했습니다(Laumann & Knoke, 1987).
+          </p>
+
+          <h3 class="sub-title">2) 결측치 보정 (Missingness Treatment)</h3>
+          <p>
+            총 136개 시민단체 중 63개 반환으로 응답률은 <strong>46.32%</strong>였습니다. 종단 네트워크 분석의 결측 편향을 극복하기 위해 2단계 과학적 보정을 적용했습니다:
+          </p>
+          <ol>
+            <li><strong>UCINET 핵심-주변부 분석(CORR 알고리즘)</strong>: 3개 시점 전반에 걸쳐 지속적으로 핵심 위치를 유지한 <strong>70개 핵심 행위자(Core actors)</strong> 추출.</li>
+            <li><strong>RSiena 조직 구성 변화(Composition Change) 기능</strong>: 각 조직의 네트워크 진입 시점을 외생적 사건으로 명시하여 <strong>최종 결측률을 15.7%로 통제</strong>(RSiena 권장 안전 범위인 10%~20% 달성; Ripley et al., 2012).</li>
+          </ol>
+
+          <h3 class="sub-title">3) RSiena 확률적 행위자 지향 모델 (SAOMs) 수식 체계</h3>
+          <div class="callout-box purple">
+            <div class="callout-title" style="color:var(--accent-purple);"><i data-lucide="function-square"></i> 행위자의 목적 함수 (Objective Function)</div>
+            <div class="callout-content">
+              $$f_i(\beta, x) = \sum_{k=1}^L \beta_k s_{ik}(x)$$
+              <ul>
+                <li>$i$: 초점 행위자 (Ego)</li>
+                <li>$\beta_k$: 통계적 추정 모수 (효과 $s_{ik}(x)$의 가중치 및 선형 예측인자)</li>
+                <li>$s_{ik}(x)$: 네트워크 구조 효과(상호성, 전이성 등) 및 공변량(등록 여부, 활동 분야 등)으로 구성된 목적 함수. 각 행위자는 자신의 목적 함수 값을 극대화하는 방향으로 네트워크 연계를 생성, 유지 또는 단절함.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 4: TABLE 10.1 & DESCRIPTIVES -->
+        <section class="section-block" id="sec-table101">
+          <div class="section-header">
+            <div class="section-icon icon-amber"><i data-lucide="table"></i></div>
+            <div class="section-title-wrap">
+              <h2>4. Table 10.1 및 소통 네트워크 기술통계</h2>
+              <span>지진 전($t_1$), 긴급대응기($t_2$), 장기복구기($t_3$) 3개 시점의 기초 지표 비교</span>
+            </div>
+          </div>
+
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>측정 지표 (Measures)</th>
+                  <th class="text-center">지진 이전 ($t_1$)<br/><em>Preearthquake</em></th>
+                  <th class="text-center">긴급대응기 ($t_2$)<br/><em>Emergency Response</em></th>
+                  <th class="text-center">장기복구기 ($t_3$)<br/><em>Disaster Recovery</em></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>평균 내향차수 (Average Indegree)</strong></td>
+                  <td class="text-center" style="color:var(--accent-primary); font-weight:700;">2.7</td>
+                  <td class="text-center" style="color:var(--accent-emerald); font-weight:700;">9.8</td>
+                  <td class="text-center" style="color:var(--accent-amber); font-weight:700;">11.1</td>
+                </tr>
+                <tr>
+                  <td><strong>표준편차 (Standard Deviation in / out)</strong></td>
+                  <td class="text-center">2.9 / 5.2</td>
+                  <td class="text-center">6.8 / 13.5</td>
+                  <td class="text-center">6.9 / 14.0</td>
+                </tr>
+                <tr>
+                  <td><strong>상호성 (Reciprocity)</strong></td>
+                  <td class="text-center">0.11</td>
+                  <td class="text-center">0.15</td>
+                  <td class="text-center" style="font-weight:700;">0.17</td>
+                </tr>
+                <tr>
+                  <td><strong>군집화 계수 (Clustering)</strong></td>
+                  <td class="text-center">0.17</td>
+                  <td class="text-center">0.24</td>
+                  <td class="text-center" style="font-weight:700;">0.28</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- FIGURE 10.1 EMBEDDED -->
+          <div class="figure-card">
+            <img src="image-38.png" alt="Figure 10.1 Preearthquake communication network">
+            <div class="figure-caption">FIGURE 10.1 Preearthquake communication network (지진 이전 소통 네트워크)</div>
+            <div class="figure-source">출처: Lu, J. (2013/2017). Wenchuan Recovery Civil Society Networks (UMI No. 3609950). Elsevier.</div>
+          </div>
+
+          <div class="callout-box emerald">
+            <div class="callout-title" style="color:var(--accent-emerald);"><i data-lucide="check-circle"></i> 기술통계 3대 핵심 시사점</div>
+            <div class="callout-content">
+              1. <strong>연결성의 폭발적 팽창</strong>: 평균 차수가 지진 전 2.7에서 지진 직후 9.8로 3.6배 급증하며, 고립되어 있던 행위자들이 대거 중심 네트워크로 흡수됨.<br/>
+              2. <strong>구조적 지속성</strong>: 복구기($t_3$)에도 차수가 11.1로 지속 상승하고 상호성(0.17)과 군집화(0.28)가 계속 심화되어 네트워크 해체가 아닌 안정적 응집을 유지함.<br/>
+              3. <strong>외향 차수 변동성(14.0)의 우세</strong>: 내향 차수(6.9)보다 외향 차수의 변동성이 2배 이상 높음은, 정보 발신에 적극적인 조직과 소극적인 조직 간 행위 주도성(Agency motivation)의 차별화가 뚜렷했음을 실증함.
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 5: EMERGENCY RESPONSE DYNAMICS -->
+        <section class="section-block" id="sec-results-response">
+          <div class="section-header">
+            <div class="section-icon icon-cyan"><i data-lucide="activity"></i></div>
+            <div class="section-title-wrap">
+              <h2>5. 긴급대응기 소통망 동태성 ($t_1 \to t_2$)</h2>
+              <span>삼원소 폐쇄, 위계 형성, 그리고 이질적 등록 지위 간 상호성</span>
+            </div>
+          </div>
+
+          <!-- FIGURE 10.2 EMBEDDED -->
+          <div class="figure-card">
+            <img src="image-39.png" alt="Figure 10.2 Disaster response communication network">
+            <div class="figure-caption">FIGURE 10.2 Disaster response communication network (지진 긴급대응기 소통 네트워크)</div>
+            <div class="figure-source">출처: Lu, J. (2013/2017). Wenchuan Recovery Civil Society Networks (UMI No. 3609950). Elsevier.</div>
+          </div>
+
+          <div class="grid-2">
+            <div class="feature-card">
+              <h4><i data-lucide="refresh-cw"></i> 상호성 추구 (Reciprocity = 0.41†)</h4>
+              <p>지진 직후 시민단체들은 상호 간 정보 교환에 긍정적으로 화답하며 자생적 시민사회의 맹아를 형성함.</p>
+            </div>
+            <div class="feature-card">
+              <h4><i data-lucide="triangle"></i> 전이적 삼원소군 (Triplets = 0.11**)</h4>
+              <p>"친구의 친구는 친구가 된다"는 삼각 폐쇄가 작동. 3-순환(-0.12, n.s.) 부재로 위계적 질서가 유지됨.</p>
+            </div>
+            <div class="feature-card">
+              <h4><i data-lucide="trending-up"></i> 인기 집중화 (Indegree Pop. = 0.93**)</h4>
+              <p>초기 많은 정보 요청을 받은 핵심 조직으로 추가 연결이 집중되는 마태 효과(부익부 빈익빈) 발현.</p>
+            </div>
+            <div class="feature-card">
+              <h4><i data-lucide="user-x"></i> 과도한 발신 기피 (Outdegree Pop. = -0.17*)</h4>
+              <p>혼자서 너무 많은 곳에 일방적으로 연락하는 조직은 파트너로서의 인기가 유의하게 하락함.</p>
+            </div>
+          </div>
+
+          <div class="callout-box purple" style="margin-top:1.5rem;">
+            <div class="callout-title" style="color:var(--accent-purple);"><i data-lucide="sparkles"></i> ★ 핵심 발견: 등록 유사성과 상호성의 역관계 (-1.39**)</div>
+            <div class="callout-content">
+              통상적인 동류성(Homophily) 이론과 달리, <strong>등록 상태가 서로 다른 조직 간(공식 등록 관변단체 ↔ 미등록 풀뿌리 단체)의 연계에서 가장 강력한 상호성이 발현</strong>되었습니다. 같은 부류끼리의 소통보다 이질적인 제도적 지위를 가진 조직에 손을 내밀고 응답을 받았을 때 행위자들의 만족감과 협업 효능감이 극대화되었음을 입증합니다.
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 6: TABLE 10.2 & RECOVERY DYNAMICS -->
+        <section class="section-block" id="sec-table102">
+          <div class="section-header">
+            <div class="section-icon icon-emerald"><i data-lucide="git-pull-request"></i></div>
+            <div class="section-title-wrap">
+              <h2>6. Table 10.2 및 장기복구기 소통망 동태성 ($t_2 \to t_3$)</h2>
+              <span>풀뿌리 조직의 정보 주역 부상 및 활동 분야별 구조적 분화</span>
+            </div>
+          </div>
+
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>모형 효과 (Model Effect)</th>
+                  <th class="text-center">긴급대응기 ($t_1 \to t_2$)<br/>모수추정치 (표준오차)</th>
+                  <th class="text-center">장기복구기 ($t_2 \to t_3$)<br/>모수추정치 (표준오차)</th>
+                  <th>학술적 의미 및 현장 해석</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background:rgba(255,255,255,0.03); font-weight:700;"><td colspan="4">Within Network (네트워크 내적 구조 효과)</td></tr>
+                <tr>
+                  <td>• Outdegree (밀도 기저)</td>
+                  <td class="text-center">−3.30** (0.18)</td>
+                  <td class="text-center">−4.18** (0.69)</td>
+                  <td>연계 형성의 희소성 및 기저 비용 반영</td>
+                </tr>
+                <tr>
+                  <td>• <strong>Reciprocity (상호성)</strong></td>
+                  <td class="text-center" style="color:var(--accent-primary);">0.41† (0.23)</td>
+                  <td class="text-center" style="color:var(--accent-emerald); font-weight:800;">0.91** (0.17)</td>
+                  <td><strong>복구기에 상호성이 2배 이상 강화</strong> (일시적 충동이 아닌 장기 헌신 증명)</td>
+                </tr>
+                <tr>
+                  <td>• Transitive triplets (전이적 삼원소군)</td>
+                  <td class="text-center">0.11** (0.04)</td>
+                  <td class="text-center">0.08* (0.05)</td>
+                  <td>중개자를 통한 신뢰 군집화 유지</td>
+                </tr>
+                <tr>
+                  <td>• Three cycles (3-순환)</td>
+                  <td class="text-center">−0.12 (0.07)</td>
+                  <td class="text-center">0.01 (0.35)</td>
+                  <td>비유의 (수평적 순환구조 부재)</td>
+                </tr>
+                <tr>
+                  <td>• Transitive ties (전이적 연계)</td>
+                  <td class="text-center">−0.89** (0.21)</td>
+                  <td class="text-center" style="color:var(--accent-emerald); font-weight:700;">1.01** (0.01)</td>
+                  <td>복구기에 강력한 정(+)의 전이 연계 완성</td>
+                </tr>
+                <tr>
+                  <td>• Balance (균형 효과)</td>
+                  <td class="text-center">−0.09** (0.01)</td>
+                  <td class="text-center">−0.01 (0.06)</td>
+                  <td>복구기에 비유의화 (구조적 안정화 달성)</td>
+                </tr>
+                <tr>
+                  <td>• Indegree popularity (내향차수 인기)</td>
+                  <td class="text-center">0.93** (0.07)</td>
+                  <td class="text-center">0.43** (0.12)</td>
+                  <td>인기 조직 중심화 지속 (지위 효과 잔존)</td>
+                </tr>
+                <tr>
+                  <td>• Outdegree popularity (외향차수 인기)</td>
+                  <td class="text-center">−0.17* (0.08)</td>
+                  <td class="text-center">−0.29* (0.13)</td>
+                  <td>과도한 발신 조직에 대한 파트너 기피 지속</td>
+                </tr>
+                <tr style="background:rgba(255,255,255,0.03); font-weight:700;"><td colspan="4">Registration (등록 지위 효과)</td></tr>
+                <tr>
+                  <td>• <strong>Int. Registration similarity × reciprocity</strong></td>
+                  <td class="text-center" style="color:var(--accent-purple); font-weight:700;">−1.39** (0.40)</td>
+                  <td class="text-center" style="color:var(--accent-purple); font-weight:700;">−0.48† (0.13)</td>
+                  <td><strong>등록-미등록 간 이종 상호성 지속</strong> (포용적 생태계)</td>
+                </tr>
+                <tr>
+                  <td>• <strong>Registration ego (미등록 풀뿌리)</strong></td>
+                  <td class="text-center">– (–)</td>
+                  <td class="text-center" style="color:var(--accent-amber); font-weight:800;">0.41** (0.25)</td>
+                  <td><strong>복구기 미등록 풀뿌리가 정보 발신의 핵심 주체 부상</strong></td>
+                </tr>
+                <tr style="background:rgba(255,255,255,0.03); font-weight:700;"><td colspan="4">Activity (복구 활동 분야 효과: $t_2 \to t_3$)</td></tr>
+                <tr>
+                  <td>• <strong>Housing ego × Housing alter (동류성)</strong></td>
+                  <td class="text-center">– (–)</td>
+                  <td class="text-center" style="color:var(--accent-rose); font-weight:800;">0.84** (0.11)</td>
+                  <td><strong>주택 재건 단체 간 폐쇄적 끼리끼리 소통 강력</strong></td>
+                </tr>
+                <tr>
+                  <td>• <strong>Elderly_disabled alter (수신 인기)</strong></td>
+                  <td class="text-center">– (–)</td>
+                  <td class="text-center" style="color:var(--accent-emerald); font-weight:800;">0.84** (0.11)</td>
+                  <td><strong>노인·장애인 지원 단체로 전방위 정보 요청 쇄도</strong></td>
+                </tr>
+                <tr>
+                  <td>• <strong>Women_children ego × alter (동류성)</strong></td>
+                  <td class="text-center">– (–)</td>
+                  <td class="text-center" style="color:var(--accent-primary); font-weight:700;">0.74** (0.22)</td>
+                  <td>여성·아동 지원 단체 간 강력한 협력 클러스터</td>
+                </tr>
+                <tr>
+                  <td>• Environment ego × alter (동류성)</td>
+                  <td class="text-center">– (–)</td>
+                  <td class="text-center">−0.50** (0.23)</td>
+                  <td>환경 단체 간 소통 분절 및 고립</td>
+                </tr>
+                <tr>
+                  <td>• <strong>Psychology ego × alter (동류성)</strong></td>
+                  <td class="text-center">– (–)</td>
+                  <td class="text-center" style="color:var(--accent-emerald); font-weight:700;">0.40** (0.23)</td>
+                  <td>심리지원 단체 간 유의미한 상호 연계 형성</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- FIGURE 10.3 EMBEDDED -->
+          <div class="figure-card">
+            <img src="image-40.png" alt="Figure 10.3 Disaster recovery communication network">
+            <div class="figure-caption">FIGURE 10.3 Disaster recovery communication network (지진 장기복구기 소통 네트워크)</div>
+            <div class="figure-source">출처: Lu, J. (2013/2017). Wenchuan Recovery Civil Society Networks (UMI No. 3609950). Elsevier.</div>
+          </div>
+        </section>
+
+        <!-- SECTION 7: STRUCTURAL RESILIENCE -->
+        <section class="section-block" id="sec-resilience">
+          <div class="section-header">
+            <div class="section-icon icon-purple"><i data-lucide="shield-check"></i></div>
+            <div class="section-title-wrap">
+              <h2>7. 구조적 레질리언스의 발현 (Structural Resilience)</h2>
+              <span>다양성과 응집력의 공존: 재난 네트워크의 3대 진화 축</span>
+            </div>
+          </div>
+
+          <div class="grid-3">
+            <div class="feature-card">
+              <h4>1. 미시 구조의 지속성 & 지위 다양성</h4>
+              <p>상호성과 전이적 폐쇄가 일회성에 그치지 않고 장기화됨. 등록-미등록 조직 간의 교차 정보 교환으로 사회적 포용성 달성.</p>
+            </div>
+            <div class="feature-card">
+              <h4>2. 초기 인기 조직의 위계적 질서</h4>
+              <p>긴급대응기에서 높은 인기를 누렸던 핵심 조직들이 복구기에도 신뢰받는 허브 역할을 수행하여 네트워크 파편화 방지.</p>
+            </div>
+            <div class="feature-card">
+              <h4>3. 기능별 차별화된 구조 형성</h4>
+              <p>주택의 폐쇄적 클러스터, 노인·장애인의 정보 집중, 여성·심리의 개방적 연계 등 분야별 고유 구조가 재난 충격을 분산 흡수함.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 8: 9-STEP SYNTHESIS -->
+        <section class="section-block" id="sec-synthesis9">
+          <div class="section-header">
+            <div class="section-icon icon-cyan"><i data-lucide="check-square"></i></div>
+            <div class="section-title-wrap">
+              <h2>8. 박사학위 논문 선행연구 9단계 종합 분석 매트릭스</h2>
+              <span>GEMINI.md 연구원칙 및 표준 작성 템플릿 준수</span>
+            </div>
+          </div>
+
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width:70px;" class="text-center">순서</th>
+                  <th style="width:160px;">단계</th>
+                  <th>주요 내용 및 본문 매핑</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="text-center"><strong>1</strong></td>
+                  <td><strong>연구배경</strong></td>
+                  <td>2008년 중국 원촨 대지진(M8.0, 6.9만 명 사망)을 계기로 분출한 시민사회의 선제적 구호 활동. 권위주의 국가 통제 하에서 시민사회의 종단적 네트워크 진화 과정에 대한 실증적 연구 부재.</td>
+                </tr>
+                <tr>
+                  <td class="text-center"><strong>2</strong></td>
+                  <td><strong>이론적 개념</strong></td>
+                  <td>• <strong>사회연결망 동태성(Network Dynamics)</strong>: 상호성, 전이성, 구조적 균형 등 미시 구조 진화.<br/>• <strong>이중 관리 체제(Dual Management)</strong>: NGO 등록 장벽과 비공식 풀뿌리 조직의 분화.<br/>• <strong>구조적 레질리언스(Structural Resilience)</strong>: 다양성과 응집력을 유지하는 네트워크 적응 역량.</td>
+                </tr>
+                <tr>
+                  <td class="text-center"><strong>3</strong></td>
+                  <td><strong>연구목적</strong></td>
+                  <td>지진 전($t_1$), 대응기($t_2$), 복구기($t_3$)에 걸친 조직 간 소통망의 구조적 변화 법칙과 행위자 등록 지위 및 복구 활동 분야가 소통망 형성에 미치는 종단적 영향 실증.</td>
+                </tr>
+                <tr>
+                  <td class="text-center"><strong>4</strong></td>
+                  <td><strong>연구방법</strong></td>
+                  <td>3-wave 전체망 패널 조사. 쓰촨 현장 136개 시민단체 중 63개 응답(46.3%) → UCINET 핵심-주변부(CORR) 70개 핵심 노드 추출 + RSiena 구성변화 모델링으로 최종 결측률 15.7% 통제. SAOMs 분석.</td>
+                </tr>
+                <tr>
+                  <td class="text-center"><strong>5</strong></td>
+                  <td><strong>연구결과</strong></td>
+                  <td>평균 차수(2.7 → 9.8 → 11.1), 상호성(0.11 → 0.15 → 0.17) 상승. 상호성($0.41 \to 0.91^{**}$), 전이적 삼원소($0.11^{**} \to 0.08^{*}$) 유의. 등록 유사성×상호성($-1.39^{**} \to -0.48^{\dagger}$) 음수 확인.</td>
+                </tr>
+                <tr>
+                  <td class="text-center"><strong>6</strong></td>
+                  <td><strong>핵심 발견</strong></td>
+                  <td>• <strong>충동을 넘어선 구조적 헌신</strong>: 상호성과 삼원소 폐쇄가 장기 복구기까지 유지·심화.<br/>• <strong>이질적 등록 지위 간 상호성</strong>: 공식 등록 단체와 비공식 풀뿌리 단체 간의 편견 없는 교차 소통.<br/>• <strong>분야별 분화</strong>: 주택 재건의 폐쇄적 동류성($0.84^{**}$)과 취약계층망의 정보 집중 공존.</td>
+                </tr>
+                <tr>
+                  <td class="text-center"><strong>7</strong></td>
+                  <td><strong>연구의 한계</strong></td>
+                  <td>핵심 70개 노드 중심 분석으로 주변부 소외 조직 누락 가능성. 3년 후 회상 조사로 인한 후향적 편향 존재. 정부와 시장 노드를 단일 노드로 단순화하여 다부문 역학 분석 제한.</td>
+                </tr>
+                <tr>
+                  <td class="text-center"><strong>8</strong></td>
+                  <td><strong>이론적 시사점</strong></td>
+                  <td>권위주의 국가 맥락에서도 재난 위기가 자생적 다원주의(Pluralism)와 레질리언스를 점화함을 입증. '유유상종(Homophily)' 가설을 기각하고 '이질성 기반 상호성'의 가치 규명.</td>
+                </tr>
+                <tr>
+                  <td class="text-center"><strong>9</strong></td>
+                  <td><strong>후속연구 시사점</strong></td>
+                  <td>공공-민간-시민사회 다층 네트워크(Multilevel Multiplex Networks) 모형으로의 확장. 소통 구조 진화가 실제 이재민 수혜율과 복구 속도에 미치는 인과관계 실증.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- SECTION 9: FIRE & RESCUE KPI -->
+        <section class="section-block" id="sec-fire-kpi">
+          <div class="section-header">
+            <div class="section-icon icon-amber"><i data-lucide="flame"></i></div>
+            <div class="section-title-wrap">
+              <h2>9. ★ [내 연구 적용] 소방·행정 관서와 민간 자생조직 간 협업 체계 및 KPI</h2>
+              <span>교수님 심화 지도: 소방 고유 지표 70% vs 민관 협업 지표 30% 전략적 배분</span>
+            </div>
+          </div>
+
+          <div class="mermaid-box">
+            <div class="mermaid">
+flowchart LR
+    A["[1단계] 평시 거버넌스<br/>(민간·풀뿌리 DB화)"] --> B["[2단계] 긴급대응 (t1->t2)<br/>(3각 신뢰 연계 구축)"]
+    B --> C["[3단계] 장기복구 (t2->t3)<br/>(이종 상호성 지원)"]
+    C --> D["[4단계] Q방법론 평가<br/>(주관적 인식 유형화)"]
+            </div>
+          </div>
+
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th class="text-center">분류</th>
+                  <th class="text-center">단계</th>
+                  <th class="text-center">가중치</th>
+                  <th>핵심 성과지표 (KPI)</th>
+                  <th>산출식 및 측정 기준</th>
+                  <th>판단 근거 (Ch.10 매핑)</th>
+                  <th>관련 법적 근거</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="text-center" rowspan="3"><strong>소방 고유<br/>(70%)</strong></td>
+                  <td class="text-center">예방</td>
+                  <td class="text-center">20%</td>
+                  <td><strong>관내 민간 자율구호조직 네트워크 등록률</strong></td>
+                  <td>$(\text{사전 등록된 민간·풀뿌리 조직 수} / \text{총 파악 조직 수}) \times 100 \ge 85\%$</td>
+                  <td>Table 10.1 (t1 고립 노드의 사전 파악 및 통합 관리)</td>
+                  <td><strong>소방기본법</strong> 제16조의2<br/>(소방안전지원활동)</td>
+                </tr>
+                <tr>
+                  <td class="text-center">대비</td>
+                  <td class="text-center">25%</td>
+                  <td><strong>민관 합동 현장 긴급소통 훈련 이수율</strong></td>
+                  <td>$(\text{합동 통신망 훈련 이수 조직 수} / \text{등록 민간 조직 수}) \times 100 \ge 90\%$</td>
+                  <td>Table 10.2 (초기 혼선 방지 및 Indegree 인기 집중도 관리)</td>
+                  <td><strong>재난 및 안전관리 기본법</strong> 제35조<br/>(재난대비훈련)</td>
+                </tr>
+                <tr>
+                  <td class="text-center">대응</td>
+                  <td class="text-center">25%</td>
+                  <td><strong>현장 3각 신뢰연계(전이적 삼원소) 형성률</strong></td>
+                  <td>$(\text{소방-의소대-민간 합동 현장팀 가동 건수} / \text{총 출동 분과 수}) \times 100 \ge 95\%$</td>
+                  <td>Table 10.2 Transitive triplets ($0.11^{**}$) 현장 구현</td>
+                  <td><strong>119구조·구급에 관한 법률</strong> 제13조<br/>(현장지휘)</td>
+                </tr>
+                <tr>
+                  <td class="text-center" rowspan="2"><strong>기관 협업<br/>(30%)</strong></td>
+                  <td class="text-center">대응</td>
+                  <td class="text-center">15%</td>
+                  <td><strong>이질적 주체 간 교차 정보 상호성 지수</strong></td>
+                  <td>소방·행정 ↔ 미등록 풀뿌리 단체 간 양방향 정보 교환 건수 평가 (1~5점)</td>
+                  <td>Int. Registration similarity × reciprocity ($-1.39^{**}$ 이종 상호성)</td>
+                  <td><strong>재난 및 안전관리 기본법</strong> 제4조<br/>(국가와 지자체의 책무)</td>
+                </tr>
+                <tr>
+                  <td class="text-center">복구</td>
+                  <td class="text-center">15%</td>
+                  <td><strong>취약계층 심리·사회복지 협업 연계율</strong></td>
+                  <td>$(\text{소방 이송 후 민간 심리·복지단체 인계 완료 건} / \text{요청 건}) \times 100 \ge 90\%$</td>
+                  <td>Table 10.2 Elderly/Disabled Alter ($0.84^{**}$), Psychology ($0.40^{**}$)</td>
+                  <td><strong>재해구호법</strong> 제4조·제9조<br/>(이재민 심리지원)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="callout-box emerald">
+            <div class="callout-title" style="color:var(--accent-emerald);"><i data-lucide="scale"></i> 조문 단위 강제 법적 근거</div>
+            <div class="callout-content">
+              <ul>
+                <li><strong>재난 및 안전관리 기본법 제4조(국가 등의 책무)</strong>: 재난 발생 시 공공기관뿐만 아니라 민간 협력체계를 가동하여 이재민을 보호할 국가적 책무 명시.</li>
+                <li><strong>재난 및 안전관리 기본법 제35조(재난대비훈련)</strong>: 중앙행정기관, 지자체 및 소방관서는 민간단체와 합동으로 정기적인 재난대비훈련 실시 의무화.</li>
+                <li><strong>소방기본법 제16조의2(소방안전지원활동)</strong>: 소방관서장은 민간 자율소방단체와의 협력을 통해 화재 예방 및 구호 활동을 지원할 수 있음.</li>
+                <li><strong>의용소방대 설치 및 운영에 관한 법률 제7조(임무)</strong>: 의용소방대는 화재 등 재난 현장에서 소방관서를 보조하고 지역 자율방재단과의 가교 역할 수행.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 10: Q-METHODOLOGY -->
+        <section class="section-block" id="sec-q-method">
+          <div class="section-header">
+            <div class="section-icon icon-purple"><i data-lucide="users"></i></div>
+            <div class="section-title-wrap">
+              <h2>10. 주관성 연구(Q방법론) 확장: Q진술문 (36선) 및 P표본 설계</h2>
+              <span>재난 대응 민관 협업 성공 요인에 대한 주관적 인식 유형화</span>
+            </div>
+          </div>
+
+          <p>
+            <strong>연구 목적</strong>: 재난 긴급대응 및 장기복구 단계에서 소방관과 민간 활동가가 인지하는 '민관 협업 네트워크 성공 요인'의 주관적 인식 유형을 도출함.<br/>
+            <strong>P-표본 (P-Sample, 40명 내외)</strong>: 소방공무원 12명, 의용소방대 및 재난과 공무원 10명, 등록 비영리 구호단체 10명, 미등록 풀뿌리 자원봉사자 및 이장 8명.
+          </p>
+
+          <div class="grid-2">
+            <div class="feature-card">
+              <h4>[A] 예방 및 사전 거버넌스 단계 (Q01 ~ Q09)</h4>
+              <p style="font-size:0.83rem;">
+                • Q01: 평상시 비공식 풀뿌리 단체까지 포함하는 민관 소통 명부가 작성되어 있어야 비상시 혼선이 없다.<br/>
+                • Q02: 공공기관에 정식 등록된 단체만을 파트너로 인정하는 현행 제도는 현장 대응력을 약화시킨다.<br/>
+                • Q03: 관할 소방서와 민간 자원봉사단체 간의 정기적인 친목 및 간담회가 위기 시 협업을 촉진한다.<br/>
+                • Q07: 사전 협약(MOU) 체결보다는 현장 실무자 간의 개인적 유대와 신뢰가 훨씬 더 중요하다.<br/>
+                • Q09: 지역의 자생적 종교단체나 번영회 등도 잠재적인 재난 구호 네트워크의 핵심 자원이다.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h4>[B] 긴급대응 단계 (Q10 ~ Q18)</h4>
+              <p style="font-size:0.83rem;">
+                • Q10: 재난 초기에는 강력한 단일 지휘체계(공식 소방 지휘) 하에 일사불란하게 통제되어야 한다.<br/>
+                • Q11: 초기 상황에서는 공식 절차보다 현장의 비공식 단체들이 자발적으로 움직여야 골든타임을 지킨다.<br/>
+                • Q12: 소방-의용소방대-현지 이장 간의 긴밀한 3각 소통이 초기 인명구조의 결정적 요인이다.<br/>
+                • Q15: 긴급대응기에는 서로 다른 출신의 조직들이라도 정보 요청에 즉각적으로 쌍방향 응답해야 한다.<br/>
+                • Q16: 현장에서는 이미 지명도가 높은 유명 구호단체에만 정보와 자원이 쏠리는 현상이 심각하다.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h4>[C] 장기복구 및 안정화 단계 (Q19 ~ Q27)</h4>
+              <p style="font-size:0.83rem;">
+                • Q19: 응급 대응이 끝나면 정부의 관심이 급감하므로 민간 풀뿌리 단체들의 역할이 더욱 중요해진다.<br/>
+                • Q20: 복구 단계에서는 일방적 지휘 통제보다 수평적 네트워크 협력 거버넌스가 작동해야 한다.<br/>
+                • Q21: 주택 복구 단체들은 자기들끼리만 정보를 공유하고 다른 복구 단체들과는 소통하지 않는다.<br/>
+                • Q22: 노인, 장애인 등 사회적 약자를 돌보는 단체에 복구 자원과 정보가 최우선적으로 집중되어야 한다.<br/>
+                • Q24: 미등록 비공식 단체들이 재정난으로 현장을 떠나지 않도록 행정적·재정적 지원이 뒷받침되어야 한다.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h4>[D] 제도 개선 및 구조적 평가 (Q28 ~ Q36)</h4>
+              <p style="font-size:0.83rem;">
+                • Q28: 비공식 단체들이 법적 등록 장벽 때문에 공적 자금 지원에서 배제되는 것은 불합리하다.<br/>
+                • Q30: 민관 협력의 성패는 상호 존중과 신뢰라는 사회자본의 축적 정도에 달려 있다.<br/>
+                • Q31: 재난 대응 협업 평가 시 민간 조직과의 연계 실적(KPI)을 공무원 근무평정에 의무 반영해야 한다.<br/>
+                • Q32: 공공과 민간의 역할은 7:3 정도로 공공이 중심을 잡고 민간이 보조하는 구조가 가장 안전하다.<br/>
+                • Q33: 현장 상황에 따라서는 민간이 주도하고 공공이 행정 지원을 뒷받침하는 5:5 대등 모델이 필요하다.
+              </p>
+            </div>
+          </div>
+
+          <div class="callout-box info" style="margin-top:1.5rem;">
+            <div class="callout-title" style="color:var(--accent-primary);"><i data-lucide="layers"></i> 도출 예상 인식 유형 (4대 Typologies)</div>
+            <div class="callout-content">
+              <strong>유형 1: 공공 주도 엄격 통제형 (Command & Control)</strong> — 소방·행정의 일원화된 지휘권 우선.<br/>
+              <strong>유형 2: 풀뿌리 자율 연계형 (Grassroots Autonomy)</strong> — 미등록 비공식 단체의 자발성과 상향식 대응 강조.<br/>
+              <strong>유형 3: 전문 분과 폐쇄형 (Sectoral Specialization)</strong> — 주택, 의료, 복지 등 분야별 전문성과 분과 내 결속 중시.<br/>
+              <strong>유형 4: 다원적 포용 가교형 (Pluralistic Inclusive Bridgers)</strong> — 공공-민간, 등록-미등록 간의 이종 상호성과 네트워크 레질리언스 지향.
+            </div>
+          </div>
+        </section>
+
+        <!-- FOOTER NAV -->
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:3.5rem; padding-top:2rem; border-top:1px solid var(--border-color); flex-wrap:wrap; gap:1rem;">
+          <a href="chapter9_subnote.html" class="action-btn">
+            <i data-lucide="arrow-left"></i> 이전: Chapter 9 플로리다 가족의 부담
+          </a>
+          <a href="index.html" class="action-btn primary">
+            <i data-lucide="grid"></i> SNA 통합 포털로 이동
+          </a>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <script>
+    // Lucide Icons Render
+    lucide.createIcons();
+
+    // Reading Progress Bar
+    window.addEventListener('scroll', () => {
+      const winScroll = document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('progress-bar').style.width = scrolled + '%';
+    });
+
+    // Theme Toggle
+    const themeBtn = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    let isLight = false;
+
+    themeBtn.addEventListener('click', () => {
+      isLight = !isLight;
+      if (isLight) {
+        document.documentElement.setAttribute('data-theme', 'light');
+        themeIcon.setAttribute('data-lucide', 'sun');
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+        themeIcon.setAttribute('data-lucide', 'moon');
+      }
+      lucide.createIcons();
+    });
+
+    // TOC Active State on Scroll
+    const trackedBlocks = document.querySelectorAll('.section-block, .chapter-hero');
+    const navItems = document.querySelectorAll('.toc-item');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      trackedBlocks.forEach(block => {
+        const blockTop = block.offsetTop;
+        if (window.pageYOffset >= blockTop - 140) {
+          current = block.getAttribute('id');
+        }
+      });
+
+      navItems.forEach(item => {
+        item.classList.remove('active');
+        const link = item.querySelector('a');
+        if (link && link.getAttribute('href') === `#${current}`) {
+          item.classList.add('active');
+        }
+      });
+    });
+
+    // Sidebar Search Filter
+    const searchInput = document.getElementById('search-input');
+    const tocList = document.getElementById('toc-list');
+    const tocLinks = tocList.getElementsByTagName('li');
+
+    searchInput.addEventListener('input', (e) => {
+      const term = e.target.value.toLowerCase();
+      Array.from(tocLinks).forEach(li => {
+        const text = li.innerText.toLowerCase();
+        if (text.includes(term)) {
+          li.style.display = 'block';
+        } else {
+          li.style.display = 'none';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+'''
+
+output_path = '/Users/sg/Project/SNA/subnote/chapter10_subnote.html'
+with open(output_path, 'w', encoding='utf-8') as f:
+    f.write(html_content)
+
+print(f"Successfully generated {os.path.getsize(output_path)} bytes to {output_path}")
